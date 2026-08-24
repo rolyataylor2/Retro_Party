@@ -1,11 +1,10 @@
 const root = document.querySelector("#party-studio");
 const toastNode = document.querySelector("#studio-toast");
-const sections = { map: "map", scene: "scenes", event: "events", minigame: "minigames", rules: "rules", data: "data" };
+const sections = { map: "map", scene: "scenes", event: "events", rules: "rules", data: "data" };
 const stationMeta = {
   map: { name: "MAP MAKER", kicker: "DRAFTING TABLE", icon: "✥", copy: "Stamp spaces, sketch paths, and place board toys.", color: "blue" },
   scene: { name: "SCENE DIRECTOR", kicker: "MOVIE SET", icon: "🎬", copy: "Stage overlapping action on a toy-train timeline.", color: "purple" },
   event: { name: "SPACE ACTIONS", kicker: "CUTSCENES & SCRIPTS", icon: "⚡", copy: "Catalog, design spaces, cast characters, and script interactive cutscenes.", color: "orange" },
-  minigame: { name: "MINI-GAME MAKER", kicker: "MOMENTS & CHALLENGES", icon: "🎮", copy: "Choose cartridges, scrub DVR moments, and build goal-based mini-games.", color: "cyan" },
   rules: { name: "RULE BOOK", kicker: "LAWS OF THE PARTY", icon: "▤", copy: "Decide what the Director queues next.", color: "red" },
   data: { name: "TOY CATALOGUE", kicker: "ITEMS & COLLECTIBLES", icon: "🧸", copy: "Design coins, stars, dice blocks, power-ups, cards, food, and healing items.", color: "green" },
   test: { name: "TEST LAB", kicker: "QUEUE CONTROL ROOM", icon: "⚙", copy: "Pull the lever and watch every queue card move.", color: "yellow" },
@@ -71,18 +70,6 @@ const app = {
   timelineDraggingPlayhead: false, timelineDraggingClip: null, timelineTimer: null,
   toyCategory: "all", editingToy: null,
   boardEditorDrawerOpen: false,
-  // Mini-Game Maker State
-  miniGameStage: "game",
-  miniGameCatalog: { games: [], challenges: [] },
-  miniGameSelectedGame: null,
-  miniGamePersistedSessions: {},
-  miniGameSaving: null,
-  miniGameLiveControl: false,
-  miniGameInputMode: false,
-  miniGameInputMask: 0,
-  miniGameModifiers: [],
-  miniGameCreator: null,
-  miniGameActiveInspectorId: null,
 };
 
 if (location.pathname === "/party-studio.html") history.replaceState({}, "", "/party");
@@ -1832,136 +1819,6 @@ function boardPoint(board, event) {
 }
 root.addEventListener("click", async (event) => {
   const goTarget = event.target.closest("[data-go]"); if (goTarget) { event.preventDefault(); go(goTarget.dataset.go); return; }
-  const selectGameBtn = event.target.closest("[data-studio-select-game]");
-  if (selectGameBtn) {
-    await selectStudioGame(selectGameBtn.dataset.studioSelectGame);
-    return;
-  }
-  const studioActionBtn = event.target.closest("[data-studio-action]");
-  if (studioActionBtn) {
-    const act = studioActionBtn.dataset.studioAction;
-    if (act === "minigame-create-new") {
-      await launchStudioMomentMaker(app.miniGameSelectedGame?.id);
-      return;
-    }
-    if (act === "minigame-back-to-games") {
-      tasPlayback.pause();
-      app.miniGameLiveControl = false;
-      app.miniGameStage = "game";
-      render();
-      sound(480);
-      return;
-    }
-    if (act === "minigame-back-to-minigames") {
-      tasPlayback.pause();
-      app.miniGameLiveControl = false;
-      app.miniGameStage = "minigames";
-      render();
-      sound(480);
-      return;
-    }
-    if (act === "minigame-back-to-moment") {
-      app.miniGameStage = "moment";
-      render();
-      setupMiniGameCanvasAndEvents();
-      sound(480);
-      return;
-    }
-    if (act === "minigame-launch-creator") {
-      await launchStudioCreator();
-      return;
-    }
-    if (act === "minigame-toggle-play") {
-      tasPlayback.togglePlay();
-      render();
-      setupMiniGameCanvasAndEvents();
-      return;
-    }
-    if (act === "minigame-toggle-record") {
-      if (tasPlayback.isLiveRecording) {
-        tasPlayback.stopLiveRecording();
-        app.miniGameLiveControl = false;
-        toast("Recording stopped!");
-      } else {
-        tasPlayback.startLiveRecording();
-        app.miniGameLiveControl = true;
-        toast("Live Recording active! Play with arrow keys + Z / X.");
-      }
-      render();
-      setupMiniGameCanvasAndEvents();
-      return;
-    }
-    if (act === "minigame-jump-back") {
-      await tasPlayback.seek(Math.max(0, (tasPlayback.currentFrame || 0) - 60));
-      return;
-    }
-    if (act === "minigame-frame-back") {
-      await tasPlayback.seek(Math.max(0, (tasPlayback.currentFrame || 0) - 1));
-      return;
-    }
-    if (act === "minigame-frame-fwd") {
-      tasPlayback.step();
-      return;
-    }
-    if (act === "minigame-jump-fwd") {
-      await tasPlayback.seek(Math.min(tasPlayback.movie?.totalFrames || 0, (tasPlayback.currentFrame || 0) + 60));
-      return;
-    }
-    if (act === "minigame-moment-restart") {
-      await launchStudioMomentMaker(app.miniGameSelectedGame?.id);
-      return;
-    }
-    if (act === "minigame-creator-hit-goal") {
-      if (emulator.creator) {
-        const res = emulator.tagMilestone();
-        if (res.error) toast(res.error);
-        else {
-          playSfx("fanfare");
-          toast(`⚡ Goal milestone marked!`);
-        }
-      }
-      return;
-    }
-    if (act === "minigame-creator-hit-loss") {
-      if (emulator.creator) {
-        const res = emulator.tagNewLoss();
-        if (res.error) toast(res.error);
-        else {
-          playSfx("lose");
-          toast(`✕ Loss guard marked!`);
-        }
-      }
-      return;
-    }
-    if (act === "minigame-creator-control-game") {
-      app.miniGameInputMode = !app.miniGameInputMode;
-      toast(app.miniGameInputMode ? "Game control active! Press arrows + Z / X" : "Game control paused.");
-      return;
-    }
-    if (act === "minigame-save-challenge") {
-      const title = document.querySelector("#studio-challenge-title")?.value || "New Mini-Game";
-      const instructions = document.querySelector("#studio-challenge-instructions")?.value || "";
-      const category = document.querySelector("#studio-challenge-category")?.value || "Skill";
-      const difficulty = document.querySelector("#studio-challenge-difficulty")?.value || "Medium";
-      const timeSec = Number(document.querySelector("#studio-challenge-time")?.value || 15);
-      await saveStudioMiniGame({
-        title,
-        instructions,
-        category,
-        difficulty,
-        timeLimitFrames: timeSec * 60,
-      });
-      return;
-    }
-  }
-  const speedBtn = event.target.closest("[data-studio-speed]");
-  if (speedBtn) {
-    const s = Number(speedBtn.dataset.studioSpeed);
-    tasPlayback.setSpeed(s);
-    render();
-    setupMiniGameCanvasAndEvents();
-    return;
-  }
   const boardTarget = event.target.closest("[data-select-board]"); if (boardTarget) { try { app.project = await api(`/api/party/studio/boards/${boardTarget.dataset.selectBoard}/select`, { method: "POST" }); app.history=[];app.future=[];go(`/party/board/${app.project.boardProjects.selectedId}`); } catch(error) { toast(error.message); } return; }
   if (event.target.closest("[data-create-board]")) { const name=prompt("Name your new board:","New Board");if(!name)return;try{app.project=await api("/api/party/studio/boards",{method:"POST",body:{name}});app.history=[];app.future=[];go(`/party/board/${app.project.boardProjects.selectedId}`);}catch(error){toast(error.message);}return; }
   if (event.target.closest("[data-board-editor-drawer]")) { app.boardEditorDrawerOpen=!app.boardEditorDrawerOpen;render();sound(app.boardEditorDrawerOpen?620:320);return; }
@@ -3218,31 +3075,6 @@ document.addEventListener("keydown",(event)=>{
   if(event.code==="Space"&&app.editor==="map"&&!event.repeat){app.spaceHeld=true;document.querySelector("#map-viewport")?.classList.add("pan-ready");event.preventDefault();return;}
   if(event.key.toLowerCase()==="w"&&app.editor==="map"){event.preventDefault();app.workshopsOpen=!app.workshopsOpen;render();sound(app.workshopsOpen?620:320);return;}
 
-  const nesKeyMap = {
-    z: 1, // A
-    x: 2, // B
-    shift: 4, // Select
-    enter: 8, // Start
-    arrowup: 16, // Up
-    arrowdown: 32, // Down
-    arrowleft: 64, // Left
-    arrowright: 128, // Right
-  };
-
-  if (app.editor === "minigame" && (app.miniGameLiveControl || app.miniGameInputMode)) {
-    const k = event.key.toLowerCase();
-    if (nesKeyMap[k]) {
-      event.preventDefault();
-      app.miniGameInputMask = (app.miniGameInputMask || 0) | nesKeyMap[k];
-      if (emulator.core) {
-        emulator.runFrame(app.miniGameInputMask);
-        const canvas = document.querySelector(app.miniGameStage === "moment" ? "#studio-moment-screen" : "#studio-creator-screen");
-        if (canvas) drawStudioFrame(canvas);
-      }
-      return;
-    }
-  }
-
   const nodes=[...document.querySelectorAll("[data-nav]")].filter(node=>!node.disabled&&node.offsetParent!==null);
   if(!nodes.length)return;
   const current=Math.max(0,nodes.indexOf(document.activeElement));
@@ -3255,13 +3087,6 @@ document.addEventListener("keydown",(event)=>{
 });
 document.addEventListener("keyup",(event)=>{
   if(event.code==="Space"){app.spaceHeld=false;document.querySelector("#map-viewport")?.classList.remove("pan-ready");}
-  if (app.editor === "minigame") {
-    const nesKeyMap = { z: 1, x: 2, shift: 4, enter: 8, arrowup: 16, arrowdown: 32, arrowleft: 64, arrowright: 128 };
-    const k = event.key.toLowerCase();
-    if (nesKeyMap[k]) {
-      app.miniGameInputMask = (app.miniGameInputMask || 0) & ~nesKeyMap[k];
-    }
-  }
 });
 (async()=>{
   try{
