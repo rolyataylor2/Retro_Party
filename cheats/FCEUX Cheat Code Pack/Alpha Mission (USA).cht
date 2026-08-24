@@ -1,0 +1,14 @@
+﻿
+SC8347:ff:03:Start with all weapons available
+SC8356:01:03:Start with 1 life
+SC8356:06:03:Start with double lives
+SC8356:09:03:Start with triple lives
+SC8375:24:85:Keep power up after death
+SC8377:24:85:Keep energy after death
+SC8c70:25:85:You can re-use weapon after selecting
+SC92d7:a5:c6:Infinite lives
+SC980b:04:08:Thunder uses 25% normal energy
+SCb6a1:06:02:Triple energy gained on 'E' pick-up
+SCb6b4:02:04:Less energy lost on 'Bad E' pick-ups
+SCc004:a5:85:Shield doesn't use energy
+SCc1aa:b1:91:Invincibility

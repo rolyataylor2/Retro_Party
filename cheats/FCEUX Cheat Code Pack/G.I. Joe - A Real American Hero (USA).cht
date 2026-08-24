@@ -1,0 +1,25 @@
+﻿
+SC8139:00:03:Max health on pick-up
+SC83f6:00:01:Infinite time (alt)
+SC83fe:ad:8d:Infinite time
+SC94ec:d0:f0:Invincibility (1 of 2)
+SC94f0:ea:38:Invincibility (2 of 2)
+SCaee9:ad:8d:Infinite ammo
+SCe477:b9:99:Infinite health
+SCe47d:30:78:Shorter immunity
+SCe47d:ff:78:Longer immunity
+SCedb4:06:0d:Less health - Duke
+SCedb4:14:0d:More health - Duke
+SCedb5:06:0c:Less health - Blizzard
+SCedb5:14:0c:More health - Blizzard
+SCedb6:05:0a:Less health - Snake Eyes
+SCedb6:14:0a:More health - Snake Eyes
+SCedb7:05:0b:Less health - Capt. Grid-Iron
+SCedb7:14:0b:More health - Capt. Grid-Iron
+SCedb8:04:09:Less health - Rock and Roll
+SCedb8:14:09:More health - Rock and Roll
+SCedfc:20:17:Mega-jump - Duke
+SCedfd:20:12:Mega-jump - Blizzard
+SCedfe:20:1c:Mega-jump - Snake Eyes
+SCedff:20:14:Mega-jump - Capt. Grid-Iron
+SCee00:20:10:Mega-jump - Rock and Roll

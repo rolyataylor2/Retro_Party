@@ -1,0 +1,16 @@
+﻿
+SCc19e:00:30:At the very start of the match you win instantly (1 of 2)
+SCc1a0:09:49:At the very start of the match you win instantly (2 of 2)
+S06ae:0f:Captain face modifier
+S0019:8f:Infinite health (Team 1 - Possibility 1)
+S001a:8f:Infinite health (Team 1 - Possibility 2)
+S001b:8f:Infinite health (Team 1 - Possibility 3)
+S001e:8f:Infinite health (Team 1 - Possibility 4)
+S058b:ff:Infinite energy - P1 1st Member
+S0553:ff:Infinite energy - P1 2nd Member
+S051b:ff:Infinite energy - P1 third member
+S069c:00:P1 team color modifier
+S007b:80:P1 team modifier
+S043b:00:No energy (one hit kill) - P1 first member
+S0403:00:No energy (one hit kill) - P2 second member
+S03cb:00:No energy (one hit kill) - P2 third member

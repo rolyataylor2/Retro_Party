@@ -1,0 +1,20 @@
+﻿
+S0435:02:Infinite health (alt 2)
+S0438:09:Infinite lives (alt 2)
+SC9cef:d0:f0:Enemies can't move horizontally
+SC9d08:d0:f0:Enemies can't move vertically
+SC9d49:10:30:No enemies
+SCc40f:d0:f0:Sweets count as extra lives also
+SCc447:00:01:Infinite health (alt)
+Sc448:60:Invincibility
+Sc448:ad:Infinite health
+SCc4b2:ad:ce:Infinite lives
+Sc4b2:bd:Infinite lives (alt)
+SCc6ea:01:05:Start with 1 life
+SCc6ea:09:05:Start with 9 lives
+SCc6fa:01:02:Start with 1 heart
+SCc6fa:04:02:Start with 4 hearts
+SCe799:24:f0:Always able to fly (alt)
+SCe9b4:24:f0:Invincibility status effect
+SCec5b:00:35:Always able to fly
+SCeee0:18:10:Mega-jump

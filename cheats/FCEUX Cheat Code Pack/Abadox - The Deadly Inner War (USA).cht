@@ -1,0 +1,20 @@
+﻿
+S0086:00:Invincibility (music stops if you touch a wall) (1 of 2)
+S008a:00:Invincibility (music stops if you touch a wall) (2 of 2)
+S008b:01:Speed up level 1
+S008b:02:Speed up level 2
+S008b:03:Speed up level 3
+Sc7d0:e6:Infinite lives (lives increase when you die)
+Sc7d1:09:Infinite lives (lives never decrease)
+SCcc74:02:01:Start on level 2
+SCcc74:03:01:Start on level 3
+SCcc74:05:01:Start on level 4
+SCcc74:06:01:Start on level 6
+SCd5ab:00:c0:Invincible against walls (does not stop music)
+SCdd08:d0:f0:Invincibility (1 of 2)
+SCde0c:f0:d0:Invincibility (2 of 2)
+SCefe2:60:a5:Invincible against touching enemies
+SCf1b1:b0:90:Hit anywhere (3 of 4)
+SCf1d5:d0:90:Hit anywhere (1 of 4)
+SCf1fa:b0:d0:Hit anywhere (2 of 4)
+SCf210:24:30:Hit anywhere (4 of 4)

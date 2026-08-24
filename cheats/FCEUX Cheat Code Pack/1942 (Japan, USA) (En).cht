@@ -1,0 +1,20 @@
+﻿
+S0432:02:Infinite lives
+S0436:03:Infinite rolls (alt)
+S048e:88:Invincibility
+SCb404:ad:9d:Hit anywhere (3 of 4)
+SCb44b:ad:20:Hit anywhere (4 of 4)
+SCb44e:30:b0:Hit anywhere (1 of 4)
+SCb4b5:ad:9d:Hit anywhere (2 of 4)
+SCb7de:05:02:Start with 6 lives - 1P game
+SCb7de:08:02:Start with 9 lives - 1P game
+SCb824:ad:ce:Infinite lives - 1P game
+SCb84b:05:02:After continue, P1 has 6 lives in 2P game
+SCb84b:08:02:After continue, P1 has 9 lives in 2P game
+SCb859:05:02:P2 has 6 lives - 2P game
+SCb859:08:02:P2 has 9 lives - 2P game
+SCd2bc:00:10:Rapid fire
+SCd309:ad:ce:Infinite rolls
+SCd851:09:03:Start with 9 rolls - both players
+SCdc02:01:ff:Most enemies die instantly
+Sf828:b9:Don't die when touched

@@ -1,0 +1,22 @@
+﻿
+SCc0bc:e0:18:Mega turbo speed on button A (1 of 2)
+SCc0bc:f0:18:Turbo speed on button A (1 of 2)
+SCc0d1:04:03:Turbo speed on button A (2 of 2)
+SCc0d1:06:03:Mega turbo speed on button A (2 of 2)
+SCca58:52:b1:Press Start to complete current race (uses your race position for the verdict) (2 of 2)
+SCca59:00:03:Press Start to complete current race (uses your race position for the verdict) (1 of 2)
+SCcd22:00:1d:Start racing before gate opens (2 of 4)
+SCce7d:b5:d6:Never lose speed (even if you crash)
+SCd9a4:07:0f:Recover fast after crashes
+SCda29:00:3f:Start racing before gate opens (3 of 4)
+SCdaa0:01:03:Reduced enemy bikes in game B
+SCdc6b:60:95:Never crash when holding forward (3 of 3)
+SCde1c:a5:95:Never crash
+SCde39:10:d0:Start racing before gate opens (4 of 4)
+SCdf38:04:10:Timer runs at quarter speed
+SCdf38:08:10:Timer runs at half speed
+SCe05d:60:95:Never crash when holding forward (1 of 3)
+SCe063:60:95:Never crash when holding forward (2 of 3)
+SCe3a7:ad:ee:Never overheat
+SCea0a:00:38:Start racing before gate opens (1 of 4)
+SCf805:00:01:Infinite obstacles in design mode

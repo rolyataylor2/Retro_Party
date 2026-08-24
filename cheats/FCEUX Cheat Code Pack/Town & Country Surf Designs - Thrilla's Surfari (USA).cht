@@ -1,0 +1,23 @@
+﻿
+S0006:08:Have all 8 health slots
+SC8129:01:03:Start with 1 life
+SC8129:05:03:Start with 5 lives
+SC8129:07:03:Start with 7 lives
+SC8129:09:03:Start with 9 lives
+SC8129:99:03:Start with mega lives
+SC812d:01:02:Start with less health
+SC812d:03:02:Start with a little more health
+SC812d:04:02:Start with 2x health
+SC812d:09:02:Start with a lot more health
+SC8133:05:00:Start with 5 Coconuts plus what you've collected in sub-game
+SC8133:0a:00:Start with 10 Coconuts plus what you've collected in sub-game
+SC8133:0f:00:Start with 15 Coconuts plus what you've collected in sub-game
+SCb6f8:02:05:Start on level 1-3 (can't advance to next level) (2 of 2)
+SCb6f8:03:05:Start on level 1-4 (can't advance to next level) (2 of 2)
+SCb6f8:04:05:Watch the level 2 Cinema (can't advance to next level) (2 of 2)
+SCb6f8:06:05:Start on level 2-2 (can't advance to next level) (2 of 2)
+SCb6f8:07:05:Start on level 2-3 (can't advance to next level) (2 of 2)
+SCb6f8:08:05:Start on level 2-4 (can't advance to next level) (2 of 2)
+SCb6fa:04:b4:Start on level XX (can't advance to next level) (1 of 2)
+SCd752:a9:c6:Infinite lives
+SCe58d:a9:e6:Can't collect Coconuts

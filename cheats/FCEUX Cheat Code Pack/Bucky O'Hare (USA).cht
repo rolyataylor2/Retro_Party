@@ -1,0 +1,33 @@
+﻿
+S0034:01:Play as Jenny
+S0034:02:Play as Dead Eye
+S0034:03:Play as Blinky
+S0034:04:Play as Willy DuWitt
+S004c:09:Infinite lives - all characters
+S05a0:14:Infinite health - all characters
+SC867f:24:b0:Hit anywhere (2 of 4)
+SC8684:a9:69:Hit anywhere (3 of 4)
+SC869a:24:b0:Hit anywhere (1 of 4)
+SC869f:a9:69:Hit anywhere (4 of 4)
+SC8cce:f0:10:All characters always selectable
+SC8fa3:00:10:Multi-jump (2 of 2)
+SC8fb9:00:b0:Multi-jump (1 of 2)
+SCbf02:00:02:Start with 1 life
+SCbf02:05:02:Start with 6 lives
+SCbf02:09:02:Start with 10 lives
+SCbf06:98:8c:Double Bucky's special health
+SCbf06:a4:8c:Triple Bucky's special health
+SCbf0a:8c:0c:All characters start with normal special health
+SCbf0a:98:0c:All characters start with 2x special health
+SCbf0a:a4:0c:All characters start with 3x special health
+SCbf14:06:14:Start with 1/2 health
+SCc3d4:a9:49:Press Start to complete the level (4 of 4)
+SCc3d5:08:01:Press Start to complete the level (1 of 4)
+SCc3d7:1c:09:Press Start to complete the level (3 of 4)
+SCc3d8:00:01:Press Start to complete the level (2 of 4)
+SCcdb8:09:02:Start a new game to view ending
+SCce69:a5:c6:Infinite lives
+SCcfa6:00:02:1 life after continue
+SCcfa6:05:02:6 lives after continue
+SCcfa6:09:02:10 lives after continue
+SCdb4e:bd:9d:One hit kills

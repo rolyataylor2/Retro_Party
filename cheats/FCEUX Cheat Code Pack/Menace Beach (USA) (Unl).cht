@@ -1,0 +1,11 @@
+﻿
+S003b:fe:Level skip - hold B and press Select
+S0520:00:Less down time after hit
+SCe169:e0:38:Infinite health and one hit kills (1 of 5)
+SCe16a:00:e5:Infinite health and one hit kills (levels 1-9, 11, 12 only) (5 of 5)
+SCe16a:01:e5:Infinite health and one hit kills (level 10 only) (5 of 5)
+SCe16b:f0:11:Infinite health and one hit kills (2 of 5)
+SCe16c:06:b0:Infinite health and one hit kills (3 of 5)
+SCe16d:ea:02:Infinite health and one hit kills (4 of 5)
+SCf441:a9:a5:Multi-jump (1 of 2)
+SCf442:82:62:Multi-jump (2 of 2)

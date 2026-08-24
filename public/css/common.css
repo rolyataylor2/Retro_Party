@@ -1,0 +1,130 @@
+.view-heading {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  color: white;
+  max-width: 1380px;
+  margin: 0 auto 28px;
+}
+
+.view-heading h2 {
+  margin: 3px 0 0;
+  font-size: 38px;
+  letter-spacing: -.04em;
+}
+
+.view-heading .step-chip,
+.view-heading .count-chip {
+  margin-left: auto;
+}
+
+.step-chip,
+.count-chip {
+  color: #30275c;
+  background: var(--gold);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .12em;
+}
+
+.edge-nav {
+  position: fixed;
+  z-index: 45;
+  top: 52%;
+  width: 72px;
+  min-height: 112px;
+  border: 3px solid #ffffff42;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 2px;
+  color: white;
+  background: linear-gradient(145deg, #51439d, #2a236b);
+  box-shadow: inset 0 -8px #100d3b44, 0 14px 32px #07051c88;
+  transform: translateY(-50%);
+}
+
+.edge-back {
+  left: 0;
+  padding: 12px 14px 12px 8px;
+  border-left: 0;
+  border-radius: 0 28px 28px 0;
+}
+
+.edge-nav span {
+  font-size: 45px;
+  line-height: .7;
+}
+
+.edge-nav small {
+  color: #dcd8ff;
+  font-size: 8px;
+  font-weight: 950;
+  letter-spacing: .14em;
+}
+
+/* Shared paper panels and primary actions. Keep these independent from the
+   board wizard: Settings, Rule Book, Packs, and Creator all use them too. */
+.editor-card {
+  position: relative;
+  padding: 32px;
+  border-radius: 30px;
+  color: var(--ink);
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.big-action {
+  width: 100%;
+  min-height: 64px;
+  padding: 15px 20px;
+  border: 0;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  color: white;
+  background: var(--coral);
+  box-shadow: inset 0 -7px rgba(157, 36, 64, .27), 0 10px 20px rgba(255, 95, 119, .27);
+  font-weight: 950;
+  letter-spacing: .06em;
+  text-align: left;
+}
+
+.big-action span {
+  flex: 0 0 auto;
+  font-size: 20px;
+}
+
+.big-action:disabled {
+  opacity: .42;
+  filter: grayscale(.45);
+  box-shadow: none;
+}
+
+.editor-card input,
+.editor-card select,
+.package-fields input,
+.package-fields select {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 11px 13px;
+  border: 2px solid #e5e1f0;
+  border-radius: 13px;
+  color: var(--ink);
+  background: white;
+  font-weight: 750;
+}
+
+.editor-card input:focus,
+.editor-card select:focus,
+.package-fields input:focus,
+.package-fields select:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgba(141, 108, 245, .16);
+}
+

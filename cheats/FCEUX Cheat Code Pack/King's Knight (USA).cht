@@ -1,0 +1,10 @@
+﻿
+S009a:0c:Infinite health (alt)
+SCa168:e9:e5:Only lose 1 HP when hit (1 of 2)
+SCa169:01:10:Only lose 1 HP when hit (2 of 2)
+SCa16e:24:85:Infinite health
+SCb1d8:06:0c:Start with half usual health
+SCb1d8:18:0c:Start with double usual health
+SCb1de:01:00:Start with a better character
+SCb1de:02:00:Start with the best character normally possible
+SCb1de:05:00:Start with a super character, better than normally Possible

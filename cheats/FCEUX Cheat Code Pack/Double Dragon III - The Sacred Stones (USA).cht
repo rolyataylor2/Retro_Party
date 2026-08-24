@@ -1,0 +1,19 @@
+﻿
+S045d:40:Infinite health - P1
+S045e:40:Infinite health - P2
+SC9c82:2a:54:Less health - Billy and Jimmy
+SC9c82:64:54:More health - Billy and Jimmy
+SC9c82:ff:54:Start with 255 health - Billy and Jimmy
+SC9c8a:25:4a:Less health - Ranzou
+SC9c8a:64:4a:More health - Ranzou
+SC9c8a:ff:4a:Start with 255 health - Ranzou
+SC9c8f:32:64:Less health - Chin
+SC9c8f:ff:64:Start with 255 health - Chin
+SC9c94:63:05:Start with 99 weapon use - Billy, Jimmy and Chin
+SCb039:ad:20:Infinite health - Bill, Jimmy and Chin
+SCb064:a9:a5:More powerful punch, weapon and high kick
+SCb329:2c:de:Infinite special weapons - everyone (2 of 2)
+SCb405:00:01:Infinite special weapons - everyone (1 of 2)
+SCbcb3:00:0f:Start with Chin enabled
+SCbcc6:00:08:Start with Ranzou enabled
+SCf1c9:00:05:Start with Jimmy enabled

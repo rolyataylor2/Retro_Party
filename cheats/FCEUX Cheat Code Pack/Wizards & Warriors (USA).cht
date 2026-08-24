@@ -1,0 +1,32 @@
+﻿
+S0076:0c:Infinite health (alt 2)
+S00fc:02:Invincibility (alt)
+S0148:40:Super-jump (disable if you get stuck)
+SC9a99:00:39:Levitate as high as you like
+SCa8bc:00:39:Open any chest without a key (2 of 2)
+SCa8cb:00:2a:Open any chest without a key (1 of 2)
+SCae0d:85:25:Multi-jump (3 of 3)
+SCae0e:b0:ad:Multi-jump (1 of 3)
+SCaf73:00:02:Do not need gems to bribe guard (1 of 2)
+SCaf7f:50:b0:Do not need gems to bribe guard (2 of 2)
+SCb086:17:16:Do not continuously jump when holding the jump button
+SCb0b0:01:02:Multi-jump (2 of 3)
+SCb4ea:24:c6:Infinite lives
+SCb4ea:a5:c6:Infinite lives (alt)
+SCb83c:05:02:Start with 6 lives (1 of 2)
+SCb83c:08:02:Start with 9 lives (1 of 2)
+SCc024:05:02:Start with 6 lives (2 of 2)
+SCc024:08:02:Start with 9 lives (2 of 2)
+Sd15e:fc:Jump higher
+Sd166:cc:Jump to the top of the scren
+SCddca:00:fa:Open any door without a key
+SCdf07:ef:4f:Potions last longer
+SCe37d:24:e5:Infinite health
+SCe488:01:02:Meat gives half health
+SCe488:04:02:Meat gives double health
+SCe57e:d0:f0:Invincibility
+Se581:30:Invincibility (flashes)
+SCe698:a9:d0:Infinite health (alt) (1 of 3)
+SCe699:0c:3c:Infinite health (alt) (2 of 3)
+SCe69a:85:a5:Infinite health (alt) (3 of 3)
+Sf341:30:Enter doors without needing a key

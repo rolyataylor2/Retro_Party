@@ -1,0 +1,18 @@
+﻿
+SC807a:40:b0:Start with much less Worthiness
+SC807a:80:b0:Start with less Worthiness
+SC807f:01:04:Start with 2 lives
+SC807f:07:04:Start with 8 lives
+SC807f:09:04:Start with 10 lives
+SC81ca:1f:3b:Faster timer
+SC81ca:60:3b:Slower timer
+SC81d3:ad:ce:Infinite time
+SC8acd:ae:ce:Infinite lives
+SC8b5a:ad:8d:Infinite Worthiness
+SC8b74:00:02:Power-up restores all Worthiness
+SC8b77:ad:8d:Power-up worth nothing
+SC9b1d:ad:ee:Getting all donuts is worth no extra lives
+SCa802:05:14:5 special moves on pick-up
+SCa802:28:14:40 special moves on pick-up
+SCb7d7:ff:b4:More time in level 1
+SCb7f5:ff:32:More time in Donut shop in level 1

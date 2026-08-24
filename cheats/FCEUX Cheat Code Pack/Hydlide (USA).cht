@@ -1,0 +1,23 @@
+﻿
+S0038:64:Infinite life
+S0039:64:Max STR
+S003a:64:Max EXP
+S003b:64:Max Magic
+S0059:ff:Have the Sword
+S005a:ff:Have the Shield
+S005b:ff:Have the Lamp
+S005c:ff:Have the Cross
+S005d:ff:Have the Pot
+S005e:ff:Have the Medicine
+S005f:ff:Have the Key
+S0060:ff:Have the Ruby
+S0061:ff:Have the Ring
+S0062:ff:Have the Jewel
+S0063:ff:Have 3 Fairies (1 of 3)
+S0064:ff:Have 3 Fairies (2 of 3)
+S0065:ff:Have 3 Fairies (3 of 3)
+SC8640:28:0a:Boost strength, life, magic
+SC8640:64:0a:Super boost strength, life, magic
+SC8ebc:00:0d:Rapid healing
+SC9a7e:00:02:Rapid magic healing
+SCc7d7:a5:85:Don't take damage from most enemies

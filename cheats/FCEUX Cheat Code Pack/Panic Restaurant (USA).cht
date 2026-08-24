@@ -1,0 +1,24 @@
+﻿
+SC90b1:f0:d0:Invincibility
+SC90e1:a5:c6:Infinite health (alt)
+SC90e1:a9:c6:Infinite health - except when you fall on spikes
+SC92c7:00:be:Hit anywhere (1 of 2)
+SC92e4:00:a1:Hit anywhere (2 of 2)
+SCad17:01:02:Start with 2 lives
+SCad17:05:02:Start with 5 lives
+SCad17:0a:02:Start with 10 lives
+SCad17:0f:02:Start with 15 lives
+SCc26c:a9:c6:Infinite time
+SCc26c:c5:c6:Infinite time (alt)
+SCc303:00:29:Moon-jump
+SCcf6a:3c:63:Start with 60 on timer - 1st level only (2 of 2)
+SCcf6a:46:63:Start with 70 on timer - 1st level only (2 of 2)
+SCcf6a:50:63:Start with 80 on timer - 1st level only (2 of 2)
+SCd418:85:c6:Infinite lives
+SCd418:a5:c6:Infinite lives (alt)
+SCf452:04:02:Start with 4 hearts
+SCf452:06:02:Start with 6 hearts (heart meter will be distorted)
+SCf452:0a:02:Start with 10 hearts (heart meter will be distorted)
+SCf464:3c:63:Start with 60 on timer - 1st level only (1 of 2)
+SCf464:46:63:Start with 70 on timer - 1st level only (1 of 2)
+SCf464:50:63:Start with 80 on timer - 1st level only (1 of 2)

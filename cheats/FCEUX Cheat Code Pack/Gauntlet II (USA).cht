@@ -1,0 +1,52 @@
+﻿
+S0707:ff:Have Invulnerability - P1
+S0708:ff:Have Invulnerability - P2
+S0709:ff:Have Invulnerability - P3
+S070a:ff:Have Invulnerability - P4
+S0711:ff:Have Repulsiveness - P1
+S0712:ff:Have Repulsiveness - P2
+S0713:ff:Have Repulsiveness - P3
+S0714:ff:Have Repulsiveness - P4
+S0716:ff:Have Reflective Shot - P1
+S0717:ff:Have Reflective Shot - P2
+S0718:ff:Have Reflective Shot - P3
+S0719:ff:Have Reflective Shot - P4
+S071b:0a:Have Super Shot - P1
+S071c:0a:Have Super Shot - P2
+S071d:0a:Have Super Shot - P3
+S071e:0a:Have Super Shot - P4
+S0720:ff:Have Transportability - P1
+S0721:ff:Have Transportability - P2
+S0722:ff:Have Transportability - P3
+S0723:ff:Have Transportability - P4
+S0739:ff:Infinite health - P1
+S073a:ff:Infinite health - P2
+S073b:ff:Infinite health - P3
+S073c:ff:Infinite health - P4
+S0743:04:Infinite Keys - P1
+S0744:04:Infinite Keys - P2
+S0745:04:Infinite Keys - P3
+S0746:09:Infinite Keys - P4
+S0748:03:Infinite Potions - P1
+S0749:03:Infinite Potions - P2
+S074a:03:Infinite Potions - P3
+S074b:03:Infinite Potions - P4
+SCdf2d:e9:e5:Take less damage (1 of 2)
+SCdf2e:02:00:Take less damage (2 of 2)
+SCdf2f:bd:9d:Infinite health (1 of 2)
+SCe01f:01:00:Infinite Keys (new game) (1 of 2)
+SCe207:bd:9d:Infinite health (2 of 2)
+SCe294:ea:bd:Infinite time in treasure rooms
+SCe53e:10:90:Walk through walls (1 of 2)
+SCe55c:b0:90:Walk through walls (2 of 2)
+SCeaf3:1b:3c:Repulsiveness doesn't last as long
+SCeaf3:78:3c:Repulsiveness lasts longer
+SCeb06:1b:3c:Invincibility doesn't last as long
+SCeb06:78:3c:Invincibility lasts longer
+SCeb14:1b:3c:Invisibility doesn't last as long
+SCeb14:78:3c:Invisibility lasts longer
+SCeb30:05:0a:5 super shots on pick-up
+SCeb30:14:0a:20 super shots on pick-up
+SCeb60:ad:de:Infinite Keys (new game) (2 of 2)
+SCed6e:32:64:Weaker poison
+SCed6e:c8:64:Stronger poison

@@ -1,0 +1,55 @@
+﻿
+S0001:ff:Unlock doors (enable only when at a door otherwise you'll move very slowly)
+S0022:40:Have Fire Ball
+S03d0:01:Start on stage 02
+S03d0:02:Start on stage 03
+S03d0:03:Start on stage 04
+S03d0:04:Start on stage 05
+S03d0:05:Start on stage 06
+S03d0:06:Start on stage 07
+S03d0:07:Start on stage 08
+S03d0:08:Start on stage 09
+S03d0:09:Start on stage 10
+S03d0:0a:Start on stage 11
+S03d0:0b:Start on stage 12
+S03d0:0c:Start on stage 13
+S03d0:0d:Start on stage 14
+S03d0:0e:Start on stage 15
+S03d0:0f:Start on stage 16
+S03d0:10:Start on stage 17
+S03d0:11:Start on stage 18
+S03d0:12:Start on stage 19
+S03d0:13:Start on stage 20
+S03d0:14:Start on stage 21
+S03d0:15:Start on stage 22
+S03d0:16:Start on stage 23
+S03d0:17:Start on stage 24
+S03d0:18:Start on stage 25
+S03d0:19:Start on stage 26
+S03d0:1a:Start on stage 27
+S03d0:1b:Start on stage 28
+S03d0:1c:Start on stage 29
+S03d0:1d:Start on stage 30
+S03d0:1e:Start on stage 31
+S03d3:07:Have Ultimate Bow status
+S03d4:07:Have Ultimate Arrow status
+S03d5:0a:Have all armor (1 of 2)
+S03d6:05:Infinite health (alt)
+S03d6:0a:Have all armor (2 of 2)
+S03d7:03:Max item slots
+S03dc:ff:Have Ring, Necklace, Mirror
+SC8534:06:0b:Start with 5 continues
+SC8534:15:0b:Start with 20 continues
+SC8546:02:05:Start with fewer hearts
+SC8546:09:05:Start with more hearts
+SC854e:01:03:Start with 1 life
+SC854e:06:03:Start with 6 lives
+SC854e:09:03:Start with 9 lives
+SC9507:03:0f:Less damage from powerful monsters
+SC9516:24:e5:Infinite health
+SC96dc:00:16:Walk through walls (4 of 4)
+SC9717:00:0f:Walk through walls (2 of 4)
+SC9742:00:18:Walk through walls (1 of 4)
+SC978a:00:9c:Walk through walls (3 of 4)
+SCae2a:00:c0:Hit anywhere
+SCbc32:ad:ce:Infinite lives

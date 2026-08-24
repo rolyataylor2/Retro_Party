@@ -1,0 +1,43 @@
+﻿
+S007e:00:Invincibility
+S0092:ff:Infinite Hover (alt)
+S00c3:ff:Full Gun Power - Jason
+S00dd:03:Infinite lives (alt)
+S040d:ff:Infinite health (alt)
+S047d:00:Most end bosses die instantly
+S06f0:63:Infinite Homing Missiles (alt)
+S06f1:63:Infinite Thunderbreaks (alt)
+S06f2:63:Infinite Multi-Warheads (alt)
+S89b4:ea:Infinite car health
+SC9328:a5:c6:Infinite Hover
+SC9858:2c:ce:Infinite Homing Missiles
+SC99c0:2c:ce:Infinite Thunderbreaks
+SC9ade:2c:ce:Infinite Multi-Warheads
+SCc2cc:ff:00:Start with all abilities
+SCc2fd:a9:09:Start at the boss of world X (1 of 2)
+SCc2fe:00:08:Start at the boss of world 1 (2 of 2)
+SCc2fe:01:08:Start at the boss of world 2 (2 of 2)
+SCc2fe:02:08:Start at the boss of world 3 (2 of 2)
+SCc2fe:03:08:Start at the boss of world 4 (2 of 2)
+SCc2fe:04:08:Start at the boss of world 5 (2 of 2)
+SCc2fe:05:08:Start at the boss of world 6 (2 of 2)
+SCc2fe:06:08:Start at the boss of world 7 (2 of 2)
+SCc2fe:07:08:Start at the boss of world 8 (2 of 2)
+SCc2fe:09:08:Start on world 2
+SCc2fe:0a:08:Start on world 3
+SCc2fe:0b:08:Start on world 4
+SCc2fe:0c:08:Start on world 5
+SCc2fe:0d:08:Start on world 6
+SCc2fe:0e:08:Start on world 7
+SCc2fe:0f:08:Start on world 8
+SCc302:00:02:Start with 1 life
+SCc302:05:02:Start with 6 lives
+SCc302:08:02:Start with 9 lives
+SCc309:05:00:Start with 5 of each weapon
+SCc309:0a:00:Start with 10 of each weapon
+SCc309:0f:00:Start with 15 of each weapon
+SCc309:63:00:Start with 99 of each weapon
+SCc309:ff:00:Start with 99 of each weapon and max Hover
+SCc537:a5:c6:Infinite lives
+SCc53a:42:16:Die to see ending
+Sd70b:07:Enemies are killed instantly

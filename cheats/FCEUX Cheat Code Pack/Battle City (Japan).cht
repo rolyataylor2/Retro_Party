@@ -1,0 +1,6 @@
+﻿
+S0051:64:Infinite lives
+S0080:00:Win level now
+S0089:02:Tank always have Shield Protection
+SCdc00:ad:ce:Infinite freeze time once you obtain a clock
+SCe9f6:ff:0a:256 seconds of freeze time once you obtain a clock

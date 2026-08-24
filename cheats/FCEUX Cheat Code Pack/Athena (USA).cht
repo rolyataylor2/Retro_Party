@@ -1,0 +1,13 @@
+﻿
+S0092:59:Infinite time (alt)
+S0095:0f:Infinite health
+S009b:09:Infinite lives
+SC89c9:10:b0:Collect items from anywhere
+SCa533:24:85:Infinite health (after first 2 units)
+SCb733:00:01:Infinite time
+SCe758:04:05:Start with less time
+SCe758:07:05:Start with extra time
+SCf1cb:00:02:Start with 1 life
+SCf1cb:05:02:Start with 6 lives
+SCf1cb:08:02:Start with 9 lives
+SCf1cf:20:0c:Start with energy boost

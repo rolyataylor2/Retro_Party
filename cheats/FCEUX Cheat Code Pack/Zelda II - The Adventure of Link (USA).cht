@@ -1,0 +1,75 @@
+﻿
+S0086:00:No enemies in overworld (alt) (1 of 4)
+S0087:00:No enemies in overworld (alt) (2 of 4)
+S0088:00:No enemies in overworld (alt) (3 of 4)
+S0089:00:No enemies in overworld (alt) (4 of 4)
+S00c2:01:One hit kill on final boss
+S0518:03:Invincibility (disable when fighting your shadow)
+S0700:04:Infinite lives (alt)
+S076f:02:Jump spell always on
+S0773:ff:Infinite magic (alt 2)
+S0774:ff:Infinite health (alt)
+S0777:ff:Max sword level
+S0778:ff:Max magic level
+S0779:ff:Max life level
+S077b:01:Have Shield spell
+S077c:01:Have Jump spell
+S077d:01:Have Life spell
+S077e:01:Have Fairy spell
+S077f:01:Have Fire spell
+S0780:01:Have Reflect spell
+S0781:01:Have Spell spell
+S0782:01:Have Thunder spell
+S0783:08:Max magic jars
+S0785:01:Have Candle
+S0786:01:Have Glove
+S0787:01:Have Raft
+S0788:01:Have Boots
+S0789:01:Have Flute
+S078a:01:Have Cross
+S078b:01:Have Hammer
+S078c:01:Have Key
+S0793:09:Infinite Keys
+S0794:00:Can enter final palace
+S0796:ff:Have up/down thrust
+SC82f7:60:a5:Enemies do not spawn in Overworld
+SC831d:a0:a4:Fairies spawn instead of enemies in overworld (1 of 2)
+SC831e:0d:08:Fairies spawn instead of enemies in overworld (2 of 2)
+SC8df0:2c:f9:Infinite magic
+SC8df5:ad:8d:Infinite magic (alt)
+SC8e48:23:8d:Swap Shield spell for Fairy spell (1 of 2)
+SC8e48:5d:8d:Swap Shield spell for Life spell (1 of 2)
+SC8e48:73:8d:Swap Shield spell for Spell spell (1 of 2)
+SC8e48:e6:8d:Swap Shield spell for Thunder spell (1 of 2)
+SC8e48:f1:8d:Swap Shield spell for Fire spell (1 of 2)
+SC8e49:8e:8e:Swap Shield spell for Spell spell (2 of 2)
+SC8e49:91:8e:Swap Shield spell for Fairy spell (2 of 2)
+SC8e49:97:8e:Swap Shield spell for Fire spell (2 of 2)
+SC9530:f5:f7:Multi-jump (1 of 6)
+SC9535:a9:ad:Multi-jump (2 of 6)
+SC9536:fb:7d:Multi-jump (3 of 6)
+SC9537:8d:05:Multi-jump (4 of 6)
+SC9538:7d:10:Multi-jump (5 of 6)
+SC9539:05:02:Multi-jump (6 of 6)
+SC953b:00:30:Link can fly (hold A)
+SC953b:20:30:Mega-jump
+SC9f6b:ad:8d:Don't lose EXP points while leveling up (1 of 2)
+SC9f74:ad:8d:Don't lose EXP points while leveling up (2 of 2)
+SCa60d:de:bd:Start with all spells
+SCb914:a9:b1:Start with all spells, items, 6 of each stat, 6 life and magic containers, name is destroyed (1 of 2)
+SCb915:06:00:Start with all spells, items, 6 of each stat, 6 life and magic containers, name is destroyed (2 of 2)
+SCc359:01:03:Start with 1 life
+SCc359:06:03:Start with 6 lives
+SCc359:09:03:Start with 9 lives
+SCca44:ad:ce:Infinite lives
+Sd3f8:08:Infinite magic and health in battle
+SCd45e:ea:8d:Gain 256 EXP when you defeat an enemy most of the time
+SCd465:01:00:Gain more than 256 EXP for every EXP
+Sd9e2:e2:Keys not necessary to open doors (2 of 2)
+Sd9e3:ea:Keys not necessary to open doors (1 of 2)
+SCd9e4:ad:ce:Infinite Keys after one is obtained
+Se330:e2:Almost infinite health
+Se335:e2:Infinite health (1 of 2)
+Se336:ea:Infinite health (2 of 2)
+SCe6a4:50:b0:Hit anywhere (press up if you get stuck at a Palace entrance)
+SCe732:ed:f9:All sword levels do massive damage

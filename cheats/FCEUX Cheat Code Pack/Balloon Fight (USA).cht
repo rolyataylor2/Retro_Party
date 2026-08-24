@@ -1,0 +1,13 @@
+﻿
+S0041:02:Infinite lives - P1
+S0042:02:Infinite lives - P2
+Sea60:0b:Enemies can't burst balloons
+SCefa7:60:84:Balloons are unburstable
+SCf1f1:00:02:Start with 1 life
+SCf1f1:05:02:Start with 6 lives
+SCf1f1:08:02:Start with 9 lives
+SCf1fd:04:00:Start on level 5 - 2P only
+SCf1fd:09:00:Start on level 10 - 2P only
+SCf1fd:0e:00:Start on level 15 - 2P only
+SCf2fd:b5:d6:Infinite lives
+SCf3b6:01:02:Start with only one balloon

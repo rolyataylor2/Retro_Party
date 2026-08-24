@@ -1,0 +1,33 @@
+﻿
+SC8001:32:28:Start with 50 strength points
+SC8001:46:28:Start with 70 strength points
+SC8002:32:1e:Start with 50 resistance points
+SC8002:46:1e:Start with 70 resistance points
+SC8003:32:14:Start with 50 reflex points
+SC8003:46:14:Start with 70 reflex points
+SCd2e8:a5:c6:Infinite time (round never ends)
+SCd5fc:a9:b1:All physical types are XX (1 of 2)
+SCd5fd:1e:02:All physical types are 30 (may cause graphic errors) (2 of 2)
+SCd5fd:32:02:All physical types are 50 (may cause graphic errors) (2 of 2)
+SCd76f:a9:85:Each round is XX (2 of 3)
+SCd770:02:5e:Each round is 0:20 (3 of 3)
+SCd770:03:5e:Each round is 0:30 (3 of 3)
+SCd770:04:5e:Each round is 0:40 (3 of 3)
+SCd770:05:5e:Each round is 0:50 (3 of 3)
+SCd774:00:01:Each round is XX (1 of 3)
+SCd774:02:01:Each round is 2:00
+SCd774:03:01:Each round is 3:00
+SCd774:04:01:Each round is 4:00
+SCd774:05:01:Each round is 5:00
+SCd774:06:01:Each round is 6:00
+SCd774:07:01:Each round is 7:00
+SCd774:08:01:Each round is 8:00
+SCd774:09:01:Each round is 9:00
+SCda1b:01:05:Each match is 1 round instead of 5
+SCda1b:02:05:Each match is 2 rounds
+SCda1b:03:05:Each match is 3 rounds
+SCda1b:04:05:Each match is 4 rounds
+SCda1b:06:05:Each match is 6 rounds
+SCe80e:08:04:Gain more strength and reflex points in training (2 of 2)
+SCe80e:10:04:Gain more resistance points in training (2 of 2)
+SCe981:00:02:Gain more XX in training (1 of 2)

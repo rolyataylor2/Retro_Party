@@ -1,0 +1,10 @@
+﻿
+S0071:00:Invincibility
+SCc96d:01:04:Start with 1 life - P1
+SCc96d:0a:04:Start with 10 lives - P1
+SCcec0:b5:d6:Infinite lives - both players
+SCd58d:20:a0:Increase territory to full screen
+SCd58d:50:a0:Increase territory to half screen
+SCd58d:c7:a0:Shrink territory
+SCdfba:03:06:Player's bullets move slower
+SCdfba:0a:06:Player's bullets move faster

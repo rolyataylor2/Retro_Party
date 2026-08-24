@@ -1,0 +1,14 @@
+﻿
+S0392:7a:Infinite power (health) (alt 2)
+SCc0e4:02:01:Start on stage 2 (starts on stage 1 after continuing)
+SCc0e4:03:01:Start on stage 3 (starts on stage 1 after continuing)
+SCc0e4:04:01:Start on stage 4 (starts on stage 1 after continuing)
+SCc0e4:05:01:Start on stage 5 (starts on stage 1 after continuing)
+SCc0e4:06:01:Start on stage 6 (starts on stage 1 after continuing)
+SCe85f:00:02:Full health from food
+SCeb97:ff:00:Start with lots of weapons
+SCf477:20:ad:Invincibility in normal levels (3 of 3)
+SCf478:0e:52:Invincibility in normal levels (2 of 3)
+SCf479:f5:03:Invincibility in normal levels (1 of 3)
+SCf501:2c:8d:Infinite power (health)
+SCf501:ad:8d:Infinite power (health) (alt)

@@ -1,0 +1,21 @@
+﻿
+S003d:01:Start on mission 2 (disable after stage begins)
+S003d:02:Start on mission 3 (disable after stage begins)
+S003d:03:Start on mission 4 (disable after stage begins)
+S0040:07:Start with all hearts
+S03b4:64:Infinite health
+S8959:5d:Enemies will not fight back
+S9959:5d:No enemies
+Scce9:9c:Slow motion
+Sd32d:ff:Disable level 4 wall trap
+SCe2b3:00:02:Start with 1 life
+SCe2b3:05:02:Start with 6 lives
+SCe2b3:08:02:Start with 9 lives
+SCe2b3:88:02:Infinite lives
+SCf332:10:30:Timer will count down super-fast
+SCf332:20:30:Timer will count down faster
+SCf33f:00:01:Infinite time
+SCf841:ea:4a:More health - P1
+SCf84a:ea:4a:More health - P2 or computer
+SCfbc2:c6:e6:Gain hearts quickly
+Sfbdf:c0:Gain a heart every time you hit an enemy

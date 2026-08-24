@@ -1,0 +1,19 @@
+﻿
+S0073:03:Invincibility (blinking)
+S0744:ff:Infinite life (alt)
+S0746:63:Infinite Gun ammo
+S0747:63:Infinite Machine Gun ammo
+S0748:63:Infinite Grenades
+SCc94e:19:32:Start with 25 life
+SCc94e:63:32:Start with 99 life
+SCc95d:01:00:Start with Shield Suit (1 of 2)
+SCc95f:52:43:Start with Shield Suit (2 of 2)
+SCca83:08:03:Mega-jump
+SCdd9c:00:07:Take more damage and Shield Suit has no effect (2 of 2)
+SCdd9d:66:46:Take more damage and Shield Suit has no effect (1 of 2)
+SCddc4:24:e5:Infinite life
+SCddc4:e9:e5:Take minimal damage (1 of 2)
+SCddc5:01:74:Take minimal damage (2 of 2)
+SCdddc:04:14:Less invincibility time
+SCdddc:40:14:More invincibility time
+SCf800:2c:ce:Infinite Gun ammo on pick-up

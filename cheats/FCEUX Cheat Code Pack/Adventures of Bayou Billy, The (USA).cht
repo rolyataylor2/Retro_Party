@@ -1,0 +1,34 @@
+﻿
+S0510:00:One hit kills (1 of 5)
+S0511:00:One hit kills (2 of 5)
+S0512:00:One hit kills (3 of 5)
+S0513:00:One hit kills (4 of 5)
+S0514:00:One hit kills (5 of 5)
+S07c0:63:Infinite bullets
+S07c1:01:Have the Gun
+S07c1:02:Have the Knife
+S07c1:03:Have the Ugly Stick
+S07c1:05:Have the Whip
+S07c5:07:Infinite health (alt)
+SC8476:a0:ac:Always have X weapon (1 of 3)
+SC8477:01:c1:Always have pistol (3 of 3)
+SC8477:02:c1:Always have knife (3 of 3)
+SC8477:03:c1:Always have ugly stick (3 of 3)
+SC8477:05:c1:Always have whip (3 of 3)
+SC8478:ea:07:Always have X weapon (2 of 3)
+SC9c9b:ad:ce:Infinite health (2 of 2)
+SCe2cd:01:07:Infinite health (1 of 2)
+SCe31b:24:c6:Infinite lives
+SCe400:00:02:Start with 1 life
+SCe400:05:02:Start with 6 lives
+SCe400:08:02:Start with 9 lives
+SCe408:00:04:Start on level XX (2 of 3)
+SCe40a:01:00:Start on level 2 (3 of 3)
+SCe40a:02:00:Start on level 3 (3 of 3)
+SCe40a:03:00:Start on level 4 (3 of 3)
+SCe40a:04:00:Start on level 5 (3 of 3)
+SCe40a:05:00:Start on level 6 (3 of 3)
+SCe40a:06:00:Start on level 7 (3 of 3)
+SCe40a:07:00:Start on level 8 (3 of 3)
+SCe40c:fb:39:Start on level XX (1 of 3)
+SCe798:05:04:Start a new game to view the ending (game A or B)

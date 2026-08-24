@@ -1,0 +1,51 @@
+{
+  "games": {
+    "smb": [
+      {
+        "id": "mod-smb-fire",
+        "name": "Always Fire Mario",
+        "description": "Mario has Fire power constantly ($0756 = 2)",
+        "kind": "freeze",
+        "address": 1878,
+        "value": 2,
+        "category": "Power-up"
+      },
+      {
+        "id": "mod-smb-star",
+        "name": "Permanent Star Power",
+        "description": "Mario is permanently invincible ($079F = 100)",
+        "kind": "freeze",
+        "address": 1951,
+        "value": 100,
+        "category": "Invincibility"
+      },
+      {
+        "id": "mod-smb-moon-jump",
+        "name": "Moon Gravity / High Jump",
+        "description": "Mario floats with super low gravity ($0709 = 0)",
+        "kind": "freeze",
+        "address": 1801,
+        "value": 0,
+        "category": "Physics"
+      },
+      {
+        "id": "mod-smb-super-speed",
+        "name": "Mega Run Speed",
+        "description": "Mario runs at maximum velocity ($0700 = 40)",
+        "kind": "freeze",
+        "address": 1792,
+        "value": 40,
+        "category": "Physics"
+      },
+      {
+        "id": "mod-smb-lives",
+        "name": "Infinite Lives (99)",
+        "description": "Lives locked to 99 ($075A = 99)",
+        "kind": "freeze",
+        "address": 1882,
+        "value": 99,
+        "category": "Lives"
+      }
+    ]
+  }
+}

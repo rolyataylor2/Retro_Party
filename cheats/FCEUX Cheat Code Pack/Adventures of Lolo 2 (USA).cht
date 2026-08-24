@@ -1,0 +1,16 @@
+﻿
+SC99b4:04:00:Start on world 5
+SC99b4:09:00:Start on world 10
+SC99b4:0e:00:Start on world 15
+SC99b4:13:00:Start on world 20
+SC99b4:18:00:Start on world 25
+SC99b4:1d:00:Start on world 30
+SC99d2:01:05:Start with 1 life
+SC99d2:0a:05:Start with 10 lives
+SC99d2:0f:05:Start with 15 lives
+SC9a05:02:00:Start with 2 magic shots
+SC9a05:04:00:Start with 4 magic shots
+SC9b26:24:c6:Infinite lives
+SCa8f8:04:fb:Always have shot ability
+SCa8fb:24:c6:Never lose magic shots
+SCabba:60:e6:Invincibility

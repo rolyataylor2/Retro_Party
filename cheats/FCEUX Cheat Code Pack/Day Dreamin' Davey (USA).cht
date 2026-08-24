@@ -1,0 +1,19 @@
+﻿
+S0067:ff:Infinite health (alt)
+S040e:01:Have Sword
+S0410:01:Have Long Sword
+S0411:99:Infinite Small Spears
+S0412:99:Infinite Long Spears
+S0414:99:Infinite Three Rock
+S0415:99:Infinite Four Rock
+S041f:99:Infinite Potions
+S0420:01:Have Key
+S0420:99:Infinite Red Potions
+S0422:01:Have Ring
+S0423:01:Have Pendant
+SC94d2:a5:85:Infinite health
+SCb472:00:4a:Hit anywhere
+Sce42:00:Walk through walls (1 of 4)
+Sced9:00:Walk through walls (2 of 4)
+Scf64:00:Walk through walls (3 of 4)
+Scfe0:00:Walk through walls (4 of 4)

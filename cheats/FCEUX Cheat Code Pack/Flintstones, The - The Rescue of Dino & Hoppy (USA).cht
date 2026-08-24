@@ -1,0 +1,28 @@
+﻿
+S0305:09:Infinite lives
+S0308:03:Infinite energy (hearts) (alt)
+S030b:ff:Infinite coins
+S0312:0c:Max power charge (alt)
+S03d7:00:One hit kills on most bosses
+SC8090:ad:ce:Infinite lives
+SC8167:00:02:Start with 1 life
+SC8167:05:02:Start with 6 lives
+SC8167:08:02:Start with 9 lives
+SC817b:63:0a:Start with 99 coins
+SC8180:01:00:Start with Slingshot
+SC8180:02:00:Start with Axe
+SC8180:04:00:Start with Bomb
+S8dec:00:Infinite Firepower
+SC8e32:00:03:Slingshot doesn't use up coins
+SC8e33:00:03:Axe doesn't use up coins
+SC8e34:00:0a:Bomb doesn't use up coins
+SC9183:13:01:Max power charge (3 of 4)
+SC9192:60:ce:Invincibility
+SC9192:ad:ce:Infinite energy (hearts) (2 of 2)
+SC923b:13:01:Max power charge (4 of 4)
+SC96db:50:b0:Walk through walls
+SC99c8:13:01:Max power charge (1 of 4)
+SCa103:13:01:Max power charge (2 of 4)
+SCe2d2:02:05:2 coins on pick-up
+SCe2d2:0f:05:15 coins on pick-up
+SCe472:ad:ce:Infinite energy (hearts) (1 of 2)

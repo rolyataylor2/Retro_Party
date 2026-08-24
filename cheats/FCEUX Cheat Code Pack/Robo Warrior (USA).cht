@@ -1,0 +1,15 @@
+﻿
+SCc170:05:01:Set firing range to 5
+SCc170:0a:01:Set firing range to 10
+SCc1e5:05:01:Start with defense level at 5
+SCc1e5:08:01:Start with defense level at 8
+SCc1eb:05:00:Start with 5 of everything
+SCc1eb:0a:00:Start with 10 of everything
+SCc924:ea:e6:Infinite Barrier after pick-up
+SCcbf0:90:10:Walk through walls
+SCddaf:b5:d6:Infinite Mega Bomb after after pick-up
+SCe147:a5:c6:Infinite Super Bombs
+SCe561:05:0a:5 Super Bombs on pick-up
+SCe561:14:0a:20 Super Bombs on pick-up
+SCf23f:2c:4e:No damage from bomb blast
+SCf27d:2c:4e:No damage from monsters and no power drain

@@ -1,0 +1,28 @@
+﻿
+S007c:5b:Invincibility (blinking)
+S05b6:60:Infinite health (alt)
+S05db:79:Infinite lives (alt)
+SC80c6:50:90:Invincibility (can still be crushed by walls)
+SC812c:00:06:Infinite health
+SCc605:71:73:1 continue
+SCc605:76:73:6 continues
+SCc605:79:73:9 continues
+SCc6ee:5b:67:Start with max hearts (4 hearts) (2 of 2)
+SCc726:07:00:View the ending at the start of the game (2 of 2)
+SCc748:05:02:Start with max multiple shots (4 shots)
+SCc74a:54:5a:View the ending at the start of the game (1 of 2)
+SCc74c:02:00:Start with a faster engine
+SCc76a:70:73:Start with 1 life
+SCc76a:76:73:Start with 7 lives
+SCc76a:79:73:Start with 10 lives
+SCc7e7:60:00:Start with max hearts (4 hearts) (1 of 2)
+SCc863:71:70:Add $1,000,000 to end-of-level bonus
+SCcbf6:70:73:1 life after continue
+SCcbf6:76:73:7 lives after continue
+SCcbf6:79:73:10 lives after continue
+SCcbfa:a5:c6:Infinite continues
+SCcc47:2c:ce:Infinite lives from getting trapped by obstacles
+SCf468:50:f0:Fly through walls (1 of 4)
+SCf48e:50:f0:Fly through walls (2 of 4)
+SCf4ac:50:f0:Fly through walls (4 of 4)
+SCf4ca:50:f0:Fly through walls (3 of 4)

@@ -1,0 +1,20 @@
+﻿
+S0319:00:No health - P2 / CPU
+S038d:09:Infinite power (ten's digit) - P1
+S038e:09:Infinite power (one's digit) - P1
+S038f:09:Max punch (ten's digit) - P1
+S0390:09:Max punch (one's digit) - P1
+S0391:09:Max speed (ten's digit) - P1
+S0392:09:Max speed (one's digit) - P1
+S0393:09:Max stamina (ten's digit) - P1
+S0394:09:Max stamina (one's digit) - P1
+S06e4:09:Infinite time (ten's digit)
+S06e5:09:Infinite time (one's digit)
+S06ec:00:No hits (hundred's digit) - P1
+S06ed:00:No hits (ten's digit) - P1
+S06ee:00:No hits (one's digit) - P1
+SCad91:24:91:Players can't hurt each other
+SCafc2:24:91:Don't lose stamina from fighting
+SCd601:2c:ce:Unlimited power points - 1P game
+SCd79b:03:06:Rounds are 30 seconds
+SCd79b:09:06:Rounds are 90 seconds

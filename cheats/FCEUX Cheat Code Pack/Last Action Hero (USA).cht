@@ -1,0 +1,26 @@
+﻿
+S002e:2f:Infinite health (alt)
+S008c:19:Invincibility (blinking)
+S0092:09:Infinite lives (alt)
+SC8f50:a6:e6:Red hearts worth nothing
+SCa0a3:d0:f0:One hit kills on bosses
+SCbc95:a5:46:Infinite health
+SCbca1:a5:c6:Infinite lives
+SCe0f0:02:00:Start on stage 2 - Hamlet
+SCe0f0:04:00:Start on stage 3 - The House
+SCe0f0:05:00:Start on stage 4 - The Freeway
+SCe0f0:06:00:Start on stage 5 - The Office block
+SCe0f0:07:00:Start on stage 6 - The Helicopter
+SCe0f0:08:00:Start on stage 7 - The Film Premiere
+SCe0f0:09:00:Start on Stage 8 - The Cinema
+SCe0f0:0a:00:Start on the end-of-level bad guy
+SCe50a:a5:c6:Infinite continues
+SCe550:00:03:Continue with 1 life
+SCe550:01:03:Continue with 2 lives
+SCe550:02:03:Continue with 3 lives
+SCee3d:00:03:Start with 1 life
+SCee3d:06:03:Start with 7 lives
+SCee3d:09:03:Start with 10 lives
+SCee41:00:02:Start with 0 continues
+SCee41:05:02:Start with 5 continues
+SCee41:09:02:Start with 9 continues

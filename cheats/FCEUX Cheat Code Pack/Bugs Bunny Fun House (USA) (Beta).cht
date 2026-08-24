@@ -1,0 +1,15 @@
+﻿
+SC962b:1f:3c:Faster timer
+SC962b:80:3c:Slower timer
+SC98eb:07:0f:Less time from Large Glop Clocks
+SC98eb:1e:0f:More time from Large Glop Clocks
+SCacde:02:04:Quicker turning
+SCc88d:07:01:Start on Floor 2
+SCc88d:13:01:Start on Floor 4
+SCc88d:1f:01:Start on Floor 6
+SCc88d:2b:01:Start on Floor 8
+SCc892:01:03:Start with 1 turn
+SCc892:09:03:Start with 9 turns
+SCccfd:ad:ce:Infinite turns
+SCcd25:01:03:1 turn after continuing
+SCcd25:09:03:9 turns after continuing

@@ -1,0 +1,19 @@
+﻿
+SCa1cf:80:05:One hit to destroy buildings
+SCa6d4:50:f0:Buildings collapse faster (1 of 2)
+SCaa93:15:0d:Buildings collapse faster (2 of 2)
+SCb3a0:24:91:No harm from attacks or bad food
+SCb3b3:00:05:Half health from food (1 of 2)
+SCb3b3:04:05:Double health from food
+SCb3b6:4a:0a:Half health from food (2 of 2)
+SCb4a1:00:10:No harm from falling
+SCb4a1:20:10:More damage done from falling
+SCb919:00:01:No harm from water (1 of 2)
+SCb955:00:01:No harm from water (2 of 2)
+SCc353:3f:7f:Less health - P1
+SCc353:ff:7f:More health - P1
+SCc36e:3f:7f:Less health - P2
+SCc36e:ff:7f:More health - P2
+SCcff4:3f:7f:Less health after continue - both players
+SCcff4:ff:7f:More health after continue - both players
+SCe5b1:50:b0:Buildings collapse automatically

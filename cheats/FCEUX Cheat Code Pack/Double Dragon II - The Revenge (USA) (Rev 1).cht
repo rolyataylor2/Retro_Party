@@ -1,0 +1,27 @@
+﻿
+S03cc:f0:Invincibility
+S0420:00:Enemies die after one knockdown (disable at final boss) (1 of 2)
+S0421:00:Enemies die after one knockdown (disable at final boss) (2 of 2)
+SC807b:00:28:Invincibility (blinking) - both players
+SC8427:ad:de:Never lose lives from falling
+SC8a97:ad:de:Never lose lives from low energy
+SC8b6d:ad:de:Never lose lives from water
+S9021:72:No enemies
+SCb137:a9:b1:Enemies die automatically (1 of 2)
+SCb138:27:29:Enemies die automatically (2 of 2)
+SCbb68:01:02:Uppercut after only two punches
+SCed89:ff:00:Slow down gameplay
+SCee32:01:00:Start on mission 2
+SCee32:02:00:Start on mission 3
+SCee32:03:00:Start on mission 4
+SCee32:05:00:Start on mission 5
+SCee32:06:00:Start on mission 6
+SCee32:09:00:Start on mission 7
+SCee32:0c:00:Start on mission 8
+SCee32:0e:00:Start at final boss
+See32:0e:Start at final boss (alt)
+SCee58:01:04:Start with 1 life - P1
+SCee58:08:04:Start with 8 lives - P1
+SCee58:ff:04:Start with 259 lives - P1
+SCee6d:01:04:Start with 1 life - P2
+SCee6d:08:04:Start with 8 lives - P2

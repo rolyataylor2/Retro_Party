@@ -1,0 +1,23 @@
+﻿
+S0140:41:Infinite health (alt)
+S0141:09:Infinite Batarangs (alt)
+S0145:00:0 health - Enemy 1
+S0146:00:0 health - Enemy 2
+S0147:00:0 health - Enemy 3
+S04c8:15:Invincibility (blinking)
+SC8013:10:28:Start with less health
+SC8013:3f:28:Start with full health
+SC802b:09:05:Start with 9 Batarangs
+SC81d1:30:10:Small hearts give more health
+SC8a65:00:02:Don't lose health from spin attack
+SC8dd4:04:01:Walk faster horizontally (1 of 2)
+SC8dee:04:01:Walk faster horizontally (2 of 2)
+SCa1b2:d0:90:Hit anywhere (excludes driving stages) (2 of 2)
+SCa1bd:d0:90:Hit anywhere (excludes driving stages) (1 of 2)
+SCa215:24:b0:One hit kills (excludes driving stages)
+SCa546:0f:02:Power punch
+SCa54a:1a:05:Power jump kick
+SCa54b:0f:05:Power slide attack
+SCc4dc:ad:ce:Infinite Batarangs
+SCc603:2c:8d:Almost infinite lives and health
+SCcd16:09:29:Enable level select

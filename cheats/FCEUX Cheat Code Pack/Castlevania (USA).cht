@@ -1,0 +1,35 @@
+﻿
+S002a:63:Infinite lives
+S0045:40:Infinite health
+S005b:02:Invincibility (blinking)
+S0070:02:Have the best Whip
+S0071:63:Infinite hearts (disable at end of stage)
+S015b:08:Have the Knife
+S015b:09:Have the Cross
+S015b:0b:Have the Holy Water
+S015b:0d:Have the Axe
+S015b:0f:Have the Stopwatch
+S01a9:00:Bosses have no health
+SC941d:a9:8d:Multi-jump (01 of 12)
+SC941e:01:43:Multi-jump (02 of 12)
+SC941f:8d:01:Multi-jump (03 of 12)
+SC9420:6c:ee:Multi-jump (04 of 12)
+SC9421:04:6c:Multi-jump (05 of 12)
+SC9422:4a:04:Multi-jump (06 of 12)
+SC948c:8e:e5:Multi-jump (11 of 12)
+SC948d:94:a1:Multi-jump (12 of 12)
+SC94ca:20:ad:Multi-jump (07 of 12)
+SC94cb:01:14:Multi-jump (08 of 12)
+SC94cc:94:05:Multi-jump (09 of 12)
+S971b:8f:Don't get knocked back when hit
+SC9792:60:90:Multi-jump (10 of 12)
+S9b90:c5:Jump 3x as high
+S9b90:e0:Jump 2x as high
+S9f49:4d:Walk through walls
+SCa0af:ad:20:Infinite time
+SCb988:09:03:Start on last level (2 of 3)
+SCb98d:12:00:Start on last level (3 of 3)
+SCb990:ae:8e:Start on last level (1 of 3)
+SCc2c8:ad:8d:Keep sub-weapon after dying
+SCe51b:00:ce:Hit anywhere (Whip) (1 of 2)
+SCe52b:00:be:Hit anywhere (Whip) (2 of 2)

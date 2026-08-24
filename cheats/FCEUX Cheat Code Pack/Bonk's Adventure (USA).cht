@@ -1,0 +1,17 @@
+﻿
+SC808f:24:0c:Super-jump when normal
+SC80ab:07:00:Start on stage 2-1
+SC80ab:0d:00:Start on stage 3-1
+SC80ab:12:00:Start on stage 4-1
+SC80ab:17:00:Start on Stage 5-1
+SC80ab:21:00:Start on stage 6-1
+SC80b0:04:0c:Start with less initial energy (but more maximum energy)
+SC80b0:18:0c:Start with more energy
+SC80c0:00:02:Start with 1 life
+SC80c0:05:02:Start with 6 lives
+SC80c0:08:02:Start with 9 lives
+SC94e5:2c:8d:Keep speed up after powered down
+SCa27e:53:27:Hit anywhere (2 of 2)
+SCa52a:00:03:Hit anywhere (1 of 2)
+SCa756:04:00:Gain energy from picking up smiles
+SCa765:ad:ce:Infinite lives

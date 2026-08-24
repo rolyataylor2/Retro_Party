@@ -1,0 +1,28 @@
+﻿
+S00a7:0f:Enable stage select (disable after loading stage) (alt)
+S00aa:00:Game difficulty - normal
+S00aa:01:Game difficulty - hard
+S00aa:02:Game difficulty - harder
+S00aa:03:Game difficulty - hardest
+S00aa:04:Game difficulty - expert
+S00bf:01:Automatically complete level
+SCb6be:b9:99:Hit anywhere (4 of 4)
+SCc5ff:36:40:Start with Axe
+SCc5ff:42:40:Start with Dagger
+SCc5ff:44:40:Start with Fireball
+SCc5ff:4f:40:Start with Cross
+SCc5ff:ac:40:Start with Blue Sphere
+SCc609:01:03:Start with 1 life - both players
+SCc609:06:03:Start with 6 lives - both players
+SCc609:09:03:Start with 9 lives - both players
+SCc60a:8e:8d:Start with 4 lives - P1
+SCc907:ad:ce:Infinite lives - both players
+SCd062:00:0f:Enable stage select (disable after loading stage)
+SCd243:02:03:Speed up game
+SCd243:04:03:Slow down game
+SCd396:ad:ce:Infinite time
+Se3d6:c5:Infinite armor
+SCf5c1:b9:99:Hit anywhere (3 of 4)
+SCf5ec:00:01:Invincibility
+SCf607:38:90:Hit anywhere (1 of 4)
+SCf608:60:01:Hit anywhere (2 of 4)

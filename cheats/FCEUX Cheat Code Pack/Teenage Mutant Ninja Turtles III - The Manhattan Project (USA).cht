@@ -1,0 +1,43 @@
+﻿
+S0058:01:Start on scene 02 - Ocean
+S0058:02:Start on scene 03 - Battleship
+S0058:03:Start on scene 04 - Bridge
+S0058:04:Start on scene 05 - N.Y.
+S0058:05:Start on scene 06 - Platform
+S0058:06:Start on scene 07 - Sewer
+S0058:07:Start on scene 08 - Sewer 2
+S0058:08:Start on scene 09 - Technodrome
+S0058:09:Start on scene 10 - Technodrome 2
+S0058:0a:Start on scene 11 - Building
+S0058:0b:Start on scene 12 - Roof
+S0058:0c:Start on scene 13 - Spaceship
+S0058:0d:Start on scene 14 - Spaceship 2
+S0058:0e:Start on scene 15 - Spaceship 3
+S006a:05:Infinite lives - P1
+S006b:05:Infinite lives - P2
+S04f1:7f:Infinite health - P1
+S04f2:7f:Infinite health - P2
+S0626:00:Enemies automatically die (1 of 3)
+S0627:00:Enemies automatically die (2 of 3)
+S0628:00:Enemies automatically die (3 of 3)
+S07b0:05:Infinite continues
+SC8390:00:03:Start with 1 life instead of 4
+SC8390:05:03:Start with 6 lives
+SC8390:08:03:Start with 9 lives
+SCa449:bd:9d:Infinite health (2 of 2)
+SCa806:00:1e:Hit anywhere - both players (1 of 6)
+SCa810:00:14:Hit anywhere - both players (3 of 6)
+SCa820:ea:d9:Hit anywhere - both players (5 of 6)
+SCa821:ea:78:Hit anywhere - both players (6 of 6)
+SCa822:18:ab:Hit anywhere - both players (4 of 6)
+SCaa7f:00:d7:Hit anywhere - both players (2 of 6)
+SCac31:01:03:1 continue
+SCac31:09:03:9 continues
+SCb22e:bd:de:Infinite health (1 of 2)
+SCc2fb:00:01:Infinite lives
+SCcddc:f0:d0:Invincibility (except grabs from behind)
+SCcf36:20:40:Mega-jump
+SCcf36:28:40:Super-jump
+SCcf36:30:40:High-jump
+SCd20f:00:08:No health loss from using turbo attack
+SCdcfc:ad:ce:Infinite continues

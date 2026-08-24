@@ -1,0 +1,22 @@
+﻿
+S003f:02:Faster shots
+S004a:00:Don't go into dying animation (use with invincibility) (1 of 2)
+S004b:00:Don't go into dying animation (use with invincibility) (2 of 2)
+S004c:ff:Infinite cans (alt)
+S006d:7f:Have all letters
+S006e:09:Infinite patches
+S02d3:00:Invincibility (glitchy)
+SCa04e:30:20:Turbo left and right movement (1 of 2)
+SCa06b:30:20:Turbo left and right movement (2 of 2)
+SCa502:a5:c6:Infinite cans
+SCa810:01:00:Start on level 2
+SCa810:03:00:Start on level 4
+SCa810:05:00:Start on level 6
+SCa810:07:00:Start on level 8
+SCe5b4:a5:c6:Infinite lives
+SCe612:01:03:Start with 2 lives
+SCe612:06:03:Start with 6 lives
+SCe612:09:03:Start with 9 lives
+SCe616:01:06:Start with 1 can
+SCe616:0c:06:Start with 12 cans
+SCe616:12:06:Start with 18 cans

@@ -1,0 +1,33 @@
+﻿
+S0000:08:View ending (enable then disable) (1 of 2)
+S0001:00:View ending (enable then disable) (2 of 2)
+S0022:09:Infinite lives (alt)
+S0500:08:Infinite Keys
+S0503:20:Infinite health (alt)
+S050a:ff:Have all Implements
+S050b:ff:Have all weapons (1 of 2)
+S050c:ff:Have all weapons (2 of 2)
+S0516:41:Invincibility (alt)
+SC80d1:02:01:Super-speed
+SC80da:8d:ad:Invincibility
+SC86d7:10:c9:Walk through walls (1 of 3)
+SC8752:10:f0:Walk through walls (2 of 3)
+SC8770:ad:8d:Walk through walls (3 of 3)
+SC89b1:03:02:Mega-jump
+SC89b1:07:02:Super-jump
+SC89bc:05:04:Better Jumping Boots on pick-up
+SC8d60:ad:ce:Infinite Molotov Bombs on pick-up
+SC8db5:ad:ce:Infinite Bombs on pick-up
+SC8e78:ad:ce:Infinite Sling Shots on pick-up
+SC9a9b:d5:d6:Infinite time
+SCbe5f:a5:85:Infinite health
+SCcf33:a5:c6:Infinite lives
+SCd42a:01:03:Start with 1 life
+SCd42a:06:03:Start with 6 lives
+SCd42a:09:03:Start with 9 lives
+SCd432:04:02:Start with 4 health cells (1 of 2)
+SCd432:08:02:Start with 8 health cells (1 of 2)
+SCd437:40:20:Start with 4 health cells (2 of 2)
+SCd437:80:20:Start with 8 health cells (2 of 2)
+SCd460:05:01:Start with Boomerang
+SCd460:1f:01:Start with all items

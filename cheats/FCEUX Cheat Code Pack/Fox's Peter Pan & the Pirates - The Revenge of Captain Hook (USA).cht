@@ -1,0 +1,17 @@
+﻿
+S0050:09:Infinite lives (alt)
+S0051:ff:Infinite health
+S0640:ff:Infinite Flight meter (alt)
+SCc31f:a5:c6:Infinite lives
+SCc32f:05:0a:Start with 5 units of health (2 of 2)
+SCc32f:1e:0a:Start with 30 units of health (2 of 2)
+SCc4f2:05:0a:Start with 5 units of health (1 of 2)
+SCc4f2:1e:0a:Start with 30 units of health (1 of 2)
+SCc4fb:01:03:Start with 1 life
+SCc4fb:06:03:Start with 6 lives
+SCc4fb:09:03:Start with 9 lives
+SCd816:02:01:Faster flying left and right (1 of 2)
+SCda33:02:01:Faster flying left and right (2 of 2)
+SCda5f:02:04:Faster flight meter
+SCda5f:0c:04:Slower flight meter
+SCda6a:ad:ce:Infinite flight power

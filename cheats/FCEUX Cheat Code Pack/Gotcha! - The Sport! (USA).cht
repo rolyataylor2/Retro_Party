@@ -1,0 +1,12 @@
+﻿
+S05f1:63:Enemies never shoot at you
+S061a:09:Infinite ammo (1 of 2)
+S061b:09:Infinite ammo (2 of 2)
+S061e:09:Infinite time (1 of 2)
+S061f:09:Infinite time (2 of 2)
+SC9801:02:04:Decrease timer to 25 seconds (1 of 2)
+SC9801:05:04:Increase timer to 59 seconds (1 of 2)
+SC9806:05:05:Decrease timer to 25 seconds (2 of 2)
+SC9806:09:05:Increase timer to 59 seconds (2 of 2)
+SC980c:02:01:Start with double rations of ammo
+SCb55e:00:01:Infinite time

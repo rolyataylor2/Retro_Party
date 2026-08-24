@@ -1,0 +1,18 @@
+﻿
+SC87b0:cd:8d:Infinite fuel
+SC9090:a5:e6:Take infinite hits (1 of 2)
+SC9090:c5:e6:Infinite energy
+SCa0e5:16:32:Start with half 150mm ammo
+SCa0e5:63:32:Start with double 150mm ammo
+SCa0ee:32:01:Start with more wire guided shells
+SCa0ee:63:01:Start with max wire guided shells
+SCa0f8:32:01:Start with more smoke shells
+SCa0f8:63:01:Start with max smoke shells
+SCa101:4b:96:Start with less 50mm shells
+SCa101:ff:96:Start with max 50mm shells
+SCa105:64:c8:Start with less 50mm ammo after mission 5
+SCa105:ff:c8:Start with max 50mm ammo after mission 5
+SCb9d7:a5:85:Take infinite hits (2 of 2)
+SCe74d:cd:ce:Infinite weapons (2 of 2)
+SCe820:bd:de:Infinite ammo
+SCe820:dd:de:Infinite weapons (1 of 2)

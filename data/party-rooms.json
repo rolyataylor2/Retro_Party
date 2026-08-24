@@ -1,0 +1,6860 @@
+[
+  {
+    "code": "GHTZ",
+    "status": "minigame",
+    "setupStep": "complete",
+    "players": [
+      {
+        "id": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+        "token": "RmooLVz4kXUNd1qgk7BYDn9d2x7G0XgI",
+        "nickname": "Roly",
+        "characterId": "nova",
+        "primary": true,
+        "joinedAt": "2026-08-22T02:47:12.889Z"
+      }
+    ],
+    "configuration": {
+      "aiPlayers": [
+        {
+          "id": "ai-1",
+          "nickname": "Marina CPU",
+          "characterId": "marina"
+        },
+        {
+          "id": "ai-2",
+          "nickname": "Nimbus CPU",
+          "characterId": "nimbus"
+        },
+        {
+          "id": "ai-3",
+          "nickname": "Sprig CPU",
+          "characterId": "sprig"
+        }
+      ],
+      "rounds": 5,
+      "packId": "party-mix",
+      "rulesetId": "classic-party",
+      "aiDifficulty": "easy",
+      "boardId": "gearbolt-station"
+    },
+    "countdownEndsAt": 1787366855868,
+    "game": {
+      "status": "playing",
+      "round": 3,
+      "totalRounds": 5,
+      "currentPlayerIndex": 3,
+      "boardId": "gearbolt-station",
+      "starPosition": 3,
+      "starCost": 20,
+      "lastRoll": 6,
+      "players": [
+        {
+          "id": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+          "nickname": "Roly",
+          "characterId": "nova",
+          "kind": "human",
+          "position": 5,
+          "coins": 10,
+          "stars": 0
+        },
+        {
+          "id": "ai-1",
+          "nickname": "Marina CPU",
+          "characterId": "marina",
+          "kind": "ai",
+          "position": 5,
+          "coins": 36,
+          "stars": 0
+        },
+        {
+          "id": "ai-2",
+          "nickname": "Nimbus CPU",
+          "characterId": "nimbus",
+          "kind": "ai",
+          "position": 9,
+          "coins": 20,
+          "stars": 0
+        },
+        {
+          "id": "ai-3",
+          "nickname": "Sprig CPU",
+          "characterId": "sprig",
+          "kind": "ai",
+          "position": 8,
+          "coins": 10,
+          "stars": 0
+        }
+      ],
+      "winnerIds": [],
+      "startedAt": 1787366856062
+    },
+    "gameQueue": {
+      "sequence": 83,
+      "pending": [
+        {
+          "id": 83,
+          "type": "roulette",
+          "payload": {
+            "selectedIndex": 5
+          },
+          "status": "pending",
+          "duration": 6200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367078939
+        }
+      ],
+      "active": [
+        {
+          "id": 82,
+          "type": "minigame",
+          "payload": {
+            "challengeId": "stomp-the-target"
+          },
+          "status": "active",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input",
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367073659,
+          "startedAt": 1787367078939,
+          "endsAt": null
+        }
+      ],
+      "history": [
+        {
+          "id": 1,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "message": "Roly's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366856062,
+          "startedAt": 1787366856228,
+          "endsAt": 1787366857478,
+          "completedAt": 1787366857566
+        },
+        {
+          "id": 2,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366856062,
+          "startedAt": 1787366857566,
+          "endsAt": null,
+          "completedAt": 1787366983800
+        },
+        {
+          "id": 3,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "roll": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366983664,
+          "startedAt": 1787366983800,
+          "endsAt": 1787366984700,
+          "completedAt": 1787366984802
+        },
+        {
+          "id": 4,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "to": 1,
+            "step": 1,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366983664,
+          "startedAt": 1787366984802,
+          "endsAt": 1787366985232,
+          "completedAt": 1787366985302
+        },
+        {
+          "id": 5,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "to": 2,
+            "step": 2,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366983664,
+          "startedAt": 1787366985302,
+          "endsAt": 1787366985732,
+          "completedAt": 1787366985803
+        },
+        {
+          "id": 6,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366983664,
+          "startedAt": 1787366985803,
+          "endsAt": 1787366986503,
+          "completedAt": 1787366986553
+        },
+        {
+          "id": 7,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787366983664,
+          "startedAt": 1787366986554,
+          "endsAt": 1787366986854,
+          "completedAt": 1787366987056
+        },
+        {
+          "id": 8,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "message": "Marina CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366987056,
+          "startedAt": 1787366987056,
+          "endsAt": 1787366988306,
+          "completedAt": 1787366988312
+        },
+        {
+          "id": 9,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366987056,
+          "startedAt": 1787366988312,
+          "endsAt": 1787366989212,
+          "completedAt": 1787366989317
+        },
+        {
+          "id": 10,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "roll": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366989317,
+          "startedAt": 1787366989317,
+          "endsAt": 1787366990217,
+          "completedAt": 1787366990319
+        },
+        {
+          "id": 11,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 1,
+            "step": 1,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366989317,
+          "startedAt": 1787366990319,
+          "endsAt": 1787366990749,
+          "completedAt": 1787366990819
+        },
+        {
+          "id": 12,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 2,
+            "step": 2,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366989317,
+          "startedAt": 1787366990819,
+          "endsAt": 1787366991249,
+          "completedAt": 1787366991321
+        },
+        {
+          "id": 13,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 3,
+            "step": 3,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366989317,
+          "startedAt": 1787366991321,
+          "endsAt": 1787366991751,
+          "completedAt": 1787366991823
+        },
+        {
+          "id": 14,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366989317,
+          "startedAt": 1787366991823,
+          "endsAt": 1787366992523,
+          "completedAt": 1787366992578
+        },
+        {
+          "id": 15,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787366989317,
+          "startedAt": 1787366992578,
+          "endsAt": 1787366992878,
+          "completedAt": 1787366993079
+        },
+        {
+          "id": 16,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "message": "Nimbus CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366993079,
+          "startedAt": 1787366993079,
+          "endsAt": 1787366994329,
+          "completedAt": 1787366994333
+        },
+        {
+          "id": 17,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366993079,
+          "startedAt": 1787366994333,
+          "endsAt": 1787366995233,
+          "completedAt": 1787366995336
+        },
+        {
+          "id": 18,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "roll": 5
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366995337,
+          "startedAt": 1787366995337,
+          "endsAt": 1787366996237,
+          "completedAt": 1787366996339
+        },
+        {
+          "id": 19,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 1,
+            "step": 1,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366995337,
+          "startedAt": 1787366996339,
+          "endsAt": 1787366996769,
+          "completedAt": 1787366996840
+        },
+        {
+          "id": 20,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 2,
+            "step": 2,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366995337,
+          "startedAt": 1787366996840,
+          "endsAt": 1787366997270,
+          "completedAt": 1787366997341
+        },
+        {
+          "id": 21,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 3,
+            "step": 3,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366995337,
+          "startedAt": 1787366997341,
+          "endsAt": 1787366997771,
+          "completedAt": 1787366997845
+        },
+        {
+          "id": 22,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 4,
+            "step": 4,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366995337,
+          "startedAt": 1787366997845,
+          "endsAt": 1787366998275,
+          "completedAt": 1787366998346
+        },
+        {
+          "id": 23,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 5,
+            "step": 5,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366995337,
+          "startedAt": 1787366998346,
+          "endsAt": 1787366998776,
+          "completedAt": 1787366998848
+        },
+        {
+          "id": 24,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787366995337,
+          "startedAt": 1787366998848,
+          "endsAt": 1787366999548,
+          "completedAt": 1787366999602
+        },
+        {
+          "id": 25,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787366995337,
+          "startedAt": 1787366999602,
+          "endsAt": 1787366999902,
+          "completedAt": 1787367000102
+        },
+        {
+          "id": 26,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "message": "Sprig CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367000102,
+          "startedAt": 1787367000102,
+          "endsAt": 1787367001352,
+          "completedAt": 1787367001356
+        },
+        {
+          "id": 27,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367000102,
+          "startedAt": 1787367001356,
+          "endsAt": 1787367002256,
+          "completedAt": 1787367002362
+        },
+        {
+          "id": 28,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "roll": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367002362,
+          "startedAt": 1787367002362,
+          "endsAt": 1787367003262,
+          "completedAt": 1787367003366
+        },
+        {
+          "id": 29,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 1,
+            "step": 1,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367002362,
+          "startedAt": 1787367003366,
+          "endsAt": 1787367003796,
+          "completedAt": 1787367003868
+        },
+        {
+          "id": 30,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 2,
+            "step": 2,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367002362,
+          "startedAt": 1787367003868,
+          "endsAt": 1787367004298,
+          "completedAt": 1787367004369
+        },
+        {
+          "id": 31,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367002362,
+          "startedAt": 1787367004369,
+          "endsAt": 1787367005069,
+          "completedAt": 1787367005123
+        },
+        {
+          "id": 32,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787367002362,
+          "startedAt": 1787367005123,
+          "endsAt": 1787367005423,
+          "completedAt": 1787367005624
+        },
+        {
+          "id": 33,
+          "type": "roulette",
+          "payload": {
+            "selectedIndex": 4
+          },
+          "status": "complete",
+          "duration": 6200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367005646,
+          "startedAt": 1787367005646,
+          "endsAt": 1787367011846,
+          "completedAt": 1787367011893
+        },
+        {
+          "id": 34,
+          "type": "minigame",
+          "payload": {
+            "challengeId": "double-trouble-goombas"
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input",
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367011893,
+          "startedAt": 1787367011893,
+          "endsAt": null,
+          "completedAt": 1787367029490
+        },
+        {
+          "id": 35,
+          "type": "minigame-results",
+          "payload": {},
+          "status": "complete",
+          "duration": 3000,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367029248,
+          "startedAt": 1787367029490,
+          "endsAt": 1787367032490,
+          "completedAt": 1787367032497
+        },
+        {
+          "id": 36,
+          "type": "minigame-results",
+          "payload": {},
+          "status": "complete",
+          "duration": 3000,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367029489,
+          "startedAt": 1787367032497,
+          "endsAt": 1787367035497,
+          "completedAt": 1787367035508
+        },
+        {
+          "id": 37,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "message": "Roly's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367032497,
+          "startedAt": 1787367035508,
+          "endsAt": 1787367036758,
+          "completedAt": 1787367036766
+        },
+        {
+          "id": 38,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367032497,
+          "startedAt": 1787367036766,
+          "endsAt": null,
+          "completedAt": 1787367040536
+        },
+        {
+          "id": 39,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "message": "Roly's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367035508,
+          "startedAt": 1787367040536,
+          "endsAt": 1787367041786,
+          "completedAt": 1787367041791
+        },
+        {
+          "id": 40,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367035508,
+          "startedAt": 1787367041791,
+          "endsAt": null,
+          "completedAt": 1787367044801
+        },
+        {
+          "id": 41,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "roll": 4
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367040497,
+          "startedAt": 1787367044801,
+          "endsAt": 1787367045701,
+          "completedAt": 1787367045802
+        },
+        {
+          "id": 42,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "to": 3,
+            "step": 1,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367040497,
+          "startedAt": 1787367045803,
+          "endsAt": 1787367046233,
+          "completedAt": 1787367046305
+        },
+        {
+          "id": 43,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "to": 4,
+            "step": 2,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367040497,
+          "startedAt": 1787367046305,
+          "endsAt": 1787367046735,
+          "completedAt": 1787367046806
+        },
+        {
+          "id": 44,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "to": 5,
+            "step": 3,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367040497,
+          "startedAt": 1787367046806,
+          "endsAt": 1787367047236,
+          "completedAt": 1787367047306
+        },
+        {
+          "id": 45,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "to": 6,
+            "step": 4,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367040497,
+          "startedAt": 1787367047306,
+          "endsAt": 1787367047736,
+          "completedAt": 1787367047807
+        },
+        {
+          "id": 46,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367040497,
+          "startedAt": 1787367047807,
+          "endsAt": 1787367048507,
+          "completedAt": 1787367048562
+        },
+        {
+          "id": 47,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787367040497,
+          "startedAt": 1787367048562,
+          "endsAt": 1787367048862,
+          "completedAt": 1787367049064
+        },
+        {
+          "id": 48,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "roll": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367044714,
+          "startedAt": 1787367049064,
+          "endsAt": 1787367049964,
+          "completedAt": 1787367050066
+        },
+        {
+          "id": 49,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "to": 3,
+            "step": 1,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367044714,
+          "startedAt": 1787367050067,
+          "endsAt": 1787367050497,
+          "completedAt": 1787367050574
+        },
+        {
+          "id": 50,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "to": 4,
+            "step": 2,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367044714,
+          "startedAt": 1787367050574,
+          "endsAt": 1787367051004,
+          "completedAt": 1787367051078
+        },
+        {
+          "id": 51,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0,
+            "to": 5,
+            "step": 3,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367044714,
+          "startedAt": 1787367051078,
+          "endsAt": 1787367051508,
+          "completedAt": 1787367051579
+        },
+        {
+          "id": 52,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ffd11e3a-880c-435e-8eb5-3473fc176598"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367044714,
+          "startedAt": 1787367051579,
+          "endsAt": 1787367052279,
+          "completedAt": 1787367052332
+        },
+        {
+          "id": 53,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787367044714,
+          "startedAt": 1787367052332,
+          "endsAt": 1787367052632,
+          "completedAt": 1787367052834
+        },
+        {
+          "id": 54,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "message": "Marina CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367049064,
+          "startedAt": 1787367052834,
+          "endsAt": 1787367054084,
+          "completedAt": 1787367054089
+        },
+        {
+          "id": 55,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367049064,
+          "startedAt": 1787367054089,
+          "endsAt": 1787367054989,
+          "completedAt": 1787367055092
+        },
+        {
+          "id": 56,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "message": "Nimbus CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367052834,
+          "startedAt": 1787367055092,
+          "endsAt": 1787367056342,
+          "completedAt": 1787367056347
+        },
+        {
+          "id": 57,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367052834,
+          "startedAt": 1787367056347,
+          "endsAt": 1787367057247,
+          "completedAt": 1787367057350
+        },
+        {
+          "id": 58,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "roll": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367055092,
+          "startedAt": 1787367057350,
+          "endsAt": 1787367058250,
+          "completedAt": 1787367058352
+        },
+        {
+          "id": 59,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 4,
+            "step": 1,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367055092,
+          "startedAt": 1787367058352,
+          "endsAt": 1787367058782,
+          "completedAt": 1787367058854
+        },
+        {
+          "id": 60,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 5,
+            "step": 2,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367055092,
+          "startedAt": 1787367058854,
+          "endsAt": 1787367059284,
+          "completedAt": 1787367059356
+        },
+        {
+          "id": 61,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367055092,
+          "startedAt": 1787367059356,
+          "endsAt": 1787367060056,
+          "completedAt": 1787367060115
+        },
+        {
+          "id": 62,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787367055092,
+          "startedAt": 1787367060115,
+          "endsAt": 1787367060415,
+          "completedAt": 1787367060617
+        },
+        {
+          "id": 63,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "roll": 4
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367057350,
+          "startedAt": 1787367060617,
+          "endsAt": 1787367061517,
+          "completedAt": 1787367061621
+        },
+        {
+          "id": 64,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 6,
+            "step": 1,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367057350,
+          "startedAt": 1787367061621,
+          "endsAt": 1787367062051,
+          "completedAt": 1787367062123
+        },
+        {
+          "id": 65,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 7,
+            "step": 2,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367057350,
+          "startedAt": 1787367062123,
+          "endsAt": 1787367062553,
+          "completedAt": 1787367062624
+        },
+        {
+          "id": 66,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 8,
+            "step": 3,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367057350,
+          "startedAt": 1787367062624,
+          "endsAt": 1787367063054,
+          "completedAt": 1787367063126
+        },
+        {
+          "id": 67,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 9,
+            "step": 4,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367057350,
+          "startedAt": 1787367063126,
+          "endsAt": 1787367063556,
+          "completedAt": 1787367063628
+        },
+        {
+          "id": 68,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367057350,
+          "startedAt": 1787367063628,
+          "endsAt": 1787367064328,
+          "completedAt": 1787367064380
+        },
+        {
+          "id": 69,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787367057350,
+          "startedAt": 1787367064380,
+          "endsAt": 1787367064680,
+          "completedAt": 1787367064882
+        },
+        {
+          "id": 70,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "message": "Sprig CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367060617,
+          "startedAt": 1787367064893,
+          "endsAt": 1787367066143,
+          "completedAt": 1787367066389
+        },
+        {
+          "id": 71,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367060617,
+          "startedAt": 1787367066389,
+          "endsAt": 1787367067289,
+          "completedAt": 1787367067391
+        },
+        {
+          "id": 72,
+          "type": "roulette",
+          "payload": {
+            "selectedIndex": 0
+          },
+          "status": "complete",
+          "duration": 6200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367064893,
+          "startedAt": 1787367067391,
+          "endsAt": 1787367073591,
+          "completedAt": 1787367073659
+        },
+        {
+          "id": 73,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "roll": 6
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367067391,
+          "startedAt": 1787367073659,
+          "endsAt": 1787367074559,
+          "completedAt": 1787367074664
+        },
+        {
+          "id": 74,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 3,
+            "step": 1,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367067391,
+          "startedAt": 1787367074664,
+          "endsAt": 1787367075094,
+          "completedAt": 1787367075165
+        },
+        {
+          "id": 75,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 4,
+            "step": 2,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367067391,
+          "startedAt": 1787367075165,
+          "endsAt": 1787367075595,
+          "completedAt": 1787367075666
+        },
+        {
+          "id": 76,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 5,
+            "step": 3,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367067391,
+          "startedAt": 1787367075666,
+          "endsAt": 1787367076096,
+          "completedAt": 1787367076168
+        },
+        {
+          "id": 77,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 6,
+            "step": 4,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367067391,
+          "startedAt": 1787367076168,
+          "endsAt": 1787367076598,
+          "completedAt": 1787367076671
+        },
+        {
+          "id": 78,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 7,
+            "step": 5,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367067391,
+          "startedAt": 1787367076671,
+          "endsAt": 1787367077101,
+          "completedAt": 1787367077172
+        },
+        {
+          "id": 79,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 8,
+            "step": 6,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367067391,
+          "startedAt": 1787367077172,
+          "endsAt": 1787367077602,
+          "completedAt": 1787367077674
+        },
+        {
+          "id": 80,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787367067391,
+          "startedAt": 1787367077674,
+          "endsAt": 1787367078374,
+          "completedAt": 1787367078425
+        },
+        {
+          "id": 81,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787367067391,
+          "startedAt": 1787367078425,
+          "endsAt": 1787367078725,
+          "completedAt": 1787367078928
+        }
+      ]
+    },
+    "roulette": {
+      "options": [
+        {
+          "id": "stomp-the-target",
+          "title": "Stomp the Target!",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Skill",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "find-the-mushroom",
+          "title": "Find The Mushroom",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Speed",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "double-trouble-goombas",
+          "title": "Double Trouble Goombas",
+          "instructions": "Defeat both enemies before time runs out!",
+          "category": "Skill",
+          "difficulty": "Easy",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "find-the-mushroom",
+          "title": "Find The Mushroom",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Speed",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "find-the-mushroom",
+          "title": "Find The Mushroom",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Speed",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "find-the-mushroom",
+          "title": "Find The Mushroom",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Speed",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        }
+      ],
+      "selectedIndex": 5,
+      "selected": {
+        "id": "find-the-mushroom",
+        "title": "Find The Mushroom",
+        "instructions": "Complete the goal before time runs out!",
+        "category": "Speed",
+        "difficulty": "Medium",
+        "playerCount": 1,
+        "gameName": "Super Mario Bros.",
+        "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+      }
+    },
+    "minigame": {
+      "challenge": {
+        "id": "stomp-the-target",
+        "title": "Stomp the Target!",
+        "instructions": "Complete the goal before time runs out!",
+        "category": "Skill",
+        "difficulty": "Medium",
+        "playerCount": 1,
+        "gameName": "Super Mario Bros.",
+        "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+      },
+      "players": [
+        {
+          "playerId": "ffd11e3a-880c-435e-8eb5-3473fc176598",
+          "nickname": "Roly",
+          "kind": "human",
+          "started": false,
+          "completed": false,
+          "result": null,
+          "resolveAt": null,
+          "winChance": 78
+        },
+        {
+          "playerId": "ai-1",
+          "nickname": "Marina CPU",
+          "kind": "ai",
+          "started": true,
+          "completed": true,
+          "result": {
+            "completed": true,
+            "score": 99719,
+            "submittedAt": 1787367079179
+          },
+          "resolveAt": 1787367075801,
+          "winChance": 78
+        },
+        {
+          "playerId": "ai-2",
+          "nickname": "Nimbus CPU",
+          "kind": "ai",
+          "started": true,
+          "completed": true,
+          "result": {
+            "completed": true,
+            "score": 99542,
+            "submittedAt": 1787367079179
+          },
+          "resolveAt": 1787367077154,
+          "winChance": 78
+        },
+        {
+          "playerId": "ai-3",
+          "nickname": "Sprig CPU",
+          "kind": "ai",
+          "started": true,
+          "completed": true,
+          "result": {
+            "completed": true,
+            "score": 99881,
+            "submittedAt": 1787367079179
+          },
+          "resolveAt": 1787367075539,
+          "winChance": 78
+        }
+      ]
+    },
+    "summary": null,
+    "demo": null,
+    "queueSequence": 180,
+    "queues": {
+      "primary": [],
+      "players": {
+        "ffd11e3a-880c-435e-8eb5-3473fc176598": []
+      }
+    },
+    "eventSequence": 16,
+    "event": {
+      "id": 16,
+      "type": "game-started",
+      "at": 1787366856062,
+      "message": "The Party V2 game is ready."
+    },
+    "createdAt": "2026-08-22T02:46:31.537Z",
+    "updatedAt": "2026-08-22T02:51:19.179Z",
+    "version": 107
+  },
+  {
+    "code": "DEMO",
+    "status": "demo-complete",
+    "setupStep": "registration",
+    "players": [],
+    "configuration": {
+      "aiPlayers": [],
+      "rounds": 5,
+      "packId": "party-mix",
+      "rulesetId": "classic-party",
+      "aiDifficulty": "normal",
+      "boardId": "rainshadow-reach"
+    },
+    "countdownEndsAt": null,
+    "game": {
+      "status": "demo",
+      "round": 1,
+      "totalRounds": 5,
+      "currentPlayerIndex": 0,
+      "boardId": "rainshadow-reach",
+      "starPosition": 3,
+      "starCost": 20,
+      "players": [
+        {
+          "id": "demo-nova",
+          "nickname": "Nova",
+          "characterId": "nova",
+          "kind": "ai",
+          "position": 8,
+          "coins": 30,
+          "stars": 0
+        },
+        {
+          "id": "demo-luna",
+          "nickname": "Luna",
+          "characterId": "luna",
+          "kind": "ai",
+          "position": 14,
+          "coins": 10,
+          "stars": 0
+        }
+      ],
+      "winnerIds": []
+    },
+    "gameQueue": {
+      "sequence": 9,
+      "pending": [],
+      "active": [],
+      "history": [
+        {
+          "id": 1,
+          "type": "demo-title",
+          "payload": {
+            "message": "HAUNTED HARBOR"
+          },
+          "status": "complete",
+          "duration": 1400,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "banner": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "ghost-challenge",
+          "queuedAt": 1787436652624,
+          "startedAt": 1787436652728,
+          "endsAt": 1787436654128,
+          "completedAt": 1787436654234
+        },
+        {
+          "id": 2,
+          "type": "demo-gather",
+          "payload": {
+            "participants": [
+              "demo-nova",
+              "demo-luna"
+            ],
+            "location": "Ghost Stage"
+          },
+          "status": "complete",
+          "duration": 1400,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "banner": false,
+          "resources": [
+            "player:demo-nova",
+            "player:demo-luna"
+          ],
+          "source": "ghost-challenge",
+          "queuedAt": 1787436652624,
+          "startedAt": 1787436654234,
+          "endsAt": 1787436655634,
+          "completedAt": 1787436655740
+        },
+        {
+          "id": 4,
+          "type": "demo-fog-burst",
+          "payload": {},
+          "status": "complete",
+          "duration": 1000,
+          "startsEarly": 1100,
+          "blocking": true,
+          "barrier": false,
+          "banner": false,
+          "resources": [
+            "effects"
+          ],
+          "source": "ghost-challenge",
+          "queuedAt": 1787436652624,
+          "startedAt": 1787436656241,
+          "endsAt": 1787436657241,
+          "completedAt": 1787436657244
+        },
+        {
+          "id": 3,
+          "type": "demo-ghost-appear",
+          "payload": {},
+          "status": "complete",
+          "duration": 1600,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "banner": false,
+          "resources": [
+            "ghost"
+          ],
+          "source": "ghost-challenge",
+          "queuedAt": 1787436652624,
+          "startedAt": 1787436655740,
+          "endsAt": 1787436657340,
+          "completedAt": 1787436657496
+        },
+        {
+          "id": 5,
+          "type": "demo-dialogue",
+          "payload": {
+            "message": "You two look particularly stealable today."
+          },
+          "status": "complete",
+          "duration": 2400,
+          "startsEarly": 500,
+          "blocking": true,
+          "barrier": false,
+          "banner": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "ghost-challenge",
+          "queuedAt": 1787436652624,
+          "startedAt": 1787436656994,
+          "endsAt": 1787436659394,
+          "completedAt": 1787436659500
+        },
+        {
+          "id": 6,
+          "type": "demo-button-mash",
+          "payload": {
+            "button": "A",
+            "participants": [
+              "demo-nova",
+              "demo-luna"
+            ]
+          },
+          "status": "complete",
+          "duration": 5000,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "banner": false,
+          "resources": [
+            "input"
+          ],
+          "source": "ghost-challenge",
+          "queuedAt": 1787436652624,
+          "startedAt": 1787436659500,
+          "endsAt": 1787436664500,
+          "completedAt": 1787436664542
+        },
+        {
+          "id": 7,
+          "type": "demo-reward",
+          "payload": {
+            "coins": 20
+          },
+          "status": "complete",
+          "duration": 1500,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "banner": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "ghost-challenge",
+          "queuedAt": 1787436652624,
+          "startedAt": 1787436664542,
+          "endsAt": 1787436666042,
+          "completedAt": 1787436666082
+        },
+        {
+          "id": 8,
+          "type": "demo-restore",
+          "payload": {},
+          "status": "complete",
+          "duration": 1200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "banner": false,
+          "resources": [
+            "player:demo-nova",
+            "player:demo-luna"
+          ],
+          "source": "ghost-challenge",
+          "queuedAt": 1787436652624,
+          "startedAt": 1787436666082,
+          "endsAt": 1787436667282,
+          "completedAt": 1787436667335
+        },
+        {
+          "id": 9,
+          "type": "demo-complete",
+          "payload": {},
+          "status": "complete",
+          "duration": 600,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "banner": false,
+          "resources": [],
+          "source": "ghost-challenge",
+          "queuedAt": 1787436652624,
+          "startedAt": 1787436667335,
+          "endsAt": 1787436667935,
+          "completedAt": 1787436668099
+        }
+      ]
+    },
+    "roulette": null,
+    "minigame": null,
+    "summary": null,
+    "demo": {
+      "title": "Ghost Challenge",
+      "participants": [
+        "demo-nova",
+        "demo-luna"
+      ],
+      "winnerId": "demo-nova",
+      "inputEndsAt": 1787436664500
+    },
+    "queueSequence": 45,
+    "queues": {
+      "primary": [],
+      "players": {}
+    },
+    "eventSequence": 4,
+    "event": {
+      "id": 4,
+      "type": "demo-started",
+      "at": 1787436652624,
+      "message": "Ghost Challenge queue demo started."
+    },
+    "createdAt": "2026-08-22T03:18:27.244Z",
+    "updatedAt": "2026-08-22T22:11:08.099Z",
+    "version": 36
+  },
+  {
+    "code": "GXCX",
+    "status": "registration",
+    "setupStep": "registration",
+    "players": [],
+    "configuration": {
+      "aiPlayers": null,
+      "rounds": null,
+      "packId": null,
+      "rulesetId": null,
+      "aiDifficulty": null,
+      "boardId": null
+    },
+    "countdownEndsAt": null,
+    "game": null,
+    "gameQueue": null,
+    "roulette": null,
+    "minigame": null,
+    "summary": null,
+    "demo": null,
+    "queueSequence": 1,
+    "queues": {
+      "primary": [],
+      "players": {}
+    },
+    "eventSequence": 1,
+    "event": {
+      "id": 1,
+      "type": "room-created",
+      "at": 1787368710828,
+      "message": "Waiting for players to join."
+    },
+    "createdAt": "2026-08-22T03:18:30.828Z",
+    "updatedAt": "2026-08-22T03:18:30.828Z",
+    "version": 1
+  },
+  {
+    "code": "YULB",
+    "status": "minigame",
+    "setupStep": "complete",
+    "players": [
+      {
+        "id": "2df48954-bb2e-4956-88ae-f303851c569c",
+        "token": "oSAjl8CRsBPgrPWNdbHxRnW1311a-Qah",
+        "nickname": "Roly",
+        "characterId": "nova",
+        "primary": true,
+        "joinedAt": "2026-08-22T03:20:19.507Z"
+      }
+    ],
+    "configuration": {
+      "aiPlayers": [
+        {
+          "id": "ai-1",
+          "nickname": "Marina CPU",
+          "characterId": "marina"
+        },
+        {
+          "id": "ai-2",
+          "nickname": "Nimbus CPU",
+          "characterId": "nimbus"
+        },
+        {
+          "id": "ai-3",
+          "nickname": "Luna CPU",
+          "characterId": "luna"
+        }
+      ],
+      "rounds": 15,
+      "packId": "party-mix",
+      "rulesetId": "classic-party",
+      "aiDifficulty": "easy",
+      "boardId": "starlight-circuit"
+    },
+    "countdownEndsAt": 1787368838714,
+    "game": {
+      "status": "playing",
+      "round": 3,
+      "totalRounds": 15,
+      "currentPlayerIndex": 3,
+      "boardId": "starlight-circuit",
+      "starPosition": 3,
+      "starCost": 20,
+      "lastRoll": 3,
+      "players": [
+        {
+          "id": "2df48954-bb2e-4956-88ae-f303851c569c",
+          "nickname": "Roly",
+          "characterId": "nova",
+          "kind": "human",
+          "position": 7,
+          "coins": 19,
+          "stars": 0
+        },
+        {
+          "id": "ai-1",
+          "nickname": "Marina CPU",
+          "characterId": "marina",
+          "kind": "ai",
+          "position": 8,
+          "coins": 40,
+          "stars": 0
+        },
+        {
+          "id": "ai-2",
+          "nickname": "Nimbus CPU",
+          "characterId": "nimbus",
+          "kind": "ai",
+          "position": 10,
+          "coins": 16,
+          "stars": 0
+        },
+        {
+          "id": "ai-3",
+          "nickname": "Luna CPU",
+          "characterId": "luna",
+          "kind": "ai",
+          "position": 7,
+          "coins": 10,
+          "stars": 0
+        }
+      ],
+      "winnerIds": [],
+      "startedAt": 1787368838871
+    },
+    "gameQueue": {
+      "sequence": 87,
+      "pending": [
+        {
+          "id": 87,
+          "type": "roulette",
+          "payload": {
+            "selectedIndex": 0
+          },
+          "status": "pending",
+          "duration": 6200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368951831
+        }
+      ],
+      "active": [
+        {
+          "id": 86,
+          "type": "minigame",
+          "payload": {
+            "challengeId": "find-the-mushroom"
+          },
+          "status": "active",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input",
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368948042,
+          "startedAt": 1787368951831,
+          "endsAt": null
+        }
+      ],
+      "history": [
+        {
+          "id": 1,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "message": "Roly's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368838871,
+          "startedAt": 1787368839121,
+          "endsAt": 1787368840371,
+          "completedAt": 1787368840374
+        },
+        {
+          "id": 2,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368838871,
+          "startedAt": 1787368840374,
+          "endsAt": null,
+          "completedAt": 1787368842631
+        },
+        {
+          "id": 3,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "roll": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:2df48954-bb2e-4956-88ae-f303851c569c"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368842457,
+          "startedAt": 1787368842631,
+          "endsAt": 1787368843531,
+          "completedAt": 1787368843633
+        },
+        {
+          "id": 4,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 1,
+            "step": 1,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368842457,
+          "startedAt": 1787368843633,
+          "endsAt": 1787368844063,
+          "completedAt": 1787368844137
+        },
+        {
+          "id": 5,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 2,
+            "step": 2,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368842457,
+          "startedAt": 1787368844137,
+          "endsAt": 1787368844567,
+          "completedAt": 1787368844639
+        },
+        {
+          "id": 6,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:2df48954-bb2e-4956-88ae-f303851c569c"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368842457,
+          "startedAt": 1787368844639,
+          "endsAt": 1787368845339,
+          "completedAt": 1787368845392
+        },
+        {
+          "id": 7,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787368842457,
+          "startedAt": 1787368845393,
+          "endsAt": 1787368845693,
+          "completedAt": 1787368845893
+        },
+        {
+          "id": 8,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "message": "Marina CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368845893,
+          "startedAt": 1787368845893,
+          "endsAt": 1787368847143,
+          "completedAt": 1787368847145
+        },
+        {
+          "id": 9,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368845893,
+          "startedAt": 1787368847145,
+          "endsAt": 1787368848045,
+          "completedAt": 1787368848150
+        },
+        {
+          "id": 10,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "roll": 5
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368848150,
+          "startedAt": 1787368848150,
+          "endsAt": 1787368849050,
+          "completedAt": 1787368849155
+        },
+        {
+          "id": 11,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 1,
+            "step": 1,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368848150,
+          "startedAt": 1787368849155,
+          "endsAt": 1787368849585,
+          "completedAt": 1787368849656
+        },
+        {
+          "id": 12,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 2,
+            "step": 2,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368848150,
+          "startedAt": 1787368849656,
+          "endsAt": 1787368850086,
+          "completedAt": 1787368850158
+        },
+        {
+          "id": 13,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 3,
+            "step": 3,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368848150,
+          "startedAt": 1787368850158,
+          "endsAt": 1787368850588,
+          "completedAt": 1787368850659
+        },
+        {
+          "id": 14,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 4,
+            "step": 4,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368848150,
+          "startedAt": 1787368850659,
+          "endsAt": 1787368851089,
+          "completedAt": 1787368851160
+        },
+        {
+          "id": 15,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 5,
+            "step": 5,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368848150,
+          "startedAt": 1787368851160,
+          "endsAt": 1787368851590,
+          "completedAt": 1787368851660
+        },
+        {
+          "id": 16,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368848150,
+          "startedAt": 1787368851660,
+          "endsAt": 1787368852360,
+          "completedAt": 1787368852412
+        },
+        {
+          "id": 17,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787368848150,
+          "startedAt": 1787368852412,
+          "endsAt": 1787368852712,
+          "completedAt": 1787368852914
+        },
+        {
+          "id": 18,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "message": "Nimbus CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368852914,
+          "startedAt": 1787368852914,
+          "endsAt": 1787368854164,
+          "completedAt": 1787368854166
+        },
+        {
+          "id": 19,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368852914,
+          "startedAt": 1787368854166,
+          "endsAt": 1787368855066,
+          "completedAt": 1787368855170
+        },
+        {
+          "id": 20,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "roll": 5
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368855171,
+          "startedAt": 1787368855171,
+          "endsAt": 1787368856071,
+          "completedAt": 1787368856172
+        },
+        {
+          "id": 21,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 1,
+            "step": 1,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368855171,
+          "startedAt": 1787368856172,
+          "endsAt": 1787368856602,
+          "completedAt": 1787368856673
+        },
+        {
+          "id": 22,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 2,
+            "step": 2,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368855171,
+          "startedAt": 1787368856673,
+          "endsAt": 1787368857103,
+          "completedAt": 1787368857173
+        },
+        {
+          "id": 23,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 3,
+            "step": 3,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368855171,
+          "startedAt": 1787368857173,
+          "endsAt": 1787368857603,
+          "completedAt": 1787368857674
+        },
+        {
+          "id": 24,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 4,
+            "step": 4,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368855171,
+          "startedAt": 1787368857674,
+          "endsAt": 1787368858104,
+          "completedAt": 1787368858175
+        },
+        {
+          "id": 25,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 5,
+            "step": 5,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368855171,
+          "startedAt": 1787368858175,
+          "endsAt": 1787368858605,
+          "completedAt": 1787368858676
+        },
+        {
+          "id": 26,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368855171,
+          "startedAt": 1787368858676,
+          "endsAt": 1787368859376,
+          "completedAt": 1787368859427
+        },
+        {
+          "id": 27,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787368855171,
+          "startedAt": 1787368859428,
+          "endsAt": 1787368859728,
+          "completedAt": 1787368859929
+        },
+        {
+          "id": 28,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "message": "Luna CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368859929,
+          "startedAt": 1787368859929,
+          "endsAt": 1787368861179,
+          "completedAt": 1787368861184
+        },
+        {
+          "id": 29,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368859929,
+          "startedAt": 1787368861184,
+          "endsAt": 1787368862084,
+          "completedAt": 1787368862187
+        },
+        {
+          "id": 30,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "roll": 4
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368862187,
+          "startedAt": 1787368862187,
+          "endsAt": 1787368863087,
+          "completedAt": 1787368863189
+        },
+        {
+          "id": 31,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 1,
+            "step": 1,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368862187,
+          "startedAt": 1787368863189,
+          "endsAt": 1787368863619,
+          "completedAt": 1787368863690
+        },
+        {
+          "id": 32,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 2,
+            "step": 2,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368862187,
+          "startedAt": 1787368863690,
+          "endsAt": 1787368864120,
+          "completedAt": 1787368864192
+        },
+        {
+          "id": 33,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 3,
+            "step": 3,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368862187,
+          "startedAt": 1787368864192,
+          "endsAt": 1787368864622,
+          "completedAt": 1787368864691
+        },
+        {
+          "id": 34,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 4,
+            "step": 4,
+            "total": 4
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368862187,
+          "startedAt": 1787368864691,
+          "endsAt": 1787368865121,
+          "completedAt": 1787368865192
+        },
+        {
+          "id": 35,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368862187,
+          "startedAt": 1787368865192,
+          "endsAt": 1787368865892,
+          "completedAt": 1787368865943
+        },
+        {
+          "id": 36,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787368862187,
+          "startedAt": 1787368865943,
+          "endsAt": 1787368866243,
+          "completedAt": 1787368866442
+        },
+        {
+          "id": 37,
+          "type": "roulette",
+          "payload": {
+            "selectedIndex": 2
+          },
+          "status": "complete",
+          "duration": 6200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368866458,
+          "startedAt": 1787368866458,
+          "endsAt": 1787368872658,
+          "completedAt": 1787368872715
+        },
+        {
+          "id": 38,
+          "type": "minigame",
+          "payload": {
+            "challengeId": "double-trouble-goombas"
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input",
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368872715,
+          "startedAt": 1787368872715,
+          "endsAt": null,
+          "completedAt": 1787368900846
+        },
+        {
+          "id": 39,
+          "type": "minigame-results",
+          "payload": {},
+          "status": "complete",
+          "duration": 3000,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368900608,
+          "startedAt": 1787368900846,
+          "endsAt": 1787368903846,
+          "completedAt": 1787368903859
+        },
+        {
+          "id": 40,
+          "type": "minigame-results",
+          "payload": {},
+          "status": "complete",
+          "duration": 3000,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368900846,
+          "startedAt": 1787368903859,
+          "endsAt": 1787368906859,
+          "completedAt": 1787368906872
+        },
+        {
+          "id": 41,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "message": "Roly's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368903859,
+          "startedAt": 1787368906872,
+          "endsAt": 1787368908122,
+          "completedAt": 1787368908126
+        },
+        {
+          "id": 42,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368903859,
+          "startedAt": 1787368908126,
+          "endsAt": null,
+          "completedAt": 1787368912896
+        },
+        {
+          "id": 43,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "message": "Roly's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368906872,
+          "startedAt": 1787368912896,
+          "endsAt": 1787368914146,
+          "completedAt": 1787368914155
+        },
+        {
+          "id": 44,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368906872,
+          "startedAt": 1787368914155,
+          "endsAt": null,
+          "completedAt": 1787368917664
+        },
+        {
+          "id": 45,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "roll": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:2df48954-bb2e-4956-88ae-f303851c569c"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368912892,
+          "startedAt": 1787368917664,
+          "endsAt": 1787368918564,
+          "completedAt": 1787368918671
+        },
+        {
+          "id": 46,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 3,
+            "step": 1,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368912892,
+          "startedAt": 1787368918671,
+          "endsAt": 1787368919101,
+          "completedAt": 1787368919174
+        },
+        {
+          "id": 47,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 4,
+            "step": 2,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368912892,
+          "startedAt": 1787368919174,
+          "endsAt": 1787368919604,
+          "completedAt": 1787368919675
+        },
+        {
+          "id": 48,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 5,
+            "step": 3,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368912892,
+          "startedAt": 1787368919675,
+          "endsAt": 1787368920105,
+          "completedAt": 1787368920177
+        },
+        {
+          "id": 49,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:2df48954-bb2e-4956-88ae-f303851c569c"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368912892,
+          "startedAt": 1787368920177,
+          "endsAt": 1787368920877,
+          "completedAt": 1787368920929
+        },
+        {
+          "id": 50,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787368912892,
+          "startedAt": 1787368920930,
+          "endsAt": 1787368921230,
+          "completedAt": 1787368921430
+        },
+        {
+          "id": 51,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "roll": 5
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:2df48954-bb2e-4956-88ae-f303851c569c"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368917459,
+          "startedAt": 1787368921430,
+          "endsAt": 1787368922330,
+          "completedAt": 1787368922433
+        },
+        {
+          "id": 52,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 3,
+            "step": 1,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368917459,
+          "startedAt": 1787368922433,
+          "endsAt": 1787368922863,
+          "completedAt": 1787368922937
+        },
+        {
+          "id": 53,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 4,
+            "step": 2,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368917459,
+          "startedAt": 1787368922939,
+          "endsAt": 1787368923369,
+          "completedAt": 1787368923443
+        },
+        {
+          "id": 54,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 5,
+            "step": 3,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368917459,
+          "startedAt": 1787368923443,
+          "endsAt": 1787368923873,
+          "completedAt": 1787368923944
+        },
+        {
+          "id": 55,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 6,
+            "step": 4,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368917459,
+          "startedAt": 1787368923944,
+          "endsAt": 1787368924374,
+          "completedAt": 1787368924446
+        },
+        {
+          "id": 56,
+          "type": "move-space",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0,
+            "to": 7,
+            "step": 5,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:2df48954-bb2e-4956-88ae-f303851c569c",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368917459,
+          "startedAt": 1787368924446,
+          "endsAt": 1787368924876,
+          "completedAt": 1787368924947
+        },
+        {
+          "id": 57,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:2df48954-bb2e-4956-88ae-f303851c569c"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368917459,
+          "startedAt": 1787368924947,
+          "endsAt": 1787368925647,
+          "completedAt": 1787368925699
+        },
+        {
+          "id": 58,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787368917459,
+          "startedAt": 1787368925699,
+          "endsAt": 1787368925999,
+          "completedAt": 1787368926200
+        },
+        {
+          "id": 59,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "message": "Marina CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368921430,
+          "startedAt": 1787368926200,
+          "endsAt": 1787368927450,
+          "completedAt": 1787368927457
+        },
+        {
+          "id": 60,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368921430,
+          "startedAt": 1787368927457,
+          "endsAt": 1787368928357,
+          "completedAt": 1787368928460
+        },
+        {
+          "id": 61,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "message": "Nimbus CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368926200,
+          "startedAt": 1787368928460,
+          "endsAt": 1787368929710,
+          "completedAt": 1787368929712
+        },
+        {
+          "id": 62,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368926200,
+          "startedAt": 1787368929712,
+          "endsAt": 1787368930612,
+          "completedAt": 1787368930716
+        },
+        {
+          "id": 63,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "roll": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368928460,
+          "startedAt": 1787368930716,
+          "endsAt": 1787368931616,
+          "completedAt": 1787368931722
+        },
+        {
+          "id": 64,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 6,
+            "step": 1,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368928460,
+          "startedAt": 1787368931722,
+          "endsAt": 1787368932152,
+          "completedAt": 1787368932224
+        },
+        {
+          "id": 65,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 7,
+            "step": 2,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368928460,
+          "startedAt": 1787368932224,
+          "endsAt": 1787368932654,
+          "completedAt": 1787368932726
+        },
+        {
+          "id": 66,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 8,
+            "step": 3,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368928460,
+          "startedAt": 1787368932726,
+          "endsAt": 1787368933156,
+          "completedAt": 1787368933227
+        },
+        {
+          "id": 67,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368928460,
+          "startedAt": 1787368933227,
+          "endsAt": 1787368933927,
+          "completedAt": 1787368933977
+        },
+        {
+          "id": 68,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787368928460,
+          "startedAt": 1787368933977,
+          "endsAt": 1787368934277,
+          "completedAt": 1787368934479
+        },
+        {
+          "id": 69,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "roll": 5
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368930716,
+          "startedAt": 1787368934479,
+          "endsAt": 1787368935379,
+          "completedAt": 1787368935483
+        },
+        {
+          "id": 70,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 6,
+            "step": 1,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368930716,
+          "startedAt": 1787368935483,
+          "endsAt": 1787368935913,
+          "completedAt": 1787368935984
+        },
+        {
+          "id": 71,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 7,
+            "step": 2,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368930716,
+          "startedAt": 1787368935984,
+          "endsAt": 1787368936414,
+          "completedAt": 1787368936487
+        },
+        {
+          "id": 72,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 8,
+            "step": 3,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368930716,
+          "startedAt": 1787368936487,
+          "endsAt": 1787368936917,
+          "completedAt": 1787368936991
+        },
+        {
+          "id": 73,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 9,
+            "step": 4,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368930716,
+          "startedAt": 1787368936991,
+          "endsAt": 1787368937421,
+          "completedAt": 1787368937493
+        },
+        {
+          "id": 74,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 10,
+            "step": 5,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368930716,
+          "startedAt": 1787368937493,
+          "endsAt": 1787368937923,
+          "completedAt": 1787368937994
+        },
+        {
+          "id": 75,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368930716,
+          "startedAt": 1787368937994,
+          "endsAt": 1787368938694,
+          "completedAt": 1787368938747
+        },
+        {
+          "id": 76,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787368930716,
+          "startedAt": 1787368938747,
+          "endsAt": 1787368939047,
+          "completedAt": 1787368939249
+        },
+        {
+          "id": 77,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "message": "Luna CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368934479,
+          "startedAt": 1787368939260,
+          "endsAt": 1787368940510,
+          "completedAt": 1787368940755
+        },
+        {
+          "id": 78,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368934479,
+          "startedAt": 1787368940755,
+          "endsAt": 1787368941655,
+          "completedAt": 1787368941757
+        },
+        {
+          "id": 79,
+          "type": "roulette",
+          "payload": {
+            "selectedIndex": 0
+          },
+          "status": "complete",
+          "duration": 6200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368939260,
+          "startedAt": 1787368941757,
+          "endsAt": 1787368947957,
+          "completedAt": 1787368948042
+        },
+        {
+          "id": 80,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "roll": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368941757,
+          "startedAt": 1787368948042,
+          "endsAt": 1787368948942,
+          "completedAt": 1787368949044
+        },
+        {
+          "id": 81,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 5,
+            "step": 1,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368941757,
+          "startedAt": 1787368949044,
+          "endsAt": 1787368949474,
+          "completedAt": 1787368949557
+        },
+        {
+          "id": 82,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 6,
+            "step": 2,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368941757,
+          "startedAt": 1787368949557,
+          "endsAt": 1787368949987,
+          "completedAt": 1787368950057
+        },
+        {
+          "id": 83,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 7,
+            "step": 3,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368941757,
+          "startedAt": 1787368950057,
+          "endsAt": 1787368950487,
+          "completedAt": 1787368950557
+        },
+        {
+          "id": 84,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787368941757,
+          "startedAt": 1787368950557,
+          "endsAt": 1787368951257,
+          "completedAt": 1787368951311
+        },
+        {
+          "id": 85,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787368941757,
+          "startedAt": 1787368951311,
+          "endsAt": 1787368951611,
+          "completedAt": 1787368951812
+        }
+      ]
+    },
+    "roulette": {
+      "options": [
+        {
+          "id": "double-trouble-goombas",
+          "title": "Double Trouble Goombas",
+          "instructions": "Defeat both enemies before time runs out!",
+          "category": "Skill",
+          "difficulty": "Easy",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "stomp-the-target",
+          "title": "Stomp the Target!",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Skill",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "find-the-mushroom",
+          "title": "Find The Mushroom",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Speed",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "beat-level-1-1",
+          "title": "Beat Level 1-1",
+          "instructions": "See who beats the level first!",
+          "category": "Speed",
+          "difficulty": "Easy",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "find-the-mushroom",
+          "title": "Find The Mushroom",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Speed",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "find-the-mushroom",
+          "title": "Find The Mushroom",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Speed",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        }
+      ],
+      "selectedIndex": 0,
+      "selected": {
+        "id": "double-trouble-goombas",
+        "title": "Double Trouble Goombas",
+        "instructions": "Defeat both enemies before time runs out!",
+        "category": "Skill",
+        "difficulty": "Easy",
+        "playerCount": 1,
+        "gameName": "Super Mario Bros.",
+        "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+      }
+    },
+    "minigame": {
+      "challenge": {
+        "id": "find-the-mushroom",
+        "title": "Find The Mushroom",
+        "instructions": "Complete the goal before time runs out!",
+        "category": "Speed",
+        "difficulty": "Medium",
+        "playerCount": 1,
+        "gameName": "Super Mario Bros.",
+        "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+      },
+      "players": [
+        {
+          "playerId": "2df48954-bb2e-4956-88ae-f303851c569c",
+          "nickname": "Roly",
+          "kind": "human",
+          "started": false,
+          "completed": false,
+          "result": null,
+          "resolveAt": null,
+          "winChance": 78
+        },
+        {
+          "playerId": "ai-1",
+          "nickname": "Marina CPU",
+          "kind": "ai",
+          "started": true,
+          "completed": true,
+          "result": {
+            "completed": true,
+            "score": 99036,
+            "submittedAt": 1787368952314
+          },
+          "resolveAt": 1787368952177,
+          "winChance": 78
+        },
+        {
+          "playerId": "ai-2",
+          "nickname": "Nimbus CPU",
+          "kind": "ai",
+          "started": true,
+          "completed": true,
+          "result": {
+            "completed": true,
+            "score": 99105,
+            "submittedAt": 1787368952063
+          },
+          "resolveAt": 1787368951884,
+          "winChance": 78
+        },
+        {
+          "playerId": "ai-3",
+          "nickname": "Luna CPU",
+          "kind": "ai",
+          "started": true,
+          "completed": true,
+          "result": {
+            "completed": true,
+            "score": 99025,
+            "submittedAt": 1787368952063
+          },
+          "resolveAt": 1787368951776,
+          "winChance": 78
+        }
+      ]
+    },
+    "summary": null,
+    "demo": null,
+    "queueSequence": 184,
+    "queues": {
+      "primary": [],
+      "players": {
+        "2df48954-bb2e-4956-88ae-f303851c569c": []
+      }
+    },
+    "eventSequence": 14,
+    "event": {
+      "id": 14,
+      "type": "game-started",
+      "at": 1787368838871,
+      "message": "The Party game is ready."
+    },
+    "createdAt": "2026-08-22T03:19:59.526Z",
+    "updatedAt": "2026-08-22T03:22:32.314Z",
+    "version": 110
+  },
+  {
+    "code": "HFVZ",
+    "status": "minigame",
+    "setupStep": "complete",
+    "players": [
+      {
+        "id": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+        "token": "waSBIOUd-0Bbze76LJr9v5qxcDID_nmC",
+        "nickname": "Roly",
+        "characterId": "nova",
+        "primary": true,
+        "joinedAt": "2026-08-22T03:49:58.618Z"
+      }
+    ],
+    "configuration": {
+      "aiPlayers": [
+        {
+          "id": "ai-1",
+          "nickname": "Tilly CPU",
+          "characterId": "marina"
+        },
+        {
+          "id": "ai-2",
+          "nickname": "Moss CPU",
+          "characterId": "nimbus"
+        },
+        {
+          "id": "ai-3",
+          "nickname": "Skipper CPU",
+          "characterId": "sprig"
+        }
+      ],
+      "rounds": 15,
+      "packId": "party-mix",
+      "rulesetId": "classic-party",
+      "aiDifficulty": "easy",
+      "boardId": "rainshadow-reach"
+    },
+    "countdownEndsAt": 1787370620987,
+    "game": {
+      "status": "playing",
+      "round": 3,
+      "totalRounds": 15,
+      "currentPlayerIndex": 3,
+      "boardId": "rainshadow-reach",
+      "starPosition": 3,
+      "starCost": 20,
+      "lastRoll": 3,
+      "players": [
+        {
+          "id": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+          "nickname": "Roly",
+          "characterId": "nova",
+          "kind": "human",
+          "position": 11,
+          "coins": 17,
+          "stars": 0
+        },
+        {
+          "id": "ai-1",
+          "nickname": "Tilly CPU",
+          "characterId": "marina",
+          "kind": "ai",
+          "position": 2,
+          "coins": 18,
+          "stars": 0
+        },
+        {
+          "id": "ai-2",
+          "nickname": "Moss CPU",
+          "characterId": "nimbus",
+          "kind": "ai",
+          "position": 8,
+          "coins": 44,
+          "stars": 0
+        },
+        {
+          "id": "ai-3",
+          "nickname": "Skipper CPU",
+          "characterId": "sprig",
+          "kind": "ai",
+          "position": 8,
+          "coins": 14,
+          "stars": 0
+        }
+      ],
+      "winnerIds": [],
+      "startedAt": 1787370621056
+    },
+    "gameQueue": {
+      "sequence": 85,
+      "pending": [
+        {
+          "id": 85,
+          "type": "roulette",
+          "payload": {
+            "selectedIndex": 2
+          },
+          "status": "pending",
+          "duration": 6200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370718270
+        }
+      ],
+      "active": [
+        {
+          "id": 84,
+          "type": "minigame",
+          "payload": {
+            "challengeId": "find-the-mushroom"
+          },
+          "status": "active",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input",
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370714495,
+          "startedAt": 1787370718270,
+          "endsAt": null
+        }
+      ],
+      "history": [
+        {
+          "id": 1,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "message": "Roly's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370621056,
+          "startedAt": 1787370621310,
+          "endsAt": 1787370622560,
+          "completedAt": 1787370622578
+        },
+        {
+          "id": 2,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370621056,
+          "startedAt": 1787370622578,
+          "endsAt": null,
+          "completedAt": 1787370626590
+        },
+        {
+          "id": 3,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "roll": 5
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370626522,
+          "startedAt": 1787370626590,
+          "endsAt": 1787370627490,
+          "completedAt": 1787370627592
+        },
+        {
+          "id": 4,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 1,
+            "step": 1,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370626523,
+          "startedAt": 1787370627592,
+          "endsAt": 1787370628022,
+          "completedAt": 1787370628092
+        },
+        {
+          "id": 5,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 2,
+            "step": 2,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370626523,
+          "startedAt": 1787370628092,
+          "endsAt": 1787370628522,
+          "completedAt": 1787370628594
+        },
+        {
+          "id": 6,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 3,
+            "step": 3,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370626523,
+          "startedAt": 1787370628594,
+          "endsAt": 1787370629024,
+          "completedAt": 1787370629095
+        },
+        {
+          "id": 7,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 4,
+            "step": 4,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370626523,
+          "startedAt": 1787370629095,
+          "endsAt": 1787370629525,
+          "completedAt": 1787370629597
+        },
+        {
+          "id": 8,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 5,
+            "step": 5,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370626523,
+          "startedAt": 1787370629597,
+          "endsAt": 1787370630027,
+          "completedAt": 1787370630101
+        },
+        {
+          "id": 9,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370626523,
+          "startedAt": 1787370630102,
+          "endsAt": 1787370630802,
+          "completedAt": 1787370630854
+        },
+        {
+          "id": 10,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787370626523,
+          "startedAt": 1787370630855,
+          "endsAt": 1787370631155,
+          "completedAt": 1787370631357
+        },
+        {
+          "id": 11,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "message": "Tilly CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370631358,
+          "startedAt": 1787370631358,
+          "endsAt": 1787370632608,
+          "completedAt": 1787370632613
+        },
+        {
+          "id": 12,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370631358,
+          "startedAt": 1787370632613,
+          "endsAt": 1787370633513,
+          "completedAt": 1787370633616
+        },
+        {
+          "id": 13,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "roll": 1
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370633618,
+          "startedAt": 1787370633618,
+          "endsAt": 1787370634518,
+          "completedAt": 1787370634619
+        },
+        {
+          "id": 14,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 1,
+            "step": 1,
+            "total": 1
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370633618,
+          "startedAt": 1787370634619,
+          "endsAt": 1787370635049,
+          "completedAt": 1787370635121
+        },
+        {
+          "id": 15,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370633618,
+          "startedAt": 1787370635121,
+          "endsAt": 1787370635821,
+          "completedAt": 1787370635873
+        },
+        {
+          "id": 16,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787370633618,
+          "startedAt": 1787370635873,
+          "endsAt": 1787370636173,
+          "completedAt": 1787370636375
+        },
+        {
+          "id": 17,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "message": "Moss CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370636375,
+          "startedAt": 1787370636375,
+          "endsAt": 1787370637625,
+          "completedAt": 1787370637629
+        },
+        {
+          "id": 18,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370636375,
+          "startedAt": 1787370637629,
+          "endsAt": 1787370638529,
+          "completedAt": 1787370638631
+        },
+        {
+          "id": 19,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "roll": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370638631,
+          "startedAt": 1787370638631,
+          "endsAt": 1787370639531,
+          "completedAt": 1787370639635
+        },
+        {
+          "id": 20,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 1,
+            "step": 1,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370638631,
+          "startedAt": 1787370639635,
+          "endsAt": 1787370640065,
+          "completedAt": 1787370640134
+        },
+        {
+          "id": 21,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 2,
+            "step": 2,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370638631,
+          "startedAt": 1787370640134,
+          "endsAt": 1787370640564,
+          "completedAt": 1787370640635
+        },
+        {
+          "id": 22,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 3,
+            "step": 3,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370638631,
+          "startedAt": 1787370640635,
+          "endsAt": 1787370641065,
+          "completedAt": 1787370641137
+        },
+        {
+          "id": 23,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370638631,
+          "startedAt": 1787370641137,
+          "endsAt": 1787370641837,
+          "completedAt": 1787370641890
+        },
+        {
+          "id": 24,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787370638631,
+          "startedAt": 1787370641890,
+          "endsAt": 1787370642190,
+          "completedAt": 1787370642391
+        },
+        {
+          "id": 25,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "message": "Skipper CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370642391,
+          "startedAt": 1787370642391,
+          "endsAt": 1787370643641,
+          "completedAt": 1787370643652
+        },
+        {
+          "id": 26,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370642391,
+          "startedAt": 1787370643652,
+          "endsAt": 1787370644552,
+          "completedAt": 1787370644655
+        },
+        {
+          "id": 27,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "roll": 5
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370644655,
+          "startedAt": 1787370644655,
+          "endsAt": 1787370645555,
+          "completedAt": 1787370645657
+        },
+        {
+          "id": 28,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 1,
+            "step": 1,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370644655,
+          "startedAt": 1787370645657,
+          "endsAt": 1787370646087,
+          "completedAt": 1787370646158
+        },
+        {
+          "id": 29,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 2,
+            "step": 2,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370644655,
+          "startedAt": 1787370646158,
+          "endsAt": 1787370646588,
+          "completedAt": 1787370646659
+        },
+        {
+          "id": 30,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 3,
+            "step": 3,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370644655,
+          "startedAt": 1787370646659,
+          "endsAt": 1787370647089,
+          "completedAt": 1787370647161
+        },
+        {
+          "id": 31,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 4,
+            "step": 4,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370644655,
+          "startedAt": 1787370647161,
+          "endsAt": 1787370647591,
+          "completedAt": 1787370647663
+        },
+        {
+          "id": 32,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 5,
+            "step": 5,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370644655,
+          "startedAt": 1787370647663,
+          "endsAt": 1787370648093,
+          "completedAt": 1787370648164
+        },
+        {
+          "id": 33,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370644655,
+          "startedAt": 1787370648165,
+          "endsAt": 1787370648865,
+          "completedAt": 1787370648918
+        },
+        {
+          "id": 34,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787370644655,
+          "startedAt": 1787370648919,
+          "endsAt": 1787370649219,
+          "completedAt": 1787370649421
+        },
+        {
+          "id": 35,
+          "type": "roulette",
+          "payload": {
+            "selectedIndex": 1
+          },
+          "status": "complete",
+          "duration": 6200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370649445,
+          "startedAt": 1787370649445,
+          "endsAt": 1787370655645,
+          "completedAt": 1787370655690
+        },
+        {
+          "id": 36,
+          "type": "minigame",
+          "payload": {
+            "challengeId": "beat-level-1-1"
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input",
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370655690,
+          "startedAt": 1787370655690,
+          "endsAt": null,
+          "completedAt": 1787370668833
+        },
+        {
+          "id": 37,
+          "type": "minigame-results",
+          "payload": {},
+          "status": "complete",
+          "duration": 3000,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370668586,
+          "startedAt": 1787370668833,
+          "endsAt": 1787370671833,
+          "completedAt": 1787370671839
+        },
+        {
+          "id": 38,
+          "type": "minigame-results",
+          "payload": {},
+          "status": "complete",
+          "duration": 3000,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370668833,
+          "startedAt": 1787370671839,
+          "endsAt": 1787370674839,
+          "completedAt": 1787370674849
+        },
+        {
+          "id": 39,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "message": "Roly's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370671839,
+          "startedAt": 1787370674849,
+          "endsAt": 1787370676099,
+          "completedAt": 1787370676102
+        },
+        {
+          "id": 40,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370671839,
+          "startedAt": 1787370676102,
+          "endsAt": null,
+          "completedAt": 1787370677354
+        },
+        {
+          "id": 41,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "message": "Roly's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370674849,
+          "startedAt": 1787370677354,
+          "endsAt": 1787370678604,
+          "completedAt": 1787370678607
+        },
+        {
+          "id": 42,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 0,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": true,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370674849,
+          "startedAt": 1787370678607,
+          "endsAt": null,
+          "completedAt": 1787370681121
+        },
+        {
+          "id": 43,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "roll": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370677269,
+          "startedAt": 1787370681121,
+          "endsAt": 1787370682021,
+          "completedAt": 1787370682124
+        },
+        {
+          "id": 44,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 6,
+            "step": 1,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370677269,
+          "startedAt": 1787370682124,
+          "endsAt": 1787370682554,
+          "completedAt": 1787370682624
+        },
+        {
+          "id": 45,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 7,
+            "step": 2,
+            "total": 2
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370677269,
+          "startedAt": 1787370682624,
+          "endsAt": 1787370683054,
+          "completedAt": 1787370683125
+        },
+        {
+          "id": 46,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370677269,
+          "startedAt": 1787370683125,
+          "endsAt": 1787370683825,
+          "completedAt": 1787370683877
+        },
+        {
+          "id": 48,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "roll": 6
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370680872,
+          "startedAt": 1787370683878,
+          "endsAt": 1787370684778,
+          "completedAt": 1787370684879
+        },
+        {
+          "id": 49,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 6,
+            "step": 1,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370680872,
+          "startedAt": 1787370684879,
+          "endsAt": 1787370685309,
+          "completedAt": 1787370685381
+        },
+        {
+          "id": 50,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 7,
+            "step": 2,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370680872,
+          "startedAt": 1787370685381,
+          "endsAt": 1787370685811,
+          "completedAt": 1787370685888
+        },
+        {
+          "id": 51,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 8,
+            "step": 3,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370680872,
+          "startedAt": 1787370685888,
+          "endsAt": 1787370686318,
+          "completedAt": 1787370686389
+        },
+        {
+          "id": 52,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 9,
+            "step": 4,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370680872,
+          "startedAt": 1787370686389,
+          "endsAt": 1787370686819,
+          "completedAt": 1787370686890
+        },
+        {
+          "id": 53,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 10,
+            "step": 5,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370680872,
+          "startedAt": 1787370686890,
+          "endsAt": 1787370687320,
+          "completedAt": 1787370687392
+        },
+        {
+          "id": 54,
+          "type": "move-space",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "to": 11,
+            "step": 6,
+            "total": 6
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370680872,
+          "startedAt": 1787370687392,
+          "endsAt": 1787370687822,
+          "completedAt": 1787370687893
+        },
+        {
+          "id": 55,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:465d269a-914c-45fd-ac85-7f3a1fb71d70"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370680872,
+          "startedAt": 1787370687893,
+          "endsAt": 1787370688593,
+          "completedAt": 1787370688645
+        },
+        {
+          "id": 56,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787370680872,
+          "startedAt": 1787370688645,
+          "endsAt": 1787370688945,
+          "completedAt": 1787370689146
+        },
+        {
+          "id": 57,
+          "type": "board-event",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0,
+            "activityId": "mushroom-mystery",
+            "icon": "🍄",
+            "title": "MUSHROOM MYSTERY",
+            "message": "The glowing grove reveals a hidden cache worth 7 coins."
+          },
+          "status": "complete",
+          "duration": 1900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "board:rainshadow-reach",
+          "queuedAt": 1787370683878,
+          "startedAt": 1787370689146,
+          "endsAt": 1787370691046,
+          "completedAt": 1787370691151
+        },
+        {
+          "id": 47,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+            "playerIndex": 0
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787370677269,
+          "startedAt": 1787370691151,
+          "endsAt": 1787370691451,
+          "completedAt": 1787370691651
+        },
+        {
+          "id": 58,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "message": "Tilly CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370689146,
+          "startedAt": 1787370691651,
+          "endsAt": 1787370692901,
+          "completedAt": 1787370692904
+        },
+        {
+          "id": 59,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370689146,
+          "startedAt": 1787370692904,
+          "endsAt": 1787370693804,
+          "completedAt": 1787370693907
+        },
+        {
+          "id": 60,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "message": "Moss CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370691651,
+          "startedAt": 1787370693908,
+          "endsAt": 1787370695158,
+          "completedAt": 1787370695162
+        },
+        {
+          "id": 61,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370691651,
+          "startedAt": 1787370695162,
+          "endsAt": 1787370696062,
+          "completedAt": 1787370696168
+        },
+        {
+          "id": 62,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "roll": 1
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370693908,
+          "startedAt": 1787370696169,
+          "endsAt": 1787370697069,
+          "completedAt": 1787370697172
+        },
+        {
+          "id": 63,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "to": 2,
+            "step": 1,
+            "total": 1
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-1",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370693908,
+          "startedAt": 1787370697172,
+          "endsAt": 1787370697602,
+          "completedAt": 1787370697674
+        },
+        {
+          "id": 64,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-1"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370693908,
+          "startedAt": 1787370697674,
+          "endsAt": 1787370698374,
+          "completedAt": 1787370698425
+        },
+        {
+          "id": 66,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "roll": 5
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370696169,
+          "startedAt": 1787370698425,
+          "endsAt": 1787370699325,
+          "completedAt": 1787370699430
+        },
+        {
+          "id": 67,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 4,
+            "step": 1,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370696169,
+          "startedAt": 1787370699430,
+          "endsAt": 1787370699860,
+          "completedAt": 1787370699940
+        },
+        {
+          "id": 68,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 5,
+            "step": 2,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370696169,
+          "startedAt": 1787370699940,
+          "endsAt": 1787370700370,
+          "completedAt": 1787370700440
+        },
+        {
+          "id": 69,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 6,
+            "step": 3,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370696169,
+          "startedAt": 1787370700440,
+          "endsAt": 1787370700870,
+          "completedAt": 1787370700942
+        },
+        {
+          "id": 70,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 7,
+            "step": 4,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370696169,
+          "startedAt": 1787370700942,
+          "endsAt": 1787370701372,
+          "completedAt": 1787370701444
+        },
+        {
+          "id": 71,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2,
+            "to": 8,
+            "step": 5,
+            "total": 5
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-2",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370696169,
+          "startedAt": 1787370701444,
+          "endsAt": 1787370701874,
+          "completedAt": 1787370701944
+        },
+        {
+          "id": 72,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-2"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370696169,
+          "startedAt": 1787370701944,
+          "endsAt": 1787370702644,
+          "completedAt": 1787370702696
+        },
+        {
+          "id": 73,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-2",
+            "playerIndex": 2
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787370696169,
+          "startedAt": 1787370702696,
+          "endsAt": 1787370702996,
+          "completedAt": 1787370703197
+        },
+        {
+          "id": 74,
+          "type": "board-event",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1,
+            "activityId": "ferry-fanfare",
+            "icon": "⛴",
+            "title": "FERRY FANFARE",
+            "message": "The harbor bell rings—catch the island ferry and collect 5 coins!"
+          },
+          "status": "complete",
+          "duration": 1900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "board:rainshadow-reach",
+          "queuedAt": 1787370698425,
+          "startedAt": 1787370703197,
+          "endsAt": 1787370705097,
+          "completedAt": 1787370705209
+        },
+        {
+          "id": 65,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-1",
+            "playerIndex": 1
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787370693908,
+          "startedAt": 1787370705209,
+          "endsAt": 1787370705509,
+          "completedAt": 1787370705710
+        },
+        {
+          "id": 75,
+          "type": "turn-banner",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "message": "Skipper CPU's turn!"
+          },
+          "status": "complete",
+          "duration": 1250,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370703197,
+          "startedAt": 1787370705720,
+          "endsAt": 1787370706970,
+          "completedAt": 1787370707215
+        },
+        {
+          "id": 76,
+          "type": "request-roll",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "input"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370703197,
+          "startedAt": 1787370707215,
+          "endsAt": 1787370708115,
+          "completedAt": 1787370708219
+        },
+        {
+          "id": 77,
+          "type": "roulette",
+          "payload": {
+            "selectedIndex": 5
+          },
+          "status": "complete",
+          "duration": 6200,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370705720,
+          "startedAt": 1787370708219,
+          "endsAt": 1787370714419,
+          "completedAt": 1787370714495
+        },
+        {
+          "id": 78,
+          "type": "roll-reveal",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "roll": 3
+          },
+          "status": "complete",
+          "duration": 900,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370708219,
+          "startedAt": 1787370714495,
+          "endsAt": 1787370715395,
+          "completedAt": 1787370715499
+        },
+        {
+          "id": 79,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 6,
+            "step": 1,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370708219,
+          "startedAt": 1787370715499,
+          "endsAt": 1787370715929,
+          "completedAt": 1787370716002
+        },
+        {
+          "id": 80,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 7,
+            "step": 2,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370708219,
+          "startedAt": 1787370716002,
+          "endsAt": 1787370716432,
+          "completedAt": 1787370716504
+        },
+        {
+          "id": 81,
+          "type": "move-space",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3,
+            "to": 8,
+            "step": 3,
+            "total": 3
+          },
+          "status": "complete",
+          "duration": 430,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "player:ai-3",
+            "camera"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370708219,
+          "startedAt": 1787370716504,
+          "endsAt": 1787370716934,
+          "completedAt": 1787370717005
+        },
+        {
+          "id": 82,
+          "type": "resolve-land",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 700,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [
+            "ui",
+            "player:ai-3"
+          ],
+          "source": "classic-director",
+          "queuedAt": 1787370708219,
+          "startedAt": 1787370717005,
+          "endsAt": 1787370717705,
+          "completedAt": 1787370717757
+        },
+        {
+          "id": 83,
+          "type": "turn-end",
+          "payload": {
+            "playerId": "ai-3",
+            "playerIndex": 3
+          },
+          "status": "complete",
+          "duration": 300,
+          "startsEarly": 0,
+          "blocking": true,
+          "barrier": false,
+          "resources": [],
+          "source": "classic-director",
+          "queuedAt": 1787370708219,
+          "startedAt": 1787370717757,
+          "endsAt": 1787370718057,
+          "completedAt": 1787370718260
+        }
+      ]
+    },
+    "roulette": {
+      "options": [
+        {
+          "id": "stomp-the-target",
+          "title": "Stomp the Target!",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Skill",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "stomp-the-target",
+          "title": "Stomp the Target!",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Skill",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "double-trouble-goombas",
+          "title": "Double Trouble Goombas",
+          "instructions": "Defeat both enemies before time runs out!",
+          "category": "Skill",
+          "difficulty": "Easy",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "beat-level-1-1",
+          "title": "Beat Level 1-1",
+          "instructions": "See who beats the level first!",
+          "category": "Speed",
+          "difficulty": "Easy",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "beat-level-1-1",
+          "title": "Beat Level 1-1",
+          "instructions": "See who beats the level first!",
+          "category": "Speed",
+          "difficulty": "Easy",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        },
+        {
+          "id": "stomp-the-target",
+          "title": "Stomp the Target!",
+          "instructions": "Complete the goal before time runs out!",
+          "category": "Skill",
+          "difficulty": "Medium",
+          "playerCount": 1,
+          "gameName": "Super Mario Bros.",
+          "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+        }
+      ],
+      "selectedIndex": 2,
+      "selected": {
+        "id": "double-trouble-goombas",
+        "title": "Double Trouble Goombas",
+        "instructions": "Defeat both enemies before time runs out!",
+        "category": "Skill",
+        "difficulty": "Easy",
+        "playerCount": 1,
+        "gameName": "Super Mario Bros.",
+        "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+      }
+    },
+    "minigame": {
+      "challenge": {
+        "id": "find-the-mushroom",
+        "title": "Find The Mushroom",
+        "instructions": "Complete the goal before time runs out!",
+        "category": "Speed",
+        "difficulty": "Medium",
+        "playerCount": 1,
+        "gameName": "Super Mario Bros.",
+        "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png"
+      },
+      "players": [
+        {
+          "playerId": "465d269a-914c-45fd-ac85-7f3a1fb71d70",
+          "nickname": "Roly",
+          "kind": "human",
+          "started": false,
+          "completed": false,
+          "result": null,
+          "resolveAt": null,
+          "winChance": 78
+        },
+        {
+          "playerId": "ai-1",
+          "nickname": "Tilly CPU",
+          "kind": "ai",
+          "started": true,
+          "completed": true,
+          "result": {
+            "completed": true,
+            "score": 99410,
+            "submittedAt": 1787370718511
+          },
+          "resolveAt": 1787370717075,
+          "winChance": 78
+        },
+        {
+          "playerId": "ai-2",
+          "nickname": "Moss CPU",
+          "kind": "ai",
+          "started": true,
+          "completed": true,
+          "result": {
+            "completed": true,
+            "score": 99133,
+            "submittedAt": 1787370718511
+          },
+          "resolveAt": 1787370717617,
+          "winChance": 78
+        },
+        {
+          "playerId": "ai-3",
+          "nickname": "Skipper CPU",
+          "kind": "ai",
+          "started": true,
+          "completed": true,
+          "result": {
+            "completed": true,
+            "score": 99559,
+            "submittedAt": 1787370718511
+          },
+          "resolveAt": 1787370718095,
+          "winChance": 78
+        }
+      ]
+    },
+    "summary": null,
+    "demo": null,
+    "queueSequence": 178,
+    "queues": {
+      "primary": [],
+      "players": {
+        "465d269a-914c-45fd-ac85-7f3a1fb71d70": []
+      }
+    },
+    "eventSequence": 14,
+    "event": {
+      "id": 14,
+      "type": "game-started",
+      "at": 1787370621056,
+      "message": "The Party game is ready."
+    },
+    "createdAt": "2026-08-22T03:49:43.732Z",
+    "updatedAt": "2026-08-22T03:51:58.511Z",
+    "version": 107
+  }
+]

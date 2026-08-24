@@ -1,0 +1,23 @@
+﻿
+SC90f5:01:03:Start with 1 life
+SC90f5:06:03:Start with 6 lives
+SC90f5:09:03:Start with 9 lives
+SC90f5:63:03:Start with 99 lives
+SC9133:ad:ce:Can't lose lives in elevator shaft
+SC9166:ad:ce:Can't lose lives in rooms
+SC9502:00:01:No damage from shots and collisions
+SC9515:ad:ce:Infinite Oxygen
+SC9d01:a9:85:Start on level XX (1 of 2)
+SC9d02:05:de:Start on level 5 (2 of 2)
+SC9d02:0a:de:Start on level 10 (2 of 2)
+SC9d02:0f:de:Start on level 15 (2 of 2)
+SC9d02:14:de:Start on level 20 (2 of 2)
+SCa158:ff:78:Oxygen used up more slowly in shaft
+SCa19e:ee:ad:Infinite Keys in rooms
+SCa405:ee:ad:Infinite Keys in shafts
+SCaf2d:70:ff:Oxygen used up more quickly in rooms
+SCc7b3:ea:ad:Invincibility
+SCda78:ee:ad:Infinite Bombs in elevator shaft
+SCda9d:ee:ad:Infinite Detonators in shafts
+SCdaea:ee:ad:Infinite Bombs in rooms
+SCdb0f:ee:ad:Infinite Detonators in rooms

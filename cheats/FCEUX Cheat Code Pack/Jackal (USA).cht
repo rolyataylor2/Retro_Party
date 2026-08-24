@@ -1,0 +1,18 @@
+﻿
+S0030:01:Start on level 2
+S0030:02:Start on level 3
+S0030:03:Start on level 4
+S0030:04:Start on level 5
+S0030:05:Start on level 6
+S0031:09:Infinite lives
+S0530:01:Invincibility - P1
+S0531:01:Invincibility - P2
+S07e4:99:Max score (1 of 3)
+S07e5:99:Max score (2 of 3)
+S07e6:99:Max score (3 of 3)
+Sca1a:01:Start with 1 life - both players
+Sca1a:09:Start with 9 lives - both players
+SCe5ba:50:d0:Invincibility - both players
+Seca4:03:Full weapons after death
+Seca5:24:Keep weapons after death
+Sed15:a5:Infinite lives - both players

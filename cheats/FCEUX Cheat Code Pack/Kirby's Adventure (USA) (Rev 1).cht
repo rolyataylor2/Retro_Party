@@ -1,0 +1,24 @@
+﻿
+S0597:2f:Infinite health (alt)
+S0599:09:Infinite lives (alt)
+S05f9:02:Invincibility (alt)
+SC8078:4c:fd:Hit anywhere (spitting) (4 of 6)
+SC8079:c6:74:Hit anywhere (spitting) (6 of 6)
+SC807a:80:60:Hit anywhere (spitting) (3 of 6)
+SC819d:18:e9:Hit anywhere (spitting) (1 of 6)
+SC819e:18:07:Hit anywhere (spitting) (2 of 6)
+SC81cd:24:b0:Hit anywhere (spitting) (5 of 6)
+SC825b:00:42:Inhale from anywhere (1 of 3)
+SC827c:ad:ed:Inhale from anywhere (3 of 3)
+SC827f:50:90:Inhale from anywhere (2 of 3)
+SC847b:d0:f0:Invincibility
+SC9e05:ad:8d:Infinite health
+SCa7ed:01:04:Start with 2 lives
+SCa7ed:08:04:Start with 9 lives
+SCa7ed:10:04:Start with 17 lives
+SCa7f2:1f:2f:Start with less health
+SCa7f2:4f:2f:Start with more health
+SCb243:02:08:Less health from 'pep drinks'
+SCb243:10:08:More health from 'pep drinks'
+SCb243:2f:08:Full health from 'pep drinks'
+SCe4c1:a5:ce:Infinite lives

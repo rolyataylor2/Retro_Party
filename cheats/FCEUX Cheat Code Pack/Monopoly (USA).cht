@@ -1,0 +1,22 @@
+﻿
+SC8315:07:03:Go Back 7 spaces instead of 3 on Chance
+SC8c96:13:1a:Pay $30 for luxury tax
+SC8c96:1d:1a:Pay $100 for luxury tax
+SC8c96:31:1a:Pay $200 for luxury tax
+SC8cd6:00:31:Pay $0 for income tax
+SC8cd6:13:31:Pay $30 for income tax
+SC8cd6:1d:31:Pay $100 for income tax
+SC8cd6:3f:31:Pay $300 for income tax
+SCa864:00:17:Pay $0 to get out of jail
+SCa864:1d:17:Pay $100 to get out of jail
+SCd412:31:45:$200 to buy Park Place
+SCd412:4b:45:$400 to buy Park Place
+SCd412:53:45:$600 to buy Park Place
+SCd41a:1d:31:Houses on Park Place cost $100
+SCd41a:3f:31:Houses on Park Place cost $300
+SCd41b:3f:4b:$300 to buy Boardwalk
+SCd41b:53:4b:$600 to buy Boardwalk
+SCd423:1d:31:Houses on Boardwalk cost $100
+SCd423:3f:31:Houses on Boardwalk cost $300
+SCdb59:1d:31:Collect $100 as you pass Go
+SCdb59:3f:31:Collect $300 as you pass Go

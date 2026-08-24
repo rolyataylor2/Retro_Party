@@ -1,0 +1,26 @@
+[
+  {
+    "id": "classic-party",
+    "name": "Classic Party",
+    "description": "Take turns, earn coins, and settle the score with frequent mini-games.",
+    "rounds": 5,
+    "startingCoins": 10,
+    "minigameEvery": 1,
+    "blueCoins": 3,
+    "redCoins": -3,
+    "luckyCoins": 7,
+    "winCondition": "Most coins"
+  },
+  {
+    "id": "studio-rules",
+    "name": "CLASSIC PARTY",
+    "description": "The live rules assembled in Party Studio's Rule Book.",
+    "rounds": 5,
+    "startingCoins": 10,
+    "minigameEvery": 1,
+    "blueCoins": 3,
+    "redCoins": -3,
+    "luckyCoins": 7,
+    "winCondition": "Most stars"
+  }
+]

@@ -1,0 +1,25 @@
+﻿
+SC8012:85:a5:Invincibility (1 of 2)
+SC8014:d0:f0:Invincibility (2 of 2)
+SC8153:ad:ce:Protection against hits in fun house
+SC83c7:ad:ce:Protection against hits on roller coaster
+SC8558:ad:ce:Protection against hits on train
+SC9171:00:04:Roller coaster costs nothing instead of 4 tickets
+SC9171:06:04:Roller coaster costs 6 tickets
+SC9173:00:01:Bumper cars cost nothing instead of 1 ticket
+SC9173:04:01:Bumper cars cost 4 tickets
+SC9175:00:02:Train costs nothing instead of 2 tickets
+SC9175:05:02:Train costs 5 tickets
+SC9177:00:03:Log ride costs nothing instead of 3 tickets
+SC9177:05:03:Log ride costs 5 tickets
+SC917a:00:05:Fun house costs nothing instead of 50 normal tickets
+SC917a:01:05:Fun house costs 10 normal tickets
+SC917a:09:05:Fun house costs 90 normal tickets
+SC9a1b:ad:ce:Protection against hits on bumper cars
+SCaabe:ad:ce:Protection against hits on log ride
+SCf230:ad:20:Infinite time
+SCf6e8:ee:8d:Start with 110 tickets instead of 10
+SCf701:02:01:Start with 20 tickets instead of 10
+SCf701:05:01:Start with 50 tickets instead of 10
+SCf701:09:01:Start with 90 tickets instead of 10
+SCf745:09:08:Start a new game to view ending

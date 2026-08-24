@@ -1,0 +1,30 @@
+﻿
+S0027:09:Infinite lives (alt)
+S0059:3f:Start on last stage
+S005a:09:Infinite Bombs
+S005b:09:Infinite health refills
+S005e:03:Powered up Boomerang
+S0095:09:Infinite time (1 of 2)
+S0096:99:Infinite time (2 of 2)
+S0099:02:Triple Boomerang
+S009c:03:Have Suit
+S04ab:12:Infinite health (alt)
+S04ba:00:One hit kills on bosses
+S051d:c0:Moon jump (don't jump past top of screen)
+SC8a44:ad:b9:Take minimum damage
+SC8a4d:e9:e5:Infinite health
+SC8c8b:f0:90:Hit anywhere (2 of 2)
+SC8c97:00:22:Hit anywhere (1 of 2)
+SCd036:24:c6:Don't lose boomerang strength when you die (1 of 2)
+SCd03c:24:c6:Don't lose multi-boomerangs when you die (1 of 2)
+SCd050:a5:c6:Infinite lives
+SCd066:24:85:Don't lose boomerang strength when you die (2 of 2)
+SCd06a:24:85:Don't lose multi-boomerangs when you die (2 of 2)
+SCd181:08:01:Press Start to finish the level (don't use on Protect level) (1 of 3)
+SCd183:18:4d:Press Start to finish the level (don't use on Protect level) (2 of 3)
+SCd184:60:a9:Press Start to finish the level (don't use on Protect level) (3 of 3)
+SCd628:28:38:Mega-jump
+SCf67b:07:02:Start a new game to view ending
+SCf722:00:02:Start with 1 life
+SCf722:05:02:Start with 6 lives
+SCf722:08:02:Start with 9 lives

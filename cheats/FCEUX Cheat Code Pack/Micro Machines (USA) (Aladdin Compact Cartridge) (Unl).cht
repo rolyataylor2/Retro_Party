@@ -1,0 +1,33 @@
+﻿
+SC8001:05:01:Higher bounce for Sports cars
+SC8002:07:01:Higher bounce for Boats
+SC8003:07:01:Higher bounce for Formula 1's
+SC8004:07:01:Higher bounce for Turbo Wheels
+SC8005:07:01:Higher bounce for 4x4's
+SC8007:07:01:Higher bounce for Tanks
+SC801c:00:05:Faster Sports Car acceleration
+SC801d:00:05:Faster Boat acceleration
+SC801e:00:05:Faster Formula 1 acceleration
+SC801f:00:05:Faster Turbo Wheels(tm) acceleration
+SC8020:00:05:Faster 4x4 acceleration
+SC8022:00:02:Faster Tank acceleration
+SC8023:00:05:Faster Chopper acceleration
+SC8025:00:09:Quicker Sports Car deceleration
+SC8026:00:09:Quicker Boat deceleration
+SC8027:00:09:Quicker Formula 1 deceleration
+SC8028:00:09:Quicker Turbo Wheels deceleration
+SC8029:00:09:Quicker 4x4 deceleration
+SC802b:00:02:Quicker Tank deceleration
+SC802c:00:0f:Quicker Chopper deceleration
+S8dbd:19:Drive through vehicles
+SCa67c:2c:ce:Infinite lives
+SCf728:09:03:Play with 9 lives
+SCf72d:04:00:Start on race 5
+SCf72d:09:00:Start on race 10
+SCf72d:0e:00:Start on race 15
+SCf72d:13:00:Start on race 20
+SCf72d:18:00:Start on race 25 (Final Race)
+SCf7b7:01:03:Kid out of game after every race
+SCfa12:01:03:Ruff Trux after every race
+SCfa25:04:02:Qualify every race
+SCfa31:04:01:Win Championship race

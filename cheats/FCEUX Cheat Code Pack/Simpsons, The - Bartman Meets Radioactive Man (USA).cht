@@ -1,0 +1,20 @@
+﻿
+S0787:14:Infinite health (alt 2)
+S0788:99:Infinite Eyes on pick-up (alt 2)
+S0789:99:Infinite Cold on pick-up (alt)
+SC8767:01:03:Start with 2 lives and 2 credits
+SC8767:05:03:Start with 6 lives and 6 credits
+SC8767:07:03:Start with 8 lives and 8 credits
+SC8767:09:03:Start with 10 lives and 10 credits
+SCa730:02:00:Start in chapter 1 level 2
+SCa730:05:00:Start in chapter 1 level 3
+SCeabd:20:05:Cold worth more on pick-up
+SCeae1:50:20:Eyes worth more on pick-up
+SCf260:b1:91:Infinite lives
+SCf3a9:ad:20:Invincibility
+SCf731:00:04:Infinite health
+SCf732:ad:8d:Infinite health (alt)
+SCf80f:ad:ce:Infinite credits
+SCf8fe:ad:ce:Infinite Eyes on pick-up (alt)
+SCf8fe:cd:ce:Infinite Eyes on pick-up
+SCf944:00:01:Infinite Cold on pick-up

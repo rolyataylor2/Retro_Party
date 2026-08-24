@@ -1,0 +1,690 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#17144a">
+  <title>Starlight Party</title>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body data-route="home">
+  <div class="ambient-stars" aria-hidden="true"></div>
+  <header class="party-bar">
+    <button class="brand" data-route="home" aria-label="Starlight Party home">
+      <img class="brand-logo-img" src="/assets/game_title.png" alt="Starlight Party Title">
+    </button>
+    <div class="bar-actions">
+      <span class="controller-status" id="controller-status"><i></i> KEYBOARD READY</span>
+      <button class="round-button" id="music-toggle" aria-label="Toggle music">♫</button>
+    </div>
+  </header>
+
+  <main id="app">
+    <!-- Cinematic Splash & Title Screen View -->
+    <section class="view title-view active" data-view="title" id="title-view">
+      <!-- 1. Intro Company Splash Layer (black screen with fading placeholder logo text) -->
+      <div class="title-intro-splash" id="title-intro-splash">
+        <div class="intro-logo-content">
+          <span class="intro-logo-spark">✦</span>
+          <h1 class="intro-logo-title">STARLIGHT STUDIOS</h1>
+          <p class="intro-logo-sub">PRESENTS</p>
+        </div>
+      </div>
+
+      <!-- 2. Cinematic Title Screen Stage (4:3 aspect frame) -->
+      <div class="title-screen-stage hidden" id="title-screen-stage">
+        <div class="title-screen-frame">
+          <img class="title-bg-img" src="/assets/title_screen_background.png" alt="Title Screen Background">
+
+          <!-- Animated explosion overlayed on top left (center point: 20% left, 20% top) -->
+          <div class="title-explosion-anchor" id="title-explosion-anchor">
+            <img class="title-explosion-img" src="/assets/title_screen_explosion.png" alt="Explosion">
+          </div>
+
+          <!-- Game Title fading in on mid-right (center point: 66.67% left, 50% top) -->
+          <div class="title-logo-anchor" id="title-logo-anchor">
+            <img class="title-logo-img" src="/assets/game_title.png" alt="Starlight Party Title">
+          </div>
+
+          <!-- Press Start centered horizontally (center point: 50% left, 83.33% top) -->
+          <div class="title-press-start-anchor" id="title-press-start" data-nav data-action="title-start">
+            <div class="press-start-btn">
+              <span class="press-start-arrow">▶</span>
+              <span class="press-start-text">PRESS START</span>
+              <span class="press-start-arrow flip">◀</span>
+            </div>
+            <span class="press-start-hint">PRESS ENTER TO START</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Fade-to-black Transition Overlay -->
+      <div class="title-fade-overlay" id="title-fade-overlay"></div>
+    </section>
+
+    <section class="view home-view" data-view="home">
+      <div class="lab-menu-frame">
+        <img class="lab-bg-img" src="/assets/lab_background.png" alt="Laboratory Background">
+
+        <!-- Adventure Table (Centered horizontally, 1/3 up from the bottom) -->
+        <button class="lab-adventure-table coral" data-nav data-route="board-setup" aria-label="Adventure Table - Start Board Game">
+          <img class="table-img" src="/assets/boardgame_table.png" alt="Adventure Table">
+          <div class="table-dialog-box">
+            <small>ONE-SCREEN CLASSIC</small>
+            <b>START BOARD GAME</b>
+            <em>Roll, roam & compete together</em>
+          </div>
+        </button>
+
+        <!-- Mini-Game Confabulator Station (5% from left, 3% up from bottom) -->
+        <button class="lab-confabulator-station violet" data-nav data-action="start-party-mode" aria-label="Studio Editors & Creation Lab">
+          <img class="confabulator-station-img" src="/assets/mini_game_maker.png" alt="Studio Editors">
+          <div class="confabulator-station-dialog-box">
+            <small>STUDIO & CREATION LAB</small>
+            <b>STUDIO EDITORS</b>
+            <em>Craft boards, scenes, actions & toys</em>
+          </div>
+        </button>
+
+        <nav class="lab-sidebar-nav" aria-label="Game modes">
+          <!-- Play Modes -->
+          <button class="lab-menu-btn coral" data-nav data-route="board-setup" aria-label="Start Board Game">
+            <span class="btn-circle-icon">🎲</span>
+            <div class="btn-dialog-box">
+              <small>ONE-SCREEN CLASSIC</small>
+              <b>START BOARD GAME</b>
+              <em>Roll, roam & compete together</em>
+            </div>
+          </button>
+
+          <button class="lab-menu-btn cyan" data-nav data-route="minigames" aria-label="Mini Games">
+            <span class="btn-circle-icon">★</span>
+            <div class="btn-dialog-box">
+              <small>QUICK PLAY</small>
+              <b>MINI GAMES</b>
+              <em>Pick a challenge</em>
+            </div>
+          </button>
+
+          <button class="lab-menu-btn gold" data-nav data-route="games" aria-label="Game Library">
+            <span class="btn-circle-icon">▣</span>
+            <div class="btn-dialog-box">
+              <small>YOUR CARTRIDGES</small>
+              <b>GAME LIBRARY</b>
+              <em>Browse every ROM</em>
+            </div>
+          </button>
+
+          <div class="sidebar-nav-divider" aria-hidden="true"></div>
+
+          <!-- Studio Editors Category -->
+          <button class="lab-menu-btn violet" data-nav data-action="start-party-mode" aria-label="Studio Editors">
+            <span class="btn-circle-icon">🛠️</span>
+            <div class="btn-dialog-box">
+              <small>CREATION LAB & STUDIOS</small>
+              <b>STUDIO EDITORS</b>
+              <em>Board and mini-game makers</em>
+            </div>
+          </button>
+
+          <button class="lab-menu-btn cyan" data-nav data-action="open-mini-game-maker" aria-label="Mini-Game Maker">
+            <span class="btn-circle-icon">🎮</span>
+            <div class="btn-dialog-box">
+              <small>MOMENTS & CHALLENGES</small>
+              <b>MINI-GAME MAKER</b>
+              <em>Capture moments and design challenges</em>
+            </div>
+          </button>
+
+          <button class="lab-menu-btn gold" data-nav data-route="packs" aria-label="Party Packs">
+            <span class="btn-circle-icon">▦</span>
+            <div class="btn-dialog-box">
+              <small>PLAYLIST COMPILER</small>
+              <b>PARTY PACKS</b>
+              <em>Build custom mini-game playlists</em>
+            </div>
+          </button>
+
+          <button class="lab-menu-btn mint" data-nav data-route="rules" aria-label="House Rules">
+            <span class="btn-circle-icon">⚑</span>
+            <div class="btn-dialog-box">
+              <small>GAMEPLAY ECONOMY</small>
+              <b>HOUSE RULES</b>
+              <em>Customize rounds, rewards & scoring</em>
+            </div>
+          </button>
+
+          <div class="sidebar-nav-divider" aria-hidden="true"></div>
+
+          <!-- Settings -->
+          <button class="lab-menu-btn mint" data-nav data-route="settings" aria-label="Settings">
+            <span class="btn-circle-icon">⚙</span>
+            <div class="btn-dialog-box">
+              <small>LIBRARY TOOLS</small>
+              <b>SETTINGS</b>
+              <em>Scan games & artwork</em>
+            </div>
+          </button>
+        </nav>
+        <div class="home-hint"><kbd>↑↓←→</kbd> SELECT <kbd>A</kbd> CHOOSE <kbd>B</kbd> TITLE SCREEN</div>
+      </div>
+    </section>
+
+    <section class="view setup-view" data-view="board-setup">
+      <div class="view-heading">
+        <div>
+          <span class="kicker">BOARD GAME SETUP</span>
+          <h2 id="setup-view-title">Party Questionnaire</h2>
+        </div>
+        <div class="setup-progress" id="setup-progress">
+          <div class="progress-pill active" data-step="1"><span>1</span><small>PLAYERS</small></div>
+          <div class="progress-pill" data-step="2"><span>2</span><small>CAST</small></div>
+          <div class="progress-pill" data-step="3"><span>3</span><small>BOARD</small></div>
+          <div class="progress-pill" data-step="4"><span>4</span><small>PACK</small></div>
+          <div class="progress-pill" data-step="5"><span>5</span><small>RULES</small></div>
+          <div class="progress-pill" data-step="6"><span>6</span><small>CONFIRM</small></div>
+        </div>
+      </div>
+
+      <div class="wizard-container" id="wizard-container">
+        <!-- STEP 1: PLAYERS & NAMES -->
+        <div class="wizard-step active" id="wizard-step-1" data-step="1">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-badge">QUESTION 1 OF 5</span>
+              <h3>How many players are joining the party?</h3>
+              <p>Pick your player count, then customize your character names.</p>
+            </div>
+            <div class="player-count-picker">
+              <button type="button" class="player-count-card" data-nav data-player-count="1">
+                <span class="count-icon">👤</span>
+                <span class="count-num">1 PLAYER</span>
+                <small>Solo Challenge Run</small>
+              </button>
+              <button type="button" class="player-count-card" data-nav data-player-count="2">
+                <span class="count-icon">👥</span>
+                <span class="count-num">2 PLAYERS</span>
+                <small>Head-to-Head Duel</small>
+              </button>
+              <button type="button" class="player-count-card" data-nav data-player-count="3">
+                <span class="count-icon">👥👤</span>
+                <span class="count-num">3 PLAYERS</span>
+                <small>Triple Threat</small>
+              </button>
+              <button type="button" class="player-count-card selected" data-nav data-player-count="4">
+                <span class="count-icon">👥👥</span>
+                <span class="count-num">4 PLAYERS</span>
+                <small>Full Couch Party</small>
+              </button>
+            </div>
+            <div class="roster-section">
+              <h4 class="subhead">PLAYER ROSTER & NAMES</h4>
+              <div id="player-names-roster" class="player-roster-grid"></div>
+            </div>
+            <div class="wizard-actions">
+              <button type="button" class="wizard-btn secondary" data-nav data-back>‹ EXIT TO MENU</button>
+              <button type="button" class="wizard-btn primary" data-nav data-wizard-next="2">CHOOSE CHARACTERS <span>▶</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 2: CHARACTER DRAFT -->
+        <div class="wizard-step" id="wizard-step-2" data-step="2">
+          <div class="step-card character-step-card">
+            <div class="step-header">
+              <span class="step-badge">QUESTION 2 OF 5</span>
+              <h3>Who is joining the adventure?</h3>
+              <p>Draft one original Starlight hero for each player. Every hero has their own look and color on the board.</p>
+            </div>
+            <div class="draft-status" id="character-draft-status"></div>
+            <div class="character-grid" id="character-grid"></div>
+            <div class="wizard-actions">
+              <button type="button" class="wizard-btn secondary" data-nav data-wizard-prev="1">‹ BACK TO PLAYERS</button>
+              <button type="button" class="wizard-btn primary" data-nav data-wizard-next="3">CHOOSE BOARD <span>▶</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 3: BOARD SELECTION -->
+        <div class="wizard-step" id="wizard-step-3" data-step="3">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-badge">QUESTION 3 OF 5</span>
+              <h3>Where will tonight's party take place?</h3>
+              <p>Select the board circuit to roll, roam, and compete on.</p>
+            </div>
+            <div class="card-options-grid" id="setup-board-cards"></div>
+            <div class="wizard-actions">
+              <button type="button" class="wizard-btn secondary" data-nav data-wizard-prev="2">‹ BACK TO CHARACTERS</button>
+              <button type="button" class="wizard-btn primary" data-nav data-wizard-next="4">CHOOSE MINI-GAME PACK <span>▶</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 4: PACK SELECTION -->
+        <div class="wizard-step" id="wizard-step-4" data-step="4">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-badge">QUESTION 4 OF 5</span>
+              <h3>Which mini-games should be in the rotation?</h3>
+              <p>Choose a curated party pack or custom playlist for showdown rounds.</p>
+            </div>
+            <div class="card-options-grid" id="setup-pack-cards"></div>
+            <div class="wizard-actions">
+              <button type="button" class="wizard-btn secondary" data-nav data-wizard-prev="3">‹ BACK TO BOARD</button>
+              <button type="button" class="wizard-btn primary" data-nav data-wizard-next="5">CHOOSE HOUSE RULES <span>▶</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 5: RULESET SELECTION -->
+        <div class="wizard-step" id="wizard-step-5" data-step="5">
+          <div class="step-card">
+            <div class="step-header">
+              <span class="step-badge">QUESTION 5 OF 5</span>
+              <h3>What house rules will you play by?</h3>
+              <p>Set round lengths, starting coin pouches, and mini-game frequency.</p>
+            </div>
+            <div class="card-options-grid" id="setup-ruleset-cards"></div>
+            <div class="wizard-actions">
+              <button type="button" class="wizard-btn secondary" data-nav data-wizard-prev="4">‹ BACK TO PACK</button>
+              <button type="button" class="wizard-btn primary" data-nav data-wizard-next="6">REVIEW & CONFIRM <span>▶</span></button>
+            </div>
+          </div>
+        </div>
+
+        <!-- STEP 6: CONFIRMATION & SUMMARY -->
+        <div class="wizard-step" id="wizard-step-6" data-step="6">
+          <div class="step-card confirmation-card">
+            <div class="step-header">
+              <span class="step-badge success">READY TO ROLL!</span>
+              <h3>Party Confirmation</h3>
+              <p>Review your party lineup and house settings before starting the game.</p>
+            </div>
+            <div class="confirmation-grid" id="setup-summary-grid">
+              <!-- Dynamically populated -->
+            </div>
+            <div class="wizard-actions confirm-actions">
+              <button type="button" class="wizard-btn secondary" data-nav data-wizard-prev="5">‹ CHANGE SETTINGS</button>
+              <button type="button" class="big-action launch-action" data-nav id="start-party">
+                <span class="launch-label">🎲 START THE PARTY!</span>
+                <span class="launch-arrow">▶</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view board-view" data-view="board">
+      <div class="board-stage" id="board-stage">
+        <svg class="board-track-svg" id="board-track-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <path class="board-track-casing" id="board-track-casing" d=""></path>
+          <path class="board-track-glow" id="board-track-glow" d=""></path>
+          <path class="board-track-line" id="board-track-line" d=""></path>
+        </svg>
+        <div id="board-spaces"></div>
+        <div class="star-vendor" id="star-vendor" aria-live="polite">
+          <div class="vendor-bubble"><b>BOLT-0</b><span>STAR SHOP · 20 COINS</span></div>
+          <div class="vendor-bot" aria-hidden="true">🤖</div>
+          <div class="vendor-star" aria-hidden="true">★</div>
+        </div>
+        <div id="board-tokens"></div>
+        <div class="board-fx" id="board-fx" aria-hidden="true"></div>
+        <div class="turn-card">
+          <span id="turn-round">ROUND 1 / 5</span>
+          <h2 id="turn-player">Player 1's turn</h2>
+          <p id="board-event">The party is starting!</p>
+          <button class="dice-button" data-nav id="roll-dice"><span id="die-face">⚄</span><b>ROLL</b></button>
+        </div>
+        <div class="minigame-callout hidden" id="minigame-callout">
+          <span id="callout-kicker">NEXT UP</span>
+          <h2 id="pending-title">Mini Game!</h2>
+          <p id="callout-copy">Ten coins are on the line.</p>
+          <button data-nav id="launch-pending">PLAY NOW</button>
+        </div>
+      </div>
+      <div class="score-ribbon" id="score-ribbon"></div>
+    </section>
+
+    <section class="view library-view" data-view="minigames">
+      <button class="edge-nav edge-back" data-nav data-back aria-label="Back to main menu"><span>‹</span><small>MENU</small></button>
+      <div class="view-heading"><div><span class="kicker">QUICK PLAY</span><h2>Mini-game arcade</h2></div><span class="count-chip" id="game-count">0 GAMES</span></div>
+      <div class="filter-ribbon"><label>CATEGORY<select data-nav id="filter-category"><option>All</option></select></label><label>PLAYERS<select data-nav id="filter-players"><option value="all">Any</option><option value="1">1 Player</option><option value="2">2 Players</option><option value="3">3 Players</option><option value="4">4 Players</option></select></label><label>GAME<select data-nav id="filter-game"><option value="all">All Games</option></select></label></div>
+      <div class="game-grid" id="game-grid"></div>
+    </section>
+
+    <section class="view library-view" data-view="games">
+      <button class="edge-nav edge-back" data-nav data-back aria-label="Back to main menu"><span>‹</span><small>MENU</small></button>
+      <div class="view-heading"><div><span class="kicker">CARTRIDGE SHELF</span><h2>Your game library</h2></div><span class="count-chip" id="rom-count">0 GAMES</span></div>
+      <div class="rom-grid" id="rom-grid"></div>
+    </section>
+
+    <section class="view maker-view" data-view="settings">
+      <button class="edge-nav edge-back" data-nav data-back aria-label="Back to main menu"><span>‹</span><small>MENU</small></button>
+      <div class="view-heading"><div><span class="kicker">SETTINGS</span><h2>Library workshop</h2></div></div>
+      <div class="settings-layout">
+        <article class="editor-card settings-card"><span class="editor-icon">▣</span><h2>ROM Scanner</h2><p>Find supported NES, FDS, UNF, and UNIF files anywhere inside the <b>roms</b> folder.</p><button class="big-action" data-nav data-action="scan-roms">SCAN ROM FOLDER <span>↻</span></button></article>
+        <article class="editor-card settings-card"><span class="editor-icon art-icon">✦</span><h2>Box Art</h2><p>Cache matching box fronts from Libretro's community thumbnail library. Images stay on this server.</p><button class="big-action" data-nav data-action="download-art">DOWNLOAD MISSING ART <span>↓</span></button></article>
+      </div>
+      <div class="settings-library" id="settings-library"></div>
+      <article class="controls-card"><div><span class="editor-icon controls-icon">⌘</span><h2>Control Room</h2><p>Choose keyboard keys and controller buttons. Select a keyboard binding, then press the new key.</p></div><div class="bindings-grid" id="bindings-grid"></div><button class="big-action" data-nav data-action="save-controls">SAVE CONTROL SETTINGS <span>★</span></button></article>
+    </section>
+
+    <section class="view maker-view" data-view="packs">
+      <button class="edge-nav edge-back" data-nav data-back aria-label="Back to main menu"><span>‹</span><small>MENU</small></button>
+      <div class="view-heading"><div><span class="kicker">PARTY PACKS</span><h2>Choose your mini-game mix</h2></div><span class="count-chip" id="pack-count">0 PACKS</span></div>
+      <div class="collection-browser" id="pack-browser"><p class="collection-help"><b>SELECT</b> or right-click a pack for options.</p><div id="pack-list" class="collection-grid"></div></div>
+      <form class="editor-card collection-editor hidden" id="pack-form"><span class="editor-icon">▦</span><span class="step-chip" id="pack-editor-mode">NEW PACK</span><h2 id="pack-editor-title">Create Party Pack</h2><p>Choose a set once, then launch it from Quick Play or a board.</p><label>PACK NAME<input data-nav name="name" value="" maxlength="60"></label><label>DESCRIPTION<input data-nav name="description" value="" maxlength="160"></label><div><b>INCLUDE MINI GAMES</b><div id="pack-checklist" class="checklist"></div></div><div class="editor-actions"><button type="button" class="wizard-btn secondary" data-nav data-editor-cancel>‹ CANCEL</button><button data-nav class="big-action" type="submit">SAVE TO SERVER <span>★</span></button></div></form>
+    </section>
+
+    <section class="view maker-view" data-view="rules">
+      <button class="edge-nav edge-back" data-nav data-back aria-label="Back to main menu"><span>‹</span><small>MENU</small></button>
+      <div class="view-heading"><div><span class="kicker">RULE BOOK</span><h2>Choose how the party plays</h2></div><span class="count-chip" id="rules-count">0 RULES</span></div>
+      <div class="collection-browser" id="rules-browser"><p class="collection-help"><b>SELECT</b> or right-click a rule set for options.</p><div id="rules-list" class="collection-grid"></div></div>
+      <form class="editor-card collection-editor hidden" id="rules-form"><span class="editor-icon">⚑</span><span class="step-chip" id="rules-editor-mode">NEW RULES</span><h2 id="rules-editor-title">Create House Rules</h2><label>DESCRIPTION<input data-nav name="description" value="" maxlength="160"></label><div class="form-grid"><label>NAME<input data-nav name="name" value=""></label><label>ROUNDS<input data-nav name="rounds" type="number" min="1" max="50" value="5"></label><label>STARTING COINS<input data-nav name="startingCoins" type="number" min="0" value="10"></label><label>MINI GAME EVERY N ROUNDS<input data-nav name="minigameEvery" type="number" min="1" max="8" value="1"></label><label>BLUE SPACE COINS<input data-nav name="blueCoins" type="number" min="0" value="3"></label><label>RED SPACE COINS<input data-nav name="redCoins" type="number" max="0" value="-3"></label><label>LUCKY SPACE COINS<input data-nav name="luckyCoins" type="number" min="0" value="7"></label></div><div class="editor-actions"><button type="button" class="wizard-btn secondary" data-nav data-editor-cancel>‹ CANCEL</button><button data-nav class="big-action" type="submit">SAVE RULE SET <span>★</span></button></div></form>
+    </section>
+
+    <section class="view game-view" data-view="play">
+      <button class="edge-nav edge-back" data-nav data-back aria-label="Leave game"><span>‹</span><small>LEAVE</small></button>
+      <div class="game-header"><div><span class="kicker" id="play-kicker">MINI GAME</span><h2 id="play-title">Challenge</h2><p id="play-instructions">Get ready!</p></div><div class="timer-pill" id="timer-pill">GO!</div></div>
+      <div class="console-wrap"><div class="screen-shell"><canvas id="screen" width="256" height="240" aria-label="NES game display"></canvas><div class="scanlines"></div><div class="game-result hidden" id="game-result"><span id="result-star">★</span><h2 id="result-title">GREAT JOB!</h2><p id="result-copy">The goal was detected.</p><div class="result-actions"><button class="hidden" data-nav id="retry-game">TRY AGAIN</button><button data-nav id="finish-game">BACK TO THE PARTY</button></div></div></div><div class="freeplay-tools hidden" id="freeplay-tools"><input data-nav id="freeplay-state-title" value="Cool Moment" maxlength="80" aria-label="Moment name"><button data-nav data-action="freeplay-save">SAVE MOMENT</button><button data-nav data-action="rewind">↶ REWIND</button><button data-nav data-action="freeplay-create">MAKE MINI-GAME</button></div><div class="nes-help" id="nes-help"><span><kbd>✚</kbd> MOVE</span><span><kbd>Z</kbd> B</span><span><kbd>X</kbd> A</span><span><kbd>P</kbd> SAVE</span><span><kbd>⌫</kbd> REWIND</span><span><kbd>ESC</kbd> LEAVE</span></div></div>
+    </section>
+
+    <section class="view creator-view" data-view="multi-creator">
+      <button class="edge-nav edge-back" data-nav data-back aria-label="Back to main menu"><span>‹</span><small>MENU</small></button>
+      
+      <!-- Stage 1: Pick Game -->
+      <div id="multi-stage-game" class="creator-stage">
+        <div class="view-heading">
+          <div><span class="kicker">MULTI-CREATOR · STEP 1</span><h2>Choose an installed game</h2></div>
+        </div>
+        <div id="multi-game-grid" class="creator-game-grid"></div>
+      </div>
+
+      <!-- Stage 2: Pick Starting State -->
+      <div id="multi-stage-state" class="creator-stage hidden">
+        <div class="view-heading">
+          <div>
+            <span class="kicker" id="multi-state-kicker">MULTI-CREATOR · STEP 2</span>
+            <h2 id="multi-state-title">Choose starting point</h2>
+          </div>
+          <button class="stage-back-btn" data-nav data-action="multi-back-to-games">‹ BACK TO GAMES</button>
+        </div>
+        <div id="multi-state-grid" class="creator-state-grid"></div>
+      </div>
+
+      <!-- Stage 3: Studio Editor -->
+      <div id="multi-stage-editor" class="creator-stage hidden">
+        <div class="view-heading">
+          <div>
+            <span class="kicker">MULTI-EVENT CREATOR (EVENT LEDGER)</span>
+            <h2 id="multi-editor-heading">Teach complex goals by playing</h2>
+          </div>
+          <div class="editor-header-controls">
+            <span class="source-badge" id="multi-editor-source-badge">Game · Starting Point</span>
+            <button class="stage-back-btn" data-nav data-action="multi-switch-game-state">‹ SWITCH MOMENT</button>
+            <span class="step-chip" id="multi-creator-phase">NOT STARTED</span>
+          </div>
+        </div>
+
+        <div class="creator-layout">
+          <div class="creator-console">
+            <div class="screen-shell">
+              <canvas id="multi-creator-screen" width="256" height="240" aria-label="NES multi-creator display"></canvas>
+              <div class="scanlines"></div>
+              <div class="screen-status" id="multi-creator-screen-status">PRESS CONTROL GAME TO PLAY</div>
+            </div>
+            <p>Put the game at the exact starting moment. The lab rewinds here for every example.</p>
+            <button class="big-action" data-nav data-action="multi-control-game">CONTROL GAME <span>▶</span></button>
+            <p class="control-note" id="multi-control-note">Press Escape or controller Select to return to the menu.</p>
+          </div>
+          <div class="creator-steps">
+            <article class="creator-step"><span>1</span><div><h3>Capture the start</h3><p id="multi-capture-copy">Freeze this exact moment as the opening of your mini game.</p></div><button data-nav data-action="multi-creator-start" id="multi-capture-btn">CAPTURE</button></article>
+            <article class="creator-step modifiers-step"><span>2</span><div class="modifiers-step-body">
+              <div class="modifiers-header-row">
+                <div>
+                  <h3>Modifiers (Optional)</h3>
+                  <p id="multi-modifiers-copy">Optional cheat codes applied at start (<span id="multi-active-mod-count">0 active</span>).</p>
+                </div>
+                <button type="button" class="toggle-modifiers-drawer-btn" data-nav data-action="toggle-modifiers-drawer" id="multi-toggle-modifiers-btn">+ SHOW CHEATS</button>
+              </div>
+              <div id="multi-modifiers-drawer" class="modifiers-drawer hidden">
+                <div id="multi-modifiers-list" class="modifiers-list"></div>
+                <div class="modifier-actions-row">
+                  <button type="button" class="add-mod-toggle-btn" data-nav data-action="toggle-add-modifier">+ ADD CUSTOM CHEAT</button>
+                </div>
+                <div id="multi-add-modifier-form" class="modifier-add-form hidden">
+                  <input id="mod-input-name" placeholder="Cheat Name (e.g. Moon Jump)" maxlength="50">
+                  <input id="mod-input-address" placeholder="RAM Address hex (e.g. 0756)" maxlength="6">
+                  <input id="mod-input-value" placeholder="Value dec/hex (e.g. 2)" maxlength="4">
+                  <button type="button" data-nav data-action="save-custom-modifier">SAVE CHEAT</button>
+                </div>
+              </div>
+            </div></article>
+            <article class="creator-step"><span>3</span><div><h3>Tag Goals & Losses</h3><p id="multi-teach-copy">Press <b>+ New Goal</b> right as each sub-goal occurs, or <b>+ New Loss</b> if you fail.</p></div><button data-nav data-action="multi-attempt-start" id="multi-demo-start-btn">START DEMO</button><div class="verdict-buttons hidden" id="multi-creator-verdicts"><button class="goal-hit-btn" data-nav data-action="multi-hit-goal" title="Shortcut: Press E or G">⚡ + NEW GOAL (E)</button><button class="failure" data-nav data-action="multi-game-lost" title="Shortcut: Press R">✕ + NEW LOSS (R)</button><button class="restart-demo-btn" data-nav data-action="multi-restart-demo" title="Shortcut: Press T">↺ RESTART (T)</button><button class="stop-demo-btn" data-nav data-action="multi-stop-demo" title="Shortcut: Press Q">⏹ STOP (Q)</button></div></article>
+            <article class="creator-step rule-customizer-step"><span>4</span><div class="rule-customizer-body">
+              <h3>Unified Goals & Loss Rules</h3>
+              <p id="multi-rule-copy">Use 👍 Thumbs Up / 👎 Thumbs Down during demo to train rules. Click ✏️ Edit to inspect memory addresses.</p>
+              <div class="unified-rules-container">
+                <div id="multi-unified-rules-list" class="unified-rules-list"></div>
+              </div>
+            </div></article>
+            <article class="creator-step"><span>5</span><div><h3>Verify with live result</h3><p id="multi-verify-copy">Play the challenge. The verify run will track the event ledger and display a Win or Lose result.</p><div id="multi-ledger-hud" class="ledger-hud"></div><div id="multi-verify-result" class="hidden"></div></div><button data-nav data-action="multi-verify">VERIFY RUN</button></article>
+            <article class="creator-step package-step"><span>6</span><div><h3>Save to the server</h3><div class="package-fields"><input data-nav id="multi-challenge-title" value="Double Trouble Goombas" placeholder="Title"><input data-nav id="multi-challenge-instructions" value="Defeat both enemies before time runs out!" placeholder="Instructions"><select data-nav id="multi-challenge-category"><option>Skill</option><option>Speed</option><option>Survival</option><option>Puzzle</option><option>Score Attack</option></select><select data-nav id="multi-challenge-difficulty"><option>Easy</option><option selected>Medium</option><option>Hard</option></select><select data-nav id="multi-challenge-players"><option value="1">1 Player</option><option value="2">2 Players</option><option value="3">3 Players</option><option value="4">4 Players</option></select><input data-nav id="multi-challenge-time" type="number" value="15" min="0" max="600" aria-label="Time limit in seconds"></div></div><button data-nav data-action="multi-save-challenge">SAVE</button></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view creator-view moment-maker-view" data-view="moment-maker">
+      <button class="edge-nav edge-back" data-nav data-back aria-label="Back to main menu"><span>‹</span><small>MENU</small></button>
+      
+      <!-- Stage 1: Pick Game -->
+      <div id="moment-stage-game" class="creator-stage">
+        <div class="view-heading moment-header">
+          <span class="kicker moment-inline-kicker">STEP 1 &mdash; CHOOSE A GAME</span>
+          <span class="step-chip" id="moment-game-count">CARTRIDGES</span>
+        </div>
+        <div id="moment-game-grid" class="creator-game-grid"></div>
+      </div>
+
+      <!-- Stage 2: Mini-Games for Selected Game -->
+      <div id="moment-stage-minigames" class="creator-stage hidden">
+        <div class="view-heading moment-header minigames-list-header">
+          <div>
+            <span class="kicker moment-inline-kicker" id="moment-minigames-kicker">STEP 2 &mdash; CHOOSE OR CREATE A MINI-GAME</span>
+            <h2 id="moment-minigames-heading" class="minigames-game-title">Super Mario Bros. Mini-Games</h2>
+          </div>
+          <button class="transport-btn library-btn minigames-back-btn" data-nav data-action="moment-back-to-games">‹ CHOOSE ANOTHER GAME</button>
+        </div>
+        <div id="moment-minigames-grid" class="moment-minigames-grid"></div>
+      </div>
+
+      <!-- Stage 3: Timeline Scrubber & DVR Studio -->
+      <div id="moment-stage-studio" class="creator-stage hidden">
+        <div class="view-heading moment-header">
+          <div class="moment-studio-title-box">
+            <span class="kicker moment-inline-kicker" id="moment-studio-heading">Step 3 - DVR Gameplay for Super Mario Bros.</span>
+          </div>
+          <button class="transport-btn library-btn moment-back-to-minigames-btn" data-nav data-action="moment-back-to-minigames" title="Return to Mini-Games list">‹ MINI-GAMES</button>
+        </div>
+
+        <div class="moment-layout">
+          <!-- Main Player Theater -->
+          <div class="moment-theater">
+            <!-- Playback Transport Controls - Directly at Top of Page/Theater -->
+            <div class="tas-transport-deck">
+              <div class="transport-nav-group">
+                <button class="transport-btn library-btn" data-nav data-action="moment-back-to-minigames" title="Return to Mini-Games list">‹ MINI-GAMES</button>
+                <button class="transport-btn start-from-btn" data-nav data-action="moment-open-states" title="Start from a saved moment / state">⏮ START FROM</button>
+                <button class="transport-btn restart-btn" data-nav data-action="moment-restart-session" title="Restart recording from beginning">↺ RESTART</button>
+                <span class="transport-divider"></span>
+                <button class="transport-btn" data-nav data-action="moment-jump-back" title="Jump Back 60 Frames (1 sec)">◀◀ -1s</button>
+                <button class="transport-btn" data-nav data-action="moment-frame-back" title="Step Frame Backward">◀ FRAME</button>
+                <button class="transport-btn play-pause-btn" data-nav data-action="moment-toggle-play" id="moment-play-btn">
+                  <span class="play-icon" id="moment-play-icon">▶</span> <span id="moment-play-label">PLAY</span>
+                </button>
+                <button class="transport-btn" data-nav data-action="moment-frame-fwd" title="Step Frame Forward">FRAME ▶</button>
+                <button class="transport-btn" data-nav data-action="moment-jump-fwd" title="Jump Forward 60 Frames (1 sec)">+1s ▶▶</button>
+                <button class="transport-btn record-btn" data-nav data-action="moment-toggle-record" id="moment-record-btn">
+                  <span class="rec-dot">●</span> <span id="moment-record-label">RECORD</span>
+                </button>
+              </div>
+
+              <div class="transport-speed-group">
+                <span class="speed-label">SPEED</span>
+                <div class="speed-buttons">
+                  <button class="speed-pill" data-nav data-moment-speed="0.25">0.25x</button>
+                  <button class="speed-pill" data-nav data-moment-speed="0.5">0.5x</button>
+                  <button class="speed-pill active" data-nav data-moment-speed="1">1x</button>
+                  <button class="speed-pill" data-nav data-moment-speed="2">2x</button>
+                  <button class="speed-pill" data-nav data-moment-speed="4">4x</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Game Display -->
+            <div class="screen-shell moment-screen-shell">
+              <canvas id="moment-screen" width="256" height="240" aria-label="NES Moment Maker display"></canvas>
+              <div class="scanlines"></div>
+
+              <!-- Top Screen Cheat Codes Button -->
+              <button type="button" class="moment-cheats-btn" id="moment-cheats-btn" data-nav data-action="moment-open-cheats" aria-label="Toggle Cheat Codes">
+                <span class="cheat-bolt">⚡</span>
+                <span id="moment-cheats-badge-label">CHEAT CODES (0)</span>
+              </button>
+
+              <!-- Live Control Active Badge -->
+              <div class="moment-control-active hidden" id="moment-control-active">
+                <span>🔴 RECORDING LIVE PLAY (DVR ACTIVE)</span>
+                <small>Press Esc or Select to pause and scrub the timeline</small>
+              </div>
+            </div>
+
+            <!-- Timeline & Scrubber Bar -->
+            <div class="tas-timeline-box">
+              <div class="timeline-meta-row">
+                <div class="timecode-display">
+                  <span class="current-timecode" id="moment-current-timecode">00:00:00.00</span>
+                  <span class="timecode-separator">/</span>
+                  <span class="total-timecode" id="moment-total-timecode">00:00:00.00</span>
+                </div>
+                <div class="frame-counter-display">
+                  <span class="current-frame-num" id="moment-current-frame">0</span>
+                  <span class="frame-separator">/</span>
+                  <span class="total-frame-num" id="moment-total-frames">0</span>
+                  <small>FRAMES</small>
+                </div>
+              </div>
+
+              <!-- Draggable Timeline Scrubber with Greenzone & Hover Screenshot Preview -->
+              <div class="scrubber-track-container" id="scrubber-track-container">
+                <div class="scrubber-greenzone" id="scrubber-greenzone" style="width: 0%;"></div>
+                <div class="scrubber-markers-layer" id="scrubber-markers-layer"></div>
+                <input type="range" min="0" max="0" value="0" step="1" id="moment-timeline-slider" class="tas-timeline-slider" aria-label="Gameplay Timeline Scrubber">
+                
+                <!-- Hover Screenshot Popup -->
+                <div class="scrubber-hover-preview hidden" id="scrubber-hover-preview">
+                  <img id="scrubber-hover-thumb" alt="Preview" class="scrubber-thumb-img">
+                  <div class="scrubber-hover-info">
+                    <span id="scrubber-hover-time">00:00:00</span>
+                    <small id="scrubber-hover-frame">Frame 0</small>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chapter Navigation Bar -->
+              <div class="chapter-bar-wrapper">
+                <div class="chapter-bar" id="moment-chapter-bar"></div>
+                <button type="button" class="add-marker-btn" data-nav data-action="moment-add-custom-marker">+ MARK MOMENT</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Actions Deck: Moment Creation and Save -->
+          <div class="moment-actions-deck">
+            <!-- Hero Creation Action -->
+            <article class="moment-card hero-card">
+              <div class="card-icon-badge">★</div>
+              <div class="card-copy">
+                <h3>CREATE FROM THIS MOMENT</h3>
+                <p>Scrub anywhere along your timeline, freeze this exact frame, and jump straight into the Mini-Game Creator with this starting state loaded!</p>
+              </div>
+              <button class="hero-moment-launch-btn" data-nav data-action="moment-make-minigame">
+                <span class="launch-title">⚡ MAKE MINI-GAME</span>
+                <small>Pass state to Creator ▶</small>
+              </button>
+            </article>
+
+            <!-- Save Moment to Library -->
+            <article class="moment-card">
+              <div class="card-icon-badge">💾</div>
+              <div class="card-copy">
+                <h3>Save Reusable Moment</h3>
+                <p>Store this exact save state in your game library so it appears in board games, quick play, and the creator.</p>
+              </div>
+              <div class="save-moment-row">
+                <input type="text" id="moment-save-title" value="Key Moment" maxlength="60" placeholder="Moment Name (e.g. Bowser Bridge)" aria-label="Moment Title">
+                <button class="action-btn" data-nav data-action="moment-save-state">SAVE MOMENT</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Moment Maker Cheat Codes Modal -->
+      <div id="moment-cheats-modal" class="tas-picker-modal hidden">
+        <div class="tas-picker-dialog cheats-dialog">
+          <div class="tas-picker-header">
+            <div>
+              <span class="kicker">GAMEPLAY MODIFIERS</span>
+              <h3 id="moment-cheats-game-title">Cheat Codes</h3>
+            </div>
+            <button class="close-picker-btn" data-nav data-action="moment-close-cheats">✕</button>
+          </div>
+          <div class="tas-picker-body">
+            <p class="section-intro" style="margin-top:0;">Enable cheats to give yourself invincibility, infinite lives, or custom RAM freezes while recording or creating moments.</p>
+            <div id="moment-cheats-list" class="moment-cheats-list"></div>
+            
+            <div class="custom-cheat-section">
+              <button type="button" class="stage-action-btn" data-nav data-action="moment-toggle-custom-cheat-form">+ ADD CUSTOM CHEAT CODE</button>
+              <div id="moment-custom-cheat-form" class="custom-cheat-form hidden">
+                <div class="custom-cheat-inputs">
+                  <input type="text" id="moment-mod-input-name" placeholder="Cheat Name (e.g. Moon Jump)" maxlength="40">
+                  <input type="text" id="moment-mod-input-address" placeholder="Address Hex (e.g. 0756 or $0756)" maxlength="10">
+                  <input type="text" id="moment-mod-input-value" placeholder="Value (e.g. 2 or $02)" maxlength="10">
+                </div>
+                <button type="button" class="wizard-btn primary" data-nav data-action="moment-save-custom-cheat">SAVE & APPLY CHEAT</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Moment Maker Saved States / Start From Modal -->
+      <div id="moment-states-modal" class="tas-picker-modal hidden">
+        <div class="tas-picker-dialog states-dialog">
+          <div class="tas-picker-header">
+            <div>
+              <span class="kicker">SAVED MOMENTS &amp; SAVE STATES</span>
+              <h3 id="moment-states-game-title">Start From Moment</h3>
+            </div>
+            <button class="close-picker-btn" data-nav data-action="moment-close-states">✕</button>
+          </div>
+          <div class="tas-picker-body">
+            <p class="section-intro" style="margin-top:0;">Choose any previously saved moment to reset the DVR timeline and resume playing or authoring from that exact state.</p>
+            <div id="moment-states-list" class="moment-states-list"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="pointer" id="pointer" aria-hidden="true">▶</div>
+  <div class="action-popover hidden" id="action-popover" role="menu" aria-label="Item options"><span class="popover-kicker">OPTIONS</span><h3 id="popover-title">Item</h3><button type="button" data-nav data-context-action="edit">EDIT</button><button type="button" data-nav data-context-action="delete">DELETE</button><button type="button" data-nav data-context-action="close">CANCEL</button></div>
+  <div class="toast" id="toast"><span>✦</span><p>Welcome to the party!</p></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

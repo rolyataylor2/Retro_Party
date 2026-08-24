@@ -1,0 +1,110 @@
+.filter-ribbon {
+  max-width: 1380px;
+  margin: 0 auto 22px;
+  padding: 14px 18px;
+  border-radius: 20px;
+  background: #ffffff17;
+  display: flex;
+  gap: 15px;
+}
+
+.filter-ribbon label {
+  color: #cbc6eb;
+  min-width: 180px;
+}
+
+.filter-ribbon select {
+  padding: 9px 12px;
+}
+
+.game-grid {
+  max-width: 1380px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.game-card {
+  border: 0;
+  border-radius: 25px;
+  background: var(--paper);
+  padding: 0;
+  overflow: hidden;
+  text-align: left;
+  box-shadow: var(--shadow);
+}
+
+.game-card-art {
+  height: 125px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  position: relative;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 53px;
+}
+
+.game-card:nth-child(3n+2) .game-card-art {
+  background: linear-gradient(135deg, var(--gold), var(--coral));
+}
+
+.game-card:nth-child(3n+3) .game-card-art {
+  background: linear-gradient(135deg, var(--mint), var(--cyan));
+}
+
+.game-card-art:after {
+  content: "";
+  width: 70px;
+  height: 70px;
+  border: 5px solid #fff6;
+  border-radius: 24px;
+  position: absolute;
+  transform: rotate(18deg);
+}
+
+.game-card-copy {
+  padding: 18px;
+}
+
+.game-card-copy small {
+  color: var(--violet);
+  font-size: 10px;
+  letter-spacing: .12em;
+  font-weight: 950;
+}
+
+.game-card-copy h3 {
+  margin: 5px 0 8px;
+  font-size: 20px;
+}
+
+.game-card-copy p {
+  color: #78738f;
+  font-size: 12px;
+  line-height: 1.45;
+  min-height: 35px;
+}
+
+.tag-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  border-radius: 999px;
+  padding: 5px 8px;
+  background: #eeeaf7;
+  color: #645e7c;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.empty-card {
+  grid-column: 1/-1;
+  color: white;
+  text-align: center;
+  padding: 70px;
+}
+

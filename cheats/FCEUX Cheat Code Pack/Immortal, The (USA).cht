@@ -1,0 +1,11 @@
+﻿
+S0362:00:Instant kills on enemies
+S0363:0f:Infinite health in battle sequences
+S042c:ff:Infinite Gold
+SCb20d:3f:7f:Your fatigue level goes down faster
+SCb20d:ff:7f:Your fatigue level goes down slower
+SCb215:2c:ce:Enemy's fatigue level doesn't go down
+SCb21d:2c:ce:Your fatigue level doesn't go down
+SCb256:ad:ce:Don't lose energy from fighting
+SCb271:ad:ee:Your fatigue level never rises
+SCd74d:02:01:More damage from fireballs

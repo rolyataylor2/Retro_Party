@@ -1,0 +1,23 @@
+﻿
+S008c:09:Infinite Keys
+S008e:09:Infinite lives (alt)
+S0540:ff:Fly
+S05d0:05:Infinite life (alt)
+S0630:03:Invincibility (blinking)
+SCafc4:16:0a:Mega-jump
+SCb109:fd:fe:Super speed (2 of 2)
+SCb13d:fb:fe:Speed jumps (2 of 2)
+SCb1a3:02:01:Super speed (1 of 2)
+SCb1d7:04:01:Speed jumps (1 of 2)
+SCcab9:01:00:Start on stage 2
+SCcab9:02:00:Start on stage 3
+SCcab9:03:00:Start on stage 4
+SCcab9:04:00:Start on stage 5
+SCcab9:05:00:Start on stage 6
+SCcab9:06:00:Start on stage 7
+SCcab9:07:00:Start on stage 8
+SCcacd:01:03:Start with 1 life
+SCcacd:06:03:Start with 6 lives
+SCcacd:09:03:Start with 9 lives
+SCcb1d:a5:c6:Infinite lives
+SCe0c4:ad:ce:Infinite life

@@ -1,0 +1,15 @@
+﻿
+S0572:19:Infinite time
+S0573:09:Infinite time (one's digit) in half-pipe
+S0574:09:Infinite time (ten's digit) in half-pipe
+SCc2a4:ea:ad:Start on level XX (1 of 2)
+SCc2a5:a9:0e:Start on level XX (2 of 2)
+SCc2a6:02:02:Start on level 2 (3 of 3)
+SCc2a6:03:02:Start on level 3 (3 of 3)
+SCc2a6:04:02:Start on level 4 (3 of 3)
+SCc2ab:01:03:No continues instead of 2
+SCc2ab:06:03:6 continues
+SCc2ab:09:03:9 continues
+SCc2cf:02:00:Start with half equipment
+SCc2cf:04:00:Start with all equipment
+SCf530:ad:ce:Infinite continues

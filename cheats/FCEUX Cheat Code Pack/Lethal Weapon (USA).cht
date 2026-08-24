@@ -1,0 +1,20 @@
+﻿
+S003f:3a:Infinite ammo
+S05c0:3f:Infinite health
+S05c4:00:One hit kills on bosses
+S05ed:09:Invincibility (blinking) - P1
+SCc233:a2:be:Start on Level 3 (1 of 3)
+SCc234:03:97:Start on Level 3 (2 of 3)
+SCc235:ea:c0:Start on Level 3 (3 of 3)
+SCc236:ea:ca:Start on Level 2
+SCc9b9:ea:ca:Bullet proof vest lasts until end of stage, except when you die from punches or falling off screen
+SCd55c:b9:99:Infinite ammo when shooting on the ground
+SCd5a1:b9:99:Infinite ammo when shooting in the air (2 of 2)
+SCd5dd:b9:99:Infinite ammo when shooting in the air (1 of 2)
+SCd8c8:00:10:Extra ammo worth nothing (if you run out of ammo you can't use gun till next stage)
+SCd8c8:40:10:Extra ammo restores ammo completely
+SCd8e2:00:10:E worth nothing
+SCd8e2:40:10:E restores health completely
+SCd8f5:ff:30:Bullet proof vest lasts longer
+SCf8b2:00:20:No health lost when falling off screen
+SCf8b2:40:20:Falling off screen is fatal

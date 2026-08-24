@@ -1,0 +1,36 @@
+﻿
+S0055:5a:Invincibility
+S0056:00:Bosses have no invulnerability time
+S005d:ff:Have all weapons and all stages cleared
+S006a:1c:Infinite health (alt)
+S00a6:03:Infinite lives (alt)
+SC9053:00:02:Start with 1 life
+SC9053:05:02:Start with 6 lives
+SC9053:08:02:Start with 9 lives
+SC912d:0e:1c:Start with half energy
+SC9583:bd:29:Multi-jump (3 of 4)
+SC9584:95:96:Multi-jump (4 of 4)
+SC95be:14:18:Multi-jump (1 of 4)
+SC961f:06:04:Mega-jump
+SC97f8:01:00:Climb up ladders faster
+SC982a:fe:ff:Climb down ladders faster
+SC9cc6:24:b0:Multi-jump (2 of 4)
+SCa1eb:60:a5:Invincibility (except against bosses)
+SCa244:a5:85:Infinite health
+SCa8d2:0d:fd:Infinite weapons on pick-up
+SCa8d5:b5:95:Infinite weapons on pick-up (alt)
+SCb1a1:00:52:Have all weapons (3 of 4)
+SCb2a1:a9:f0:Have all weapons (4 of 4)
+SCb2b6:00:ee:Have all weapons (2 of 4)
+SCb41b:00:29:Have all weapons (1 of 4)
+SCb6b6:bd:fe:Collectable items never disappear
+SCb8d0:a9:69:Maximum points for shooting bosses (1 of 2)
+SCb8d1:30:28:Maximum points for shooting bosses (2 of 2)
+SCbedf:d0:90:One hit kills (2 of 2)
+SCbf19:3f:3b:Enemies always drop large weapon refill (2 of 2)
+SCbf19:40:3b:Enemies always drop large health refill (2 of 2)
+SCbf19:41:3b:Enemies always drop extra lives (2 of 2)
+SCbf21:ea:c8:Enemies always drop X (1 of 2)
+SCc259:a9:c6:Infinite lives
+SCc915:00:0b:One hit kills (1 of 2)
+Sf3a4:30:One hit kills on bosses

@@ -1,0 +1,25 @@
+﻿
+S0085:0f:Infinite health (alt)
+S0089:63:Infinite Drum Punches (alt)
+S008a:63:Infinite Crane Kicks (alt)
+S008b:00:Enemy has no health
+SC86fa:01:03:Start with 1 chance
+SC86fa:06:03:Start with 6 chances
+SC86fa:09:03:Start with 9 chances
+SC881c:a5:c6:Infinite chances (lives)
+SC8895:00:d7:Win tournaments automatically
+SC98ec:50:b0:Hit anywhere (1 of 2)
+SC98ed:24:03:Hit anywhere (2 of 2)
+SCa778:a5:c6:Infinite Drum Punches on pick-up
+SCa78b:a5:c6:Infinite Crane Kicks
+SCac39:00:01:Prevent girl from moving in final stage
+SCb25f:a5:85:Infinite health
+SCec4b:08:04:Start with 8 Crane Kicks - 1P game
+SCec4c:08:04:Start with 8 Crane Kicks - 2P game
+SCec4d:05:00:Start with 5 Crane Kicks - P1, one on one game
+SCec4e:02:01:Start on stage 2 - 1P game
+SCec4e:03:01:Start on stage 3 - 1P game
+SCec4e:04:01:Start on stage 4 - 1P game
+SCec4f:02:01:Start on stage 2 - 2P game
+SCec4f:03:01:Start on stage 3 - 2P game
+SCec4f:04:01:Start on stage 4 - 2P game

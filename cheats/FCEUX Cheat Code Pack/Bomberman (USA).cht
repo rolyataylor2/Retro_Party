@@ -1,0 +1,38 @@
+﻿
+S0058:32:Start on stage 50 (alt)
+S005c:00:Invincibility
+S0068:09:Infinite lives (alt)
+S0073:80:Max Bomb power
+S0074:0a:Use up to 10 Bombs (alt)
+S0076:01:Walk through walls (alt)
+S0077:01:Have Detonator
+S0079:01:Immune to explosions (alt)
+S0093:ee:Infinite time (alt)
+Sc3ab:00:Start with 1 life
+Sc3ab:09:Start with 10 lives
+Sc3b7:0a:Start on stage 10
+Sc3b7:14:Start on stage 20
+Sc3b7:1e:Start on stage 30
+Sc3b7:28:Start on stage 40
+Sc3b7:32:Start on stage 50
+SCc3c8:20:10:Start with double power Bomb blasts
+SCc3c8:30:10:Start with triple power Bomb blasts
+SCc3c8:80:10:Start with maximum power Bomb blasts
+SCc3dc:00:2d:Start with Detonator, max Bomb power and use up to 10 Bombs
+Sc44c:96:Decrease time
+Sc44c:fe:Increase timer
+SCc48b:24:85:Never lose Detonator after pick-up
+Sc498:a5:Infinite lives
+Sc650:a5:Infinite time
+SCc6e5:a9:a5:Immune to explosions
+SCc716:00:37:Hit anywhere (1 of 2)
+SCc71d:00:30:Hit anywhere (2 of 2)
+SCc98e:a9:a5:Start with and keep Detonator (1 of 2)
+SCca6a:00:02:Remove all breakable blocks
+SCccdf:00:0e:Start with and keep Detonator (2 of 2)
+SCcd07:a2:a6:Use up to 10 Bombs (1 of 2)
+SCcd08:09:74:Use up to 10 Bombs (2 of 2)
+SCcd2b:70:a0:Reduce Bomb detonation time
+SCcd2b:ff:a0:Increase Bomb detonation time
+SCcf7f:a9:49:Walk through walls (1 of 2)
+SCcf80:00:01:Walk through walls (2 of 2)

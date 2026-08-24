@@ -1,0 +1,23 @@
+﻿
+S002a:1b:Only pink ghost escapes from center (2 of 3)
+S002c:0b:Only pink ghost escapes from center (3 of 3)
+S00c5:01:Ghosts stay blue until eaten
+S00d0:09:Max score - P1 (1 of 3)
+S00d1:99:Max score - P1 (2 of 3)
+S00d2:99:Max score - P1 (3 of 3)
+S00d4:09:Infinite lives
+S0127:01:Start on level 2
+S0127:02:Start on level 3
+S0127:03:Start on level 4
+S0127:04:Start on level 5
+S0127:05:Start on level 6
+S023d:0e:Only pink ghost escapes from center (1 of 3)
+SC82fe:a5:c6:Infinite lives - both players in alternating type games
+SC8303:ad:ce:Infinite lives - P2 only, in other type games
+SC863a:00:02:Pinky out of game
+SC865a:00:02:Sue out of game
+SC86b7:00:02:1 life - both players
+SC86b7:05:02:6 lives - both players
+SC86b7:08:02:9 lives - both players
+SC86ba:8c:8d:1 life - P2 in 2P cooperative and competitive games
+SCf79d:ea:4a:Super fast turbo speed

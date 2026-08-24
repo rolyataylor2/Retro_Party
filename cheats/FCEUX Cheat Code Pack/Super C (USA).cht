@@ -1,0 +1,41 @@
+﻿
+S0053:03:Infinite lives
+S00b8:81:Have the Machine Gun
+S00b8:82:Have the Spread Gun
+S00b8:83:Have the Laser Gun
+S00b8:84:Have the Fireball Gun
+S00b8:85:Have the Single Shot MG
+S00b8:86:Have the Super Fireball Gun
+S00d4:55:Invincibility (blinking)
+SC8662:24:95:Keep equiped weapon after dying
+SC86e0:24:d0:Multi-jump - both players (1 of 2)
+SC86e9:3a:6d:Multi-jump - both players (2 of 2)
+S8870:f0:Run faster to the right
+Sa13a:3b:Invincibility - both players
+SCa1ad:11:0d:Hit anywhere
+Sa201:00:One hit kills
+SCe4af:f0:d0:Stage select after title screen
+SCe4c3:08:00:Start a new game to view ending
+SCe4e8:cd:00:Stage select after title screen (alt 2)
+Se4e8:cd:Stage select after title screen (alt)
+SCe583:01:00:Start at area 2
+SCe583:02:00:Start at area 3
+SCe583:03:00:Start at area 4
+SCe583:04:00:Start at area 5
+SCe583:05:00:Start at area 6
+SCe583:06:00:Start at area 7
+SCe58d:06:02:Start with 9 continues
+SCe5a1:57:b8:Start game with X Gun (2 of 3)
+SCe5a3:00:02:Start with 1 life - both players
+SCe5a3:05:02:Start with 6 lives - both players
+SCe5a3:08:02:Start with 9 lives - both players
+SCe5a3:ff:02:Start with 255 lives - both players
+SCe5a8:00:02:Activates 10 lives code
+SCe5aa:1d:09:10 lives code give you 30
+SCe5b2:02:00:Start game with Spray Gun (3 of 3)
+SCe5b2:04:00:Start game with Fireball Gun (3 of 3)
+SCe5b4:b8:57:Start game with X Gun (1 of 3)
+SCe6f6:00:02:Extra life for each enemy killed
+SCea1a:a5:c6:Infinite continues
+SCea9d:04:01:Press Start to finish level (2 of 2)
+SCea9f:38:39:Press Start to finish level (1 of 2)

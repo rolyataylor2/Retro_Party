@@ -1,0 +1,35 @@
+﻿
+S0034:63:Infinite lives
+S003a:02:Progress through the stage faster
+S004e:02:Complete the level
+S0076:03:Have upgraded Laser
+S0080:02:Have double Speed
+S0080:03:Have triple speed
+S0082:09:Have Shield
+S0084:c0:Invincibility - P1
+S0085:c0:Invincibility - P2
+S0086:02:Have double Missile
+S0091:01:Have Option
+S07ef:01:Enable 30 lives option
+SCc345:24:d6:Infinite lives
+SCc653:24:95:Keep pods after death
+SCc6c1:01:00:Start with Speed
+SCc6c1:02:00:Start with Missile
+SCc6c1:03:00:Start with Ripple
+SCc6c1:04:00:Start with Laser
+SCc6c1:05:00:Start with Option
+SCc6c1:06:00:Start with Force Field
+SCd231:00:1e:Hit anywhere (1 of 4)
+SCd23e:00:0d:Hit anywhere (2 of 4)
+SCd24a:d0:90:Hit anywhere (4 of 4)
+SCd273:60:a9:Hit anywhere (3 of 4)
+SCd299:a9:e9:One hit kills most enemies
+SCeeb5:01:00:Start at the volcanic stage
+SCeeb5:02:00:Start at the prominence stage
+SCeeb5:03:00:Start at cell stage 2
+SCeeb5:04:00:Start at the temple stage
+SCeeb5:05:00:Start at the mechanical city stage
+SCeecf:01:03:Start with 1 life
+SCeecf:06:03:Start with 6 lives
+SCfd94:02:01:Press Start to finish the level (2 of 2)
+SCfd96:4e:24:Press Start to finish the level (1 of 2)

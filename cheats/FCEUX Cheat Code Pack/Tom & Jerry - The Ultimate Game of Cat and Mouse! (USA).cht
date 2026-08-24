@@ -1,0 +1,18 @@
+﻿
+SCc1e0:00:80:Spider webs have no effect
+SCc228:00:10:Walk on water
+SCc3d8:00:03:Multi-jump (must hold Up while climbing) (1 of 3)
+SCc8c3:ad:8d:No damage when falling long distances
+SCcb0e:00:13:Multi-jump (must hold Up while climbing) (2 of 3)
+SCcb15:60:ad:Multi-jump (must hold Up while climbing) (3 of 3)
+SCf0a1:00:01:Infinite health
+SCf0a1:03:01:Minimum health (one touch kills)
+SCf0df:ad:ce:Infinite lives
+SCf9e4:08:00:Start on world 2
+SCf9e4:10:00:Start on world 3
+SCf9e4:18:00:Start on world 4
+SCf9e4:20:00:Start on world 5
+SCfa5e:01:03:Start with 1 life
+SCfa5e:06:03:Start with 6 lives
+SCfa5e:09:03:Start with 9 lives
+SCfe22:60:ad:Invincible against enemies (not spikes, falling too far or drowning)

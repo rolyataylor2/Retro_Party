@@ -1,0 +1,73 @@
+﻿
+S034c:ff:Enemies do not shoot anything
+S03dd:01:Turbo Sword
+S04f0:09:Invincibility (blinking) (alt)
+S0657:01:Have Wooden Sword
+S0657:02:Have White Sword
+S0657:03:Have Magic Sword
+S0658:10:Have Bombs
+S0659:01:Have Arrows
+S0659:02:Have Silver Arrows
+S065a:01:Have Bow
+S065b:01:Have Blue Candle
+S065b:02:Have Red Candle
+S065c:01:Have Flute
+S065d:01:Have Enemy Bait
+S065f:01:Have Magic Wand
+S0660:01:Have Raft
+S0661:01:Have Magic Book
+S0663:01:Have Ladder
+S0664:01:Have Magical Key
+S0665:01:Have Power Bracelet
+S0668:ff:Have Maps for Dungeons 1-8 and Compass for Dungeon 9 (1 of 2)
+S0669:ff:Have Maps for Dungeons 1-8 and Compass for Dungeon 9 (2 of 2)
+S066a:ff:Have Map for Dungeon 9
+S066d:ff:Infinite Rupies
+S066e:03:Infinite Keys
+S0670:ff:Infinite life (alt)
+S0671:ff:Have all Tri-Force pieces
+S0676:01:Have Magical Shield
+S7353:24:Get items from anywhere (1 of 2)
+S735f:24:Get items from anywhere (2 of 2)
+S7b3a:60:Invincibility
+S7bf2:24:Hit anywhere (1 of 2)
+S7c28:ad:Hit anywhere (2 of 2)
+SC86e6:00:08:No Zolas
+S8818:91:Speed writing
+SC885d:00:1b:Skip text (2 of 2)
+SC8873:00:05:Skip text (1 of 2)
+SC8897:00:c0:Fewer enemies
+SC88ee:00:43:All items are free (2 of 2)
+SC8e53:00:3d:Move heavy stones without the Power Bracelet
+SC8e5e:22:32:Reveal grave and heavy stone secrets automatically
+SC8f00:07:0c:Reveal wall secrets automatically (does not apply to labyrinths)
+SC8f23:0e:1a:Reveal bush secrets automatically
+SC914b:60:f0:Walk through walls in dungeons (1 of 2)
+SC91a9:a5:85:Walk through walls in dungeons (2 of 2)
+SC9e55:62:15:Have the Pink Ring (infinite life)
+SC9f41:77:22:Create character with 8 life hearts
+SC9f41:ff:22:Create character with 16 life hearts
+Sa532:01:Reset counter to zero
+SCa568:ad:ce:All items are free (1 of 2)
+SCa607:01:00:Start with all and maxed out items
+SCb387:a9:a5:Walk faster (1 of 2)
+SCb388:b0:00:Walk faster (2 of 2)
+SCb3aa:60:20:Invincibility (start with)
+SCb3cd:d0:06:Have Blue Ring effect
+SCb3cd:d1:06:Have Red Ring effect
+SCb3e0:60:ad:Infinite life
+SCb4c9:ad:bd:One hit kills (start with) (2 of 2)
+SCb4cb:f4:04:One hit kills (start with) (1 of 2)
+SCb68f:10:f0:No dark rooms
+SCec40:ac:85:Switch items using the Select button (3 of 10)
+SCec41:56:e0:Switch items using the Select button (9 of 10)
+SCec42:06:d0:Switch items using the Select button (8 of 10)
+SCec48:2c:40:Switch items using the Select button (2 of 10)
+SCec52:a9:20:Switch items using the Select button (6 of 10)
+SCec53:01:59:Switch items using the Select button (7 of 10)
+SCec54:20:b5:Switch items using the Select button (1 of 10)
+SCec55:a1:4c:Switch items using the Select button (5 of 10)
+SCec56:b7:89:Switch items using the Select button (4 of 10)
+SCec57:ea:ed:Switch items using the Select button (10 of 10)
+Sec7d:b9:Invincibility (blinking)
+SCf2fb:f0:9e:Invincibility (Link is Red and White)

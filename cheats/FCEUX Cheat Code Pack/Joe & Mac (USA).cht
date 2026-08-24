@@ -1,0 +1,26 @@
+﻿
+S0499:0f:Infinite health (alt)
+S064d:00:One hit kills on bosses
+SCa07e:ad:ce:Infinite lives - both players
+SCa0ba:e1:e0:Start with stone wheel instead of stone axe - P1
+SCa0ba:e2:e0:Start with flint instead of stone axe - P1
+SCa0ba:e3:e0:Start with fire instead of stone axe - P1
+SCa0ba:e4:e0:Start with boomerang instead of stone axe - P1
+SCa0bf:01:03:Start with 1 life instead of 3 - P1
+SCa0bf:05:03:Start with 5 lives - P1
+SCa0bf:07:03:Start with 7 lives - P1
+SCa0bf:09:03:Start with 9 lives - P1
+SCa0c4:02:00:Start somewhere in level 2
+SCa3a4:08:10:Start with 1/2 health (die when bar is 1/2 empty)
+SCb848:08:01:Stone axe and flint do more damage to bosses
+SCb848:0f:01:Stone axe and flint do a lot more damage to bosses
+SCb851:08:02:Stone wheel and boomerang do more damage to bosses
+SCb851:10:02:Stone wheel and boomerang do a lot more damage to bosses
+SCb856:10:04:Fire does more damage to bosses
+SCb856:20:04:Fire does a lot more damage to bosses
+SCd6a2:d0:f0:Invincibility (1 of 2)
+SCd6ac:f0:d0:Invincibility (2 of 2)
+SCe6bf:ad:ce:Protection from water
+SCeb63:08:10:Apple and hamburger restore health to 1/2
+SCeb64:ad:8d:Apple and hamburger worth nothing
+SCec49:ad:ce:Infinite health

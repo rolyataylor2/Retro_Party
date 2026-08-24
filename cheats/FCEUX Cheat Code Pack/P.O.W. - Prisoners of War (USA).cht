@@ -1,0 +1,25 @@
+﻿
+S0047:01:Start on stage 2 (disable after stage begins)
+S0047:02:Start on stage 3 (disable after stage begins)
+S0047:03:Start on stage 4 (disable after stage begins)
+S0047:04:Start on stage 5 (disable after stage begins)
+S0047:05:Start on stage 6 (disable after stage begins)
+S0438:db:Have infinite Gun, Brass Knuckles, Armor Vest
+S0438:e5:Have infinite Knives, Brass Knuckles, Armor Vest
+S0438:f9:Have infinite Grenades, Brass Knuckles, Armor Vest
+SC82bd:00:02:Start with 1 life
+SC82bd:05:02:Start with 6 lives
+SC82bd:08:02:Start with 9 lives
+SC82bd:63:02:Start with 99 lives
+SCb8de:4c:b0:Hit anywhere (2 of 3)
+SCb8df:00:23:Hit anywhere (1 of 3)
+SCb8e0:b9:c8:Hit anywhere (3 of 3)
+SCb90d:b9:bd:One hit kills
+SCba6b:60:85:Invincibility
+SCbb11:ed:f9:Take less damage when hit from behind
+SCbb3f:2c:8d:Keep weapons after dying (1 of 2)
+SCbd51:2c:8d:Keep weapons after dying (2 of 2)
+SCc341:10:20:Start with half health (1 of 2)
+SCce61:00:01:Infinite bullets
+SCd1fb:00:01:Infinite lives
+SCd20f:10:20:Start with half health (2 of 2)

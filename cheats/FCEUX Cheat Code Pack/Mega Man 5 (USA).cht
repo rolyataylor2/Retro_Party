@@ -1,0 +1,46 @@
+﻿
+S00b0:9c:Infinite health (alt)
+S00b1:9c:Infinite Water Wave
+S00b2:9c:Infinite Gyro Attack
+S00b3:9c:Infinite Crystal Eye
+S00b4:9c:Infinite Napalm Bomb
+S00b5:9c:Infinite Super Arrow
+S00b6:9c:Infinite Power Stone
+S00b7:9c:Infinite Gravity Hold
+S00b8:9c:Infinite Charge Kick
+S00b9:9c:Infinite Star Crash
+S00ba:9c:Infinite Rush Coil
+S00bb:9c:Infinite Rush Jet
+S00bc:9c:Infinite Beat
+S00bf:03:Infinite lives (alt)
+S05b8:2d:Invincibility
+S05c0:00:Bosses have no invulnerability time
+SC8046:8d:15:Multi-jump (1 of 3)
+SC804a:85:05:Invincible against spikes
+SC806a:80:82:Multi-jump (2 of 3)
+SC8090:24:90:Multi-jump (3 of 3)
+SC80ae:01:05:Mega-jump (1 of 2)
+SC80ae:07:05:Super-jump (1 of 2)
+SC80bb:f7:fb:Mega-jump (2 of 2)
+SC80bb:f9:fb:Super-jump (2 of 2)
+SC8156:24:c6:Infinite energy tanks on pick-up
+SC81b2:00:2d:One hit kills
+SC8254:a5:85:Infinite weapons (3 of 3)
+SC82d9:24:c6:Infinite mega-tanks on pick-up
+SC82df:24:85:Infinite health
+SC85a0:24:c6:Infinite lives
+SC9547:e9:e5:Infinite energy for most weapons (2 of 2)
+SC954f:b9:99:Infinite weapons (1 of 3)
+SC99be:00:d5:Special items re-appear after being collected
+SCae49:60:de:Collectable items never disappear
+SCae80:01:04:Enemies always drop large health refill (2 of 2)
+SCae86:50:90:Enemies always drop large health refill (1 of 2)
+SCb1e3:01:04:Starting weapons use less energy
+SCb5f2:e9:e5:Infinite energy for most weapons (1 of 2)
+SCb5fa:b9:99:Infinite weapons (2 of 3)
+SCde4b:82:80:Start with at least 2 energy tanks
+SCde4b:86:80:Start with at least 6 energy tanks
+SCde51:82:80:Start with at least 2 mega-tanks
+SCde51:86:80:Start with at least 6 mega-tanks
+SCf017:18:b9:Hit anywhere (1 of 2)
+SCf018:60:28:Hit anywhere (2 of 2)

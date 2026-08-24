@@ -1,0 +1,40 @@
+﻿
+S0089:02:Infinite health (not versus bullets)
+S00a0:32:Infinite bullets
+S059b:09:Infinite time (alt) (1 of 3)
+S059c:09:Infinite time (alt) (2 of 3)
+S059d:09:Infinite time (alt) (3 of 3)
+S05bc:09:Infinite lives (alt)
+SC8dca:01:00:Start on story 3 area 01
+SC8f6b:01:00:Start on story 1 area 02 (2 of 2)
+SC8f6b:02:00:Start on story 1 area 03 (2 of 2)
+SC8f6b:03:00:Start on story 1 area 04 (2 of 2)
+SC8f6b:04:00:Start on story 1 area 05 (2 of 2)
+SC8f6b:05:00:Start on story 2 area 06 (2 of 2)
+SC8f6b:06:00:Start on story 2 area 07 (2 of 2)
+SC8f6b:07:00:Start on story 2 area 08 (2 of 2)
+SC8f6b:08:00:Start on story 2 area 09 (2 of 2)
+SC8f6b:09:00:Start on story 2 area 10 (2 of 2)
+SC8f6d:30:b1:Start on story X area X (1 of 2)
+SC9257:01:03:Start with 1 life after continue
+SC9257:06:03:Start with 6 lives after continue
+SC9257:09:03:Start with 9 lives after continue
+SCa291:bd:de:300 Machine Gun bullets and 300 bullets on pick-up
+SCa654:ad:8d:Infinite health
+SCa7d0:40:b8:Hit anywhere (1 of 3)
+SCa7d1:a9:a8:Hit anywhere (3 of 3)
+SCd733:60:d0:Hit anywhere (2 of 3)
+SCd766:32:01:Self-replenishing bullets
+SCe09b:01:03:Start with 1 life
+SCe09b:06:03:Start with 6 lives
+SCe09b:09:03:Start with 9 lives
+SCe0a2:03:00:Start with loads of ammunition (1 of 2)
+SCe0aa:c8:32:Start with 200 bullets
+SCe20f:a5:c6:Infinite time
+SCe88d:08:02:Start with increased life meter
+SCe8cf:14:32:Gain fewer bullets on pick-up
+SCe8d0:c8:64:200 Machine Gun bullets on pick-up
+SCeb44:03:00:Start with loads of ammunition (2 of 2)
+SCeb4c:c8:32:Start with 200 bullets on each new life
+SCeb53:a5:c6:Infinite lives (2 of 2)
+SCeb73:a5:c6:Infinite lives (1 of 2)

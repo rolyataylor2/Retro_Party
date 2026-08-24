@@ -1,0 +1,11 @@
+﻿
+SC8d7e:24:e6:Vitamin capsules don't fall (press down)
+SC9241:04:03:5 in a row needed to complete a horizontal line instead of 4
+SC9241:05:03:6 in a row needed to complete a horizontal line instead of 4
+SC9241:06:03:7 in a row needed to complete a horizontal line instead of 4
+SC9244:24:e6:No pieces sent across to other player when two or more rows or columns are eliminated at once in a 2P game (2 of 2)
+SC94a7:04:03:5 in a row needed to complete a vertical line instead of 4
+SC94a7:05:03:6 in a row needed to complete a vertical line instead of 4
+SC94a7:06:03:7 in a row needed to complete a vertical line instead of 4
+SC94aa:24:e6:No pieces sent across to other player when two or more rows or columns are eliminated at once in a 2P game (1 of 2)
+SC9bef:38:18:More pieces sent across to other player when two or more rows or columns are eliminated at once in a 2P game

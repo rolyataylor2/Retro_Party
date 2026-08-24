@@ -1,0 +1,38 @@
+﻿
+S0114:09:Infinite lives - P1
+S0116:01:Start on stage 2 - Lake Neptune
+S0116:02:Start on stage 3 - Cavern Of Fire
+S0116:03:Start on stage 4 - Ice Palace
+S0116:04:Start on stage 5 - Dark Jungle
+S0116:05:Start on stage 6 - Golden Palace
+S0118:09:Infinite Coins (ten's digit)
+S0119:09:Infinite Coins (one's digit)
+S011c:02:Infinite health - P1
+S0576:09:Infinite time (hundred's digit)
+S0577:09:Infinite time (ten's digit)
+S0578:09:Infinite time (one's digit)
+SC8044:01:03:Start with less time (2 of 2)
+SC8044:05:03:Start with more time (2 of 2)
+SC8044:09:03:Start with even more time (2 of 2)
+SC80df:80:ce:Infinite health
+SC8681:ea:60:Hit anywhere - normal enemies (1 of 2)
+SC86de:ad:9d:Hit anywhere - normal enemies (2 of 2)
+SC8f4e:00:01:Infinite time
+SC937c:ad:ee:Infinite weapons (1 of 3)
+SC938b:ad:ee:Infinite weapons (2 of 3)
+SC9396:01:00:When weapon runs out of ammo it's replaced with the double weapon
+SC9396:02:00:When weapon runs out of ammo it's replaced with the wave weapon
+SC9396:03:00:When weapon runs out of ammo it's replaced with the 3-way weapon
+SC9396:04:00:When weapon runs out of ammo it's replaced with the flame weapon
+SC9396:05:00:When weapon runs out of ammo it's replaced with the fireball weapon
+SC939a:ad:8d:Infinite weapons (3 of 3)
+SCd804:01:03:Start with less time (1 of 2)
+SCd804:05:03:Start with more time (1 of 2)
+SCd804:09:03:Start with even more time (1 of 2)
+SCf509:01:02:Start with one heart - first life only
+SCf5f2:ad:ce:Infinite lives
+SCf5f6:00:02:Start with one heart - after first life
+SCffc2:00:02:Start with 1 life
+SCffc2:01:02:Start with 2 lives
+SCffc2:04:02:Start with 5 lives
+SCffc2:08:02:Start with 9 lives

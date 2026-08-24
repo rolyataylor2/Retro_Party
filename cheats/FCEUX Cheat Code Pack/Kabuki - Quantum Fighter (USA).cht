@@ -1,0 +1,27 @@
+﻿
+S0089:03:Invincibility (blinking)
+S068c:0a:Infinite health (alt)
+S0691:09:Infinite time
+S06c0:09:Infinite lives (alt)
+SCa0b4:d0:f0:Invincibility (2 of 2)
+SCa3d9:60:a9:Walk through walls (2 of 2)
+SCa531:60:a9:Walk through walls (1 of 2)
+SCb088:ad:bd:Infinite chip power
+SCb089:10:0f:Special weapons use minimum chip power (2 of 2)
+SCb1ba:60:a5:Invincibility (1 of 2)
+SCb3a3:05:0a:Start with less health (2 of 2)
+SCb3a3:0f:0a:Start with maximum health (2 of 2)
+SCbbf5:00:02:Start with 1 life
+SCbbf5:05:02:Start with 6 lives
+SCbbf5:08:02:Start with 9 lives
+SCbbfa:01:02:1 continue
+SCbbfa:05:02:6 continues
+SCbbfa:08:02:9 continues
+SCbbff:05:0a:Start with less health (1 of 2)
+SCbbff:0f:0a:Start with maximum health (1 of 2)
+SCcf64:00:01:Don't lose a life from health loss
+SCcf65:ad:8d:Infinite lives
+SCcf77:ae:8d:Infinite health
+SCd022:2f:3f:Faster timer
+SCd022:ff:3f:Slower timer
+SCd058:00:01:Don't lose a life from timer

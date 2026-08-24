@@ -1,0 +1,39 @@
+{
+  "scannedAt": "2026-08-24T16:30:57.762Z",
+  "games": [
+    {
+      "id": "mega-man-1c888589",
+      "title": "Mega Man",
+      "relativePath": "Mega Man (U).nes",
+      "fileHint": "Mega Man (U).nes",
+      "sha256": "1c8885892051d79db757746e2281f417cd5b156a86988b0010ad95d7bd4276c5",
+      "size": 131088,
+      "series": "Mega Man",
+      "genres": [
+        "Action",
+        "Platforming"
+      ],
+      "difficulty": "Hard",
+      "boxArt": "/boxart/mega-man-1c888589.png",
+      "artworkSource": null,
+      "addedAt": "2026-08-16T18:44:30.420Z"
+    },
+    {
+      "id": "super-mario-bros-0b3d9e1f",
+      "title": "Super Mario Bros.",
+      "relativePath": "smb.nes",
+      "fileHint": "smb.nes",
+      "sha256": "0b3d9e1f01ed1668205bab34d6c82b0e281456e137352e4f36a9b2cfa3b66dea",
+      "size": 40976,
+      "series": "Super Mario",
+      "genres": [
+        "Platforming",
+        "Action"
+      ],
+      "difficulty": "Medium",
+      "boxArt": "/boxart/super-mario-bros-0b3d9e1f.png",
+      "artworkSource": null,
+      "addedAt": "2026-08-16T18:44:30.421Z"
+    }
+  ]
+}

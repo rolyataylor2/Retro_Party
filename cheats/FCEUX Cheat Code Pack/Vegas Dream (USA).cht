@@ -1,0 +1,7 @@
+﻿
+S7c16:09:Infinite money (Cents, One's digit)
+S7c14:09:Infinite money (Hundred's digit)
+S7c15:09:Infinite money (One's digit)
+S7c13:09:Infinite money (Ten-Thousand's digit)
+SCcd91:09:00:Start with a ton of cash
+SCcd90:09:00:Start with enough cash to finish the game

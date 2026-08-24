@@ -1,0 +1,34 @@
+﻿
+SC8079:01:00:Start on Area 2
+SC8079:02:00:Start on Area 3
+SC8079:03:00:Start on Area 4
+SC8079:04:00:Start on Area 5
+SC8079:05:00:Start on Area 6
+SC8079:06:00:Start on Area 7
+SC8079:07:00:Start on Area 8
+SC8089:01:03:Start with 1 life
+SC8089:06:03:Start with 6 lives
+SC8089:09:03:Start with 9 lives
+SC811c:a5:c6:Start with infinite lives
+SC8128:24:85:Keep weapons
+SC84e4:24:d0:Multi-jump (1 of 2)
+SC84e9:24:d0:Multi-jump (2 of 2)
+SC84ea:00:21:Multi-mega-maxi-moon jumps (2 of 2)
+SC8507:00:01:Multi-mega-maxi-moon jumps (1 of 2)
+SC850d:95:c0:Can mega-jump while at rest
+SC850e:95:a9:Can mega-jump while running
+SC8555:30:d0:Skateboard doesn't automatically move forward
+SC858a:01:00:Hudson can moonwalk (2 of 2)
+SC85b3:7e:49:Turbo running (1 of 2)
+SC85b8:7e:50:Turbo skateboard
+SC85c1:00:01:Hudson can moonwalk (1 of 2)
+SC85d6:fe:b1:Turbo running (2 of 2)
+SC85e5:00:20:Can stop skateboard
+SC8b39:d0:b0:Get fruits from anywhere
+SC8b40:60:de:Collectable items never disappear
+SCc05a:60:a4:Invincibility
+SCc0cd:a5:c6:Infinite health
+SCc0f3:24:84:Immune to rocks
+SCc146:00:dc:Hit anywhere (1 of 3)
+SCc14f:00:07:Hit anywhere (2 of 3)
+SCc152:b9:99:Hit anywhere (3 of 3)

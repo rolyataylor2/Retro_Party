@@ -1,0 +1,61 @@
+﻿
+S0431:63:Infinite time at continue screen
+S0771:09:Infinite continues
+SC828c:bd:de:Infinite credits
+SC90db:00:02:Start with 1 credit instead of 3
+SC90db:04:02:Start with 5 credits
+SC90db:06:02:Start with 7 credits
+SC90db:08:02:Start with 9 credits
+SCa43f:60:a5:Items in the Model Shop are free if you have enough money
+SCce97:01:00:Start on Track 02
+SCce97:02:00:Start on Track 03
+SCce97:03:00:Start on Track 04
+SCce97:04:00:Start on Track 05
+SCce97:05:00:Start on Track 06
+SCce97:06:00:Start on Track 07
+SCce97:07:00:Start on Track 08
+SCce97:08:00:Start on first Tug-O-Truck Challenge
+SCce97:09:00:Start on Track 09
+SCce97:0a:00:Start on Track 10
+SCce97:0b:00:Start on Track 11
+SCce97:0c:00:Start on Track 12
+SCce97:0d:00:Start on Track 13
+SCce97:0e:00:Start on Track 14
+SCce97:0f:00:Start on Track 15
+SCce97:10:00:Start on Track 16
+SCce97:11:00:Start on Drag Race
+SCce97:12:00:Start on Track 17
+SCce97:13:00:Start on Track 18
+SCce97:14:00:Start on Track 19
+SCce97:15:00:Start on Track 20
+SCce97:16:00:Start on Track 21
+SCce97:17:00:Start on Track 22
+SCce97:18:00:Start on Track 23
+SCce97:19:00:Start on Track 24
+SCce97:1a:00:Start on second Tug-O-Truck Challenge
+SCce97:1b:00:Start on Track 25
+SCce97:1c:00:Start on Track 26
+SCce97:1d:00:Start on Track 27
+SCce97:1e:00:Start on Track 28
+SCce97:1f:00:Start on Track 29
+SCe4d2:ad:de:Infinite Bombs on purchase
+SCe52c:ad:de:Infinite Buckshot on purchase
+SCe556:ad:de:Infinite Missiles on purchase
+SCe69c:ad:de:Infinite Freezes on purchase
+SCe6cb:ad:de:Infinite Lazers on purchase
+SCe966:01:40:Gold Motor costs 10 instead of 16,000 (2 of 2)
+SCe967:00:06:Gold Motor costs 10 instead of 16,000 (1 of 2)
+SCe969:00:0b:Hyper Motor costs 1,840 instead of 30,000
+SCe96b:00:13:Mega Motor costs 1,360 instead of 50,000
+SCe96e:01:c8:Skinny tires costs 10 instead of 2,000
+SCe971:00:02:Nobbies costs 1,880 instead of 7,000
+SCe973:00:03:Dynafit tires costs 2,320 instead of 10,000
+SCe975:00:05:Scoopers costs 2,200 instead of 15,000
+SCe97a:01:32:Oil slicks costs 10 instead of 500
+SCe97c:01:64:Nitro costs 10 instead of 1000
+SCe980:01:c8:Buckshot costs 10 instead of 2,000
+SCe983:00:03:Missile costs 2,320 instead of 10,000
+SCe985:00:04:Bombs costs 1,760 instead of 12,000
+SCe987:00:05:Lazer costs 1,200 instead of 14,000
+SCe989:00:05:Freeze costs 2,200 instead of 15,000
+SCe98b:00:07:Mega Pulse costs 2,080 instead of 20,000

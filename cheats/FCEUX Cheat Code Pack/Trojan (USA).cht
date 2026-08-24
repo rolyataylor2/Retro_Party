@@ -1,0 +1,50 @@
+﻿
+S0335:08:Infinite health (alt)
+S0386:02:Have Key
+S03cb:0e:Have High-jump Boots
+S03cc:ff:Have Speed-Up
+S03cd:ff:Have Power-Up
+S03d1:02:Start on level 2-1
+S03d1:03:Start on level 2-2
+S03d1:04:Start on level 3-1
+S03d1:05:Start on level 3-2
+S03d1:06:Start on level 4-1
+S03d1:07:Start on level 4-2
+S03d1:08:Start on level 5-1
+S03d1:09:Start on level 5-2
+S03d1:0a:Start on level 6-1
+S03d1:0b:Start on level 6-2
+S03d1:0c:Start on level 7-1
+SC884f:00:56:Hit anywhere (01 of 10)
+SC8862:00:43:Hit anywhere (04 of 10)
+SC9484:2c:de:Infinite time
+SCa4b4:ff:3f:Infinite health - both players (alt) (1 of 2)
+SCa713:00:25:Hit anywhere (03 of 10)
+SCa71f:24:b0:Hit anywhere (10 of 10)
+SCc9fa:01:03:Start with 1 life - P1
+SCc9fa:06:03:Start with 6 lives - P1
+SCc9fa:09:03:Start with 9 lives - P1
+SCc9fa:f0:03:Start with 187 lives - P1
+SCca1f:01:03:Start with 1 life - P2
+SCca1f:06:03:Start with 6 lives - P2
+SCca1f:09:03:Start with 9 lives - P2
+SCca1f:f0:03:Start with 196 lives - P2
+SCcb53:04:08:Start with half usual health
+SCcb53:0f:08:Start with a health boost
+SCcb53:1e:08:Start with a super health boost
+SCcb58:01:02:Start with 100 seconds
+SCcb58:09:02:Start with 900 seconds
+SCd10b:ee:ad:One hit kills
+SCd26a:ad:ce:Infinite health - both players
+SCd338:00:1c:Multi-jump - both players (1 of 3)
+SCd3c5:24:f0:Multi-jump - both players (3 of 3)
+SCd3d2:00:d8:Multi-jump - both players (2 of 3)
+SCd3f0:00:1f:Always have High-jump Boots
+SCdbe3:00:25:Hit anywhere (09 of 10)
+SCdbf0:00:18:Hit anywhere (06 of 10)
+SCeacc:ad:ce:Keep High-jump Boots on pick-up
+SCf3b1:00:e7:Hit anywhere (08 of 10)
+SCf3bd:00:db:Hit anywhere (07 of 10)
+SCf47d:00:1b:Hit anywhere (02 of 10)
+SCf489:00:0f:Hit anywhere (05 of 10)
+SCfc68:ff:3f:Infinite health - both players (alt) (2 of 2)

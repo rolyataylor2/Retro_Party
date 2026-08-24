@@ -1,0 +1,45 @@
+﻿
+S00aa:00:Bosses lose health quickly
+S0141:0a:Infinite Baterangs
+S0400:02:Start on stage 1-2
+S0400:04:Start on stage 1-3
+S0400:06:Start on stage 2-1
+S0400:08:Start on stage 2-2
+S0400:0a:Start on stage 3-1
+S0400:0c:Start on stage 3-2
+S0400:0e:Start on stage 3-3
+S0400:10:Start on stage 4-1
+S0400:12:Start on stage 4-2
+S0400:14:Start on stage 4-3
+S0400:16:Start on stage 5-1
+S0400:18:Start on stage 5-2
+S0400:1a:Start on stage 6-1
+S0400:1c:Start on stage 6-2
+S0400:1e:Start on stage 6-3
+S0400:20:Start on stage 7-1
+S0400:22:Start on stage 7-2
+S0478:08:Infinite health
+S0479:00:Invincibility after first hit
+SC82d6:ad:8d:Protection from electric grids
+SC8bb1:08:02:Jump higher
+SC8bb1:10:02:Jump very high
+SC915e:04:0e:Continue game with 3 life increments instead of 8
+SC9549:00:02:Invincibility lasts until the end of stage
+SCaa54:ad:8d:Invincibility (2 of 3)
+SCab6e:04:02:Each Backpack Energy Capsule counts as two
+SCab6e:08:02:Each Backpack Energy Capsule counts as four
+SCaf21:ad:8d:Invincibility (3 of 3)
+SCb06d:ad:85:Invincible to bosses
+SCb18d:2c:8d:Don't get stunned when hit
+SCb192:ad:8d:Invincibility (1 of 3)
+SCb1b6:fe:ff:Intense knock-back when hit (may get stuck if you knock back into a wall) (1 of 2)
+SCb1b8:00:04:Stand your ground (1 of 2)
+SCb1bc:01:00:Intense knock-back when hit (may get stuck if you knock back into a wall) (2 of 2)
+SCb1c0:2c:8c:Stand your ground (2 of 2)
+SCc4dc:cd:ce:Infinite weapons
+SCc603:ad:8d:Infinite health
+SCd499:0c:fe:Start with 7 Backpack Energy Capsules instead of none
+SCd49e:04:0e:Start with 3 life increments instead of 8
+SCd4a3:00:02:Start with 1 life
+SCd4a3:64:02:Start with 100 lives
+SCd52a:ad:ce:Infinite lives

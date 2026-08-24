@@ -1,0 +1,30 @@
+﻿
+S8496:ad:Invincibility
+SC877c:50:d0:Walk through walls (1 of 2)
+SC8787:50:d0:Walk through walls (2 of 2)
+SCa684:24:90:Get items from anywhere - from above
+SCa68b:24:b0:Get items from anywhere - from below
+SCa695:24:90:Get items from anywhere - from the right
+SCa69f:24:90:Get items from anywhere - from the left
+SCac01:b0:90:No Piranha Plant enemies
+SCc0c6:01:00:Start in the tree
+SCc0c6:02:00:Start in the crypt
+SCc0c6:03:00:Start in the hallway
+SCc0c6:08:00:Start in Fester's room
+SCc0c6:09:00:Start in Pugsly's room
+SCc0c6:0a:00:Start in the toy room
+SCc0c6:0b:00:Start in Wednesday's room
+SCc0c6:0c:00:Start in the attic
+SCc0c6:0f:00:Start in a secret room
+SCc0c6:10:00:Start in a secret room
+SCc0c6:11:00:Start in a secret room
+SCc0c6:1d:00:Start in the bone room
+SCc0c6:20:00:Start in Gomez's room
+SCc0c6:21:00:Start in the freezer
+SCc0c6:22:00:Start in the furnace
+SCc0e4:01:03:Start with 1 life - 1st game only
+SCc0e4:06:03:Start with 6 lives - 1st game only
+SCc0e4:09:03:Start with 9 lives - 1st game only
+SCc5ca:2c:ce:Infinite life
+SCe3d8:2c:ce:Infinite lives
+SCe68b:2c:ce:Infinite Things

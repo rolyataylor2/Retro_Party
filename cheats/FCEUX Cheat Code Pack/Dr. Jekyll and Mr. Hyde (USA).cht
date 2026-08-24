@@ -1,0 +1,12 @@
+﻿
+SCbef4:2c:8d:Keep coins from previous games
+SCbef4:8c:8d:Start with 16 coins
+SCcff6:cf:c3:Multi-jump (1 of 6)
+SCcff8:29:c9:Multi-jump (2 of 6)
+SCcff9:01:04:Multi-jump (3 of 6)
+SCcffa:f0:d0:Multi-jump (4 of 6)
+SCcffd:01:00:Multi-jump (5 of 6)
+SCcfff:b9:c3:Multi-jump (6 of 6)
+SCd0fa:af:99:Instant game restart
+SCe42e:2c:ce:Infinite life (1 of 2)
+SCe526:2c:ce:Infinite life (2 of 2)

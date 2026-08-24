@@ -1,0 +1,18 @@
+﻿
+S0077:00:Pin once to win match
+S0086:3b:Infinite time (seconds)
+S0087:09:Infinite time (minutes)
+SCdfa4:01:05:Rounds are only 1 minute
+SCdfa4:03:05:Rounds are only 3 minutes
+SCdfa4:08:05:Rounds are 8 minutes
+SCdfa4:0a:05:Rounds are 10 minutes
+SCe286:05:14:Only have 5 seconds to get back into ring
+SCe286:0a:14:Only have 10 seconds to get back into ring
+SCe286:1e:14:Have 30 seconds to get back into ring
+SCe46e:02:03:2-second pin count
+SCe46e:05:03:5-second pin count
+SCe46e:07:03:7-second pin count
+SCe654:a9:d6:Infinite health and time (2 of 4)
+SCe655:ef:0b:Infinite health and time (1 of 4)
+SCe656:85:f0:Infinite health and time (3 of 4)
+SCe657:67:0a:Infinite health and time (4 of 4)

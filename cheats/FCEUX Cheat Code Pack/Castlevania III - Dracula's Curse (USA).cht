@@ -1,0 +1,69 @@
+﻿
+S001a:00:Remove invincibility blinking
+S0032:01:Start on stage 02 (glitchy if you die)
+S0032:02:Start on stage 03 (glitchy if you die)
+S0032:03:Start on stage 04 (glitchy if you die)
+S0032:04:Start on stage 05 (glitchy if you die)
+S0032:05:Start on stage 06 (glitchy if you die)
+S0032:06:Start on stage 07 (glitchy if you die)
+S0032:07:Start on stage 08 (glitchy if you die)
+S0032:08:Start on stage 09 (glitchy if you die)
+S0032:09:Start on stage 10 (glitchy if you die)
+S0032:0a:Start on stage 11 (glitchy if you die)
+S0032:0b:Start on stage 12 (glitchy if you die)
+S0032:0c:Start on stage 13 (glitchy if you die)
+S0032:0d:Start on stage 14 (glitchy if you die)
+S0032:0e:Start on stage 15 (glitchy if you die)
+S0035:99:Infinite lives (alt)
+S003a:01:Enable Sypha
+S003a:02:Enable Grant
+S003a:03:Enable Alucard
+S003c:40:Infinite health (alt)
+S0080:02:Invincibility (blinking) (disable if you cannot enter a door)
+S0084:99:Infinite hearts
+S0085:01:Trevor Belmont's sub-weapon - Axe
+S0085:02:Trevor Belmont's sub-weapon - Cross
+S0085:03:Trevor Belmont's sub-weapon - Dagger
+S0085:04:Trevor Belmont's sub-weapon - Holy Water
+S0085:0b:Trevor Belmont's sub-weapon - Clock
+S0086:05:Sypha Belnades' sub-weapon - Fire Spell
+S0086:06:Sypha Belnades' sub-weapon - Ice Spell
+S0086:07:Sypha Belnades' sub-weapon - Lightning Spell
+S0086:08:Grant Danasty's sub-weapon - Dagger
+S0086:09:Grant Danasty's sub-weapon - Axe
+S0086:0b:Grant Danasty's sub-weapon - Clock
+S0087:02:Have Triple Shot (III)
+S008e:02:Trevor Belmont has best Whip
+S008f:02:Alucard has best attack
+SC8112:d0:f0:Invincibility (disable if you cannot enter a door)
+SC823c:60:8d:No knock-back when hurt
+SC828a:a9:85:Infinite health
+SC8993:a9:85:Infinite lives
+SC8be0:60:10:Multi-jump (01 of 15)
+SC90c1:99:05:Start each stage with 99 hearts
+SC9333:00:40:Bosses have no health
+SC93e7:51:4f:Multi-jump (09 of 15)
+SC9633:03:09:High jump
+SC96e1:00:0f:Walk through walls (4 of 4)
+SC96ea:00:06:Walk through walls (3 of 4)
+SC96ec:02:01:Walk twice as fast to the right
+SC971d:00:d3:Walk through walls (1 of 4)
+SC9726:00:ca:Walk through walls (2 of 4)
+SC9728:fe:ff:Walk twice as fast to the left
+SC97d5:51:4f:Multi-jump (08 of 15)
+SC9831:a5:85:Multi-jump (13 of 15)
+SC9851:a5:04:Multi-jump (12 of 15)
+SC9852:26:c9:Multi-jump (14 of 15)
+SC9853:0a:08:Multi-jump (15 of 15)
+SC9854:90:b0:Multi-jump (03 of 15)
+SC9856:8d:ad:Multi-jump (11 of 15)
+SC9859:a9:d0:Multi-jump (07 of 15)
+SC985a:05:0c:Multi-jump (05 of 15)
+SC985b:8d:ad:Multi-jump (10 of 15)
+SC985c:d8:65:Multi-jump (02 of 15)
+SC985f:05:26:Multi-jump (04 of 15)
+SC9861:05:08:Multi-jump (06 of 15)
+SCb241:a5:85:Invincibility (disable if you cannot enter a door) (alt)
+SCb287:00:18:Hit anywhere (Whip)
+Sb33f:01:Start with 9500 seconds
+SCba03:91:90:Infinite hearts

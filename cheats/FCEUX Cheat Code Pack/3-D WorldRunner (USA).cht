@@ -1,0 +1,23 @@
+﻿
+S003a:05:No enemies or pitfalls
+SC8903:a2:a9:Start on world XX (1 of 3)
+SC8904:01:00:Start on world 2 (3 of 3)
+SC8904:02:00:Start on world 3 (3 of 3)
+SC8904:03:00:Start on world 4 (3 of 3)
+SC8904:04:00:Start on world 5 (3 of 3)
+SC8904:05:00:Start on world 6 (3 of 3)
+SC8904:06:00:Start on world 7 (3 of 3)
+SC8905:86:85:Start on world XX (2 of 3)
+SC94af:60:c0:Speed up timer
+SC94af:ff:c0:Slow down timer
+SC94b2:a5:c6:Infinite time
+SC966b:31:33:Start with 1 life (2 of 2)
+SC966b:36:33:Start with 6 lives (2 of 2)
+SC966b:39:33:Start with 9 lives (2 of 2)
+SC96b1:01:03:Start with 1 life (1 of 2)
+SC96b1:06:03:Start with 6 lives (1 of 2)
+SC96b1:09:03:Start with 9 lives (1 of 2)
+SC96bb:00:01:Infinite lives
+SC9dbe:00:04:Start with and keep laser missiles
+SC9dbf:a9:a5:Autofire
+Sa41d:60:Invincibility

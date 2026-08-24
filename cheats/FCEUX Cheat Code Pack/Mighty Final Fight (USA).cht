@@ -1,0 +1,50 @@
+﻿
+S003a:30:Infinite health
+S003b:25:Invincibility (alt)
+S003e:09:Infinite lives
+S006b:05:Max level
+SC85df:a0:a4:Cody is stronger and has a super-powerful normal punch (1 of 3)
+SC85e0:05:6b:Cody is stronger and has a super-powerful normal punch (2 of 3)
+SC8607:a0:a4:Guy is stronger and has a super-powerful normal punch (2 of 3)
+SC8608:05:6b:Guy is stronger and has a super-powerful normal punch (3 of 3)
+SC8627:a0:a4:Haggar is stronger and has a super-powerful normal punch (1 of 3)
+SC8628:03:6b:Haggar is stronger and has a super-powerful normal punch (2 of 3)
+SC8638:ad:b9:Cody is weaker
+SC8656:ad:b9:Guy is weaker
+SC8674:ad:b9:Haggar is weaker
+SC8885:40:0b:Cody is stronger and has a super-powerful normal punch (3 of 3)
+SC8934:40:02:Guy is stronger and has a super-powerful normal punch (1 of 3)
+SC89cb:40:0d:Haggar is stronger and has a super-powerful normal punch (3 of 3)
+SC8ac2:a9:a5:Gain EXP faster (10 pts at a time) (may be displayed incorrectly) (1 of 2)
+SC8ac3:10:05:Gain EXP faster (10 pts at a time) (may be displayed incorrectly) (2 of 2)
+SC8ac3:20:05:Gain EXP much faster (20 pts at a time) (may be displayed incorrectly) (2 of 2)
+SC941b:a5:c6:Infinite credits
+SCc7ee:01:05:Start with 2 lives (doesn't work on continues)
+SCc7ee:03:05:Start with 4 lives (doesn't work on continues)
+SCc7ee:07:05:Start with 8 lives (doesn't work on continues)
+SCc7ee:09:05:Start with 10 lives (doesn't work on continues)
+SCc7f2:01:03:Start with 1 credit
+SCc7f2:05:03:Start with 5 credits
+SCc7f2:07:03:Start with 7 credits
+SCc7f2:09:03:Start with 9 credits
+SCc841:10:40:Cody starts with 1/4 health (1st life only)
+SCc841:20:40:Cody starts with 1/2 health (1st life only)
+SCc841:30:40:Cody starts with 3/4 health (1st life only)
+SCc842:0c:30:Guy starts with 1/4 health (1st life only)
+SCc842:18:30:Guy starts with 1/2 health (1st life only)
+SCc842:24:30:Guy starts with 3/4 health (1st life only)
+SCc843:14:50:Haggar starts with 1/4 health (1st life only)
+SCc843:28:50:Haggar starts with 1/2 health (1st life only)
+SCc843:3c:50:Haggar starts with 3/4 health (1st life only)
+SCcf2f:80:00:Invincibility
+SCdd4f:a5:c6:Infinite lives
+SCde4c:10:40:Cody starts with 1/4 health (after 1st life)
+SCde4c:20:40:Cody starts with 1/2 health (after 1st life)
+SCde4c:30:40:Cody starts with 3/4 health (after 1st life)
+SCde52:0c:30:Guy starts with 1/4 health (after 1st life)
+SCde52:18:30:Guy starts with 1/2 health (after 1st life)
+SCde52:24:30:Guy starts with 3/4 health (after 1st life)
+SCde58:14:50:Haggar starts with 1/4 health (after 1st life)
+SCde58:28:50:Haggar starts with 1/2 health (after 1st life)
+SCde58:3c:50:Haggar starts with 3/4 health (after 1st life)
+SCf92b:a5:85:Protection from most hazards

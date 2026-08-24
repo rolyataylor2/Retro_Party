@@ -1,0 +1,10 @@
+﻿
+S04f9:09:Infinite time (Minutes)
+S04fb:09:Infinite time (Seconds - One's Digit)
+S04fa:09:Infinite time (Seconds - Ten's Digit)
+S0506:00:Score modifier (Hundred's Digit) - Team 1
+S0508:00:Score modifier (One's Digit) - Team 1
+S0507:00:Score modifier (Ten's Digit) - Team 1
+S0509:00:Score modifier (Hundred's Digit) - Team 2
+S050b:00:Score modifier (One's Digit) - Team 2
+S050a:00:Score modifier (Ten's Digit) - Team 2

@@ -1,0 +1,16 @@
+﻿
+S016c:00:Load zero
+S016e:ff:Max Agility (1 of 2)
+S016f:ff:Max Agility (2 of 2)
+S0170:ff:Max Attack (1 of 2)
+S0171:ff:Max Attack (2 of 2)
+S0172:ff:Max Defense
+S0175:ff:Max EXP points
+S0176:ff:Max Level
+S0177:ff:Max Gold
+S0179:ff:Infinite Arrows (alt)
+SC8921:f0:30:Infinite HP for Robin in dueling combat
+SC8b29:86:85:Infinite HP for Robin in main combat
+SC9255:00:01:Infinite Arrows
+SCb3b5:18:08:Food gives more HP back - Except the Leg of meat
+SCb7a3:14:08:Bandages give more HP back

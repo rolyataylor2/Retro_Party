@@ -1,0 +1,17 @@
+﻿
+S0126:00:Invincibility
+S0127:02:Invincibility (blinking)
+S0141:03:Infinite health
+S0142:0a:Infinite lives (alt)
+SC830b:ad:ce:Infinite hearts
+SC83ea:02:01:2 power packs on pick-up
+SC83ea:05:01:5 power packs on pick-up
+SC8445:00:06:Small hearts gives full health
+SC87fd:02:10:Flashlight uses fewer powerpacks
+SC8834:05:20:Shield uses fewer powerpacks
+SC88bf:2c:8d:Defenses don't use up powerpacks
+SC9581:05:03:Better start (more lives and hearts)
+SC958c:30:10:Start with 30 powerpacks
+SC958c:50:10:Start with 50 powerpacks
+SCbe52:ad:ce:Infinite lives
+SCbee0:2c:ce:Don't lose extra hearts on dying

@@ -1,0 +1,15 @@
+﻿
+SCa031:00:74:Photon Torpedoes always work
+SCa10e:00:f7:Phasers always work
+SCa119:00:ec:Phasers fire for longer
+SCaaf1:64:65:Stardate does not advance
+SCbe7a:05:20:Less transporter power required most of the time
+SCbeed:a5:c6:Transporter power does not decrease most of the time
+SCe0fb:4a:0a:Enemy does less damage
+SCe505:60:ee:Stop game time ticking over
+SCe64e:10:90:Very quick damage repair
+SCe64e:40:90:Quicker damage repair
+SCe64e:c0:90:Slower damage repair
+SCe662:00:3d:Damage is repaired immediately
+SCe7a1:b1:91:All systems are immune to damage - shields down
+SCe7be:ad:8d:Shields are immune to damage - shields up

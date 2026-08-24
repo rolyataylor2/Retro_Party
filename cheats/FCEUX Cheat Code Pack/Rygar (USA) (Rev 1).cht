@@ -1,0 +1,38 @@
+﻿
+S00c0:10:Always have Power Up
+S00c0:ff:Start with all equipment (1 of 2)
+S00c1:ff:Start with all equipment (2 of 2)
+S00c7:ff:Lots of Tone
+S00c8:ff:Lots of Last
+S00cd:ff:Infinite Attack & Assail
+S822a:00:Infinite Mind points
+SC966b:03:04:Jump higher
+SC9931:ad:ce:Grappling Hook continues to search for land (1 of 2)
+SC9cdd:50:d0:Walk on water (overhead view)
+SCa013:00:08:Pits aren't fatal (side view)
+SCa016:60:a9:Multi-jump (02 of 10)
+SCa22c:a5:85:Grappling Hook continues to search for land (2 of 2)
+SCa3c1:05:25:Have first three items after pressing B once
+SCad1c:30:b0:Hit anywhere (1 of 4)
+SCad22:30:b0:Hit anywhere (3 of 4)
+SCad33:30:b0:Hit anywhere (2 of 4)
+SCad39:f0:b0:Hit anywhere (4 of 4)
+SCad48:ea:ad:Multi-jump (09 of 10)
+SCad49:a5:92:Multi-jump (07 of 10)
+SCad4a:28:04:Multi-jump (03 of 10)
+SCad4b:25:29:Multi-jump (05 of 10)
+SCad4c:2a:20:Multi-jump (10 of 10)
+SCad4d:10:f0:Multi-jump (01 of 10)
+SCad4f:8d:ad:Multi-jump (06 of 10)
+SCad50:c2:32:Multi-jump (08 of 10)
+SCad51:04:05:Multi-jump (04 of 10)
+SCae01:60:84:Invincibility
+SCae9e:60:05:Don't be pushed after being hit
+SCaeb2:a5:85:Infinite health
+SCafae:11:85:One hit kills
+SCb557:90:b0:Enemies always drop X (1 of 3)
+SCb57e:a9:29:Enemies always drop X (2 of 3)
+SCb57f:03:07:Enemies always drop a health potion (3 of 3)
+SCb57f:04:07:Enemies always drop a Mind unit (3 of 3)
+SCc0b1:19:06:Start with max health (12 units) (1 of 2)
+SCc0b2:19:06:Start with max health (12 units) (2 of 2)

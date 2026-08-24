@@ -1,0 +1,22 @@
+﻿
+S06d4:00:Invincibility
+S06d5:ff:Infinite lives
+SC8199:ff:00:Start with Rear Laser
+SC8206:08:ff:Start with 18 lives
+SC8206:f7:ff:Start with 1 life
+SC8206:fb:ff:Start with 5 lives
+SC8233:28:14:Start with double Bombs (1 of 2)
+SC823e:14:01:Start new life with 20 Shields (1 of 2)
+SC8242:14:05:Start with 20 Seekers and Bouncers (1 of 2)
+SC977b:ad:ce:Infinite Seekers
+SC9976:ad:ce:Infinite Bombs
+SC9d93:ad:ce:Infinite Shields
+SCa142:2c:8d:Keep Rear Laser after death
+SCa145:2c:8d:Keep Mace after death (2 of 2)
+SCa148:2c:8d:Keep Mace after death (1 of 2)
+SCa164:ad:ce:Start with infinite lives
+SCa18d:28:14:Start with double Bombs (2 of 2)
+SCa192:14:02:20 Genocides on new life
+SCa197:14:01:Start new life with 20 Shields (2 of 2)
+SCa19c:14:05:Start with 20 Seekers and Bouncers (2 of 2)
+SCbd8d:ad:ce:Infinite Genocides

@@ -1,0 +1,44 @@
+﻿
+SC913f:ff:32:King gives 255 gold
+SC9152:01:00:King gives mega-gold
+SCaf10:05:ff:Start with 6 battle-axes
+SCaf10:06:ff:Start with 6 broadswords
+SCaf10:07:ff:Start with 6 wizard's wands
+SCaf10:0f:ff:Start with 6 demon's axes
+SCaf10:14:ff:Start with 6 multi-edge swords
+SCaf10:15:ff:Start with 6 staffs of force
+SCaf10:16:ff:Start with 6 swords of illusion
+SCaf10:18:ff:Start with 6 falcon swords
+SCaf10:28:ff:Start with 6 armor of radiance
+SCb26c:6f:07:Player starts with increased strength and/or attack power
+SCb26c:fe:07:Player starts with greatly increased strength and/or attack power
+SCb26d:63:01:Wizard starts with increased strength and/or attack power
+SCb26d:fe:01:Wizard starts with greatly increased strength and/or attack power
+SCb26e:62:03:Pilgrim starts with increased strength and/or attack power
+SCb26e:fe:03:Pilgrim starts with greatly increased strength and/or attack power
+SCb270:63:09:Soldier starts with increased strength and/or attack power
+SCb270:fe:09:Soldier starts with greatly increased strength and/or attack power
+SCb271:63:05:Player starts with increased agility and/or defense
+SCb271:ff:05:Player starts with greatly increased agility and/or defense
+SCb272:62:04:Wizard starts with increased agility and/or defense
+SCb272:ff:04:Wizard starts with greatly increased agility and/or defense
+SCb273:62:04:Pilgrim starts with increased agility and/or defense
+SCb275:62:02:Soldier starts with increased agility and/or defense
+SCb276:63:07:Player starts with increased vitality and/or HP
+SCb276:ff:07:Player starts with greatly increased vitality and/or HP
+SCb277:62:02:Wizard starts with increased vitality and/or maximum HP
+SCb277:99:02:Wizard starts with greatly increased vitality and/or maximum HP
+SCb278:63:03:Pilgrim starts with increased vitality and/or maximum HP
+SCb278:fe:03:Pilgrim starts with greatly increased vitality and/or maximum HP
+SCb27a:63:07:Soldier starts with increased vitality and/or maximum HP
+SCb27b:63:06:Player starts with increased magic, maximum magic points and/or intelligence
+SCb27b:ff:06:Player starts with greatly increased magic, maximum magic points and/or intelligence
+SCb27c:63:09:Wizard starts with increased magic, intelligence and/or maximum magic
+SCb27d:63:08:Pilgrim starts with increased magic and/or intelligence
+SCb27d:fe:08:Pilgrim starts with greatly increased magic and/or intelligence
+SCb280:62:04:Player starts with increased luck
+SCb280:fe:04:Player starts with greatly increased luck
+SCb281:63:02:Wizard starts with increased luck
+SCb281:fe:02:Wizard starts with greatly increased luck
+SCb282:62:03:Pilgrim starts with increased luck
+SCb282:fe:03:Pilgrim starts with greatly increased luck

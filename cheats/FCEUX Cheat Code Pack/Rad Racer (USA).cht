@@ -1,0 +1,23 @@
+﻿
+S00e5:01:Start on stage 2 (disable after loading stage) (alt)
+S00e5:02:Start on stage 3 (disable after loading stage) (alt)
+S00e5:03:Start on stage 4 (disable after loading stage) (alt)
+S00e5:04:Start on stage 5 (disable after loading stage) (alt)
+S00e5:05:Start on stage 6 (disable after loading stage) (alt)
+S00e5:06:Start on stage 7 (disable after loading stage) (alt)
+S00e5:07:Start on stage 8 (disable after loading stage) (alt)
+SCc029:01:00:Start on stage 2 (disable after loading stage) (2 of 2)
+SCc029:02:00:Start on stage 3 (disable after loading stage) (2 of 2)
+SCc029:03:00:Start on stage 4 (disable after loading stage) (2 of 2)
+SCc029:04:00:Start on stage 5 (disable after loading stage) (2 of 2)
+SCc029:05:00:Start on stage 6 (disable after loading stage) (2 of 2)
+SCc029:06:00:Start on stage 7 (disable after loading stage) (2 of 2)
+SCc029:07:00:Start on stage 8 (disable after loading stage) (2 of 2)
+SCc520:30:00:Turbo acceleration
+SCc53c:7f:30:Super Turbo acceleration
+SCc581:01:00:Ultra Turbo acceleration
+SCcec4:24:85:Start on stage XX (disable after loading stage) (1 of 2)
+SCd54f:00:01:Never crash from things outside of the road
+SCde23:24:2d:Less time to finish each stage
+SCde23:3c:2d:More time to finish each stage
+Sde27:ff:Infinite time

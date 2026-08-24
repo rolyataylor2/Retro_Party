@@ -1,0 +1,25 @@
+﻿
+SC94f4:01:7f:Knife casts a DEATH spell when used as a item in battle
+SC94f4:02:7f:Knife casts a METEO spell when used as a item in battle
+SC94f4:0a:7f:Knife casts a CURE4 spell when used as a item in battle
+SC94f4:0b:7f:Knife casts a HEAL spell when used as a item in battle
+SC94f4:0e:7f:Knife casts a FIRE3 spell when used as a item in battle
+SC94f4:15:7f:Knife casts a BOLT3 spell when used as a item in battle
+SC94f4:1d:7f:Knife casts a ICE3 spell when used as a item in battle
+SC94f4:31:7f:Knife casts a FIRE spell when used as a item in battle
+SC94fc:01:7f:Dagger casts a DEATH spell when used as a item in battle
+SC94fc:02:7f:Dagger casts a METEO spell when used as a item in battle
+SC94fc:0a:7f:Dagger casts a CURE4 spell when used as a item in battle
+SC94fc:0b:7f:Dagger casts a HEAL spell when used as a item in battle
+SC94fc:0e:7f:Dagger casts a FIRE3 spell when used as a item in battle
+SC94fc:15:7f:Dagger casts a BOLT3 spell when used as a item in battle
+SC94fc:1d:7f:Dagger casts a ICE3 spell when used as a item in battle
+SC9524:01:7f:Long Sword casts a DEATH spell when used as a item in battle
+SC9524:02:7f:Long Sword casts a METEO spell when used as a item in battle
+SC9524:0a:7f:Long Sword casts a CURE4 spell when used as a item in battle
+SC9524:0b:7f:Long Sword casts a HEAL spell when used as a item in battle
+SC9524:0e:7f:Long Sword casts a FIRE3 spell when used as a item in battle
+SC9524:15:7f:Long Sword casts a BOLT3 spell when used as a item in battle
+SC9524:1d:7f:Long Sword casts a ICE3 spell when used as a item in battle
+SCab9b:ad:8d:Infinite capacity points. You still have to have enough points to make the job change, but no points will be subtracted from your total
+SCb0b0:ea:e5:All items in shops are free. You must have enough to cover the item, but will not be charged

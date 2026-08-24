@@ -1,0 +1,19 @@
+﻿
+SC817e:a9:b1:(1P vs 2P or 1P vs Com) Every round starts with 4 fixed blocks (1 of 2)
+SC817f:01:00:(1P vs 2P or 1P vs Com) Every round starts with 4 fixed blocks (2 of 2)
+SC817f:07:00:(1P vs 2P or 1P vs Com) Every round starts with 10 fixed blocks (2 of 2)
+SC817f:0c:00:(1P vs 2P or 1P vs Com) Every round starts with 15 fixed blocks (2 of 2)
+SC817f:11:00:(1P vs 2P or 1P vs Com) Every round starts with 20 fixed blocks (2 of 2)
+SC8d3b:08:9d:(1P game) Speed doesn't increase
+SC8dbb:fe:9d:(1P game) Speed increases much faster
+SC8dcd:02:19:(1P game) Max speed is 2 (1 of 2)
+SC8dcd:0a:19:(1P game) Max speed is 10 (1 of 2)
+SC8dcd:0f:19:(1P game) Max speed is 15 (1 of 2)
+SC8dcd:14:19:(1P game) Max speed is 20 (1 of 2)
+SC8dd1:01:18:(1P game) Max speed is 2 (2 of 2)
+SC8dd1:09:18:(1P game) Max speed is 10 (2 of 2)
+SC8dd1:0e:18:(1P game) Max speed is 15 (2 of 2)
+SC8dd1:13:18:(1P game) Max speed is 20 (2 of 2)
+SC8fa4:06:01:(1P game) Start and stay at speed of 25
+SCaf66:00:80:(All game types) Cannot pause game
+SCaf89:60:a2:(All game types) Don't hide remaining pieces during pause

@@ -1,0 +1,49 @@
+﻿
+S0032:99:Have 99 lives
+S00aa:01:Have Machine Gun - P1
+S00aa:02:Have Fireball - P1
+S00aa:03:Have Spread Gun - P1
+S00aa:04:Have Laser - P1
+S00aa:18:Have Clone Attack (glitch weapon) - P1
+S00ab:01:Have Machine Gun - P2
+S00ab:02:Have Fireball - P2
+S00ab:03:Have Spread Gun - P2
+S00ab:04:Have Laser - P2
+S00ae:41:Invincibility (blinking) (alt 2)
+S00b0:fe:Invincibility (star effect) - P1
+S00b1:fe:Invincibility (star effect) - P2
+SCc475:01:00:Start on level 2 (1 of 2)
+SCc475:02:00:Start on level 3 (1 of 2)
+SCc475:03:00:Start on level 4 (1 of 2)
+SCc475:04:00:Start on level 5 (1 of 2)
+SCc475:05:00:Start on level 6 (1 of 2)
+SCc475:06:00:Start on level 7 (1 of 2)
+SCc475:07:00:Start on level 8 (1 of 2)
+SCc479:30:3f:Start on level x (2 of 2)
+SCd04d:3b:25:Press Start to complete the level
+SCd466:00:05:Invincibility (blinking) (alt)
+Sd467:b5:Invincibility (blinking)
+SCd476:20:b5:Multi-jump - both players (2 of 7)
+SCd477:9f:b0:Multi-jump - both players (3 of 7)
+SCd478:d6:f0:Multi-jump - both players (6 of 7)
+SCd479:ea:08:Multi-jump - both players (7 of 7)
+SCd480:b5:d6:Multi-jump - both players (4 of 7)
+SCd54a:60:a9:Multi-jump - both players (1 of 7)
+SCd61a:00:49:Walk through walls (2 of 2)
+SCd645:00:1e:Walk through walls (1 of 2)
+SCd6e9:fa:fb:Jump higher (2 of 2)
+SCd6ef:fb:fc:Jump higher (1 of 2)
+SCd75d:02:01:Run twice as fast (2 of 2)
+SCd761:fe:ff:Run twice as fast (1 of 2)
+SCd9e9:b5:95:Multi-jump - both players (5 of 7)
+Sda03:b5:Infinite lives
+Sdad2:01:Start new life with Machine Gun
+Sdad2:02:Start new life with Fireball
+Sdad2:03:Start new life with Spread Gun
+Sdad2:04:Start new life with Laser
+Sdad3:2c:Keep weapons after losing life
+SCe2c9:ad:20:Invincibility
+SCe37f:24:b0:Hit anywhere (3 of 4)
+SCe388:d0:90:Hit anywhere (1 of 4)
+SCe3a1:24:b0:Hit anywhere (2 of 4)
+SCe3c7:ad:20:Hit anywhere (4 of 4)

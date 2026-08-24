@@ -1,0 +1,13 @@
+﻿
+S0067:03:Infinite lives
+S0088:15:Power Pill effect always active
+SCd166:20:3c:Power Pills don't last as long
+SCd166:70:3c:Power pills last longer
+SCd166:ff:3c:Power pills last extra long
+SCd2c6:24:f0:Invincibility
+SCd2da:a0:a4:8000+ points for eating ghosts (1 of 3)
+SCd2db:06:d9:8000+ points for eating ghosts (3 of 3)
+SCd2e6:a5:e6:8000+ points for eating ghosts (2 of 3)
+SCe022:60:a5:Power Pills don't work
+SCe02f:09:0f:Only 2 ghosts are edible
+SCe02f:0d:0f:Only 3 ghosts are edible

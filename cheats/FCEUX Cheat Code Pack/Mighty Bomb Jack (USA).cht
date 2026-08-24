@@ -1,0 +1,19 @@
+﻿
+S0229:09:Infinite time (one's digit)
+S022d:09:Infinite time (ten's digit)
+S0235:09:Infinite M's
+S0295:09:Infinite lives (alt)
+SC821a:01:03:Start with 1 life
+SC821a:06:03:Start with 6 lives
+SC821a:09:03:Start with 9 lives
+SC873a:ae:ce:Infinite lives
+SC879c:40:60:Less time in game
+SC879c:80:60:More time in game
+SC87a3:ad:ce:Infinite time
+SC889d:ad:ce:Enemies don't return from coin transformation
+SC8b0a:ad:ce:Power coins are not used up
+SC979f:a9:29:Invincibility
+SC97b1:ad:8d:Invincibility (alt) (1 of 2)
+SC98bb:02:01:Jump through walls
+SC9b0a:ad:8d:Invincibility (alt) (2 of 2)
+SC9ed7:81:03:Disable torture room

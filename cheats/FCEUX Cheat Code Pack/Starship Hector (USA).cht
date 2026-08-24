@@ -1,0 +1,14 @@
+﻿
+S005f:01:Play as Bomberking
+S00b0:10:Infinite health
+SCdc41:a5:c6:Infinite lives
+SCdc79:00:02:Start with 1 life
+SCdc79:05:02:Start with 6 lives
+SCdc79:08:02:Start with 9 lives
+SCe5ec:04:01:Extra health from capsules
+SCf5f4:01:00:Start at stage 2
+SCf5f4:02:00:Start at stage 3
+SCf5f4:03:00:Start at stage 4
+SCf5f4:04:00:Start at stage 5
+SCfcb0:e9:e5:Take minimum damage (1 of 2)
+SCfcb1:01:06:Take minimum damage (2 of 2)

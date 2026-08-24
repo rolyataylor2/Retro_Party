@@ -1,0 +1,28 @@
+﻿
+S002e:09:Infinite lives - P1
+S0030:02:Have Long Shot
+S0030:04:Have Rapid Shot
+S0030:06:Have Long Rapid Shot
+S0030:45:Have Lightning Shot
+S0032:0a:Float
+S003f:2f:Invincibility - P1
+S0042:09:Infinite lives - P2
+S0053:2f:Invincibility - P2
+SC8478:02:01:Monsters move faster (1 of 2)
+SC8478:03:01:Monsters move super fast (1 of 2)
+SC847d:03:02:Angry monsters move faster (1 of 2)
+SC8488:ff:fd:Monsters move super fast (2 of 2)
+SC8488:ff:fe:Monsters move faster (2 of 2)
+SC848d:fd:fe:Angry monsters move faster (2 of 2)
+SCca30:0a:01:Start on level 10
+SCca30:19:01:Start on level 25
+SCca30:32:01:Start on level 50
+SCca30:4b:01:Start on level 75
+SCca38:01:03:Start with 1 life - both players
+SCca38:06:03:Start with 6 lives - both players
+SCca38:09:03:Start with 9 lives - both players
+SCcb11:02:04:Skip only 2 levels
+SCcb11:0a:04:Skip 10 levels
+SCd47d:00:06:Always wear turbo shoes (1 of 2)
+SCd4d1:00:06:Always wear turbo shoes (2 of 2)
+SCd533:00:19:Lots of bubble power

@@ -1,0 +1,21 @@
+﻿
+S042c:30:Start at level (0-9) (1 of 2)
+S042c:31:Start at level (10-17) (1 of 2)
+S042d:30:Start at level 0 (2 of 2)
+S042d:31:Start at level 1 (2 of 2)
+S042d:32:Start at level 2 (2 of 2)
+S042d:33:Start at level 3 (2 of 2)
+S042d:34:Start at level 4 (2 of 2)
+S042d:35:Start at level 5 (2 of 2)
+S042d:36:Start at level 6 (2 of 2)
+S042d:37:Start at level 7 (2 of 2)
+S042d:38:Start at level 8 (2 of 2)
+S042d:39:Start at level 9 (2 of 2)
+S8109:04:Press down to stop blocks from falling
+S8109:19:Press down to rotate block very fast
+SC87ab:00:2a:Lines are cleared when a piece is dropped (1 of 2)
+SC87af:00:26:Lines are cleared when a piece is dropped (2 of 2)
+SC9940:a9:f0:Always get straight pieces (1 of 2)
+SC9941:01:f9:Always get straight pieces (2 of 2)
+SC9b24:a9:24:Speed stays the same (1 of 2)
+SC9b25:21:2f:Speed stays the same (2 of 2)

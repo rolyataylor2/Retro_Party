@@ -1,0 +1,19 @@
+﻿
+S0089:09:Infinite time in bonus stages (disable to continue)
+S00c2:3c:Automatically finish stage
+S0515:24:Infinite ammo - P1
+S0516:18:Infinite health - P1
+S0517:00:Infinite errors allowed - P1
+S0525:24:Infinite ammo - P2
+S0526:18:Infinite health - P2
+S0527:00:Infinite errors allowed - P2
+SC8367:24:85:Infinite health
+SCe633:02:01:Start at level 2
+SCe633:03:01:Start at level 3
+SCe633:04:01:Start at level 4
+SCe633:05:01:Start at level 5
+SCe64f:0c:18:Start with half health
+SCe697:12:24:Start with half ammo
+SCe797:a9:c9:Infinite errors allowed
+SCe798:03:06:Fewer errors allowed
+SCe7b3:00:22:Infinite ammo

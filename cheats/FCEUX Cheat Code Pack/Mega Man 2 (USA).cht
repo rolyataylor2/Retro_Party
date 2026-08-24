@@ -1,0 +1,58 @@
+﻿
+S004b:02:Invincibility (blinking)
+S009a:ff:Have all weapons and all stages cleared (1 of 2)
+S009b:ff:Have all weapons and all stages cleared (2 of 2)
+S009c:1e:Infinite Heat Man once obtained
+S009d:1e:Infinite Air Man once obtained
+S009e:1e:Infinite Wood Man once obtained
+S009f:1e:Infinite Bubble Man once obtained
+S00a0:1e:Infinite Quick Man once obtained
+S00a1:1e:Infinite Flash Man once obtained
+S00a2:1e:Infinite Metal Man once obtained
+S00a3:1e:Infinite Crash Man once obtained
+S00a4:1e:Infinite 1 once obtained
+S00a5:1e:Infinite 2 once obtained
+S00a6:1e:Infinite 3 once obtained
+S00a7:03:Infinite energy tanks
+S00a8:04:Infinite lives (alt)
+S00ac:ff:Atomic Fire always fully charged
+S05a8:00:Bosses have no invulnerability time
+S06c0:1e:Infinite health (alt)
+SC8073:01:03:Start with 1 life
+SC8073:06:03:Start with 6 lives
+SC8073:09:03:Start with 9 lives
+SC80c5:0e:1c:Start with half health
+SC80e2:00:dc:Able to access already defeated boss stages
+SC834f:24:30:Maximum weapon energy on pick-up
+SC858f:23:27:Multi-jump (2 of 4)
+SC8904:49:29:Moonwalking
+SC8a71:06:04:Power-jumps
+SC8a71:08:04:Super power-jumps
+SC8a71:10:04:Mega power-jumps
+SC8b83:20:ad:Multi-jump (1 of 4)
+SC8b84:8e:a0:Multi-jump (4 of 4)
+SC8b85:85:04:Multi-jump (3 of 4)
+SCa634:24:b0:One hit kills (2 of 2)
+SCbcf7:dd:de:Collectable items never disappear
+SCc1b6:a5:c6:Infinite lives
+SCce34:85:a5:Invincibility (alt) (2 of 2)
+SCce36:50:f0:Invincibility (alt) (1 of 2)
+SCce36:d0:f0:Invincibility
+SCda6d:23:27:Burst-fire from normal weapon
+SCdadf:a5:85:Infinite Air Man
+SCdb34:a5:c6:Infinite Bubble Man
+SCdb6f:a5:c6:Infinite Quick Man
+SCdb8c:a5:c6:Infinite Clash Man
+SCdbc9:a5:c6:Infinite Metal Man
+SCdc76:a5:c6:Infinite 1
+SCddd9:a5:85:Infinite Heat Man
+SCdf63:a5:85:Infinite Wood Man
+SCe224:a5:c6:Infinite 2
+SCe340:a5:c6:Infinite 3
+SCe5a1:ad:8d:Infinite health
+SCe5e8:b9:99:Special items re-appear after being collected
+SCe686:24:b0:One hit kills (1 of 2)
+SCf2ba:50:90:Enemies always drop x (1 of 2)
+SCf2bb:d5:cc:Enemies always drop large weapon refill (2 of 2)
+SCf2bb:d9:cc:Enemies always drop large health refill (2 of 2)
+SCf2bb:dd:cc:Enemies always drop extra lives (2 of 2)

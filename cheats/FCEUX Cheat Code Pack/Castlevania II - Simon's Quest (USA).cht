@@ -1,0 +1,83 @@
+﻿
+S0031:03:Infinite lives (alt)
+S0048:f0:Infinite hearts
+S004a:7f:Have all Daggers, Holy Water, Diamond, Flame and Oak Stake
+S004c:99:Infinite Laurels (alt)
+S004d:08:Infinite Garlic on pick-up
+S0080:50:Infinite health (alt)
+S0085:02:Stops time (time set to 12:02)
+S0091:20:Have White Crystal
+S0091:3f:Have all Dracula parts and White Crystal
+S0091:40:Have Blue Crystal
+S0091:5f:Have all Dracula parts and Blue Crystal
+S0091:60:Have Red Crystal
+S0091:7f:Have all Dracula parts and Red Crystal
+S0092:0f:Have Garlic, Laurels, Silk Bag and Magic Cross
+S0434:04:Have Fire Whip
+S04f8:02:Invincibility (alt 2)
+SC8045:50:d0:Invincibility against poisonous swamps and spikes
+SC80bb:e0:e7:Invincibility against water (1 of 8)
+SC80bc:fe:c0:Invincibility against water (7 of 8)
+SC814f:f0:d0:Towns never sleep (can enter doors) (2 of 2)
+SC8199:ad:ce:Infinite Laurel time
+SC82a9:b0:d0:Enemies always drop large hearts (1 of 3)
+SC82ae:ad:bd:Enemies always drop large hearts (2 of 3)
+SC82b0:fa:04:Enemies always drop large hearts (3 of 3)
+SC83e2:70:d0:Walk through walls
+SC864b:d0:f0:Invincibility
+SC8735:23:de:Invincibility (enemies die on contact) (1 of 2)
+SC8736:89:87:Invincibility (enemies die on contact) (2 of 2)
+SC8756:02:01:Move faster (4 of 4)
+S8762:84:Small hearts worth 100
+SC8770:fe:ff:Move faster (1 of 4)
+SC87af:00:11:Towns never sleep (can enter doors) (1 of 2)
+S88d8:75:Whip destroys all enemies/townspeople on screen
+SC88fd:00:61:Hit anywhere - whip (3 of 3)
+SC8910:fe:ff:Move faster (2 of 4)
+SC8917:00:47:Hit anywhere - whip (1 of 3)
+SC891b:02:01:Move faster (3 of 4)
+SC891c:00:54:Hit anywhere - whip (2 of 3)
+SC8926:00:40:One hit kills
+SC89d6:a5:ad:Multi-jump (08 of 11)
+SC89d7:f5:6c:Multi-jump (07 of 11)
+SC89d8:29:03:Multi-jump (06 of 11)
+SC89d9:80:10:Multi-jump (01 of 11)
+SC89da:d0:13:Multi-jump (02 of 11)
+SC89db:0c:a0:Multi-jump (03 of 11)
+SC89dc:ea:f0:Multi-jump (11 of 11)
+SC89dd:4c:20:Multi-jump (04 of 11)
+SC89de:ee:ed:Multi-jump (10 of 11)
+SC89df:89:86:Multi-jump (05 of 11)
+SC89e9:fb:00:Multi-jump (09 of 11)
+SC89ef:20:38:Jump higher (4 1/3 blocks)
+SC8a09:b0:30:Hit anywhere - Sub-weapons (1 of 2)
+SC8a27:b0:30:Hit anywhere - Sub-weapons (2 of 2)
+SCa17e:85:a5:Always get the best ending
+SCc294:24:c6:Infinite lives
+SCc553:01:03:Start with 1 life
+SCc553:06:03:Start with 6 lives
+SCc553:09:03:Start with 9 lives
+SCc55a:25:50:Start with 25 hearts
+SCc55a:75:50:Start with 75 hearts
+SCc55e:50:30:Start with more health
+SCcd70:f0:d0:Ponds open instantly without needing a Crystal
+SCd35f:a5:85:Infinite health
+Sd628:00:Whip can destroy any block (2 of 4)
+Sd639:00:Whip can destroy any block (1 of 4)
+Sd65d:10:Whip can destroy any block (3 of 4)
+Sd691:ea:Whip can destroy any block (4 of 4)
+SCd79b:a5:85:Stops time (always daytime)
+SCd876:f0:b0:Can use sub-weapons regardless of Heart count
+SCd921:05:c6:Infinite Laurels
+SCd935:a5:c6:Infinite Garlic
+SCdc11:d0:f0:Whip much faster
+SCedf3:04:07:Buy Thorn Whip and receive the Flame Whip (do not buy any other whips)
+SCee29:ff:20:Buy a White Crystal and receive the Red Crystal and all of Dracula's Relics
+SCee98:d0:f0:Faster dialog text
+Sf12c:09:Start with 100 Experience (E)
+SCfee0:ce:ff:Invincibility against water (8 of 8)
+SCfee1:8b:ff:Invincibility against water (6 of 8)
+SCfee2:01:ff:Invincibility against water (5 of 8)
+SCfee3:4c:ff:Invincibility against water (2 of 8)
+SCfee4:f4:ff:Invincibility against water (4 of 8)
+SCfee5:c4:ff:Invincibility against water (3 of 8)

@@ -1,0 +1,11 @@
+﻿
+S0104:09:Infinite lives (alt)
+S0346:04:Infinite health (alt)
+S038c:02:Invincibility (alt)
+SC8410:d0:f0:Invincibility (1 of 2)
+SC8412:ee:ce:Invincibility (2 of 2)
+SC8c98:cd:ce:Infinite health
+SCe0e5:01:00:Start with 3 Potions
+SCe0e5:02:00:Start with 3 Fireballs
+SCe0e5:03:00:Start with 3 Bombs
+SCe5e6:cd:ce:Infinite lives

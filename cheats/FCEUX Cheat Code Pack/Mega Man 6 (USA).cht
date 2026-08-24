@@ -1,0 +1,38 @@
+﻿
+S00a2:36:Invincibility (alt)
+S00a9:03:Infinite lives
+S03e5:1b:Infinite health (alt)
+S05b1:00:Super Moonwalk (enable during stages only)
+S0640:00:Bosses have no invulnerability time
+S0689:1b:Infinite Beat
+S068a:1b:Infinite Yamato
+S068b:1b:Infinite W Storm
+S068c:1b:Infinite F Blast
+S068d:1b:Infinite Plant B
+S068e:1b:Infinite Knight
+S0690:1b:Infinite C Flash
+S0691:1b:Infinite Centaur
+S0696:01:Have the Energy Balancer
+SC810e:a5:d0:Multi-jump (5 of 7)
+SC810f:40:0f:Multi-jump (1 of 7)
+SC8110:29:ad:Multi-jump (4 of 7)
+SC8111:80:c8:Multi-jump (2 of 7)
+SC8112:d0:05:Multi-jump (3 of 7)
+SC8113:ca:30:Multi-jump (6 of 7)
+SC8114:ea:0a:Multi-jump (7 of 7)
+SC81f5:00:19:Enemies always drop items
+SC8265:a5:c6:Infinite Rush Jet
+SC8c9c:13:11:Normal shots do more damage
+SC8ccf:16:13:Mega shots do more damage
+SC8e8a:a5:c6:Infinite lives (can sometimes die and go to another part of the game)
+SC8ea4:d0:f0:Invincibility
+SC8f84:24:e5:Infinite health (except fires, falling into pits and spikes)
+SC8f86:ad:8d:Infinite health
+SC92ae:c3:de:Collectable items never disappear
+SC9ea2:b9:99:Infinite weapons
+SCcd3e:00:02:Start with 1 life
+SCcd3e:05:02:Start with 6 lives
+SCcd3e:08:02:Start with 9 lives
+SCebea:a9:b1:One hit kills (2 of 2)
+SCebeb:00:0a:One hit kills (1 of 2)
+SCecef:03:05:Hit anywhere and shoot to pick-up items

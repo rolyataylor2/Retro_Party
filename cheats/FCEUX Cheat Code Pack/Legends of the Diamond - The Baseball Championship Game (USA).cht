@@ -1,0 +1,8 @@
+﻿
+SCb53a:a9:29:Balls are considered strikes
+SCb55c:01:03:1 strike and you're out (fouls don't count as strikes)
+SCb55c:02:03:2 strikes and you're out (fouls don't count as strikes)
+SCb55c:05:03:5 strikes and you're out (fouls don't count as strikes)
+SCb5c0:01:04:1 ball and you walk
+SCb5c0:02:04:2 balls and you walk
+SCb5c0:06:04:6 balls to walk

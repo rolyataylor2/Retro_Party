@@ -1,0 +1,24 @@
+﻿
+S021f:ff:Infinite fuel
+S0463:02:Lap 02
+S0463:03:Lap 03
+S0463:04:Lap 04
+S0463:05:Lap 05
+S0463:06:Lap 06
+S0463:07:Lap 07
+S0463:08:Lap 08
+S0463:09:Lap 09
+S0463:0a:Lap 10
+S0464:01:Always 1st place
+S046c:00:Always excellent condition - front left tire
+S046d:00:Always excellent condition - front right tire
+S046e:00:Always excellent conditon - rear left tire
+S046f:00:Always excellent condition - rear right tire
+S0471:00:Always excellent condition - engine
+S0473:15:Max speed
+SC9a68:00:ff:Tires don't burst
+SC9cad:f5:f8:Better left-hand cornering
+SCf34d:5f:9f:Start with less fuel
+SCf34d:ff:9f:Start with more fuel
+SCf381:ad:bd:Faster acceleration
+SCf3bb:05:03:Maximum acceleration (1 of 2)

@@ -1,0 +1,56 @@
+﻿
+S0030:50:Fighter shape (Adventure and Space mode)
+S0030:52:Fighter shape in TGL mode (Adventure and Space mode)
+S003a:01:Max consecutive firing
+S003a:02:Have 3-way shot
+S003a:03:Have 4-way shot
+S003d:01:Max weapon power - Blue
+S003d:02:Max weapon power - Green
+S003d:03:Max weapon power - Red
+S0050:0a:Start on area 10
+S0051:01:Start on Corridor 01
+S0051:02:Start on Corridor 02
+S0051:03:Start on Corridor 03
+S0051:04:Start on Corridor 04
+S0051:05:Start on Corridor 05
+S0051:06:Start on Corridor 06
+S0051:07:Start on Corridor 07
+S0051:08:Start on Corridor 08
+S0051:09:Start on Corridor 09
+S0051:0a:Start on Corridor 10
+S0051:0b:Start on Corridor 11
+S0051:0c:Start on Corridor 12
+S0051:0d:Start on Corridor 13
+S0051:0e:Start on Corridor 14
+S0051:0f:Start on Corridor 15
+S0051:10:Start on Corridor 16
+S0051:11:Start on Corridor 17
+S0051:12:Start on Corridor 18
+S0051:13:Start on Corridor 19
+S0051:14:Start on Corridor 20
+S0051:15:Start on Corridor 21
+S0051:16:Start on Corridor 22
+SC80e5:20:40:Start with less health
+SC80e5:80:40:Start with more health
+SC82c6:00:07:Walk through walls (1 of 2)
+SC8361:00:03:Walk through walls (2 of 2)
+SC850c:ae:05:Shots penetrate through everything and continually deals damage (1 of 2)
+SC860b:50:b0:Buy any item regardless of number of Chips
+SC886d:00:4b:Show entire map
+SC8b94:24:e5:Never use up shots (To finish the game, save before opening the entrance to corridor 6, restart with no codes, enter the entrance, save again, then restart.)
+SC8b94:e9:e5:Use up minimum shots (1 of 2)
+SC8b95:01:10:Use up minimum shots (2 of 2)
+SC9008:00:0b:Don't need keys to enter portals
+SCd2cb:60:a5:Invincibility
+SCd324:00:02:One hit kills
+SCd356:c0:25:Hit anywhere (2 of 4)
+SCd357:00:6f:Hit anywhere (1 of 4)
+SCd358:d0:f0:Hit anywhere (3 of 4)
+SCd359:09:05:Hit anywhere (4 of 4)
+SCd3f9:00:19:Shots penetrate through everything and continually deals damage (2 of 2)
+SCe325:00:ff:Infinite health
+SCeb48:01:00:Start on area 01
+SCeb48:03:00:Start on area 03
+SCeb48:05:00:Start on area 05
+SCeb48:07:00:Start on area 07
+SCeb48:09:00:Start on area 09

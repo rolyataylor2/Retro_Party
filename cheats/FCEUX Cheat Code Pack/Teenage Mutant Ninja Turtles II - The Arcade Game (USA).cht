@@ -1,0 +1,26 @@
+﻿
+S0025:81:Enable stage select after choosing your turtle
+S004d:09:Infinite lives - P1
+S004e:09:Infinite lives - P2
+S0093:2b:Invincibility - P1
+S0094:2b:Invincibility - P2
+S03d3:03:Infinite continues
+S0568:37:Infinite health - P1
+S056a:37:Infinite health - P2
+SC82b9:d0:f0:Invincibility (except grabs from behind) - both players
+SC8b03:00:01:Infinite lives - both players
+SC8ee5:bd:9d:Infinite health - both players (1 of 2)
+SCcaef:81:00:Enable stage select and 10 lives code
+SCd190:01:02:Start with 1 life
+SCd190:06:02:Start with 6 lives
+SCd190:09:02:Start with 9 lives
+SCd3dc:04:01:Press Start to finish the level (1 of 2)
+SCd3de:3c:3d:Press Start to finish the level (2 of 2)
+SCea9c:02:04:Stronger jump + attack
+SCea9c:09:04:Stronger jump + attack
+SCeaa0:01:03:Weaker kick
+SCeaa0:09:03:Stronger kick
+SCeaa4:09:02:Stronger turtle weapon
+SCeaaa:10:d0:One hit kills - both players
+Seaaa:10:One hit kills - both players(alt)
+SCec01:bd:9d:Infinite health - both players (2 of 2)

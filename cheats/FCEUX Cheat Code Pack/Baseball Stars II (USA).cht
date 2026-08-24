@@ -1,0 +1,27 @@
+﻿
+SC8315:01:03:One out per side instead of 3 - against computer
+SC8315:02:03:Two outs per side - against computer
+SC8315:04:03:Four outs per side - against computer
+SC9ca6:01:23:Game ends after 1 inning
+SC9ca6:03:23:Game ends after 2 innings
+SC9ca6:06:23:Game ends after 3 innings
+SC9ca6:08:23:Game ends after 4 innings
+SC9ca6:0a:23:Game ends after 5 innings
+SC9ca6:0c:23:Game ends after 6 innings
+SC9ca6:0e:23:Game ends after 7 innings
+SC9ca6:10:23:Game ends after 8 innings
+SCd4c3:a9:f0:Balls are considered strikes
+SCd4d6:ad:ee:Balls do not count
+SCd4dd:01:04:One ball for a walk
+SCd4dd:02:04:Two balls for a walk
+SCd4dd:03:04:Three balls for a walk
+SCd4dd:05:04:Five balls for a walk (only 3 show on screen)
+SCd4dd:06:04:Six balls for a walk (only 3 show on screen)
+SCd55a:ad:ee:Strikes do not count
+SCd561:01:03:One strike for an out
+SCd561:02:03:Two strikes for an out
+SCd561:04:03:Four strikes for an out
+SCd561:05:03:Five strikes for an out (only 3 show on screen)
+SCd673:01:03:One out per side instead of 3 - against human players
+SCd673:02:03:Two outs per side - against human players
+SCd673:04:03:Four outs per side - against human players

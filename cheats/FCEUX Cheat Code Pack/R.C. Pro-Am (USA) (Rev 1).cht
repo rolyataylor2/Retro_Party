@@ -1,0 +1,22 @@
+﻿
+S005c:00:Always win as 1st place
+S03f7:08:"NINTENDO" already spelled out (enable then disable)
+S03f9:00:Have pick-up truck as vehicle
+S03f9:01:Have off-road vehicle as vehicle
+S03f9:02:Have race car as vehicle
+S0453:04:Max Super Sticky Tires
+S0454:04:Max Turbo Acceleration
+S0455:04:Max higher top speed
+S0459:63:Infinite ammo for weapons
+S045a:01:Have Bombs
+S045a:02:Have Missiles
+S05dc:80:Auto race at 128 MPH (disable if you get stuck)
+SCb2e4:ad:40:Computer cars go crazy
+Sb2e4:ad:Computer cars go crazy (alt)
+SCc165:02:01:Double speed on first pick-up
+SCc165:04:01:Max speed on first pick-up
+SCc1b0:02:01:Double turbo on first pick-up
+SCc1b0:04:01:Max turbo on first pick-up
+SCc1cc:02:01:Double tires on first pick-up
+SCc1cc:04:01:Max tires on first pick-up
+SCd101:00:01:Infinite continues

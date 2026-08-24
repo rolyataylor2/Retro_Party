@@ -1,0 +1,14 @@
+﻿
+SC832c:01:04:Start with 1 ship
+SC832c:0a:04:Start with 10 ships
+SC8648:04:01:Start with 4 phasers
+SC8648:08:01:Start with 8 phasers
+SC8648:81:01:Start with twin shots + 1 phaser
+SC8648:84:01:Start with twin shots + 4 phasers
+SC8648:88:01:Start with twin shots + 8 phasers
+SC9085:04:02:Never lose twin shots (1 of 2)
+SC9087:02:01:Gain 2 phasers when you die with none
+SC9087:04:01:Gain 4 phasers when you die with none
+SC9087:81:01:Never lose twin shots (2 of 2)
+SC908d:00:0a:Infinite lives
+SCa0de:a9:a5:Invincibility

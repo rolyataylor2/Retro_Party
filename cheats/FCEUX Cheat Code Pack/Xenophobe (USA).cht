@@ -1,0 +1,21 @@
+﻿
+S0750:09:Infinite health - P1 (thousand's digit)
+S0751:09:Infinite health - P1 (hundred's digit)
+S0752:0a:Infinite health - P1 (ten's digit)
+S0753:09:Infinite health - P1 (one's digit)
+S0754:09:Infinite health - P2 (thousand's digit)
+S0755:09:Infinite health - P2 (hundred's digit)
+S0756:0b:Infinite health - P2 (ten's digit)
+S0757:0b:Infinite health - P2 (one's digit)
+S0795:00:Character modifier - Dr. Kwack
+S0795:01:Character modifier - Mr. Frogg
+S0795:02:Character modifier - Dr. Zordirz
+SCd148:03:07:Start on level 5
+SCd148:04:07:Start on level 4
+SCd148:05:07:Start on level 3
+SCd148:06:07:Start on level 2
+SCd152:03:09:Increase starting health - both players
+SCd163:03:ff:More health - P1 (2 of 2)
+SCd165:50:5c:More health - P1 (1 of 2)
+SCd6f6:ad:99:No health pick-ups allowed
+SCd747:00:eb:Infinite health - both players

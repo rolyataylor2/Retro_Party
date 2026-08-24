@@ -1,0 +1,43 @@
+This is a collection of cheat code files used with the Nestopia and FCEUX emulators. The goal is to keep this pack up-to-date and be as meticulous as possible. Please report any mistakes or code requests to Reddit user: u/popo31477
+
+To use the codes with Nestopia:
+1 - Extract the .xml files to \Nestopia\Cheats
+2 - Open a game in Nestopia, go to Options > Cheats > Import.
+3 - Browse to the \Cheats directory and find the matching .xml file.
+
+To use the codes with FCEUX:
+1 - Extract the .cht files to \FCEUX\Cheats
+2 - Open a game in FCEUX, go to Tools > Cheats > Import.
+3 - Browse to \Cheats directroy and find the matching .cht file.
+4 - All cheats are checked by default, so I would recommend unchecking them before starting your game.
+
+
+Changelog:
+- 2025-08-08 - The "Nestopia Cheat Code Pack" is now "Mighty Mo's Cheat Code Pack" which includes the Nestopia .xml codes replicated in FCEUX .cht format for use with that emulator.
+
+- 2025-07-29 - Fixed a typo in Laser Invasion (USA).
+
+- 2024-04-29 - Added a dozen or so more titles. 856 total files.
+
+- 2024-04-23 - Added 17 new files.
+Added many new codes to existing files, such as: 8 Eyes (USA), Adventure Island (USA), Castlevania III - Dracula's Curse (USA), Contra (USA), Darkwing Duck (USA), Final Fantasy (USA), Flintstones, The - The Rescue of Dino & Hoppy (USA), Gremlins 2 - The New Batch (USA), Guardian Legend, The (USA), Jurassic Park (USA), Kabuki - Quantum Fighter (USA), Legacy of the Wizard (USA), Legend of Zelda, The (USA), Pyramid (USA) (NINA-03) (Unl) (both revisions), Super Mario Bros 2 (both revisions), Rygar (USA) (both revisions), Sky Shark (USA), Solar Jetman - Hunt for the Golden Warpship (USA), Super Mario Bros (World) (including Duck Hunt and World Class Track Meet versions), TaleSpin (USA), Tom & Jerry - The Ultimate Game of Cat and Mouse! (USA), Uninvited (USA), Wizards & Warriors (USA) (both revisions) and Zelda II - The Adventure of Link (USA).
+
+- 2024-04-10 - Uploaded this package to Github - https://github.com/mightymo77/Nestopia-Cheat-Code-Pack
+Added additional Metroid and The Legend Of Zelda codes.
+
+- 2011-01-11 - Edited file names to match the No-Intro set.
+
+- 2009-11-21 - Every file has been remade from my source.
+Code formats automatically made to match the original (like <rocky> for example) have been removed.
+Fixed a large number of titles/file names.
+
+- 2009-10-13 - Skipping version numbers and going to just use the date
+
+- 2008-05-22 - Initial .xml format release
+
+- 2008-04-11 - Nestopia v1.38 released. Cheat files now use .xml format instead of .nsp.
+
+- 2005-12-02 - Initial .nsp format release
+
+--
+Reddit user Popo31477

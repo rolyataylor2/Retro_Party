@@ -1,0 +1,14 @@
+﻿
+S0052:09:Infinite N (one's digit)
+S0053:09:Infinite N (ten's digit) (alt)
+S0054:09:Infinite health (one's digit) (alt)
+S0055:09:Infinite health (ten's digit) (alt)
+S0058:04:Infinite lives (alt)
+S0091:ff:Infinite time (alt)
+SC8b72:d0:f0:No enemies
+SC8feb:f0:d0:Invincibility
+SCc17d:d5:d6:Infinite lives
+SCe6fc:c5:c6:Infinite time (2 of 2)
+SCe704:c5:c6:Infinite time (1 of 2)
+SCe7c1:60:99:Infinite health
+SCe80c:00:03:Each N (Nuke) is worth 10

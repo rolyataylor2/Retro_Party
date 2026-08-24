@@ -1,0 +1,28 @@
+﻿
+SC801c:3c:63:Less cannonball time
+SC86a1:01:00:Start on level 2 - P1
+SC86a1:02:00:Start on level 3 - P1
+SC86a1:03:00:Start on level 4 - P1
+SC86a3:01:05:Start with 1 life - P1
+SC86a3:08:05:Start with 8 lives - P1
+SC86a3:0a:05:Start with 10 lives - P1
+SC86a3:14:05:Start with 20 lives - P1
+SC86e1:01:00:Start on level 2 - P2
+SC86e1:02:00:Start on level 3 - P2
+SC86e1:03:00:Start on level 4 - P2
+SC86e3:01:05:Start with 1 life - P2
+SC86e3:08:05:Start with 8 lives - P2
+SC86e3:0a:05:Start with 10 lives - P2
+SC86e3:14:05:Start with 20 lives - P2
+SC8726:29:3d:Less assault time
+SC8726:63:3d:More assault time
+SC8755:2c:ce:Stop assault timer
+SC9104:2c:ce:Stop cannonball time
+SC915a:63:3d:More power ball time - level 1
+SC915b:63:38:More power ball time - level 2
+SC915c:63:33:More power ball time - level 3
+SC915d:63:2e:More power ball time - level 4
+SC943a:3c:63:Less joust time
+SCa32b:2c:ce:Stop joust timer
+SCaa4a:3c:63:Less wall time
+SCaa98:2c:de:Stop wall timer

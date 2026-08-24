@@ -1,0 +1,13 @@
+﻿
+S0110:06:Infinite lives (alt)
+S0119:0c:Infinite health (alt)
+SCc096:00:05:Start with 1 life
+SCc096:02:05:Start with 3 lives
+SCc096:09:05:Start with 10 lives
+SCc096:85:05:Start with 7 lives
+SCcb47:ad:8d:Infinite health
+SCcc8a:a5:c6:Invincibility
+SCd486:ae:8e:Infinite time
+SCd486:ea:8e:Infinite lives
+SCd48a:00:ff:Don't flash after getting hit
+SCd48a:63:ff:Flash 1/2 as long after getting hit

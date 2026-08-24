@@ -1,0 +1,47 @@
+﻿
+S0053:09:Infinite lives (alt)
+S00b0:0f:Infinite health (alt)
+S00b1:3f:Infinite weapon power (alt)
+S00b8:01:Have Machine Gun
+S00b8:02:Have Shot Gun
+S00b8:03:Have Laser Gun
+S00b8:04:Have Homing Missile
+S00b8:05:Have Grenade Launcher
+S0170:01:Start on stage 2
+S0170:02:Start on stage 3
+S0170:03:Start on stage 4
+S0170:04:Start on stage 5 (final stage)
+S040f:00:One hit kills on bosses (2 of 2)
+S04ff:00:One hit kills on bosses (1 of 2)
+SC8011:a5:c6:Invincibility after first hit (blinking)
+SC80fb:ec:fc:Super speed (1 of 2)
+SC80ff:e0:ff:Speed jump (2 of 2)
+SC815f:13:04:Super speed (2 of 2)
+SC8163:20:01:Speed jump (1 of 2)
+SC818d:00:04:Multi-jump (1 of 2)
+SC819e:16:0b:Mega-jump
+SC81c9:ac:cc:Multi-jump (1 of 2)
+SC8e33:a5:85:Infinite weapon power
+SCad58:a9:b0:Hit anywhere (1 of 4)
+SCad70:ad:9d:Hit anywhere (4 of 4)
+SCc3f7:a5:c6:Infinite lives
+SCdbe3:01:03:1 life after continue
+SCdbe3:06:03:6 lives after continue
+SCdbe3:09:03:9 lives after continue
+SCdcc9:01:02:Start with Machine Gun
+SCdcc9:04:02:Start with Laser Gun
+SCdcc9:05:02:Start with Machine Gun and Laser Gun
+SCdcc9:08:02:Start with Homing Missiles
+SCdcc9:10:02:Start with Grenade Launcher
+SCdcc9:1f:02:Start with all six weapons
+SCde19:01:03:Start with 1 life
+SCde19:06:03:Start with 6 lives
+SCde19:09:03:Start with 9 lives
+SCe761:a9:b0:Hit anywhere (2 of 4)
+SCe782:ad:9d:Hit anywhere (3 of 4)
+SCe824:01:02:Some aliens are weaker
+SCe824:08:02:Some aliens are tougher
+SCe825:ad:20:Invincibility (1 of 2)
+SCe8b4:ad:20:Invincibility (2 of 2)
+SCea39:e9:e5:Protection against most aliens
+SCea3b:a5:85:Infinite health

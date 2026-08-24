@@ -1,0 +1,13 @@
+﻿
+SC93b7:20:10:Double usual item power on item power crystal pick-up
+SC93b7:a0:10:Full item power on item power crystal pick-up
+SC9d64:a0:a9:Start at mission X (1 of 3)
+SC9d65:01:00:Start at mission 2 (3 of 3)
+SC9d65:02:00:Start at mission 3 (3 of 3)
+SC9d65:03:00:Start at mission 4 (3 of 3)
+SC9d65:04:00:Start at mission 5 (3 of 3)
+SC9d72:8c:8d:Start at mission X (2 of 3)
+SC9d8b:60:30:Double max power of all items at start
+SCdcfd:ad:8d:Never lose super power
+SCdd28:00:80:Never die when out of super power
+SCe2bf:e2:05:Start with lots of super power

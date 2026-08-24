@@ -1,0 +1,16 @@
+﻿
+SC908a:03:00:Less time to refuel
+SC908a:ff:00:More time to refuel
+SC911f:a9:a5:Start on mission X (1 of 3)
+SC9120:01:15:Start on mission 2 (3 of 3)
+SC9120:02:15:Start on mission 3 (3 of 3)
+SC9120:03:15:Start on mission 4 (3 of 3)
+SC9120:04:15:Start on mission 5 (3 of 3)
+SC9120:05:15:Start on mission 6 (3 of 3)
+SC9122:da:51:Start on mission X (2 of 3)
+SCc174:00:03:Start with 1 life
+SCc174:05:03:Start with 6 lives
+SCc174:08:03:Start with 9 lives
+SCc174:fe:03:Start with 255 lives
+SCc179:03:00:Start with best weapon
+SCdb59:a5:c6:Keep weapon after death

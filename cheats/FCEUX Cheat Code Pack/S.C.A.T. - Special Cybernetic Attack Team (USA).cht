@@ -1,0 +1,12 @@
+﻿
+S001c:09:Infinite health - P1
+SCcea4:32:06:Start with more health
+SCdc48:10:40:Shorter immunity
+SCdc7b:00:01:Infinite health
+SCdc84:ff:40:Longer immunity
+SCdc8e:00:08:Don't lose speed-ups when hit
+SCddf4:06:04:Faster normal speed-up (1 of 2)
+SCddf5:fa:fc:Faster normal speed-up (2 of 2)
+SCde04:09:06:Faster maximum speed-up (1 of 2)
+SCde05:f7:fa:Faster maximum speed-up (2 of 2)
+SCec7f:0a:03:More health on pick-up

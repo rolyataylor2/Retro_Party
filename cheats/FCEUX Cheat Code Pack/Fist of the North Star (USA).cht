@@ -1,0 +1,21 @@
+﻿
+S0063:07:Infinite Bomb
+S0065:09:Infinite time (alt)
+S0066:01:Invincibility (blinking)
+S006c:07:Infinite power
+S0073:38:Infinite health (alt)
+SCb186:06:01:Sweep kick damages enemies more
+SCb194:08:03:Straight kick damages enemies more
+SCb19a:e9:e5:Any attack mega-damages enemies (1 of 2)
+SCb19b:0a:d9:Any attack mega-damages enemies (2 of 2)
+SCc0cc:01:03:Start with 1 life
+SCc0cc:06:03:Start with 6 lives
+SCc0cc:09:03:Start with 9 lives
+SCc1cf:a5:c6:Infinite lives
+SCc5a0:ad:20:Invincibility
+SCc953:d0:f0:Pogo stick
+SCcc3e:00:04:Can't be knocked back by big thugs
+SCcc51:e9:e5:One hit kills you
+SCcc52:01:d9:Take minimum damage from all enemies (2 of 2)
+SCcc53:a5:85:Infinite health
+SCe65c:a5:c6:Infinite time

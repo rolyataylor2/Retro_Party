@@ -1,0 +1,17 @@
+﻿
+S00bb:00:Invincibility - P1
+S00cb:00:Invincibility - P2
+SCc21d:00:01:Shoot more bullets
+SCc28c:a5:d6:Infinite lives
+SCfa6b:04:00:Start on level 5 (2 of 2)
+SCfa6b:09:00:Start on level 10 (2 of 2)
+SCfa6b:0f:00:Start on level 15 (2 of 2)
+SCfa6b:13:00:Start on level 20 (2 of 2)
+SCfa6f:05:01:Start on level 5 (1 of 2)
+SCfa6f:0a:01:Start on level 10 (1 of 2)
+SCfa6f:10:01:Start on level 15 (1 of 2)
+SCfa6f:14:01:Start on level 20 (1 of 2)
+SCfa77:01:03:Start with 1 life - both players
+SCfa77:06:03:Start with 6 lives - both players
+SCfa77:09:03:Start with 9 lives - both players
+SCfa7e:86:85:P1 has more lives than P2

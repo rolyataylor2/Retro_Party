@@ -1,0 +1,71 @@
+﻿
+S00ed:01:Invincibility as Super Mario (alt)
+S00ed:02:Invincibility as Fire Mario (alt)
+S00ed:03:Invincibility as Raccoon Mario (alt)
+S00ed:04:Invincibility as Frog Mario (alt)
+S00ed:05:Invincibility as Tanooki
+S00ed:06:Invincibility as Sledgehammer Mario (alt)
+S03dd:7f:P meter always full
+SC8e70:14:76:Press Start to complete level (do not use on final ship/castle level for each map) (2 of 2)
+SC8e71:00:03:Press Start to complete level (do not use on final ship/castle level for each map) (1 of 2)
+SC8f3a:ad:9d:Restore powers after playing an action scene
+SC9123:bd:de:Infinite lives - both players
+SC92c6:00:04:1 life after continue - both players
+SC92c6:08:04:9 lives after continue - both players
+SCa3cc:a0:05:Invincibility as miniture stone Mario
+SCa3cc:a3:05:Invincibility as Fire Mario
+SCa3cc:af:05:Invincibility as Raccoon Mario
+SCa3cc:b9:05:Invincibility as Frog Mario
+SCa3cc:ba:05:Invincibility as Super Mario
+SCa3cc:fa:05:Invincibility as Sledgehammer Mario
+SCa416:01:00:Change to Super Mario if you fall off screen and die (2 of 2)
+SCa416:02:00:Change to Fire Mario if you fall off screen and die (2 of 2)
+SCa416:03:00:Change to Raccoon Mario if you fall off screen and die (2 of 2)
+SCa416:04:00:Change to Frog Mario if you fall off screen and die (2 of 2)
+SCa416:05:00:Change to Tanooki Mario if you fall off screen and die (2 of 2)
+SCa416:06:00:Change to Sledgehammer Mario if you fall off screen and die (2 of 2)
+SCa54e:00:17:Fireballs turn most solid objects into coins (1 of 2)
+SCa560:00:05:Fireballs turn most solid objects into coins (2 of 2)
+SCa62b:1f:0c:Infinite items - Mario
+SCa647:88:c8:Mega power-jumps
+SCa647:a8:c8:Super power-jumps
+SCa647:b8:c8:Power-jumps
+SCa6a0:00:cb:Fireballs hit anywhere (2 of 2)
+SCa6af:00:4d:Fireballs hit anywhere (1 of 2)
+Sa9c5:cf:Start a new game to see the ending
+SCab74:00:03:Raise P meter while standing still (hold B)
+SCabbf:ea:88:Turbo-charged running
+SCabc0:a9:a5:Super speed running
+SCac3f:24:d0:Multi-jump (alt 2)
+SCac7c:43:31:Always get a White Ship after passing a level
+SCac85:a5:a9:Multi-jump
+SCac85:ad:a9:Multi-jump (alt)
+SCacb3:01:00:Start on World 2
+SCacb3:02:00:Start on World 3
+SCacb3:03:00:Start on World 4
+SCacb3:04:00:Start on World 5
+SCacb3:05:00:Start on World 6
+SCacb3:06:00:Start on World 7
+SCacb3:07:00:Start on World 8
+SCacbc:02:00:Start a new game as Fire Mario
+SCacbc:03:00:Start a new game as Raccoon Mario
+SCacbc:04:00:Start a new game as Frog Mario
+SCacbc:05:00:Start a new game as Tanooki Mario
+SCacbc:06:00:Start a new game as Sledgehammer Mario
+SCafb0:ad:ce:Infinite time
+SCb08b:01:64:1-up for each coin (1 of 2)
+SCb08b:0a:64:1-up for each 10 coins (1 of 2)
+SCb090:01:64:1-up for each coin (2 of 2)
+SCb090:0a:64:1-up for each 10 coins (2 of 2)
+SCb47c:4c:82:Unused level - Plains 1 (1 of 2)
+SCb47c:ac:82:Unused level - Plains 2 (1 of 2)
+SCb47d:a1:bb:Unused level - Plains 2 (2 of 2)
+SCb47d:a7:bb:Unused level - Plains 1 (2 of 2)
+Sc460:52:1-Up from every enemy you stomp
+SCcee0:00:2a:Invincibility (Starman effect)
+SCd2c1:a9:d1:Move anywhere on the map (1 of 2)
+SCd348:10:20:Move anywhere on the map (2 of 2)
+SCda44:ad:8d:Invincibility after changing up from Super Mario (Raccoon, Frog, ect.)
+SCda9d:00:01:Change to XX if you fall off screen and die (1 of 2)
+Sdaaa:1c:Never die if hit while little (stops music)
+SCdb59:24:90:Tail hits anywhere

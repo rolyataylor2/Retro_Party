@@ -1,0 +1,52 @@
+﻿
+S003c:1f:Invincibility
+S00a1:03:Infinite lives (alt)
+S00b0:9c:Infinite health (alt 2)
+S00b1:9c:Infinite Rush Coil
+S00b2:9c:Infinite Rush Jet
+S00b3:9c:Infinite Rush Marine
+S00b4:9c:Infinite Toad Man
+S00b5:9c:Infinite Wire
+S00b6:9c:Infinite Balloon
+S00b7:9c:Infinite Dive Man
+S00b8:9c:Infinite Ring Man
+S00b9:9c:Infinite Drill Man
+S00ba:9c:Infinite Dust Man
+S00bb:9c:Infinite Pharaoh Man
+S00bc:9c:Infinite Bright Man
+S00bd:9c:Infinite Skull Man
+S0469:fe:Infinite time for 3rd Balloon
+S046a:fe:Infinite time for 2nd Balloon
+S046b:fe:Infinite time for 1st Balloon
+S0559:23:Instant full Mega Buster (alt 2)
+S05cf:00:Bosses have no invulnerability time
+SC8095:00:09:Instant full Mega Buster
+SC80fb:30:c8:Multi-jump (1 of 3)
+SC8104:00:79:Special items re-appear after being collected
+SC810f:81:82:Multi-jump (2 of 3)
+SC8133:24:90:Multi-jump (3 of 3)
+SC814f:08:05:Mega-jump
+SC8185:12:1a:Shorter slides
+SC8185:2f:1a:Longer slides
+SC8194:04:02:Faster slides
+SC81ed:24:85:Infinite health
+SC81ed:a5:85:Infinite health (alt)
+SC83e3:02:01:Move faster (2 of 2)
+SC8880:a5:85:Cosack can't hurt you
+SC8ccd:23:18:Instant full Mega Buster (alt)
+SC96f2:24:c6:Infinite energy pods on pick-up
+SC98f8:86:a5:Always have 10 E-Tanks
+SCbb90:02:04:Enemies always drop large health refill (3 of 3)
+SCbb90:05:04:Enemies always drop large weapon refill (3 of 3)
+SCbb97:00:06:Enemies always drop x (1 of 3)
+SCbb9a:03:f8:Enemies always drop x (2 of 3)
+SCbbd8:60:de:Collectable items never disappear
+SCc53a:00:02:Start with 1 life
+SCc53a:05:02:Start with 6 lives
+SCc53a:08:02:Start with 9 lives
+SCc679:02:01:Move faster (1 of 2)
+SCc833:a5:c6:Infinite lives
+SCfa44:18:b9:Hit anywhere (1 of 2)
+SCfa45:60:28:Hit anywhere (2 of 2)
+SCfd88:2c:99:Infinite weapon power
+SCfd88:b9:99:Infinite weapons

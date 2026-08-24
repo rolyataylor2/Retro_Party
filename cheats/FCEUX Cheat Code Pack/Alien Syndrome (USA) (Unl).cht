@@ -1,0 +1,20 @@
+﻿
+SCc3a4:01:04:1 life after continue
+SCc3a4:08:04:8 lives after continue
+SCc511:01:04:Start with 1 life - both players
+SCc511:08:04:Start with 8 lives - both players
+SCc56c:01:00:Start with Flame Thrower
+SCc56c:02:00:Start with Fireball
+SCc56c:03:00:Start with Laser
+SCc98a:00:ff:Don't lose life when shot or touched
+SCca76:00:ff:Don't lose life from falling down holes
+SCf199:34:33:Set timer to 440
+SCf23f:ad:ce:Infinite time
+SCfbf8:01:10:Start on round 2 (3 of 3)
+SCfbf8:02:10:Start on round 3 (3 of 3)
+SCfbf8:03:10:Start on round 4 (3 of 3)
+SCfbf8:04:10:Start on round 5 (3 of 3)
+SCfbf8:05:10:Start on round 6 (3 of 3)
+SCfbf8:06:10:Start on round 7 (3 of 3)
+SCfbfa:b4:00:Start on round X (1 of 3)
+SCfbfb:03:20:Start on round X (2 of 3)

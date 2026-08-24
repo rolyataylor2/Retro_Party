@@ -1,0 +1,9 @@
+﻿
+S0000:00:Level select (can select levels 0-99)
+SC8c6d:01:03:Start with 0 drops allowed
+SC8c6d:05:03:Start with 5 drops allowed
+SC8c7f:01:04:When starting on level 6, 0 drops allowed
+SC8c7f:05:04:When starting on level 6, 5 drops allowed
+SC8c92:01:05:When starting on level 11, 0 drops allowed
+SC8c92:03:05:When starting on level 11, 3 drops allowed
+SCbca3:a5:e6:Infinite drops

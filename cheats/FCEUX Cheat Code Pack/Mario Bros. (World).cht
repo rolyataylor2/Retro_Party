@@ -1,0 +1,21 @@
+﻿
+S0048:04:Infinite lives - P1
+S004c:04:Infinite lives - P2
+SCc8f5:01:00:Move faster
+SCc8f5:02:00:Move much faster
+SCc908:a0:a4:Enemies move faster (1 of 2)
+SCc909:02:c7:Enemies move faster (2 of 2)
+SCc909:03:c7:Enemies move much faster (2 of 2)
+SCd2f5:a5:c6:Infinite power blocks
+Sd359:00:Start with 1 life
+Sd359:05:Start with 6 lives
+Sd359:08:Start with 9 lives
+SCdcb3:00:40:Coins kill you
+SCdce0:60:d6:Invincibility
+Sdce0:a5:Infinite lives
+SCe371:ad:ce:Infinite time - bonus rounds (alt)
+SCe371:de:ce:Infinite time - bonus rounds
+SCe795:60:ad:Stops the green fireball from appearing
+SCea82:00:01:Stops the red fireball from appearing
+SCf350:f6:fc:Mega-jump (1 of 2)
+SCf351:f6:fc:Mega-jump (2 of 2)

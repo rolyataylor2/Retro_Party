@@ -1,0 +1,28 @@
+﻿
+SC8764:01:05:Fewer lives on ship section
+SC8764:09:05:More lives on ship section
+SC8d38:a5:c6:Infinite lives on bike section
+SC90a6:01:03:Fewer lives on castle section
+SC90a6:09:03:More lives on castle section
+SC9505:01:06:Fewer lives on tank section
+SC9505:09:06:More lives on tank section
+SC968f:00:01:Infinite time
+SC9bc2:00:01:Heart does nothing (may goof up energy bar)
+SCa0ad:ad:ce:Infinite credits
+SCa0b1:01:03:Continue with 1 life
+SCa0b1:05:03:Continue with 5 lives
+SCa0b1:07:03:Continue with 7 lives
+SCa0b1:09:03:Continue with 9 lives
+SCc06c:01:03:Start with 1 life
+SCc06c:05:03:Start with 5 lives
+SCc06c:07:03:Start with 7 lives
+SCc06c:09:03:Start with 9 lives
+SCc071:01:00:Start on level 2
+SCc071:02:00:Start on level 3
+SCc071:03:00:Start on level 4
+SCc071:04:00:Start on level 5
+SCc071:05:00:Start on level 6
+SCe864:05:01:Super-jump
+SCe864:09:01:Mega-jump
+SCec50:fc:04:Infinite lives
+SCfa1c:fe:04:Infinite health (you can get trapped in certain areas)

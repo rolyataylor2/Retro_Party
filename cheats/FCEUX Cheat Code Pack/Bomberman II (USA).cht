@@ -1,0 +1,42 @@
+﻿
+S0069:05:Invincibility (except in normal game) - P1
+S006a:05:Invincibility (except in normal game) - P2
+S006b:05:Invincibility (except in normal game) - P3
+S0090:0c:Max Bomb quantity - P1
+S0091:0c:Max Bomb quantity - P2
+S0092:0c:Max Bomb quantity - P3
+S0093:0c:Max Bomb power - P1
+S0094:0c:Max Bomb power - P2
+S0095:0c:Max Bomb power - P3
+S04e5:09:Infinite lives - P1
+S0559:09:Infinite time (hundred's digit)
+S055a:09:Infinite time (ten's digit)
+S055b:09:Infinite time (one's digit)
+SC8326:ad:b1:Hit anywhere (all enemies killed with one bomb) (3 of 4)
+SC8327:1b:2f:Hit anywhere (all enemies killed with one bomb) (1 of 4)
+SC8328:61:29:Hit anywhere (all enemies killed with one bomb) (2 of 4)
+SC8329:ea:80:Hit anywhere (all enemies killed with one bomb) (4 of 4)
+SC879c:a9:a5:Walk through walls (1 of 2)
+SC879d:01:ad:Walk through walls (2 of 2)
+SC87a1:a9:a5:Immune to explosions (1 of 2)
+SC87a2:01:ae:Immune to explosions (2 of 2)
+SC87c2:00:03:Always have Detonator
+SC9056:74:c7:Dollar sign acts as Bomb
+SC9056:80:c7:Dollar sign acts as flame face
+SC9056:8c:c7:Dollar sign acts as heart with Bomb
+SC9056:91:c7:Dollar sign acts as skate
+SC9056:a9:c7:Dollar sign acts as vest for a short time
+SC928b:20:4b:Bomb has a shorter fuse
+SC928b:7f:4b:Bomb has a longer fuse
+SC98ab:1e:3b:Faster timer
+SC98ab:63:3b:Slower timer
+SC98af:2c:ce:Infinite time
+SCb946:00:20:Remove all breakable blocks (1 of 2)
+SCb94f:ad:20:Remove all breakable blocks (2 of 2)
+SCba95:2c:de:Stop Bombs from exploding
+SCc980:00:02:Start with 1 life
+SCc980:05:02:Start with 6 lives
+SCc980:08:02:Start with 9 lives
+SCcac4:2c:ce:Infinite lives
+SCce2d:04:00:Super start (1 of 2)
+SCce5c:04:00:Super start (2 of 2)

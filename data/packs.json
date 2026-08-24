@@ -1,0 +1,20 @@
+[
+  {
+    "id": "party-mix",
+    "name": "Party Mix",
+    "description": "Every mini-game on this server, shuffled into one cheerful set.",
+    "challengeIds": [
+      "*"
+    ],
+    "categories": [
+      "All"
+    ],
+    "playerCounts": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "featured": true
+  }
+]

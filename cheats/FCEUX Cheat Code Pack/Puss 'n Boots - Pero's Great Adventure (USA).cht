@@ -1,0 +1,14 @@
+﻿
+S000a:09:Infinite lives (alt)
+S0092:38:Infinite health (alt)
+SCc092:01:03:Start with 1 life
+SCc092:06:03:Start with 6 lives
+SCc092:09:03:Start with 9 lives
+SCc21a:a5:c6:Infinite lives
+SCc500:04:00:Start on stage 1
+SCc500:09:00:Start on stage 2
+SCc500:0e:00:Start on stage 3
+SCcb27:00:09:Mega-jump
+SCcd71:a5:85:Infinite health
+SCe81f:00:ff:Auto-fire and auto-jump
+SCebd7:1c:38:Start with less health

@@ -1,0 +1,19 @@
+﻿
+S01f9:09:Infinite time (minute ten's digit)
+S01fa:09:Infinite time (minute one's digit)
+S01fb:09:Infinite time (second ten's digit)
+S01fc:09:Infinite time (second one's digit)
+S040f:63:Infinite Pistol ammo
+S042c:09:Infinite lives (alt)
+SC9fd8:0f:1f:Speed up rate of air loss
+SC9fd8:3f:1f:Slow down rate of air loss (scuba mode)
+SCb177:d0:f0:Invincibility (1 of 2)
+SCb17f:f0:d0:Invincibility (2 of 2)
+SCc98d:ad:ce:Infinite lives
+SCe076:01:06:Start with 2 lives
+SCe076:0e:06:Start with 15 lives
+SCe090:ea:8a:Start with some weapons
+SCf532:24:e5:Shield doesn't take damage from bullets
+SCf561:24:e5:Immune to most damage
+SCf570:ad:9d:Infinite health
+SCfb7d:00:01:Infinite weapons (Bombs, Flares, Nukes, Bullets)

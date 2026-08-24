@@ -1,0 +1,37 @@
+﻿
+S0020:01:Start on stage 2 (disable after stage begins)
+S0020:02:Start on stage 3 (disable after stage begins)
+S0020:03:Start on stage 4 (disable after stage begins)
+S0020:04:Start on stage 5 (disable after stage begins)
+S0020:05:Start on stage 6 (disable after stage begins)
+SC8131:50:d0:Invincibility (except vs bullets)
+SC82cb:50:b0:Hit anywhere (1 of 5)
+SC82cc:3b:6b:Hit anywhere (3 of 5)
+SC8520:4c:b0:Hit anywhere (2 of 5)
+SC8521:37:5c:Hit anywhere (5 of 5)
+SC8522:85:b9:Hit anywhere (4 of 5)
+SC8718:24:c6:Infinite lives - P1
+SC871d:24:c6:Infinite lives - P2
+SC8724:84:05:Invincibility (star effect) (1 of 2)
+SC872f:84:05:Invincibility (star effect) (2 of 2)
+SC87d3:30:f1:Multi-jump (03 of 15)
+SC87d4:af:8b:Multi-jump (10 of 15)
+SC8df5:00:01:Infinite POW
+SCaf30:a5:ff:Multi-jump (14 of 15)
+SCaf31:04:ff:Multi-jump (08 of 15)
+SCaf32:29:ff:Multi-jump (13 of 15)
+SCaf33:08:ff:Multi-jump (01 of 15)
+SCaf34:f0:ff:Multi-jump (06 of 15)
+SCaf35:03:ff:Multi-jump (09 of 15)
+SCaf36:20:ff:Multi-jump (05 of 15)
+SCaf37:f8:ff:Multi-jump (07 of 15)
+SCaf38:89:ff:Multi-jump (11 of 15)
+SCaf39:20:ff:Multi-jump (04 of 15)
+SCaf3a:f1:ff:Multi-jump (12 of 15)
+SCaf3b:8b:ff:Multi-jump (15 of 15)
+SCaf3c:60:ff:Multi-jump (02 of 15)
+SCd16e:01:05:Start with 1 life - P1
+SCd16e:0a:05:Start with 10 lives - P1
+SCd176:01:05:Start with 1 life - P2
+SCd176:0a:05:Start with 10 lives - P2
+SCdf6f:8d:ad:Always have 255 POW

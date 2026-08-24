@@ -1,0 +1,29 @@
+﻿
+S007f:02:Have Boomerang
+S007f:04:Have Ice Ball
+S007f:08:Have Power Ball
+S007f:33:Have Dagger, Boomerang, Molotov Cocktail, Hand Gun
+S009d:fa:Doors never close once opened
+S030e:10:Invincibility - Orin (blinking)
+S032e:10:Invincibility - Cutrus (blinking)
+S034e:00:Bosses have no invulnerability time
+S034f:00:Bosses defeated instantly
+S0594:4f:Infinite health - Orin (alt)
+S0595:4f:Infinite health - Cutrus (alt)
+S0596:4f:Infinite item power
+SCa26c:40:2f:Start with more health - Orin
+SCa26d:40:2f:Start with more health - Cutrus
+SCa26e:2f:00:Start with some item power
+SCa26e:4f:2f:Start with max ammo
+SCb3e1:08:07:Can select the House of Ruth (1 of 2)
+SCb3fc:07:06:Can select the House of Ruth (2 of 2)
+SCbb3d:d0:f0:Invincibility - Orin
+SCbb9d:2c:8d:Most attacks won't damage Orin
+SCbb9d:ad:8d:Infinite health - Orin
+SCbed4:2c:8d:Never lose item power once gained
+SCbed4:ad:8d:Infinite ammo
+SCc976:d0:f0:Invincibility - Cutrus
+SCc9f7:2c:8d:Most attacks won't damage Cutrus
+SCc9f7:ad:8d:Infinite health - Cutrus
+SCee1b:85:86:Start with all weapons
+SCee1f:e6:86:Start with Dagger

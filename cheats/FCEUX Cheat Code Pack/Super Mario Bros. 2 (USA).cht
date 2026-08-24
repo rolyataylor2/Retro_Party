@@ -1,0 +1,112 @@
+﻿
+S0085:fa:Invincibility
+S0099:00:Multi-jump
+S00b9:fa:Infinite magic carpet time (alt)
+S0468:00:One hit kills on bosses
+S04ad:09:Receive small heart for every enemy defeated
+S04b7:fa:Infinite sub-space time
+S04c9:fa:All characters can float (alt)
+S04ff:fa:Stopwatch always active
+S062a:04:Only 1 Cherry needed for Starman
+S062b:09:Infinite coins
+S062c:04:Only 1 big Radish needed for Stopwatch
+S0635:01:Start on World 2 (alt)
+S0635:02:Start on World 3 (alt)
+S0635:03:Start on World 4 (alt)
+S0635:04:Start on World 5 (alt)
+S0635:05:Start on World 6 (alt)
+S0635:06:Start on World 7 (alt)
+SC83dc:01:04:Super moon-jumps - Mario
+SC83de:28:18:Super fast run - Mario (1 of 2)
+SC83e1:d8:e8:Super fast run - Mario (2 of 2)
+SC83f3:01:04:Super moon-jumps - Toad
+SC83f5:28:18:Fast run - Toad (1 of 2)
+SC83f8:d8:e8:Fast run - Toad (2 of 2)
+SC840a:00:01:Mega moon-jumps - Luigi
+SC840c:28:18:Super fast run - Luigi (1 of 2)
+SC840f:d8:e8:Super fast run - Luigi (2 of 2)
+SC8421:01:04:Super moon-jumps - Princess
+SC8423:28:18:Super fast run - Princess (1 of 2)
+SC8426:d8:e8:Super fast run - Princess (2 of 2)
+SC84a3:00:02:Speed up enemies
+SC85f2:20:08:Super speed enemies (1 of 2)
+SC85f3:e0:f8:Super speed enemies (2 of 2)
+SC89a5:ad:ff:Walk safely over pits (38 of 49)
+SC89a6:2a:ff:Walk safely over pits (49 of 49)
+SC89a7:04:ff:Walk safely over pits (15 of 49)
+SC89a8:30:ff:Walk safely over pits (04 of 49)
+SC89a9:11:ff:Walk safely over pits (27 of 49)
+SC89aa:ad:ff:Walk safely over pits (39 of 49)
+SC89ab:2b:ff:Walk safely over pits (18 of 49)
+SC89ac:04:ff:Walk safely over pits (16 of 49)
+SC89ad:c9:ff:Walk safely over pits (21 of 49)
+SC89ae:c0:ff:Walk safely over pits (09 of 49)
+SC89af:90:ff:Walk safely over pits (10 of 49)
+SC89b0:0a:ff:Walk safely over pits (44 of 49)
+SC89b1:a5:ff:Walk safely over pits (36 of 49)
+SC89b2:f5:ff:Walk safely over pits (33 of 49)
+SC89b3:30:ff:Walk safely over pits (03 of 49)
+SC89b4:06:ff:Walk safely over pits (40 of 49)
+SC89b5:a5:ff:Walk safely over pits (37 of 49)
+SC89b6:32:ff:Walk safely over pits (48 of 49)
+SC89b7:c9:ff:Walk safely over pits (20 of 49)
+SC89b8:c8:ff:Walk safely over pits (08 of 49)
+SC89b9:b0:ff:Walk safely over pits (12 of 49)
+SC89ba:06:ff:Walk safely over pits (42 of 49)
+SC89bb:a9:ff:Walk safely over pits (25 of 49)
+SC89bc:00:ff:Walk safely over pits (02 of 49)
+SC89bd:8d:ff:Walk safely over pits (32 of 49)
+SC89be:24:ff:Walk safely over pits (17 of 49)
+SC89bf:06:ff:Walk safely over pits (41 of 49)
+SC89c0:60:ff:Walk safely over pits (05 of 49)
+SC89c1:a5:ff:Walk safely over pits (34 of 49)
+SC89c2:5a:ff:Walk safely over pits (46 of 49)
+SC89c3:09:ff:Walk safely over pits (26 of 49)
+SC89c4:04:ff:Walk safely over pits (14 of 49)
+SC89c5:85:ff:Walk safely over pits (28 of 49)
+SC89c6:5a:ff:Walk safely over pits (45 of 49)
+SC89c7:a9:ff:Walk safely over pits (23 of 49)
+SC89c8:00:ff:Walk safely over pits (01 of 49)
+SC89c9:85:ff:Walk safely over pits (30 of 49)
+SC89ca:99:ff:Walk safely over pits (22 of 49)
+SC89cb:85:ff:Walk safely over pits (31 of 49)
+SC89cc:46:ff:Walk safely over pits (43 of 49)
+SC89cd:a9:ff:Walk safely over pits (24 of 49)
+SC89ce:c8:ff:Walk safely over pits (07 of 49)
+SC89cf:85:ff:Walk safely over pits (29 of 49)
+SC89d0:32:ff:Walk safely over pits (47 of 49)
+SC89d1:d0:ff:Walk safely over pits (11 of 49)
+SC89d2:e8:ff:Walk safely over pits (13 of 49)
+SC8a7d:ad:ce:Infinite lives
+SC8ab5:ad:b9:Quick pick-up
+SC8c87:1c:18:Walk backwards (2 of 2)
+SC8c88:d3:8c:Walk backwards (2 of 2)
+SC8cbc:00:3c:Jump as high as a squat jump
+SC8cf8:70:f0:All characters can float
+SC8d21:01:00:Princess has mega-float and lunar descent
+SC8d21:11:00:Princess has mega-float
+SC8dbd:24:f0:Hawkeye at end of level always open
+SC8de6:00:05:Permanent turbo running (1 of 2)
+SC8de7:ea:4a:Super turbo running (1 of 2)
+SC8df8:00:06:Permanent turbo running (2 of 2)
+SC8dfa:ea:6a:Super turbo running (2 of 2)
+SC8efe:20:8d:Walk safely over pits (06 of 49)
+SC8eff:a5:24:Walk safely over pits (35 of 49)
+SC8f00:89:06:Walk safely over pits (19 of 49)
+SC95a2:ff:60:Twice as much time in sub-space
+SC9a83:01:40:Start on World 2 (3 of 3)
+SC9a83:02:40:Start on World 3 (3 of 3)
+SC9a83:03:40:Start on World 4 (3 of 3)
+SC9a83:04:40:Start on World 5 (3 of 3)
+SC9a83:05:40:Start on World 6 (3 of 3)
+SC9a83:06:40:Start on World 7 (3 of 3)
+SC9a85:35:00:Start on World X (1 of 3)
+SC9a86:06:01:Start on World X (2 of 3)
+SCa372:b5:d6:Infinite magic carpet time
+SCb69f:e0:29:Hit anywhere (2 of 3)
+SCb6a0:00:04:Hit anywhere (1 of 3)
+SCb6a2:44:4d:Hit anywhere (3 of 3)
+SCba06:2c:8d:Infinite health (except if you hit a spike)
+SCba06:ad:8d:Infinite health (alt)
+SCf324:a9:d0:Invincibility (1 of 2)
+SCf326:85:a5:Invincibility (2 of 2)

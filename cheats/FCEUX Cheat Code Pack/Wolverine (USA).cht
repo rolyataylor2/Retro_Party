@@ -1,0 +1,26 @@
+﻿
+S00cd:1e:Infinite health
+S04da:03:Infinite lives
+SCa108:2c:ce:Infinite lives - both players
+SCb525:02:08:Take less damage from bullets (1 of 2)
+SCbb2e:fc:fe:Super speed (1 of 2)
+SCbb38:04:02:Super speed (2 of 2)
+SCbba7:28:0d:Mega-jump
+SCc327:00:01:Claws use up no health
+SCc408:02:08:Take less damage from bullets (2 of 2)
+SCd072:40:00:Start each new life as a berserker
+SCd0a2:01:00:Start on stage 2 - P1
+SCd0a2:03:00:Start on stage 4 - P1
+SCd0a2:05:00:Start on stage 6 - P1
+SCd0a2:07:00:Start on stage 8 - P1
+SCd0ba:01:03:Start with 1 life - P1
+SCd0ba:06:03:Start with 6 lives - P1
+SCd0ba:09:03:Start with 9 lives - P1
+SCd0cf:01:00:Start on stage 2 - P2
+SCd0cf:03:00:Start on stage 4 - P2
+SCd0cf:05:00:Start on stage 6 - P2
+SCd0cf:07:00:Start on stage 8 - P2
+SCd0e7:01:03:Start with 1 life - P2
+SCd0e7:06:03:Start with 6 lives - P2
+SCd0e7:09:03:Start with 9 lives - P2
+Sd3df:5d:No enemies

@@ -1,0 +1,13 @@
+﻿
+SC8395:ad:ee:Strike outs aren't counted
+SC839c:01:03:Each strike out counts as 3 outs
+SC839c:02:03:Each strike out counts as 2 outs
+SC839c:05:03:5 strike outs allowed
+SC9861:ff:0e:Balls are counted as strikes (1 of 2)
+SC9863:0e:f9:Balls are counted as strikes (2 of 2)
+SC9892:00:02:1 strike and you're out
+SC9892:01:02:2 strikes and you're out
+SC9895:ad:ee:Some strikes aren't counted
+SC98ca:ad:ee:Balls aren't counted
+SCf754:ad:ee:Computer can't score (1 of 2)
+SCf75e:ad:fe:Computer can't score (2 of 2)

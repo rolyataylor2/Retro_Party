@@ -1,0 +1,22 @@
+﻿
+SCc822:01:03:Start with 1 life
+SCc822:06:03:Start with 6 lives
+SCc822:09:03:Start with 9 lives
+SCc828:01:00:Start at stage 2
+SCc828:02:00:Start at stage 3
+SCc828:03:00:Start at stage 4
+SCc828:04:00:Start at stage 5
+SCc828:05:00:Start at stage 6
+SCc828:06:00:Start at stage 7
+SCc985:01:03:1 life using helicopter after continue
+SCc985:06:03:6 lives using helicopter after continue
+SCc985:09:03:9 lives using helicopter after continue
+SCc99f:01:03:1 life using jeep after continue
+SCc99f:06:03:6 lives using jeep after continue
+SCc99f:09:03:9 lives using jeep after continue
+SCe2dd:a5:c6:Infinite lives using helicopter
+SCe302:a5:85:Keep firepower and speed-ups for helicopter
+SCe39f:80:d8:Restrict movement area for helicopter
+SCe66c:a5:c6:Infinite lives using jeep
+SCe691:a5:85:Keep firepower and speed-ups for jeep
+SCe79c:88:e0:Restrict movement area for jeep

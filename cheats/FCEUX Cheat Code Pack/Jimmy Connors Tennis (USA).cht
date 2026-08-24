@@ -1,0 +1,17 @@
+﻿
+SCe1bd:02:07:2 points needed to win tiebreaker instead of 7
+SCe1bd:03:07:3 points needed to win tiebreaker
+SCe1bd:04:07:4 points needed to win tiebreaker
+SCe1bd:05:07:5 points needed to win tiebreaker
+SCe1bd:06:07:6 points needed to win tiebreaker
+SCe1bd:0a:07:10 points needed to win tiebreaker
+SCe1cc:01:02:Don't need to win by 2 to win tiebreaker
+SCe1e5:00:03:Only need 15 points to win game
+SCe1e5:01:03:Only need 30 points to win game
+SCe1e5:02:03:Only need 40 points to win game
+SCe1ed:80:d0:Must get 2 points after 40 to win and no deuces (always shows advantage after 40)
+SCe288:00:06:Only need 1 game to win set instead of 6
+SCe288:01:06:Only need 2 games to win set
+SCe288:02:06:Only need 3 games to win set
+SCe288:04:06:Only need 4 games to win set
+SCe288:05:06:Only need 5 games to win set

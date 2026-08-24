@@ -1,0 +1,12 @@
+﻿
+S0503:00:Have Bouncing Ball
+S0503:01:Have Small Rocks
+S0511:09:Infinite throwing items
+SC8046:01:03:Start with 1 life
+SC8046:06:03:Start with 6 lives
+SC8046:09:03:Start with 9 lives
+SC804b:06:09:Start with 6 pies
+SC804b:12:09:Start with 18 pies
+SCa038:00:0a:Infinite health
+SCa4c1:2c:ce:Infinite pies - first life only
+SCab9d:00:01:Pick-up Super Balls instead of Custard Pies

@@ -1,0 +1,28 @@
+﻿
+SCa05a:f0:d0:Hold jump to float
+SCa062:ee:8d:Start with 2 Red Taylors
+SCa065:ee:8d:Start with 2 Blue Taylors
+SCa068:ee:8d:Start with 2 Classies
+SCa06b:ee:8d:Start with 2 Don-Dons
+SCa06e:ee:8d:Start with 2 Poleys
+SCa071:ee:8d:Start with 2 Boomerangs
+SCa074:ee:8d:Start with 2 Axes
+SCa077:ee:8d:Start with 2 invincibility crystals
+SCa0d0:01:03:Start with 2 lives
+SCa0d0:06:03:Start with 7 lives
+SCa0d0:09:03:Start with 9 lives
+SCa503:03:0a:Start a new game to view ending (2 of 2)
+SCa507:00:04:Start a new game to view ending (1 of 2)
+SCa64c:00:02:Gain 99 lives after gaining 100 fruit
+SCaa80:bd:7b:Mega-jumping Master Higgins
+SCab04:00:03:Hit anywhere (1 of 4)
+SCacec:00:01:Invincibility
+SCad8f:b9:99:Hit anywhere (3 of 4)
+SCaddc:60:b9:Hit anywhere (2 of 4)
+SCae8d:b9:99:Hit anywhere (4 of 4)
+SCaeb7:00:01:Don't die when hitting spikes
+SCaf45:85:e6:Don't lose pet when hitting spikes
+SCb1bc:2c:9d:Keep items after dying - after 1st stage
+SCb5f5:ad:8d:Infinite lives
+SCfd91:ad:ce:Infinite health
+SCfd91:cd:ce:Infinite vitality

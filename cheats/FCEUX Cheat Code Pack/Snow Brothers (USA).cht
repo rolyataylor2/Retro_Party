@@ -1,0 +1,18 @@
+﻿
+SC800f:01:00:Start with Speed Skates (don't use with other "start with" codes)
+SC800f:02:00:Start with Power Shots (don't use with other "start with" codes)
+SC800f:04:00:Start with super snow-throwing ability (don't use with other "start with" codes)
+SC800f:0f:00:Start with Speed Skates, Power Shots and super snow-throwing
+SC8317:00:02:Always get 1 chance after a continue (count restarts at 0)
+SC8317:09:02:Always get 10 chances after a continue (count restarts at 9)
+SC8eb6:bd:de:Invincibility
+SC8ffb:a5:d6:Infinite number of chances
+SC909c:b9:99:Don't lose super ability after you lose a chance
+SCa2e6:04:00:Start on 5th floor
+SCa2e6:09:00:Start on 10th floor
+SCa2e6:13:00:Start on 20th floor
+SCa2e6:1d:00:Start on 30th floor
+SCa2e6:27:00:Start on 40th floor
+SCa2e6:31:00:Start on 50th floor
+SCa329:00:02:Start with 1 chance (count starts at 0)
+SCa329:09:02:Start with 10 chances instead of 3 (count starts at 9 instead of 2)

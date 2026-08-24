@@ -1,0 +1,37 @@
+﻿
+S00a4:59:Infinite time
+S042f:63:Infinite Gems
+S0452:11:Invincibility (blinking)
+S0453:01:Invincibility (alt)
+S0459:03:Infinite health (alt 2)
+S045d:63:Infinite lives (alt 2)
+SCcd8d:d0:f0:Invincibility (3 of 3)
+SCcdbb:2c:ce:Infinite health (alt) (3 of 3)
+SCcdbb:cd:ce:Infinite health (2 of 2)
+SCce7e:2c:ce:Infinite health (alt) (2 of 3)
+SCced5:2c:ce:Infinite health (alt) (1 of 3)
+SCced5:cd:ce:Infinite health (1 of 2)
+SCd054:10:ad:Infinite lives (alt) (1 of 2)
+SCd055:08:5d:Infinite lives (alt) (2 of 2)
+SCd05a:8d:ce:Infinite lives (1 of 2)
+SCd0c7:8d:ce:Infinite lives (2 of 2)
+SCd793:ad:8d:Infinite Bones after obtaining one
+SCd97b:d0:f0:Invincibility (1 of 3)
+SCd9b5:d0:f0:Invincibility (2 of 3)
+SCed48:00:02:Start with 1 life
+SCed48:04:02:Start with 5 lives
+SCed48:06:02:Start with 7 lives
+SCed48:08:02:Start with 9 lives
+SCed51:06:03:Start with 6 hearts
+SCed51:08:03:Start with 8 hearts
+SCedbc:c8:c4:Start at race 1, end of stage 1
+SCedbc:cf:c4:Start at race 1, end of stage 2
+SCedbc:d4:c4:Start at race 1, end of stage 3
+SCedbc:f2:c4:Go straight to level boss
+SCedbe:d8:d6:Start at race 2, end of stage 1
+SCedbe:dc:d6:Start at race 2, end of stage 2
+SCedbe:e0:d6:Start at race 2, end of stage 3
+SCedc0:e4:e2:Start at race 3, end of stage 1
+SCedc0:e8:e2:Start at race 3, end of stage 2
+SCedc0:ec:e2:Start at race 3, end of stage 3
+SCedc0:f0:e2:Start at race 3, end of stage 4

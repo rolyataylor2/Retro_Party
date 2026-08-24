@@ -1,0 +1,86 @@
+﻿
+S00ba:03:DH - Infinite ammo (alt)
+S075a:09:SMB - Infinite lives (alt)
+S0787:0c:SMB - Infinite time (alt 2)
+S079e:06:SMB - Invincibility (blinking)
+S079f:18:SMB - Invincibility (Starman effect) (alt)
+S81a4:4c:Press Start to delete all enemies on screen (2 of 3)
+S81a5:71:Press Start to delete all enemies on screen (3 of 3)
+S81a6:d0:Press Start to delete all enemies on screen (1 of 3)
+S8270:00:SMB - Enable level select
+SC82bc:01:00:SMB - Control Mario in demo and title screen (1 of 3)
+SC82be:70:fc:SMB - Control Mario in demo and title screen (2 of 3)
+SC82bf:07:06:SMB - Control Mario in demo and title screen (3 of 3)
+SC84e5:00:07:SMB - Gain a 1-up when an enemy is killed or power-up is gained
+S906a:00:SMB - Start with 1 life - both players
+S906a:05:SMB - Start with 6 lives - both players
+S906a:08:SMB - Start with 9 lives - both players
+S906b:8e:SMB - Start P1 with 8 lives and P2 with 3 lives
+S9087:01:SMB - Start on World 2 (3 of 3)
+S9087:02:SMB - Start on World 3 (3 of 3)
+S9087:03:SMB - Start on World 4 (3 of 3)
+S9087:04:SMB - Start on World 5 (3 of 3)
+S9087:05:SMB - Start on World 6 (3 of 3)
+S9087:06:SMB - Start on World 7 (3 of 3)
+S9087:07:SMB - Start on World 8 (3 of 3)
+S9089:5f:SMB - Start on World X (1 of 3)
+S908a:07:SMB - Start on World X (2 of 3)
+S9151:00:Always swimming
+S91d9:ad:SMB - Infinite lives - both players
+SC91d9:cd:ce:SMB - Infinite lives
+SC9606:a5:85:Press down to enter a pipe anywhere (3 of 3)
+Sb08b:f5:SMB - Control Mario in entrances that lead to underground
+SCb123:10:f0:SMB - Can move left or right while crouched
+Sb263:a9:SMB - Always Big Mario (1 of 3)
+Sb264:00:SMB - Always Big Mario (2 of 3)
+Sb424:10:SMB - Mega-jump from a standing start only
+Sb424:18:SMB - Super-jump from a standing start only
+Sb426:10:SMB - Mega-jump from running only
+Sb426:16:SMB - Super-jump from running only
+Sb428:04:SMB - Mega-jump from turbo running only
+Sb428:14:SMB - Super-jump from turbo running only
+Sb42b:07:SMB - Moon Gravity from a standing start
+Sb42d:07:SMB - Moon Gravity from a running start
+Sb42f:07:SMB - Moon Gravity from turbo running only
+Sb48d:10:SMB - Multi-jump
+Sb626:22:SMB - Always Fiery Mario
+Sb687:00:Fireball grenades (1 of 2)
+Sb688:00:Fireball grenades (2 of 2)
+Sb766:ad:SMB - Infinite time (alt)
+Sb766:ae:SMB - Infinite time
+SCbbff:0a:01:Coins are worth 10
+SCbcf7:00:02:SMB - Small Mario can break bricks (2 of 2)
+SCbd17:a0:d0:SMB - Small Mario can break bricks (3 of 2)
+SCbd18:00:01:SMB - Small Mario can break bricks (1 of 2)
+SCbff3:a9:95:SMB - After falling down a hole, you drop from above
+SCc19e:04:03:DH - Enable game D (press Select three times)
+SCca6c:05:c6:DH - Ducks never fly away - Game A
+SCd171:a5:c6:DH - Infinite ammo
+SCd22c:00:f5:DH - Hit anywhere
+SCd2f6:86:07:SMB - Always get 6 fireworks at end of stage
+Sd305:1c:SMB - Always get 3 fireworks at end of stage
+SCd350:00:0a:DH - Always get the perfect bonus (1 of 2)
+SCd351:30:d0:DH - Always get the perfect bonus (2 of 2)
+SCd721:24:90:SMB - Fireballs hit anywhere
+SCd725:a5:95:Fireballs pierce through enemies
+SCd757:00:6b:SMB - Fireballs can kill Buzzy Beetle
+SCd78c:00:36:SMB - Fireballs can kill Bullet Bill
+SCd790:00:32:SMB - Fireballs can kill Podoboo (2 of 2)
+SCd794:00:2e:SMB - Fireballs can kill Bowser's fire
+Sd88d:d5:SMB - Invincibility (Starman effect)
+SCd8aa:00:4e:Can jump on all enemies (5 of 6)
+SCd8ae:00:7d:Can jump on all enemies (2 of 6)
+SCd8b2:00:79:Can jump on all enemies (4 of 6)
+SCd8ba:00:71:Can jump on all enemies (1 of 6)
+SCd8bf:00:6c:Can jump on all enemies (3 of 6)
+Sd8bf:00:Can stomp enemies underwater
+Sd936:ad:SMB - Always Big Mario (3 of 3)
+SCd96e:00:bd:Can jump on all enemies (6 of 6)
+SCdef2:f0:d0:Press down to enter a pipe anywhere (1 of 3)
+SCdef8:f0:d0:Press down to enter a pipe anywhere (2 of 3)
+Sdf56:54:SMB - Walk through pipes and blocks
+SCe02a:00:04:SMB - Fireballs can kill Podoboo (1 of 2)
+Se0e6:0b:SMB - Goombas don't walk off ledges
+Se8b4:b7:SMB - Turn all enemies into Toad
+SCeee9:8d:ad:SMB - Invincibility (1 of 2)
+SCeeec:d0:f0:SMB - Invincibility (2 of 2)

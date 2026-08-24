@@ -1,0 +1,16 @@
+﻿
+S00da:40:Infinite health (1 of 2)
+S00db:40:Infinite health (2 of 2)
+S00eb:09:Infinite time (alt)
+SC8286:ad:bd:Set timer to 5:00 for all levels
+SC8288:cf:80:Set timer to 3:00 for all levels (1 of 2)
+SC8a01:a5:c6:Infinite time
+SC8acd:00:02:Hearts replenish health to maximum
+SC921f:01:00:Start on level 2
+SC921f:02:00:Start on level 3
+SC921f:03:00:Start on level 4
+SC921f:04:00:Start on level 5
+SC921f:05:00:Start on level 6
+SC921f:06:00:Start on level 7
+SC9955:06:14:Take half damage from bosses
+SCaee6:a5:85:Don't take most damage

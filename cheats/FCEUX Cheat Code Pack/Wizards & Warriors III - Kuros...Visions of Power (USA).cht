@@ -1,0 +1,105 @@
+﻿
+S0087:02:Infinite Keys
+S008b:2b:Invincibility
+S00eb:80:Infinite health
+S049d:01:One hit kills on most enemies/bosses (1 of 5)
+S049e:01:One hit kills on most enemies/bosses (2 of 5)
+S049f:01:One hit kills on most enemies/bosses (3 of 5)
+S04a0:01:One hit kills on most enemies/bosses (4 of 5)
+S04a1:01:One hit kills on most enemies/bosses (5 of 5)
+S0657:01:Have the Orb in slot 1 (enable then disable)
+S0657:02:Have the Scepter in slot 1 (enable then disable)
+S0657:03:Have the Coin in slot 1 (enable then disable)
+S0657:04:Have the Chalice in slot 1 (enable then disable)
+S0657:05:Have the Amulet in slot 1 (enable then disable)
+S0657:06:Have the Crown in slot 1 (enable then disable)
+S0657:07:Have the Crown Jewel 1 in slot 1 (enable then disable)
+S0657:08:Have the Crown Jewel 2 in slot 1 (enable then disable)
+S0657:09:Have the Crown Jewel 3 in slot 1 (enable then disable)
+S0657:0a:Have the Crown Jewel 4 in slot 1 (enable then disable)
+S0657:0b:Have the Bronze Knight Statue in slot 1 (enable then disable)
+S0657:0c:Have the Silver Knight Statue in slot 1 (enable then disable)
+S0657:0d:Have the Gold Knight Statue in slot 1 (enable then disable)
+S0657:0e:Have the Bronze Thief Statue in slot 1 (enable then disable)
+S0657:0f:Have the Silver Thief Statue in slot 1 (enable then disable)
+S0657:10:Have the Gold Thief Statue in slot 1 (enable then disable)
+S0657:11:Have the Bronze Wizard Statue in slot 1 (enable then disable)
+S0657:12:Have the Silver Wizard Statue in slot 1 (enable then disable)
+S0657:13:Have the Gold Wizard Statue in slot 1 (enable then disable)
+S0658:01:Have the Orb in slot 2 (enable then disable)
+S0658:02:Have the Scepter in slot 2 (enable then disable)
+S0658:03:Have the Coin in slot 2 (enable then disable)
+S0658:04:Have the Chalice in slot 2 (enable then disable)
+S0658:05:Have the Amulet in slot 2 (enable then disable)
+S0658:06:Have the Crown in slot 2 (enable then disable)
+S0658:07:Have the Crown Jewel 1 in slot 2 (enable then disable)
+S0658:08:Have the Crown Jewel 2 in slot 2 (enable then disable)
+S0658:09:Have the Crown Jewel 3 in slot 2 (enable then disable)
+S0658:0a:Have the Crown Jewel 4 in slot 2 (enable then disable)
+S0658:0b:Have the Bronze Knight Statue in slot 2 (enable then disable)
+S0658:0c:Have the Silver Knight Statue in slot 2 (enable then disable)
+S0658:0d:Have the Gold Knight Statue in slot 2 (enable then disable)
+S0658:0e:Have the Bronze Thief Statue in slot 2 (enable then disable)
+S0658:0f:Have the Silver Thief Statue in slot 2 (enable then disable)
+S0658:10:Have the Gold Thief Statue in slot 2 (enable then disable)
+S0658:11:Have the Bronze Wizard Statue in slot 2 (enable then disable)
+S0658:12:Have the Silver Wizard Statue in slot 2 (enable then disable)
+S0658:13:Have the Gold Wizard Statue in slot 2 (enable then disable)
+S0659:01:Have the Orb in slot 3 (enable then disable)
+S0659:02:Have the Scepter in slot 3 (enable then disable)
+S0659:03:Have the Coin in slot 3 (enable then disable)
+S0659:04:Have the Chalice in slot 3 (enable then disable)
+S0659:05:Have the Amulet in slot 3 (enable then disable)
+S0659:06:Have the Crown in slot 3 (enable then disable)
+S0659:07:Have the Crown Jewel 1 in slot 3 (enable then disable)
+S0659:08:Have the Crown Jewel 2 in slot 3 (enable then disable)
+S0659:09:Have the Crown Jewel 3 in slot 3 (enable then disable)
+S0659:0a:Have the Crown Jewel 4 in slot 3 (enable then disable)
+S0659:0b:Have the Bronze Knight Statue in slot 3 (enable then disable)
+S0659:0c:Have the Silver Knight Statue in slot 3 (enable then disable)
+S0659:0d:Have the Gold Knight Statue in slot 3 (enable then disable)
+S0659:0e:Have the Bronze Thief Statue in slot 3 (enable then disable)
+S0659:0f:Have the Silver Thief Statue in slot 3 (enable then disable)
+S0659:10:Have the Gold Thief Statue in slot 3 (enable then disable)
+S0659:11:Have the Bronze Wizard Statue in slot 3 (enable then disable)
+S0659:12:Have the Silver Wizard Statue in slot 3 (enable then disable)
+S0659:13:Have the Gold Wizard Statue in slot 3 (enable then disable)
+S065a:01:Have the Orb in slot 4 (enable then disable)
+S065a:02:Have the Scepter in slot 4 (enable then disable)
+S065a:03:Have the Coin in slot 4 (enable then disable)
+S065a:04:Have the Chalice in slot 4 (enable then disable)
+S065a:05:Have the Amulet in slot 4 (enable then disable)
+S065a:06:Have the Crown in slot 4 (enable then disable)
+S065a:07:Have the Crown Jewel 1 in slot 4 (enable then disable)
+S065a:08:Have the Crown Jewel 2 in slot 4 (enable then disable)
+S065a:09:Have the Crown Jewel 3 in slot 4 (enable then disable)
+S065a:0a:Have the Crown Jewel 4 in slot 4 (enable then disable)
+S065a:0b:Have the Bronze Knight Statue in slot 4 (enable then disable)
+S065a:0c:Have the Silver Knight Statue in slot 4 (enable then disable)
+S065a:0d:Have the Gold Knight Statue in slot 4 (enable then disable)
+S065a:0e:Have the Bronze Thief Statue in slot 4 (enable then disable)
+S065a:0f:Have the Silver Thief Statue in slot 4 (enable then disable)
+S065a:10:Have the Gold Thief Statue in slot 4 (enable then disable)
+S065a:11:Have the Bronze Wizard Statue in slot 4 (enable then disable)
+S065a:12:Have the Silver Wizard Statue in slot 4 (enable then disable)
+S065a:13:Have the Gold Wizard Statue in slot 4 (enable then disable)
+S0669:09:Infinite money
+SC84d2:05:0a:Bags worth 5
+SC84d2:32:0a:Bags worth 50
+SC84d2:ff:0a:Bags worth 255
+SC84d4:19:32:Coins worth 25
+SC84d4:64:32:Coins worth 100
+SC84d4:ff:32:Coins worth 255
+SCa729:01:03:Start with 2 lives
+SCa729:06:03:Start with 7 lives
+SCa729:09:03:Start with 10 lives
+SCa744:01:80:Start with very little life force
+SCa744:40:80:Start with less health
+SCa744:b0:80:Start with more health
+SCb203:40:80:Less health after death (except boss stages)
+SCb203:b0:80:More health after death (except boss stages)
+SCe3e4:a5:c6:Infinite lives
+SCe3f1:a5:c6:Infinite lives (except boss stages)
+SCf6ad:a5:c6:Infinite keys
+SCf772:ad:8d:Shopkeeper sometimes forgets to charge
+Sf777:f0:Infinite gold

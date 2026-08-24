@@ -1,0 +1,44 @@
+﻿
+S0067:00:Have the Dagger
+S0067:01:Have the Sword
+S0067:02:Have the Long Sword
+S0067:03:Have the Axe
+S0067:04:Have the Large Sword
+S0067:05:Have the Ironsword
+S0067:06:Have the Diamond Sword
+S0068:01:Have the Helmet
+S0068:02:Have the Horned Helmet
+S0068:03:Have the Diamond Helmet
+S0069:01:Have the Large Shield
+S0069:02:Have the Diamond Shield
+S006a:ff:Infinite health (disable at end of stage)
+S006b:ff:Infinite magic once obtained (disable at end of stage)
+S006c:08:Infinite Keys
+S008b:64:Infinite money (alt) (2 of 2)
+S0096:0a:Infinite money (alt) (1 of 2)
+S00f7:0f:Have the Sindarin Treasures
+SC8289:0b:00:Start on wind level
+SC8289:14:00:Start on tree level
+SC8289:15:00:Start on outer fire level
+SC8289:16:00:Start on water level
+SC8289:31:00:Start on lower icefire mountain
+SC8289:33:00:Start on lower earth level
+SC8314:00:0c:Start with Ironsword
+SC88a7:a9:c6:Infinite lives
+SC8932:a9:c6:Infinite continues
+SC89da:01:03:Start with 1 life (2 of 2)
+SC89da:06:03:Start with 6 lives (2 of 2)
+SC8ae6:02:ff:Start with Shield
+SC8aea:03:00:Start with Axe and Helmet
+SC8af0:01:03:Start with 1 life (1 of 2)
+SC8af0:06:03:Start with 6 lives (1 of 2)
+SC8b06:ff:00:Start a new game with full magic
+SC959e:85:a5:Infinite keys once one is obtained
+SC9888:00:02:Food gives full health
+SC9917:00:02:Drink gives full health
+SCd157:00:03:Fleet foot jumping
+SCd334:e9:e5:Super-jump (1 of 2)
+SCd335:09:86:Super-jump (2 of 2)
+SCd3cf:a9:29:Fleet foot running
+SCdc98:02:00:Infinite money
+SCdcaf:2c:de:Infinite magic

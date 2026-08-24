@@ -1,0 +1,17 @@
+﻿
+S011d:b0:Have all 3 Keys
+S012f:00:0 Maps left
+SCa020:ad:ce:Infinite time
+SCa354:ad:ce:Always keep Sword
+SCa63a:ad:ce:Always keep Gun
+SCab8b:63:3c:Start with less time (2 of 3)
+SCac09:ad:ce:Infinite lives
+SCac1e:63:3c:Start with less time (3 of 3)
+SCbbc3:00:04:Start with 1 life
+SCbbc3:09:04:Start with 10 lives
+SCbbc3:0e:04:Start with 15 lives
+SCbc40:11:0f:Start on level 2
+SCbc40:15:0f:Start on level 4
+SCbc40:19:0f:Start on level 6
+SCbc40:1d:0f:Start on level 8
+SCbc4a:3c:63:Start with less time (1 of 3)

@@ -1,0 +1,27 @@
+﻿
+SC80ed:01:03:Start with 1 life
+SC80ed:06:03:Start with 6 lives
+SC80ed:09:03:Start with 9 lives
+SC8162:01:03:Start with less health in attractions
+SC8162:05:03:Start with more health in attractions
+SC8162:09:03:Start with even more health in attractions
+SCb228:00:7c:All items for free (2 of 2)
+SCb24b:40:b4:Less 'Freeze' time
+SCb24b:ff:b4:More 'Freeze' time
+SCb25f:c0:3c:More 'Invincible' time
+SCb283:2c:fd:All items for free (1 of 2)
+SCb44e:03:06:'Life' costs less
+SCb44e:0c:06:'Life' costs more
+SCb44f:04:08:'Freeze' costs less
+SCb44f:0f:08:'Freeze' costs more
+SCb450:05:0a:'Invincible' costs less
+SCb450:14:0a:'Invincible' costs more
+SCb451:06:0c:'Life Up' costs less
+SCb451:18:0c:'Life Up' costs more
+SCe654:ad:ce:Infinite candles
+SCec4f:f8:fa:Mega-jump
+Sf51e:60:Invincibility
+SCf9aa:60:c6:Infinite health
+SCf9aa:a5:c6:Almost infinite health in attractions
+SCf9c3:ad:ce:Infinite lives
+SCfa24:60:b0:Infinite time

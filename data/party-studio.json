@@ -1,0 +1,5114 @@
+{
+  "version": 2,
+  "project": {
+    "id": "rainshadow-reach",
+    "name": "Rainshadow Reach",
+    "host": "Bramble",
+    "updatedAt": "2026-08-24T16:23:15.545Z"
+  },
+  "map": {
+    "boardId": "rainshadow-reach",
+    "name": "Rainshadow Reach",
+    "image": "/assets/rainshadow-reach.png",
+    "tool": "pan",
+    "spaceType": "blue",
+    "spaces": [
+      {
+        "id": 0,
+        "x": 27,
+        "y": 74,
+        "type": "start",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "start-space-event",
+        "activity": null
+      },
+      {
+        "id": 1,
+        "x": 30,
+        "y": 68,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 2,
+        "x": 28,
+        "y": 60,
+        "type": "event",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "ferry-fanfare",
+        "activity": {
+          "id": "ferry-fanfare",
+          "icon": "⛴",
+          "title": "FERRY FANFARE",
+          "message": "The harbor bell rings—catch the island ferry and collect 5 coins!",
+          "effects": [
+            {
+              "op": "coins",
+              "amount": 5
+            }
+          ]
+        }
+      },
+      {
+        "id": 3,
+        "x": 22.3,
+        "y": 58.7,
+        "type": "lucky",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "lucky-space-event",
+        "activity": null
+      },
+      {
+        "id": 4,
+        "x": 21.5,
+        "y": 47.8,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 5,
+        "x": 17.3,
+        "y": 42.6,
+        "type": "red",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "red-space-event",
+        "activity": null
+      },
+      {
+        "id": 6,
+        "x": 36,
+        "y": 44,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 7,
+        "x": 39,
+        "y": 38,
+        "type": "event",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "mushroom-mystery",
+        "activity": {
+          "id": "mushroom-mystery",
+          "icon": "🍄",
+          "title": "MUSHROOM MYSTERY",
+          "message": "The glowing grove reveals a hidden cache worth 7 coins.",
+          "effects": [
+            {
+              "op": "coins",
+              "amount": 7
+            }
+          ]
+        }
+      },
+      {
+        "id": 8,
+        "x": 37,
+        "y": 31,
+        "type": "lucky",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "lucky-space-event",
+        "activity": null
+      },
+      {
+        "id": 9,
+        "x": 39,
+        "y": 24,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 10,
+        "x": 46,
+        "y": 20,
+        "type": "red",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "red-space-event",
+        "activity": null
+      },
+      {
+        "id": 11,
+        "x": 52,
+        "y": 15,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 12,
+        "x": 48,
+        "y": 26,
+        "type": "event",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "rain-squall",
+        "activity": {
+          "id": "rain-squall",
+          "icon": "🌧",
+          "title": "CEDAR SQUALL",
+          "message": "A sudden cloudburst sends you back along the boardwalk!",
+          "effects": [
+            {
+              "op": "move",
+              "amount": -2
+            }
+          ]
+        }
+      },
+      {
+        "id": 13,
+        "x": 43,
+        "y": 34,
+        "type": "lucky",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "lucky-space-event",
+        "activity": null
+      },
+      {
+        "id": 14,
+        "x": 43,
+        "y": 45,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 15,
+        "x": 39,
+        "y": 54,
+        "type": "red",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "red-space-event",
+        "activity": null
+      },
+      {
+        "id": 16,
+        "x": 42,
+        "y": 62,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 17,
+        "x": 48,
+        "y": 63,
+        "type": "event",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "salmon-leap",
+        "activity": {
+          "id": "salmon-leap",
+          "icon": "🐟",
+          "title": "SALMON LEAP",
+          "message": "Follow the salmon over the falls and spring ahead 3 spaces!",
+          "effects": [
+            {
+              "op": "move",
+              "amount": 3
+            }
+          ]
+        }
+      },
+      {
+        "id": 18,
+        "x": 55,
+        "y": 61,
+        "type": "lucky",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "lucky-space-event",
+        "activity": null
+      },
+      {
+        "id": 19,
+        "x": 64.5,
+        "y": 52.4,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 20,
+        "x": 58.3,
+        "y": 40.4,
+        "type": "red",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "red-space-event",
+        "activity": null
+      },
+      {
+        "id": 23,
+        "x": 72,
+        "y": 34,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 24,
+        "x": 76,
+        "y": 26,
+        "type": "lucky",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "lucky-space-event",
+        "activity": null
+      },
+      {
+        "id": 25,
+        "x": 81,
+        "y": 31,
+        "type": "red",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "red-space-event",
+        "activity": null
+      },
+      {
+        "id": 26,
+        "x": 85,
+        "y": 38,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 27,
+        "x": 83,
+        "y": 46,
+        "type": "event",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "lookout-cache",
+        "activity": {
+          "id": "lookout-cache",
+          "icon": "🔭",
+          "title": "FIRE LOOKOUT CACHE",
+          "message": "Spot the secret trail from the summit and collect 8 coins!",
+          "effects": [
+            {
+              "op": "coins",
+              "amount": 8
+            }
+          ]
+        }
+      },
+      {
+        "id": 28,
+        "x": 78,
+        "y": 52,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 29,
+        "x": 73,
+        "y": 58,
+        "type": "lucky",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "lucky-space-event",
+        "activity": null
+      },
+      {
+        "id": 30,
+        "x": 66,
+        "y": 62,
+        "type": "red",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "red-space-event",
+        "activity": null
+      },
+      {
+        "id": 31,
+        "x": 59,
+        "y": 65,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 32,
+        "x": 52,
+        "y": 68,
+        "type": "event",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "tidepool-treasure",
+        "activity": {
+          "id": "tidepool-treasure",
+          "icon": "🐚",
+          "title": "TIDE-POOL TREASURE",
+          "message": "Nori finds a pearl among the anemones—gain 6 coins!",
+          "effects": [
+            {
+              "op": "coins",
+              "amount": 6
+            }
+          ]
+        }
+      },
+      {
+        "id": 33,
+        "x": 45,
+        "y": 72,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 34,
+        "x": 38,
+        "y": 74,
+        "type": "lucky",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "lucky-space-event",
+        "activity": null
+      },
+      {
+        "id": 35,
+        "x": 51.5,
+        "y": 15.7,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      },
+      {
+        "id": 36,
+        "x": 41.2,
+        "y": 52.3,
+        "type": "blue",
+        "size": 3,
+        "depth": 2,
+        "rotation": 0,
+        "shape": "oval",
+        "action": "blue-space-event",
+        "activity": null
+      }
+    ],
+    "paths": [
+      {
+        "id": "path-1",
+        "from": 0,
+        "to": 1
+      },
+      {
+        "id": "path-2",
+        "from": 1,
+        "to": 2
+      },
+      {
+        "id": "path-3",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "id": "path-4",
+        "from": 3,
+        "to": 4
+      },
+      {
+        "id": "path-5",
+        "from": 4,
+        "to": 5
+      },
+      {
+        "id": "path-6",
+        "from": 5,
+        "to": 6
+      },
+      {
+        "id": "path-7",
+        "from": 6,
+        "to": 7
+      },
+      {
+        "id": "path-8",
+        "from": 7,
+        "to": 8
+      },
+      {
+        "id": "path-9",
+        "from": 8,
+        "to": 9
+      },
+      {
+        "id": "path-10",
+        "from": 9,
+        "to": 10
+      },
+      {
+        "id": "path-11",
+        "from": 10,
+        "to": 11
+      },
+      {
+        "id": "path-12",
+        "from": 11,
+        "to": 12
+      },
+      {
+        "id": "path-13",
+        "from": 12,
+        "to": 13
+      },
+      {
+        "id": "path-14",
+        "from": 13,
+        "to": 14
+      },
+      {
+        "id": "path-15",
+        "from": 14,
+        "to": 15
+      },
+      {
+        "id": "path-16",
+        "from": 15,
+        "to": 16
+      },
+      {
+        "id": "path-17",
+        "from": 16,
+        "to": 17
+      },
+      {
+        "id": "path-18",
+        "from": 17,
+        "to": 18
+      },
+      {
+        "id": "path-19",
+        "from": 18,
+        "to": 19
+      },
+      {
+        "id": "path-20",
+        "from": 19,
+        "to": 20
+      },
+      {
+        "id": "path-24",
+        "from": 23,
+        "to": 24
+      },
+      {
+        "id": "path-25",
+        "from": 24,
+        "to": 25
+      },
+      {
+        "id": "path-26",
+        "from": 25,
+        "to": 26
+      },
+      {
+        "id": "path-27",
+        "from": 26,
+        "to": 27
+      },
+      {
+        "id": "path-28",
+        "from": 27,
+        "to": 28
+      },
+      {
+        "id": "path-29",
+        "from": 28,
+        "to": 29
+      },
+      {
+        "id": "path-30",
+        "from": 29,
+        "to": 30
+      },
+      {
+        "id": "path-31",
+        "from": 30,
+        "to": 31
+      },
+      {
+        "id": "path-32",
+        "from": 31,
+        "to": 32
+      },
+      {
+        "id": "path-33",
+        "from": 32,
+        "to": 33
+      },
+      {
+        "id": "path-34",
+        "from": 33,
+        "to": 34
+      },
+      {
+        "id": "path-35",
+        "from": 34,
+        "to": 0
+      },
+      {
+        "id": "path-1787370910285",
+        "from": 34,
+        "to": 35
+      },
+      {
+        "id": "path-1787436537817",
+        "from": 35,
+        "to": 36
+      }
+    ],
+    "objects": [
+      {
+        "id": "ferry-harbor",
+        "kind": "activity",
+        "name": "Ferry Harbor",
+        "x": 27,
+        "y": 74
+      },
+      {
+        "id": "glowcap-grove",
+        "kind": "activity",
+        "name": "Glowcap Grove",
+        "x": 39,
+        "y": 38
+      },
+      {
+        "id": "salmon-falls",
+        "kind": "activity",
+        "name": "Salmon Falls",
+        "x": 48,
+        "y": 63
+      },
+      {
+        "id": "fire-lookout",
+        "kind": "star-shop",
+        "name": "Fire Lookout",
+        "x": 76,
+        "y": 26
+      },
+      {
+        "id": "orca-tidepools",
+        "kind": "activity",
+        "name": "Orca Tide Pools",
+        "x": 52,
+        "y": 68
+      }
+    ],
+    "triggers": [],
+    "regions": [],
+    "spawns": [
+      {
+        "id": "spawn-1",
+        "x": 17,
+        "y": 68
+      }
+    ],
+    "cameras": []
+  },
+  "scenes": {
+    "selectedId": "ghost-challenge",
+    "entries": [
+      {
+        "id": "ghost-challenge",
+        "name": "Ghost Challenge",
+        "duration": 12,
+        "clips": [
+          {
+            "id": "gather",
+            "track": "players",
+            "label": "GATHER PLAYERS",
+            "start": 0,
+            "duration": 1.4,
+            "color": "blue",
+            "resources": [
+              "players"
+            ]
+          },
+          {
+            "id": "ghost",
+            "track": "actor",
+            "label": "GHOST APPEARS",
+            "start": 1.4,
+            "duration": 1.6,
+            "color": "purple",
+            "resources": [
+              "ghost"
+            ]
+          },
+          {
+            "id": "fog",
+            "track": "effects",
+            "label": "FOG BURST",
+            "start": 1.9,
+            "duration": 1,
+            "color": "cyan",
+            "resources": [
+              "effects"
+            ]
+          },
+          {
+            "id": "quip",
+            "track": "dialogue",
+            "label": "GHOST QUIP",
+            "start": 2.5,
+            "duration": 2.4,
+            "color": "pink",
+            "resources": [
+              "ui"
+            ]
+          },
+          {
+            "id": "mash",
+            "track": "input",
+            "label": "MASH A!",
+            "start": 4.9,
+            "duration": 5,
+            "color": "yellow",
+            "resources": [
+              "input"
+            ],
+            "barrier": true
+          },
+          {
+            "id": "reward",
+            "track": "game",
+            "label": "+20 COINS",
+            "start": 9.9,
+            "duration": 1.2,
+            "color": "green",
+            "resources": [
+              "ui"
+            ]
+          },
+          {
+            "id": "restore",
+            "track": "players",
+            "label": "PUT THEM BACK",
+            "start": 11.1,
+            "duration": 0.9,
+            "color": "blue",
+            "resources": [
+              "players"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "events": {
+    "selectedId": "event-1787419857934",
+    "entries": [
+      {
+        "id": "ghost-space",
+        "name": "Ghost Space",
+        "trigger": {
+          "kind": "after-minigame",
+          "spaceId": null,
+          "radius": 10,
+          "round": 1,
+          "turn": 1
+        },
+        "commands": [
+          {
+            "id": "who",
+            "category": "dialogue",
+            "kind": "scene",
+            "label": "PLAY RAINSHADOW SURPRISE",
+            "amount": 10,
+            "start": 0,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "scene",
+            "category": "dialogue",
+            "kind": "scene",
+            "label": "PLAY GHOST CHALLENGE",
+            "start": 2,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "winner",
+            "category": "rewards",
+            "kind": "player",
+            "label": "GIVE WINNER 20 COINS",
+            "start": 4,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "restore",
+            "category": "dialogue",
+            "kind": "action",
+            "label": "PUT EVERYONE BACK",
+            "start": 6,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "command-1787371738595",
+            "category": "logic",
+            "kind": "condition",
+            "label": "IF PLAYER HAS AN ITEM",
+            "start": 8,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "command-1787371751728",
+            "category": "rewards",
+            "kind": "player",
+            "label": "GIVE PLAYER 10 COINS",
+            "amount": 10,
+            "start": 10,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "command-1787371754261",
+            "category": "dialogue",
+            "kind": "action",
+            "label": "MOVE TO THE NEXT SPACE",
+            "start": 12,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "command-1787371762361",
+            "category": "dialogue",
+            "kind": "random",
+            "label": "PICK ONE SURPRISE",
+            "start": 14,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          }
+        ],
+        "space": {
+          "type": "event",
+          "shape": "oval",
+          "color": "mint",
+          "icon": "☠️",
+          "glow": true,
+          "title": "Ghost Space",
+          "description": "Triggers custom cutscenes and rule modifications.",
+          "effect": "stars",
+          "customImage": ""
+        },
+        "characters": [
+          {
+            "id": "char-1",
+            "name": "Host Guide",
+            "role": "Host",
+            "icon": "✦",
+            "sprite": "",
+            "anchor": "center",
+            "animation": "float"
+          },
+          {
+            "id": "char-1787436462652",
+            "name": "Ghost",
+            "icon": "👻",
+            "role": "Nemesis",
+            "isHost": false,
+            "sprite": "",
+            "anchor": "center",
+            "animation": "float"
+          }
+        ],
+        "activations": {
+          "movement": {
+            "land": true,
+            "pass": false,
+            "reverse": false
+          },
+          "proximity": {
+            "enabled": false,
+            "radius": 10
+          },
+          "timing": {
+            "round": 0,
+            "interval": 0,
+            "turn": 0,
+            "gameStart": false,
+            "finalRounds": false
+          },
+          "conditions": {
+            "minCoins": 0,
+            "requiredItem": "",
+            "mapState": "any"
+          },
+          "minigames": {
+            "beforeMinigame": false,
+            "afterMinigame": false
+          }
+        },
+        "music": {
+          "track": "default",
+          "autoRestore": true
+        },
+        "variables": {},
+        "timeline": {
+          "duration": 20,
+          "tracks": [
+            {
+              "id": "track-main",
+              "name": "Track 1 · Main Sequence",
+              "kind": "main",
+              "color": "violet",
+              "locked": false,
+              "muted": false,
+              "clips": [
+                {
+                  "id": "who",
+                  "start": 0,
+                  "duration": 1.8,
+                  "category": "dialogue",
+                  "kind": "scene",
+                  "label": "PLAY RAINSHADOW SURPRISE",
+                  "amount": 10,
+                  "isDecision": false
+                },
+                {
+                  "id": "scene",
+                  "start": 2,
+                  "duration": 1.8,
+                  "category": "dialogue",
+                  "kind": "scene",
+                  "label": "PLAY GHOST CHALLENGE",
+                  "isDecision": false
+                },
+                {
+                  "id": "winner",
+                  "start": 4,
+                  "duration": 1.8,
+                  "category": "rewards",
+                  "kind": "player",
+                  "label": "GIVE WINNER 20 COINS",
+                  "isDecision": false
+                },
+                {
+                  "id": "restore",
+                  "start": 6,
+                  "duration": 1.8,
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "PUT EVERYONE BACK",
+                  "isDecision": false
+                },
+                {
+                  "id": "command-1787371738595",
+                  "start": 8,
+                  "duration": 1.8,
+                  "category": "logic",
+                  "kind": "condition",
+                  "label": "IF PLAYER HAS AN ITEM",
+                  "isDecision": true
+                },
+                {
+                  "id": "command-1787371751728",
+                  "start": 10,
+                  "duration": 1.8,
+                  "category": "rewards",
+                  "kind": "player",
+                  "label": "GIVE PLAYER 10 COINS",
+                  "amount": 10,
+                  "isDecision": false
+                },
+                {
+                  "id": "command-1787371754261",
+                  "start": 12,
+                  "duration": 1.8,
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "MOVE TO THE NEXT SPACE",
+                  "isDecision": false
+                },
+                {
+                  "id": "command-1787371762361",
+                  "start": 14,
+                  "duration": 1.8,
+                  "category": "dialogue",
+                  "kind": "random",
+                  "label": "PICK ONE SURPRISE",
+                  "isDecision": false
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "event-1787419857934",
+        "name": "New Surprise 2",
+        "trigger": {
+          "kind": "proximity",
+          "spaceId": null,
+          "radius": 10,
+          "round": 1,
+          "turn": 1
+        },
+        "commands": [
+          {
+            "id": "clip-1787436702015",
+            "category": "dialogue",
+            "kind": "action",
+            "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+            "start": 0,
+            "duration": 2.5,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787437697543",
+            "category": "logic",
+            "kind": "condition",
+            "label": "IF COINS >= 20 THEN (Branch Path)",
+            "start": 2.75,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787437170898",
+            "category": "vfx",
+            "kind": "action",
+            "label": "STAR CELEBRATION BURST",
+            "start": 4.75,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787437163253",
+            "category": "camera",
+            "kind": "action",
+            "label": "ZOOM IN ON SPACE (1.8x Focus)",
+            "start": 4.75,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787452743706",
+            "category": "inventory",
+            "kind": "action",
+            "label": "GRANT ITEM: Skeleton Key",
+            "rewardType": "grant-item",
+            "amount": 1,
+            "waitForInput": true,
+            "start": 7.2,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787439111271",
+            "category": "world",
+            "kind": "action",
+            "label": "SUMMON STORM: Lightning Rain",
+            "start": 9.8,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787437333103",
+            "category": "input",
+            "kind": "action",
+            "label": "MYSTERY CHEST PICK (1 of 3)",
+            "start": 14.100000000000001,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787436731387",
+            "category": "dialogue",
+            "kind": "action",
+            "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+            "start": 16.6,
+            "duration": 2.5,
+            "open": true,
+            "depth": 0
+          }
+        ],
+        "space": {
+          "type": "event",
+          "shape": "none",
+          "color": "rainbow",
+          "icon": "⚡",
+          "glow": true,
+          "title": "New Surprise 2",
+          "description": "Triggers custom cutscenes and rule modifications.",
+          "effect": "none",
+          "customImage": ""
+        },
+        "characters": [
+          {
+            "id": "host-1787437450972",
+            "name": "Host Guide",
+            "icon": "✦",
+            "role": "Host",
+            "isHost": true,
+            "sprite": "",
+            "anchor": "center",
+            "animation": "float"
+          }
+        ],
+        "activations": {
+          "movement": {
+            "land": true,
+            "pass": false,
+            "reverse": false
+          },
+          "proximity": {
+            "enabled": false,
+            "radius": 10
+          },
+          "timing": {
+            "round": 0,
+            "interval": 0,
+            "turn": 0,
+            "gameStart": false,
+            "finalRounds": false
+          },
+          "conditions": {
+            "minCoins": 0,
+            "requiredItem": "",
+            "mapState": "any"
+          },
+          "minigames": {
+            "beforeMinigame": false,
+            "afterMinigame": false
+          }
+        },
+        "music": {
+          "track": "default",
+          "autoRestore": true
+        },
+        "variables": {},
+        "timeline": {
+          "duration": 24,
+          "tracks": [
+            {
+              "id": "track-main",
+              "name": "Track 1 · Main Sequence",
+              "kind": "main",
+              "color": "violet",
+              "locked": false,
+              "muted": false,
+              "clips": [
+                {
+                  "id": "clip-1787436702015",
+                  "start": 0,
+                  "duration": 2.5,
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "isDecision": false
+                },
+                {
+                  "id": "clip-1787437697543",
+                  "start": 2.75,
+                  "duration": 1.8,
+                  "category": "logic",
+                  "kind": "condition",
+                  "label": "IF COINS >= 20 THEN (Branch Path)",
+                  "isDecision": true
+                },
+                {
+                  "id": "clip-1787437170898",
+                  "start": 4.75,
+                  "duration": 1.8,
+                  "category": "vfx",
+                  "kind": "action",
+                  "label": "STAR CELEBRATION BURST",
+                  "isDecision": false
+                },
+                {
+                  "label": "GRANT ITEM: Skeleton Key",
+                  "category": "inventory",
+                  "icon": "🗝️",
+                  "desc": "Place a special item into player's bag.",
+                  "invOp": "grant-item",
+                  "rewardType": "grant-item",
+                  "itemName": "Skeleton Key",
+                  "amount": 1,
+                  "waitForInput": true,
+                  "id": "clip-1787452743706",
+                  "start": 7.2,
+                  "duration": 1.8,
+                  "kind": "action",
+                  "isDecision": false
+                },
+                {
+                  "id": "clip-1787439111271",
+                  "start": 9.8,
+                  "duration": 1.8,
+                  "category": "world",
+                  "kind": "action",
+                  "label": "SUMMON STORM: Lightning Rain",
+                  "isDecision": false
+                },
+                {
+                  "id": "clip-1787437333103",
+                  "start": 14.100000000000001,
+                  "duration": 1.8,
+                  "category": "input",
+                  "kind": "action",
+                  "label": "MYSTERY CHEST PICK (1 of 3)",
+                  "isDecision": false
+                },
+                {
+                  "id": "clip-1787436731387",
+                  "start": 16.6,
+                  "duration": 2.5,
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "isDecision": false
+                }
+              ]
+            },
+            {
+              "id": "track-branch-1787437697543",
+              "name": "Branch 2 · False / Otherwise",
+              "kind": "branch-false",
+              "color": "amber",
+              "locked": false,
+              "muted": false,
+              "clips": [
+                {
+                  "id": "clip-1787437163253",
+                  "start": 4.75,
+                  "duration": 1.8,
+                  "category": "camera",
+                  "kind": "action",
+                  "label": "ZOOM IN ON SPACE (1.8x Focus)",
+                  "isDecision": false
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "event-1787420889326",
+        "name": "Space Event 3",
+        "trigger": {
+          "kind": "land",
+          "spaceId": 7,
+          "radius": 10,
+          "round": 1,
+          "turn": 1
+        },
+        "space": {
+          "type": "event",
+          "shape": "shield",
+          "color": "violet",
+          "icon": "⚡",
+          "glow": true,
+          "title": "Space Event 3",
+          "description": "A mysterious space on the board.",
+          "effect": "sparkles",
+          "customImage": ""
+        },
+        "characters": [
+          {
+            "id": "char-1787421227235",
+            "name": "Lucky Cat",
+            "icon": "🐱",
+            "role": "Host",
+            "sprite": "",
+            "anchor": "center",
+            "animation": "bounce",
+            "isHost": true
+          }
+        ],
+        "activations": {
+          "movement": {
+            "land": true,
+            "pass": false,
+            "reverse": false
+          },
+          "proximity": {
+            "enabled": false,
+            "radius": 10
+          },
+          "timing": {
+            "round": 0,
+            "interval": 0,
+            "turn": 0,
+            "gameStart": false,
+            "finalRounds": false
+          },
+          "conditions": {
+            "minCoins": 0,
+            "requiredItem": "",
+            "mapState": "any"
+          },
+          "minigames": {
+            "beforeMinigame": false,
+            "afterMinigame": false
+          }
+        },
+        "commands": [
+          {
+            "id": "cmd-1787420889326-2",
+            "category": "dialogue",
+            "kind": "scene",
+            "label": "SHOW SPEECH BUBBLE: \"Welcome to this space!\"",
+            "start": 0,
+            "duration": 2.5,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787437632217",
+            "category": "logic",
+            "kind": "condition",
+            "label": "IF COINS >= 20 THEN (Branch Path)",
+            "start": 2.5,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "cmd-1787420918393",
+            "category": "logic",
+            "kind": "condition",
+            "label": "CONDITIONAL: IF Player Coins >= 20",
+            "start": 30.700000000000003,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787437672559",
+            "category": "dialogue",
+            "kind": "action",
+            "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+            "start": 30.700000000000003,
+            "duration": 2.5,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "cmd-1787420924070",
+            "category": "dialogue",
+            "kind": "action",
+            "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+            "start": 32.7,
+            "duration": 2.5,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1787437665349",
+            "category": "dialogue",
+            "kind": "action",
+            "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+            "start": 33.2,
+            "duration": 2.5,
+            "open": true,
+            "depth": 0
+          }
+        ],
+        "music": {
+          "track": "default",
+          "autoRestore": true
+        },
+        "variables": {},
+        "timeline": {
+          "duration": 40,
+          "tracks": [
+            {
+              "id": "track-main",
+              "name": "Track 1 · Main Sequence",
+              "kind": "main",
+              "color": "violet",
+              "locked": false,
+              "muted": false,
+              "clips": [
+                {
+                  "id": "cmd-1787420889326-2",
+                  "start": 0,
+                  "duration": 2.5,
+                  "category": "dialogue",
+                  "kind": "scene",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to this space!\"",
+                  "isDecision": false
+                },
+                {
+                  "id": "clip-1787437632217",
+                  "start": 2.5,
+                  "duration": 1.8,
+                  "category": "logic",
+                  "kind": "condition",
+                  "label": "IF COINS >= 20 THEN (Branch Path)",
+                  "isDecision": true
+                },
+                {
+                  "id": "cmd-1787420918393",
+                  "start": 30.700000000000003,
+                  "duration": 1.8,
+                  "category": "logic",
+                  "kind": "condition",
+                  "label": "CONDITIONAL: IF Player Coins >= 20",
+                  "isDecision": true
+                },
+                {
+                  "id": "cmd-1787420924070",
+                  "start": 32.7,
+                  "duration": 2.5,
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "isDecision": false
+                }
+              ]
+            },
+            {
+              "id": "track-branch-1787437632217",
+              "name": "Branch 2 · False / Otherwise",
+              "kind": "branch-false",
+              "color": "amber",
+              "locked": false,
+              "muted": false,
+              "clips": [
+                {
+                  "id": "clip-1787437672559",
+                  "start": 30.700000000000003,
+                  "duration": 2.5,
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "isDecision": false
+                },
+                {
+                  "id": "clip-1787437665349",
+                  "start": 33.2,
+                  "duration": 2.5,
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "isDecision": false
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "rules": {
+    "activeCartridge": "classic",
+    "cartridges": [
+      {
+        "id": "classic",
+        "name": "CLASSIC PARTY",
+        "color": "red"
+      },
+      {
+        "id": "everybody",
+        "name": "EVERYBODY MOVES",
+        "color": "green"
+      },
+      {
+        "id": "team",
+        "name": "TEAM PARTY",
+        "color": "blue"
+      },
+      {
+        "id": "empty",
+        "name": "EMPTY RULESET",
+        "color": "cream"
+      }
+    ],
+    "pages": {
+      "start": {
+        "title": "HOW DOES IT START?",
+        "cards": [
+          "GIVE EVERYONE 10 COINS",
+          "PUT PLAYERS AT START",
+          "PLACE THE FIRST STAR"
+        ]
+      },
+      "flow": {
+        "title": "WHAT HAPPENS NEXT?",
+        "cards": [
+          "WHEN NOTHING IS HAPPENING → START TURN",
+          "AFTER EVERYONE MOVES → PICK MINI-GAME",
+          "AFTER MINI-GAME → NEXT ROUND"
+        ],
+        "disabled": []
+      },
+      "players": {
+        "title": "WHO CAN PLAY?",
+        "cards": [
+          "1–4 PLAYERS",
+          "FILL EMPTY SEATS WITH CPU"
+        ]
+      },
+      "movement": {
+        "title": "HOW DO THEY MOVE?",
+        "cards": [
+          "ROLL 1–6",
+          "MOVE ONE SPACE AT A TIME",
+          "RUN EVENTS WHILE MOVING"
+        ]
+      },
+      "minigames": {
+        "title": "WHEN DO MINI-GAMES START?",
+        "cards": [
+          "AFTER EVERY ROUND",
+          "WINNER GETS 10 COINS"
+        ]
+      },
+      "winning": {
+        "title": "WHO WINS?",
+        "cards": [
+          "MOST STARS",
+          "THEN MOST COINS"
+        ]
+      },
+      "special": {
+        "title": "ANY SPECIAL RULES?",
+        "cards": [
+          "ANNOUNCE THE FINAL FIVE ROUNDS"
+        ]
+      }
+    }
+  },
+  "data": {
+    "items": [
+      {
+        "id": "item-1787453002636",
+        "name": "LUCKY CHARM",
+        "icon": "♣"
+      },
+      {
+        "id": "item-1787453003856",
+        "name": "LUCKY CHARM",
+        "icon": "♣"
+      },
+      {
+        "id": "item-1787453005391",
+        "name": "LUCKY CHARM",
+        "icon": "♣"
+      }
+    ],
+    "currencies": [
+      {
+        "id": "coins",
+        "name": "COINS",
+        "icon": "●",
+        "color": "gold"
+      },
+      {
+        "id": "stars",
+        "name": "STARS",
+        "icon": "★",
+        "color": "yellow"
+      },
+      {
+        "id": "currency-1787419271645",
+        "name": "GEMS",
+        "icon": "◆",
+        "color": "green"
+      },
+      {
+        "id": "currency-1787419272683",
+        "name": "GEMS",
+        "icon": "◆",
+        "color": "green"
+      }
+    ],
+    "spaceTypes": [
+      "START",
+      "BLUE",
+      "RED",
+      "LUCKY",
+      "EVENT"
+    ],
+    "statuses": [
+      "TRAIL READY",
+      "TAILWIND",
+      "RAIN SOAKED",
+      "HOT-SPRING GLOW"
+    ],
+    "minigamePools": []
+  },
+  "boardProjects": {
+    "selectedId": "rainshadow-reach",
+    "entries": [
+      {
+        "id": "rainshadow-reach",
+        "name": "Rainshadow Reach",
+        "map": {
+          "boardId": "rainshadow-reach",
+          "name": "Rainshadow Reach",
+          "image": "/assets/rainshadow-reach.png",
+          "tool": "pan",
+          "spaceType": "blue",
+          "spaces": [
+            {
+              "id": 0,
+              "x": 27,
+              "y": 74,
+              "type": "start",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "start-space-event",
+              "activity": null
+            },
+            {
+              "id": 1,
+              "x": 30,
+              "y": 68,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 2,
+              "x": 28,
+              "y": 60,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "ferry-fanfare",
+              "activity": {
+                "id": "ferry-fanfare",
+                "icon": "⛴",
+                "title": "FERRY FANFARE",
+                "message": "The harbor bell rings—catch the island ferry and collect 5 coins!",
+                "effects": [
+                  {
+                    "op": "coins",
+                    "amount": 5
+                  }
+                ]
+              }
+            },
+            {
+              "id": 3,
+              "x": 22.3,
+              "y": 58.7,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event",
+              "activity": null
+            },
+            {
+              "id": 4,
+              "x": 21.5,
+              "y": 47.8,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 5,
+              "x": 17.3,
+              "y": 42.6,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event",
+              "activity": null
+            },
+            {
+              "id": 6,
+              "x": 36,
+              "y": 44,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 7,
+              "x": 39,
+              "y": 38,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "mushroom-mystery",
+              "activity": {
+                "id": "mushroom-mystery",
+                "icon": "🍄",
+                "title": "MUSHROOM MYSTERY",
+                "message": "The glowing grove reveals a hidden cache worth 7 coins.",
+                "effects": [
+                  {
+                    "op": "coins",
+                    "amount": 7
+                  }
+                ]
+              }
+            },
+            {
+              "id": 8,
+              "x": 37,
+              "y": 31,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event",
+              "activity": null
+            },
+            {
+              "id": 9,
+              "x": 39,
+              "y": 24,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 10,
+              "x": 46,
+              "y": 20,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event",
+              "activity": null
+            },
+            {
+              "id": 11,
+              "x": 52,
+              "y": 15,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 12,
+              "x": 48,
+              "y": 26,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "rain-squall",
+              "activity": {
+                "id": "rain-squall",
+                "icon": "🌧",
+                "title": "CEDAR SQUALL",
+                "message": "A sudden cloudburst sends you back along the boardwalk!",
+                "effects": [
+                  {
+                    "op": "move",
+                    "amount": -2
+                  }
+                ]
+              }
+            },
+            {
+              "id": 13,
+              "x": 43,
+              "y": 34,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event",
+              "activity": null
+            },
+            {
+              "id": 14,
+              "x": 43,
+              "y": 45,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 15,
+              "x": 39,
+              "y": 54,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event",
+              "activity": null
+            },
+            {
+              "id": 16,
+              "x": 42,
+              "y": 62,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 17,
+              "x": 48,
+              "y": 63,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "salmon-leap",
+              "activity": {
+                "id": "salmon-leap",
+                "icon": "🐟",
+                "title": "SALMON LEAP",
+                "message": "Follow the salmon over the falls and spring ahead 3 spaces!",
+                "effects": [
+                  {
+                    "op": "move",
+                    "amount": 3
+                  }
+                ]
+              }
+            },
+            {
+              "id": 18,
+              "x": 55,
+              "y": 61,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event",
+              "activity": null
+            },
+            {
+              "id": 19,
+              "x": 64.5,
+              "y": 52.4,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 20,
+              "x": 58.3,
+              "y": 40.4,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event",
+              "activity": null
+            },
+            {
+              "id": 23,
+              "x": 72,
+              "y": 34,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 24,
+              "x": 76,
+              "y": 26,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event",
+              "activity": null
+            },
+            {
+              "id": 25,
+              "x": 81,
+              "y": 31,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event",
+              "activity": null
+            },
+            {
+              "id": 26,
+              "x": 85,
+              "y": 38,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 27,
+              "x": 83,
+              "y": 46,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lookout-cache",
+              "activity": {
+                "id": "lookout-cache",
+                "icon": "🔭",
+                "title": "FIRE LOOKOUT CACHE",
+                "message": "Spot the secret trail from the summit and collect 8 coins!",
+                "effects": [
+                  {
+                    "op": "coins",
+                    "amount": 8
+                  }
+                ]
+              }
+            },
+            {
+              "id": 28,
+              "x": 78,
+              "y": 52,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 29,
+              "x": 73,
+              "y": 58,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event",
+              "activity": null
+            },
+            {
+              "id": 30,
+              "x": 66,
+              "y": 62,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event",
+              "activity": null
+            },
+            {
+              "id": 31,
+              "x": 59,
+              "y": 65,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 32,
+              "x": 52,
+              "y": 68,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "tidepool-treasure",
+              "activity": {
+                "id": "tidepool-treasure",
+                "icon": "🐚",
+                "title": "TIDE-POOL TREASURE",
+                "message": "Nori finds a pearl among the anemones—gain 6 coins!",
+                "effects": [
+                  {
+                    "op": "coins",
+                    "amount": 6
+                  }
+                ]
+              }
+            },
+            {
+              "id": 33,
+              "x": 45,
+              "y": 72,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 34,
+              "x": 38,
+              "y": 74,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event",
+              "activity": null
+            },
+            {
+              "id": 35,
+              "x": 51.5,
+              "y": 15.7,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            },
+            {
+              "id": 36,
+              "x": 41.2,
+              "y": 52.3,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event",
+              "activity": null
+            }
+          ],
+          "paths": [
+            {
+              "id": "path-1",
+              "from": 0,
+              "to": 1
+            },
+            {
+              "id": "path-2",
+              "from": 1,
+              "to": 2
+            },
+            {
+              "id": "path-3",
+              "from": 2,
+              "to": 3
+            },
+            {
+              "id": "path-4",
+              "from": 3,
+              "to": 4
+            },
+            {
+              "id": "path-5",
+              "from": 4,
+              "to": 5
+            },
+            {
+              "id": "path-6",
+              "from": 5,
+              "to": 6
+            },
+            {
+              "id": "path-7",
+              "from": 6,
+              "to": 7
+            },
+            {
+              "id": "path-8",
+              "from": 7,
+              "to": 8
+            },
+            {
+              "id": "path-9",
+              "from": 8,
+              "to": 9
+            },
+            {
+              "id": "path-10",
+              "from": 9,
+              "to": 10
+            },
+            {
+              "id": "path-11",
+              "from": 10,
+              "to": 11
+            },
+            {
+              "id": "path-12",
+              "from": 11,
+              "to": 12
+            },
+            {
+              "id": "path-13",
+              "from": 12,
+              "to": 13
+            },
+            {
+              "id": "path-14",
+              "from": 13,
+              "to": 14
+            },
+            {
+              "id": "path-15",
+              "from": 14,
+              "to": 15
+            },
+            {
+              "id": "path-16",
+              "from": 15,
+              "to": 16
+            },
+            {
+              "id": "path-17",
+              "from": 16,
+              "to": 17
+            },
+            {
+              "id": "path-18",
+              "from": 17,
+              "to": 18
+            },
+            {
+              "id": "path-19",
+              "from": 18,
+              "to": 19
+            },
+            {
+              "id": "path-20",
+              "from": 19,
+              "to": 20
+            },
+            {
+              "id": "path-24",
+              "from": 23,
+              "to": 24
+            },
+            {
+              "id": "path-25",
+              "from": 24,
+              "to": 25
+            },
+            {
+              "id": "path-26",
+              "from": 25,
+              "to": 26
+            },
+            {
+              "id": "path-27",
+              "from": 26,
+              "to": 27
+            },
+            {
+              "id": "path-28",
+              "from": 27,
+              "to": 28
+            },
+            {
+              "id": "path-29",
+              "from": 28,
+              "to": 29
+            },
+            {
+              "id": "path-30",
+              "from": 29,
+              "to": 30
+            },
+            {
+              "id": "path-31",
+              "from": 30,
+              "to": 31
+            },
+            {
+              "id": "path-32",
+              "from": 31,
+              "to": 32
+            },
+            {
+              "id": "path-33",
+              "from": 32,
+              "to": 33
+            },
+            {
+              "id": "path-34",
+              "from": 33,
+              "to": 34
+            },
+            {
+              "id": "path-35",
+              "from": 34,
+              "to": 0
+            },
+            {
+              "id": "path-1787370910285",
+              "from": 34,
+              "to": 35
+            },
+            {
+              "id": "path-1787436537817",
+              "from": 35,
+              "to": 36
+            }
+          ],
+          "objects": [
+            {
+              "id": "ferry-harbor",
+              "kind": "activity",
+              "name": "Ferry Harbor",
+              "x": 27,
+              "y": 74
+            },
+            {
+              "id": "glowcap-grove",
+              "kind": "activity",
+              "name": "Glowcap Grove",
+              "x": 39,
+              "y": 38
+            },
+            {
+              "id": "salmon-falls",
+              "kind": "activity",
+              "name": "Salmon Falls",
+              "x": 48,
+              "y": 63
+            },
+            {
+              "id": "fire-lookout",
+              "kind": "star-shop",
+              "name": "Fire Lookout",
+              "x": 76,
+              "y": 26
+            },
+            {
+              "id": "orca-tidepools",
+              "kind": "activity",
+              "name": "Orca Tide Pools",
+              "x": 52,
+              "y": 68
+            }
+          ],
+          "triggers": [],
+          "regions": [],
+          "spawns": [
+            {
+              "id": "spawn-1",
+              "x": 17,
+              "y": 68
+            }
+          ],
+          "cameras": []
+        },
+        "scenes": {
+          "selectedId": "ghost-challenge",
+          "entries": [
+            {
+              "id": "ghost-challenge",
+              "name": "Ghost Challenge",
+              "duration": 12,
+              "clips": [
+                {
+                  "id": "gather",
+                  "track": "players",
+                  "label": "GATHER PLAYERS",
+                  "start": 0,
+                  "duration": 1.4,
+                  "color": "blue",
+                  "resources": [
+                    "players"
+                  ]
+                },
+                {
+                  "id": "ghost",
+                  "track": "actor",
+                  "label": "GHOST APPEARS",
+                  "start": 1.4,
+                  "duration": 1.6,
+                  "color": "purple",
+                  "resources": [
+                    "ghost"
+                  ]
+                },
+                {
+                  "id": "fog",
+                  "track": "effects",
+                  "label": "FOG BURST",
+                  "start": 1.9,
+                  "duration": 1,
+                  "color": "cyan",
+                  "resources": [
+                    "effects"
+                  ]
+                },
+                {
+                  "id": "quip",
+                  "track": "dialogue",
+                  "label": "GHOST QUIP",
+                  "start": 2.5,
+                  "duration": 2.4,
+                  "color": "pink",
+                  "resources": [
+                    "ui"
+                  ]
+                },
+                {
+                  "id": "mash",
+                  "track": "input",
+                  "label": "MASH A!",
+                  "start": 4.9,
+                  "duration": 5,
+                  "color": "yellow",
+                  "resources": [
+                    "input"
+                  ],
+                  "barrier": true
+                },
+                {
+                  "id": "reward",
+                  "track": "game",
+                  "label": "+20 COINS",
+                  "start": 9.9,
+                  "duration": 1.2,
+                  "color": "green",
+                  "resources": [
+                    "ui"
+                  ]
+                },
+                {
+                  "id": "restore",
+                  "track": "players",
+                  "label": "PUT THEM BACK",
+                  "start": 11.1,
+                  "duration": 0.9,
+                  "color": "blue",
+                  "resources": [
+                    "players"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "events": {
+          "selectedId": "event-1787419857934",
+          "entries": [
+            {
+              "id": "ghost-space",
+              "name": "Ghost Space",
+              "trigger": {
+                "kind": "after-minigame",
+                "spaceId": null,
+                "radius": 10,
+                "round": 1,
+                "turn": 1
+              },
+              "commands": [
+                {
+                  "id": "who",
+                  "category": "dialogue",
+                  "kind": "scene",
+                  "label": "PLAY RAINSHADOW SURPRISE",
+                  "amount": 10,
+                  "start": 0,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "scene",
+                  "category": "dialogue",
+                  "kind": "scene",
+                  "label": "PLAY GHOST CHALLENGE",
+                  "start": 2,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "winner",
+                  "category": "rewards",
+                  "kind": "player",
+                  "label": "GIVE WINNER 20 COINS",
+                  "start": 4,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "restore",
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "PUT EVERYONE BACK",
+                  "start": 6,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "command-1787371738595",
+                  "category": "logic",
+                  "kind": "condition",
+                  "label": "IF PLAYER HAS AN ITEM",
+                  "start": 8,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "command-1787371751728",
+                  "category": "rewards",
+                  "kind": "player",
+                  "label": "GIVE PLAYER 10 COINS",
+                  "amount": 10,
+                  "start": 10,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "command-1787371754261",
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "MOVE TO THE NEXT SPACE",
+                  "start": 12,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "command-1787371762361",
+                  "category": "dialogue",
+                  "kind": "random",
+                  "label": "PICK ONE SURPRISE",
+                  "start": 14,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                }
+              ],
+              "space": {
+                "type": "event",
+                "shape": "oval",
+                "color": "mint",
+                "icon": "☠️",
+                "glow": true,
+                "title": "Ghost Space",
+                "description": "Triggers custom cutscenes and rule modifications.",
+                "effect": "stars",
+                "customImage": ""
+              },
+              "characters": [
+                {
+                  "id": "char-1",
+                  "name": "Host Guide",
+                  "role": "Host",
+                  "icon": "✦",
+                  "sprite": "",
+                  "anchor": "center",
+                  "animation": "float"
+                },
+                {
+                  "id": "char-1787436462652",
+                  "name": "Ghost",
+                  "icon": "👻",
+                  "role": "Nemesis",
+                  "isHost": false,
+                  "sprite": "",
+                  "anchor": "center",
+                  "animation": "float"
+                }
+              ],
+              "activations": {
+                "movement": {
+                  "land": true,
+                  "pass": false,
+                  "reverse": false
+                },
+                "proximity": {
+                  "enabled": false,
+                  "radius": 10
+                },
+                "timing": {
+                  "round": 0,
+                  "interval": 0,
+                  "turn": 0,
+                  "gameStart": false,
+                  "finalRounds": false
+                },
+                "conditions": {
+                  "minCoins": 0,
+                  "requiredItem": "",
+                  "mapState": "any"
+                },
+                "minigames": {
+                  "beforeMinigame": false,
+                  "afterMinigame": false
+                }
+              },
+              "music": {
+                "track": "default",
+                "autoRestore": true
+              },
+              "variables": {},
+              "timeline": {
+                "duration": 20,
+                "tracks": [
+                  {
+                    "id": "track-main",
+                    "name": "Track 1 · Main Sequence",
+                    "kind": "main",
+                    "color": "violet",
+                    "locked": false,
+                    "muted": false,
+                    "clips": [
+                      {
+                        "id": "who",
+                        "start": 0,
+                        "duration": 1.8,
+                        "category": "dialogue",
+                        "kind": "scene",
+                        "label": "PLAY RAINSHADOW SURPRISE",
+                        "amount": 10,
+                        "isDecision": false
+                      },
+                      {
+                        "id": "scene",
+                        "start": 2,
+                        "duration": 1.8,
+                        "category": "dialogue",
+                        "kind": "scene",
+                        "label": "PLAY GHOST CHALLENGE",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "winner",
+                        "start": 4,
+                        "duration": 1.8,
+                        "category": "rewards",
+                        "kind": "player",
+                        "label": "GIVE WINNER 20 COINS",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "restore",
+                        "start": 6,
+                        "duration": 1.8,
+                        "category": "dialogue",
+                        "kind": "action",
+                        "label": "PUT EVERYONE BACK",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "command-1787371738595",
+                        "start": 8,
+                        "duration": 1.8,
+                        "category": "logic",
+                        "kind": "condition",
+                        "label": "IF PLAYER HAS AN ITEM",
+                        "isDecision": true
+                      },
+                      {
+                        "id": "command-1787371751728",
+                        "start": 10,
+                        "duration": 1.8,
+                        "category": "rewards",
+                        "kind": "player",
+                        "label": "GIVE PLAYER 10 COINS",
+                        "amount": 10,
+                        "isDecision": false
+                      },
+                      {
+                        "id": "command-1787371754261",
+                        "start": 12,
+                        "duration": 1.8,
+                        "category": "dialogue",
+                        "kind": "action",
+                        "label": "MOVE TO THE NEXT SPACE",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "command-1787371762361",
+                        "start": 14,
+                        "duration": 1.8,
+                        "category": "dialogue",
+                        "kind": "random",
+                        "label": "PICK ONE SURPRISE",
+                        "isDecision": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "event-1787419857934",
+              "name": "New Surprise 2",
+              "trigger": {
+                "kind": "proximity",
+                "spaceId": null,
+                "radius": 10,
+                "round": 1,
+                "turn": 1
+              },
+              "commands": [
+                {
+                  "id": "clip-1787436702015",
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "start": 0,
+                  "duration": 2.5,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787437697543",
+                  "category": "logic",
+                  "kind": "condition",
+                  "label": "IF COINS >= 20 THEN (Branch Path)",
+                  "start": 2.75,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787437170898",
+                  "category": "vfx",
+                  "kind": "action",
+                  "label": "STAR CELEBRATION BURST",
+                  "start": 4.75,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787437163253",
+                  "category": "camera",
+                  "kind": "action",
+                  "label": "ZOOM IN ON SPACE (1.8x Focus)",
+                  "start": 4.75,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787452743706",
+                  "category": "inventory",
+                  "kind": "action",
+                  "label": "GRANT ITEM: Skeleton Key",
+                  "rewardType": "grant-item",
+                  "amount": 1,
+                  "waitForInput": true,
+                  "start": 7.2,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787439111271",
+                  "category": "world",
+                  "kind": "action",
+                  "label": "SUMMON STORM: Lightning Rain",
+                  "start": 9.8,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787437333103",
+                  "category": "input",
+                  "kind": "action",
+                  "label": "MYSTERY CHEST PICK (1 of 3)",
+                  "start": 14.100000000000001,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787436731387",
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "start": 16.6,
+                  "duration": 2.5,
+                  "open": true,
+                  "depth": 0
+                }
+              ],
+              "space": {
+                "type": "event",
+                "shape": "none",
+                "color": "rainbow",
+                "icon": "⚡",
+                "glow": true,
+                "title": "New Surprise 2",
+                "description": "Triggers custom cutscenes and rule modifications.",
+                "effect": "none",
+                "customImage": ""
+              },
+              "characters": [
+                {
+                  "id": "host-1787437450972",
+                  "name": "Host Guide",
+                  "icon": "✦",
+                  "role": "Host",
+                  "isHost": true,
+                  "sprite": "",
+                  "anchor": "center",
+                  "animation": "float"
+                }
+              ],
+              "activations": {
+                "movement": {
+                  "land": true,
+                  "pass": false,
+                  "reverse": false
+                },
+                "proximity": {
+                  "enabled": false,
+                  "radius": 10
+                },
+                "timing": {
+                  "round": 0,
+                  "interval": 0,
+                  "turn": 0,
+                  "gameStart": false,
+                  "finalRounds": false
+                },
+                "conditions": {
+                  "minCoins": 0,
+                  "requiredItem": "",
+                  "mapState": "any"
+                },
+                "minigames": {
+                  "beforeMinigame": false,
+                  "afterMinigame": false
+                }
+              },
+              "music": {
+                "track": "default",
+                "autoRestore": true
+              },
+              "variables": {},
+              "timeline": {
+                "duration": 24,
+                "tracks": [
+                  {
+                    "id": "track-main",
+                    "name": "Track 1 · Main Sequence",
+                    "kind": "main",
+                    "color": "violet",
+                    "locked": false,
+                    "muted": false,
+                    "clips": [
+                      {
+                        "id": "clip-1787436702015",
+                        "start": 0,
+                        "duration": 2.5,
+                        "category": "dialogue",
+                        "kind": "action",
+                        "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "clip-1787437697543",
+                        "start": 2.75,
+                        "duration": 1.8,
+                        "category": "logic",
+                        "kind": "condition",
+                        "label": "IF COINS >= 20 THEN (Branch Path)",
+                        "isDecision": true
+                      },
+                      {
+                        "id": "clip-1787437170898",
+                        "start": 4.75,
+                        "duration": 1.8,
+                        "category": "vfx",
+                        "kind": "action",
+                        "label": "STAR CELEBRATION BURST",
+                        "isDecision": false
+                      },
+                      {
+                        "label": "GRANT ITEM: Skeleton Key",
+                        "category": "inventory",
+                        "icon": "🗝️",
+                        "desc": "Place a special item into player's bag.",
+                        "invOp": "grant-item",
+                        "rewardType": "grant-item",
+                        "itemName": "Skeleton Key",
+                        "amount": 1,
+                        "waitForInput": true,
+                        "id": "clip-1787452743706",
+                        "start": 7.2,
+                        "duration": 1.8,
+                        "kind": "action",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "clip-1787439111271",
+                        "start": 9.8,
+                        "duration": 1.8,
+                        "category": "world",
+                        "kind": "action",
+                        "label": "SUMMON STORM: Lightning Rain",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "clip-1787437333103",
+                        "start": 14.100000000000001,
+                        "duration": 1.8,
+                        "category": "input",
+                        "kind": "action",
+                        "label": "MYSTERY CHEST PICK (1 of 3)",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "clip-1787436731387",
+                        "start": 16.6,
+                        "duration": 2.5,
+                        "category": "dialogue",
+                        "kind": "action",
+                        "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                        "isDecision": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "track-branch-1787437697543",
+                    "name": "Branch 2 · False / Otherwise",
+                    "kind": "branch-false",
+                    "color": "amber",
+                    "locked": false,
+                    "muted": false,
+                    "clips": [
+                      {
+                        "id": "clip-1787437163253",
+                        "start": 4.75,
+                        "duration": 1.8,
+                        "category": "camera",
+                        "kind": "action",
+                        "label": "ZOOM IN ON SPACE (1.8x Focus)",
+                        "isDecision": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "event-1787420889326",
+              "name": "Space Event 3",
+              "trigger": {
+                "kind": "land",
+                "spaceId": 7,
+                "radius": 10,
+                "round": 1,
+                "turn": 1
+              },
+              "space": {
+                "type": "event",
+                "shape": "shield",
+                "color": "violet",
+                "icon": "⚡",
+                "glow": true,
+                "title": "Space Event 3",
+                "description": "A mysterious space on the board.",
+                "effect": "sparkles",
+                "customImage": ""
+              },
+              "characters": [
+                {
+                  "id": "char-1787421227235",
+                  "name": "Lucky Cat",
+                  "icon": "🐱",
+                  "role": "Host",
+                  "sprite": "",
+                  "anchor": "center",
+                  "animation": "bounce",
+                  "isHost": true
+                }
+              ],
+              "activations": {
+                "movement": {
+                  "land": true,
+                  "pass": false,
+                  "reverse": false
+                },
+                "proximity": {
+                  "enabled": false,
+                  "radius": 10
+                },
+                "timing": {
+                  "round": 0,
+                  "interval": 0,
+                  "turn": 0,
+                  "gameStart": false,
+                  "finalRounds": false
+                },
+                "conditions": {
+                  "minCoins": 0,
+                  "requiredItem": "",
+                  "mapState": "any"
+                },
+                "minigames": {
+                  "beforeMinigame": false,
+                  "afterMinigame": false
+                }
+              },
+              "commands": [
+                {
+                  "id": "cmd-1787420889326-2",
+                  "category": "dialogue",
+                  "kind": "scene",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to this space!\"",
+                  "start": 0,
+                  "duration": 2.5,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787437632217",
+                  "category": "logic",
+                  "kind": "condition",
+                  "label": "IF COINS >= 20 THEN (Branch Path)",
+                  "start": 2.5,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "cmd-1787420918393",
+                  "category": "logic",
+                  "kind": "condition",
+                  "label": "CONDITIONAL: IF Player Coins >= 20",
+                  "start": 30.700000000000003,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787437672559",
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "start": 30.700000000000003,
+                  "duration": 2.5,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "cmd-1787420924070",
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "start": 32.7,
+                  "duration": 2.5,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1787437665349",
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                  "start": 33.2,
+                  "duration": 2.5,
+                  "open": true,
+                  "depth": 0
+                }
+              ],
+              "music": {
+                "track": "default",
+                "autoRestore": true
+              },
+              "variables": {},
+              "timeline": {
+                "duration": 40,
+                "tracks": [
+                  {
+                    "id": "track-main",
+                    "name": "Track 1 · Main Sequence",
+                    "kind": "main",
+                    "color": "violet",
+                    "locked": false,
+                    "muted": false,
+                    "clips": [
+                      {
+                        "id": "cmd-1787420889326-2",
+                        "start": 0,
+                        "duration": 2.5,
+                        "category": "dialogue",
+                        "kind": "scene",
+                        "label": "SHOW SPEECH BUBBLE: \"Welcome to this space!\"",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "clip-1787437632217",
+                        "start": 2.5,
+                        "duration": 1.8,
+                        "category": "logic",
+                        "kind": "condition",
+                        "label": "IF COINS >= 20 THEN (Branch Path)",
+                        "isDecision": true
+                      },
+                      {
+                        "id": "cmd-1787420918393",
+                        "start": 30.700000000000003,
+                        "duration": 1.8,
+                        "category": "logic",
+                        "kind": "condition",
+                        "label": "CONDITIONAL: IF Player Coins >= 20",
+                        "isDecision": true
+                      },
+                      {
+                        "id": "cmd-1787420924070",
+                        "start": 32.7,
+                        "duration": 2.5,
+                        "category": "dialogue",
+                        "kind": "action",
+                        "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                        "isDecision": false
+                      }
+                    ]
+                  },
+                  {
+                    "id": "track-branch-1787437632217",
+                    "name": "Branch 2 · False / Otherwise",
+                    "kind": "branch-false",
+                    "color": "amber",
+                    "locked": false,
+                    "muted": false,
+                    "clips": [
+                      {
+                        "id": "clip-1787437672559",
+                        "start": 30.700000000000003,
+                        "duration": 2.5,
+                        "category": "dialogue",
+                        "kind": "action",
+                        "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                        "isDecision": false
+                      },
+                      {
+                        "id": "clip-1787437665349",
+                        "start": 33.2,
+                        "duration": 2.5,
+                        "category": "dialogue",
+                        "kind": "action",
+                        "label": "SHOW SPEECH BUBBLE: \"Welcome to the space!\"",
+                        "isDecision": false
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "rules": {
+          "activeCartridge": "classic",
+          "cartridges": [
+            {
+              "id": "classic",
+              "name": "CLASSIC PARTY",
+              "color": "red"
+            },
+            {
+              "id": "everybody",
+              "name": "EVERYBODY MOVES",
+              "color": "green"
+            },
+            {
+              "id": "team",
+              "name": "TEAM PARTY",
+              "color": "blue"
+            },
+            {
+              "id": "empty",
+              "name": "EMPTY RULESET",
+              "color": "cream"
+            }
+          ],
+          "pages": {
+            "start": {
+              "title": "HOW DOES IT START?",
+              "cards": [
+                "GIVE EVERYONE 10 COINS",
+                "PUT PLAYERS AT START",
+                "PLACE THE FIRST STAR"
+              ]
+            },
+            "flow": {
+              "title": "WHAT HAPPENS NEXT?",
+              "cards": [
+                "WHEN NOTHING IS HAPPENING → START TURN",
+                "AFTER EVERYONE MOVES → PICK MINI-GAME",
+                "AFTER MINI-GAME → NEXT ROUND"
+              ],
+              "disabled": []
+            },
+            "players": {
+              "title": "WHO CAN PLAY?",
+              "cards": [
+                "1–4 PLAYERS",
+                "FILL EMPTY SEATS WITH CPU"
+              ]
+            },
+            "movement": {
+              "title": "HOW DO THEY MOVE?",
+              "cards": [
+                "ROLL 1–6",
+                "MOVE ONE SPACE AT A TIME",
+                "RUN EVENTS WHILE MOVING"
+              ]
+            },
+            "minigames": {
+              "title": "WHEN DO MINI-GAMES START?",
+              "cards": [
+                "AFTER EVERY ROUND",
+                "WINNER GETS 10 COINS"
+              ]
+            },
+            "winning": {
+              "title": "WHO WINS?",
+              "cards": [
+                "MOST STARS",
+                "THEN MOST COINS"
+              ]
+            },
+            "special": {
+              "title": "ANY SPECIAL RULES?",
+              "cards": [
+                "ANNOUNCE THE FINAL FIVE ROUNDS"
+              ]
+            }
+          }
+        },
+        "data": {
+          "items": [
+            {
+              "id": "item-1787453002636",
+              "name": "LUCKY CHARM",
+              "icon": "♣"
+            },
+            {
+              "id": "item-1787453003856",
+              "name": "LUCKY CHARM",
+              "icon": "♣"
+            },
+            {
+              "id": "item-1787453005391",
+              "name": "LUCKY CHARM",
+              "icon": "♣"
+            }
+          ],
+          "currencies": [
+            {
+              "id": "coins",
+              "name": "COINS",
+              "icon": "●",
+              "color": "gold"
+            },
+            {
+              "id": "stars",
+              "name": "STARS",
+              "icon": "★",
+              "color": "yellow"
+            },
+            {
+              "id": "currency-1787419271645",
+              "name": "GEMS",
+              "icon": "◆",
+              "color": "green"
+            },
+            {
+              "id": "currency-1787419272683",
+              "name": "GEMS",
+              "icon": "◆",
+              "color": "green"
+            }
+          ],
+          "spaceTypes": [
+            "START",
+            "BLUE",
+            "RED",
+            "LUCKY",
+            "EVENT"
+          ],
+          "statuses": [
+            "TRAIL READY",
+            "TAILWIND",
+            "RAIN SOAKED",
+            "HOT-SPRING GLOW"
+          ],
+          "minigamePools": []
+        }
+      },
+      {
+        "id": "starlight-circuit",
+        "name": "Starlight Circuit",
+        "map": {
+          "boardId": "starlight-circuit",
+          "name": "Starlight Circuit",
+          "image": "/assets/party-board.png",
+          "tool": "space",
+          "spaceType": "blue",
+          "spaces": [
+            {
+              "id": 0,
+              "x": 17,
+              "y": 68,
+              "type": "start",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "start-space-event"
+            },
+            {
+              "id": 1,
+              "x": 24,
+              "y": 73,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 2,
+              "x": 34,
+              "y": 75,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 3,
+              "x": 44,
+              "y": 72,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            },
+            {
+              "id": 4,
+              "x": 52,
+              "y": 65,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 5,
+              "x": 56,
+              "y": 55,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 6,
+              "x": 53,
+              "y": 45,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "event-space-event"
+            },
+            {
+              "id": 7,
+              "x": 44,
+              "y": 39,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 8,
+              "x": 34,
+              "y": 39,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            },
+            {
+              "id": 9,
+              "x": 28,
+              "y": 33,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 10,
+              "x": 31,
+              "y": 24,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 11,
+              "x": 40,
+              "y": 19,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "event-space-event"
+            },
+            {
+              "id": 12,
+              "x": 52,
+              "y": 20,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 13,
+              "x": 60,
+              "y": 27,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            },
+            {
+              "id": 14,
+              "x": 66,
+              "y": 34,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 15,
+              "x": 72,
+              "y": 41,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 16,
+              "x": 76,
+              "y": 51,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "event-space-event"
+            },
+            {
+              "id": 17,
+              "x": 73,
+              "y": 61,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 18,
+              "x": 67,
+              "y": 69,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            },
+            {
+              "id": 19,
+              "x": 60,
+              "y": 76,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 20,
+              "x": 49,
+              "y": 81,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 21,
+              "x": 38,
+              "y": 84,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "event-space-event"
+            },
+            {
+              "id": 22,
+              "x": 28,
+              "y": 82,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 23,
+              "x": 20,
+              "y": 76,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            }
+          ],
+          "paths": [
+            {
+              "id": "path-1",
+              "from": 0,
+              "to": 1
+            },
+            {
+              "id": "path-2",
+              "from": 1,
+              "to": 2
+            },
+            {
+              "id": "path-3",
+              "from": 2,
+              "to": 3
+            },
+            {
+              "id": "path-4",
+              "from": 3,
+              "to": 4
+            },
+            {
+              "id": "path-5",
+              "from": 4,
+              "to": 5
+            },
+            {
+              "id": "path-6",
+              "from": 5,
+              "to": 6
+            },
+            {
+              "id": "path-7",
+              "from": 6,
+              "to": 7
+            },
+            {
+              "id": "path-8",
+              "from": 7,
+              "to": 8
+            },
+            {
+              "id": "path-9",
+              "from": 8,
+              "to": 9
+            },
+            {
+              "id": "path-10",
+              "from": 9,
+              "to": 10
+            },
+            {
+              "id": "path-11",
+              "from": 10,
+              "to": 11
+            },
+            {
+              "id": "path-12",
+              "from": 11,
+              "to": 12
+            },
+            {
+              "id": "path-13",
+              "from": 12,
+              "to": 13
+            },
+            {
+              "id": "path-14",
+              "from": 13,
+              "to": 14
+            },
+            {
+              "id": "path-15",
+              "from": 14,
+              "to": 15
+            },
+            {
+              "id": "path-16",
+              "from": 15,
+              "to": 16
+            },
+            {
+              "id": "path-17",
+              "from": 16,
+              "to": 17
+            },
+            {
+              "id": "path-18",
+              "from": 17,
+              "to": 18
+            },
+            {
+              "id": "path-19",
+              "from": 18,
+              "to": 19
+            },
+            {
+              "id": "path-20",
+              "from": 19,
+              "to": 20
+            },
+            {
+              "id": "path-21",
+              "from": 20,
+              "to": 21
+            },
+            {
+              "id": "path-22",
+              "from": 21,
+              "to": 22
+            },
+            {
+              "id": "path-23",
+              "from": 22,
+              "to": 23
+            }
+          ],
+          "objects": [],
+          "triggers": [],
+          "regions": [],
+          "spawns": [],
+          "cameras": []
+        },
+        "scenes": {
+          "selectedId": "ghost-challenge",
+          "entries": [
+            {
+              "id": "ghost-challenge",
+              "name": "Ghost Challenge",
+              "duration": 12,
+              "clips": [
+                {
+                  "id": "gather",
+                  "track": "players",
+                  "label": "GATHER PLAYERS",
+                  "start": 0,
+                  "duration": 1.4,
+                  "color": "blue",
+                  "resources": [
+                    "players"
+                  ]
+                },
+                {
+                  "id": "ghost",
+                  "track": "actor",
+                  "label": "GHOST APPEARS",
+                  "start": 1.4,
+                  "duration": 1.6,
+                  "color": "purple",
+                  "resources": [
+                    "ghost"
+                  ]
+                },
+                {
+                  "id": "fog",
+                  "track": "effects",
+                  "label": "FOG BURST",
+                  "start": 1.9,
+                  "duration": 1,
+                  "color": "cyan",
+                  "resources": [
+                    "effects"
+                  ]
+                },
+                {
+                  "id": "quip",
+                  "track": "dialogue",
+                  "label": "GHOST QUIP",
+                  "start": 2.5,
+                  "duration": 2.4,
+                  "color": "pink",
+                  "resources": [
+                    "ui"
+                  ]
+                },
+                {
+                  "id": "mash",
+                  "track": "input",
+                  "label": "MASH A!",
+                  "start": 4.9,
+                  "duration": 5,
+                  "color": "yellow",
+                  "resources": [
+                    "input"
+                  ],
+                  "barrier": true
+                },
+                {
+                  "id": "reward",
+                  "track": "game",
+                  "label": "+20 COINS",
+                  "start": 9.9,
+                  "duration": 1.2,
+                  "color": "green",
+                  "resources": [
+                    "ui"
+                  ]
+                },
+                {
+                  "id": "restore",
+                  "track": "players",
+                  "label": "PUT THEM BACK",
+                  "start": 11.1,
+                  "duration": 0.9,
+                  "color": "blue",
+                  "resources": [
+                    "players"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "events": {
+          "selectedId": "ghost-space",
+          "entries": [
+            {
+              "id": "ghost-space",
+              "name": "Ghost Space",
+              "trigger": {
+                "kind": "land",
+                "spaceId": 7,
+                "radius": 10,
+                "round": 1,
+                "turn": 1
+              },
+              "commands": [
+                {
+                  "id": "who",
+                  "kind": "condition",
+                  "label": "IF 2 PLAYERS ARE READY",
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "scene",
+                  "kind": "scene",
+                  "label": "PLAY GHOST CHALLENGE",
+                  "open": true,
+                  "depth": 1
+                },
+                {
+                  "id": "winner",
+                  "kind": "player",
+                  "label": "GIVE WINNER 20 COINS",
+                  "open": true,
+                  "depth": 1
+                },
+                {
+                  "id": "restore",
+                  "kind": "action",
+                  "label": "PUT EVERYONE BACK",
+                  "open": true,
+                  "depth": 1
+                }
+              ]
+            }
+          ]
+        },
+        "rules": {
+          "activeCartridge": "classic",
+          "cartridges": [
+            {
+              "id": "classic",
+              "name": "CLASSIC PARTY",
+              "color": "red"
+            },
+            {
+              "id": "everybody",
+              "name": "EVERYBODY MOVES",
+              "color": "green"
+            },
+            {
+              "id": "team",
+              "name": "TEAM PARTY",
+              "color": "blue"
+            },
+            {
+              "id": "empty",
+              "name": "EMPTY RULESET",
+              "color": "cream"
+            }
+          ],
+          "pages": {
+            "start": {
+              "title": "HOW DOES IT START?",
+              "cards": [
+                "GIVE EVERYONE 10 COINS",
+                "PUT PLAYERS AT START",
+                "PLACE THE FIRST STAR"
+              ]
+            },
+            "flow": {
+              "title": "WHAT HAPPENS NEXT?",
+              "cards": [
+                "WHEN NOTHING IS HAPPENING → START TURN",
+                "AFTER EVERYONE MOVES → PICK MINI-GAME",
+                "AFTER MINI-GAME → NEXT ROUND"
+              ]
+            },
+            "players": {
+              "title": "WHO CAN PLAY?",
+              "cards": [
+                "1–4 PLAYERS",
+                "FILL EMPTY SEATS WITH CPU"
+              ]
+            },
+            "movement": {
+              "title": "HOW DO THEY MOVE?",
+              "cards": [
+                "ROLL 1–6",
+                "MOVE ONE SPACE AT A TIME",
+                "RUN EVENTS WHILE MOVING"
+              ]
+            },
+            "minigames": {
+              "title": "WHEN DO MINI-GAMES START?",
+              "cards": [
+                "AFTER EVERY ROUND",
+                "WINNER GETS 10 COINS"
+              ]
+            },
+            "winning": {
+              "title": "WHO WINS?",
+              "cards": [
+                "MOST STARS",
+                "THEN MOST COINS"
+              ]
+            },
+            "special": {
+              "title": "ANY SPECIAL RULES?",
+              "cards": [
+                "ANNOUNCE THE FINAL FIVE ROUNDS"
+              ]
+            }
+          }
+        },
+        "data": {
+          "items": [
+            {
+              "id": "ferry-pass",
+              "name": "FERRY PASS",
+              "icon": "⛴"
+            },
+            {
+              "id": "trail-compass",
+              "name": "TRAIL COMPASS",
+              "icon": "🧭"
+            },
+            {
+              "id": "rain-shell",
+              "name": "RAIN SHELL",
+              "icon": "🧥"
+            },
+            {
+              "id": "double-die",
+              "name": "DOUBLE DIE",
+              "icon": "🎲"
+            }
+          ],
+          "currencies": [
+            {
+              "id": "coins",
+              "name": "COINS",
+              "icon": "●",
+              "color": "gold"
+            },
+            {
+              "id": "stars",
+              "name": "STARS",
+              "icon": "★",
+              "color": "yellow"
+            }
+          ],
+          "toys": [
+            {
+              "id": "coins",
+              "name": "COINS",
+              "icon": "🪙",
+              "category": "currency",
+              "description": "The standard spendable board currency.",
+              "effectType": "coins",
+              "amount": 1,
+              "stackLimit": 999,
+              "consumable": false,
+              "tradable": true,
+              "rarity": "common"
+            },
+            {
+              "id": "stars",
+              "name": "STARS",
+              "icon": "⭐",
+              "category": "currency",
+              "description": "The primary victory collectible.",
+              "effectType": "stars",
+              "amount": 1,
+              "stackLimit": 99,
+              "consumable": false,
+              "tradable": true,
+              "rarity": "legendary"
+            },
+            {
+              "id": "standard-die",
+              "name": "STANDARD DICE BLOCK",
+              "icon": "🎲",
+              "category": "dice",
+              "description": "Roll from 1 to 6 for normal movement.",
+              "effectType": "roll",
+              "amount": 1,
+              "dieFaces": "1,2,3,4,5,6",
+              "stackLimit": 1,
+              "consumable": false,
+              "tradable": false,
+              "rarity": "common"
+            },
+            {
+              "id": "double-die",
+              "name": "DOUBLE DICE BLOCK",
+              "icon": "🎲🎲",
+              "category": "dice",
+              "description": "Roll two dice and move by their total.",
+              "effectType": "roll",
+              "amount": 2,
+              "dieFaces": "1,2,3,4,5,6",
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "triple-die",
+              "name": "TRIPLE DICE BLOCK",
+              "icon": "🎲",
+              "category": "dice",
+              "description": "Roll three dice and move by their total.",
+              "effectType": "roll",
+              "amount": 3,
+              "dieFaces": "1,2,3,4,5,6",
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            },
+            {
+              "id": "slow-die",
+              "name": "SLOW DICE BLOCK",
+              "icon": "🐢",
+              "category": "dice",
+              "description": "Choose a careful roll from 1 to 3.",
+              "effectType": "roll",
+              "amount": 1,
+              "dieFaces": "1,2,3",
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "super-mushroom",
+              "name": "SUPER MUSHROOM",
+              "icon": "🍄",
+              "category": "powerup",
+              "description": "Boost the player's next movement.",
+              "effectType": "move",
+              "amount": 3,
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "warp-whistle",
+              "name": "WARP WHISTLE",
+              "icon": "🪈",
+              "category": "powerup",
+              "description": "Warp to another board space.",
+              "effectType": "warp",
+              "amount": 1,
+              "stackLimit": 1,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            },
+            {
+              "id": "duel-card",
+              "name": "DUEL CARD",
+              "icon": "⚔️",
+              "category": "card",
+              "description": "Challenge another player to a duel.",
+              "effectType": "duel",
+              "amount": 1,
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            },
+            {
+              "id": "coin-card",
+              "name": "COIN BONUS CARD",
+              "icon": "🃏",
+              "category": "card",
+              "description": "Gain a quick coin bonus.",
+              "effectType": "coins",
+              "amount": 10,
+              "stackLimit": 5,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "party-apple",
+              "name": "PARTY APPLE",
+              "icon": "🍎",
+              "category": "food",
+              "description": "A small restorative snack.",
+              "effectType": "heal",
+              "amount": 10,
+              "stackLimit": 5,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "common"
+            },
+            {
+              "id": "celebration-cake",
+              "name": "CELEBRATION CAKE",
+              "icon": "🍰",
+              "category": "food",
+              "description": "A powerful treat that restores the whole party.",
+              "effectType": "heal-party",
+              "amount": 20,
+              "stackLimit": 1,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            },
+            {
+              "id": "heart-potion",
+              "name": "HEART POTION",
+              "icon": "🧪",
+              "category": "healing",
+              "description": "Restore health or clear a minor injury.",
+              "effectType": "heal",
+              "amount": 25,
+              "stackLimit": 5,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "first-aid-kit",
+              "name": "FIRST AID KIT",
+              "icon": "🩹",
+              "category": "healing",
+              "description": "Restore health and remove a negative status.",
+              "effectType": "heal-status",
+              "amount": 50,
+              "stackLimit": 2,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            }
+          ],
+          "spaceTypes": [
+            "START",
+            "BLUE",
+            "RED",
+            "LUCKY",
+            "EVENT"
+          ],
+          "statuses": [
+            "TRAIL READY",
+            "TAILWIND",
+            "RAIN SOAKED",
+            "HOT-SPRING GLOW"
+          ],
+          "minigamePools": [
+            {
+              "id": "party-mix",
+              "name": "PARTY MIX",
+              "enabled": true
+            }
+          ]
+        }
+      },
+      {
+        "id": "gearbolt-station",
+        "name": "Gearbolt Station",
+        "map": {
+          "boardId": "gearbolt-station",
+          "name": "Gearbolt Station",
+          "image": "/assets/gearbolt-station.webp",
+          "tool": "space",
+          "spaceType": "blue",
+          "spaces": [
+            {
+              "id": 0,
+              "x": 14,
+              "y": 73,
+              "type": "start",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "start-space-event"
+            },
+            {
+              "id": 1,
+              "x": 21,
+              "y": 66,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 2,
+              "x": 29,
+              "y": 59,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 3,
+              "x": 38,
+              "y": 55,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 4,
+              "x": 47,
+              "y": 58,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            },
+            {
+              "id": 5,
+              "x": 56,
+              "y": 66,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 6,
+              "x": 66,
+              "y": 73,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "event-space-event"
+            },
+            {
+              "id": 7,
+              "x": 76,
+              "y": 72,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 8,
+              "x": 84,
+              "y": 63,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 9,
+              "x": 87,
+              "y": 52,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            },
+            {
+              "id": 10,
+              "x": 83,
+              "y": 42,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 11,
+              "x": 75,
+              "y": 35,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 12,
+              "x": 66,
+              "y": 31,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "event-space-event"
+            },
+            {
+              "id": 13,
+              "x": 57,
+              "y": 34,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 14,
+              "x": 49,
+              "y": 42,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 15,
+              "x": 41,
+              "y": 48,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            },
+            {
+              "id": 16,
+              "x": 33,
+              "y": 45,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 17,
+              "x": 25,
+              "y": 38,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "event-space-event"
+            },
+            {
+              "id": 18,
+              "x": 18,
+              "y": 30,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 19,
+              "x": 24,
+              "y": 21,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 20,
+              "x": 36,
+              "y": 17,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            },
+            {
+              "id": 21,
+              "x": 48,
+              "y": 20,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 22,
+              "x": 59,
+              "y": 16,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 23,
+              "x": 71,
+              "y": 20,
+              "type": "event",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "event-space-event"
+            },
+            {
+              "id": 24,
+              "x": 81,
+              "y": 28,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            },
+            {
+              "id": 25,
+              "x": 88,
+              "y": 38,
+              "type": "red",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "red-space-event"
+            },
+            {
+              "id": 26,
+              "x": 89,
+              "y": 50,
+              "type": "lucky",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "lucky-space-event"
+            },
+            {
+              "id": 27,
+              "x": 84,
+              "y": 62,
+              "type": "blue",
+              "size": 3,
+              "depth": 2,
+              "rotation": 0,
+              "shape": "oval",
+              "action": "blue-space-event"
+            }
+          ],
+          "paths": [
+            {
+              "id": "path-1",
+              "from": 0,
+              "to": 1
+            },
+            {
+              "id": "path-2",
+              "from": 1,
+              "to": 2
+            },
+            {
+              "id": "path-3",
+              "from": 2,
+              "to": 3
+            },
+            {
+              "id": "path-4",
+              "from": 3,
+              "to": 4
+            },
+            {
+              "id": "path-5",
+              "from": 4,
+              "to": 5
+            },
+            {
+              "id": "path-6",
+              "from": 5,
+              "to": 6
+            },
+            {
+              "id": "path-7",
+              "from": 6,
+              "to": 7
+            },
+            {
+              "id": "path-8",
+              "from": 7,
+              "to": 8
+            },
+            {
+              "id": "path-9",
+              "from": 8,
+              "to": 9
+            },
+            {
+              "id": "path-10",
+              "from": 9,
+              "to": 10
+            },
+            {
+              "id": "path-11",
+              "from": 10,
+              "to": 11
+            },
+            {
+              "id": "path-12",
+              "from": 11,
+              "to": 12
+            },
+            {
+              "id": "path-13",
+              "from": 12,
+              "to": 13
+            },
+            {
+              "id": "path-14",
+              "from": 13,
+              "to": 14
+            },
+            {
+              "id": "path-15",
+              "from": 14,
+              "to": 15
+            },
+            {
+              "id": "path-16",
+              "from": 15,
+              "to": 16
+            },
+            {
+              "id": "path-17",
+              "from": 16,
+              "to": 17
+            },
+            {
+              "id": "path-18",
+              "from": 17,
+              "to": 18
+            },
+            {
+              "id": "path-19",
+              "from": 18,
+              "to": 19
+            },
+            {
+              "id": "path-20",
+              "from": 19,
+              "to": 20
+            },
+            {
+              "id": "path-21",
+              "from": 20,
+              "to": 21
+            },
+            {
+              "id": "path-22",
+              "from": 21,
+              "to": 22
+            },
+            {
+              "id": "path-23",
+              "from": 22,
+              "to": 23
+            },
+            {
+              "id": "path-24",
+              "from": 23,
+              "to": 24
+            },
+            {
+              "id": "path-25",
+              "from": 24,
+              "to": 25
+            },
+            {
+              "id": "path-26",
+              "from": 25,
+              "to": 26
+            },
+            {
+              "id": "path-27",
+              "from": 26,
+              "to": 27
+            }
+          ],
+          "objects": [],
+          "triggers": [],
+          "regions": [],
+          "spawns": [],
+          "cameras": []
+        },
+        "scenes": {
+          "selectedId": "ghost-challenge",
+          "entries": [
+            {
+              "id": "ghost-challenge",
+              "name": "Ghost Challenge",
+              "duration": 12,
+              "clips": [
+                {
+                  "id": "gather",
+                  "track": "players",
+                  "label": "GATHER PLAYERS",
+                  "start": 0,
+                  "duration": 1.4,
+                  "color": "blue",
+                  "resources": [
+                    "players"
+                  ]
+                },
+                {
+                  "id": "ghost",
+                  "track": "actor",
+                  "label": "GHOST APPEARS",
+                  "start": 1.4,
+                  "duration": 1.6,
+                  "color": "purple",
+                  "resources": [
+                    "ghost"
+                  ]
+                },
+                {
+                  "id": "fog",
+                  "track": "effects",
+                  "label": "FOG BURST",
+                  "start": 1.9,
+                  "duration": 1,
+                  "color": "cyan",
+                  "resources": [
+                    "effects"
+                  ]
+                },
+                {
+                  "id": "quip",
+                  "track": "dialogue",
+                  "label": "GHOST QUIP",
+                  "start": 2.5,
+                  "duration": 2.4,
+                  "color": "pink",
+                  "resources": [
+                    "ui"
+                  ]
+                },
+                {
+                  "id": "mash",
+                  "track": "input",
+                  "label": "MASH A!",
+                  "start": 4.9,
+                  "duration": 5,
+                  "color": "yellow",
+                  "resources": [
+                    "input"
+                  ],
+                  "barrier": true
+                },
+                {
+                  "id": "reward",
+                  "track": "game",
+                  "label": "+20 COINS",
+                  "start": 9.9,
+                  "duration": 1.2,
+                  "color": "green",
+                  "resources": [
+                    "ui"
+                  ]
+                },
+                {
+                  "id": "restore",
+                  "track": "players",
+                  "label": "PUT THEM BACK",
+                  "start": 11.1,
+                  "duration": 0.9,
+                  "color": "blue",
+                  "resources": [
+                    "players"
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "events": {
+          "selectedId": "ghost-space",
+          "entries": [
+            {
+              "id": "ghost-space",
+              "name": "Ghost Space",
+              "trigger": {
+                "kind": "land",
+                "spaceId": 7,
+                "radius": 10,
+                "round": 1,
+                "turn": 1
+              },
+              "commands": [
+                {
+                  "id": "who",
+                  "kind": "condition",
+                  "label": "IF 2 PLAYERS ARE READY",
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "scene",
+                  "kind": "scene",
+                  "label": "PLAY GHOST CHALLENGE",
+                  "open": true,
+                  "depth": 1
+                },
+                {
+                  "id": "winner",
+                  "kind": "player",
+                  "label": "GIVE WINNER 20 COINS",
+                  "open": true,
+                  "depth": 1
+                },
+                {
+                  "id": "restore",
+                  "kind": "action",
+                  "label": "PUT EVERYONE BACK",
+                  "open": true,
+                  "depth": 1
+                }
+              ]
+            }
+          ]
+        },
+        "rules": {
+          "activeCartridge": "classic",
+          "cartridges": [
+            {
+              "id": "classic",
+              "name": "CLASSIC PARTY",
+              "color": "red"
+            },
+            {
+              "id": "everybody",
+              "name": "EVERYBODY MOVES",
+              "color": "green"
+            },
+            {
+              "id": "team",
+              "name": "TEAM PARTY",
+              "color": "blue"
+            },
+            {
+              "id": "empty",
+              "name": "EMPTY RULESET",
+              "color": "cream"
+            }
+          ],
+          "pages": {
+            "start": {
+              "title": "HOW DOES IT START?",
+              "cards": [
+                "GIVE EVERYONE 10 COINS",
+                "PUT PLAYERS AT START",
+                "PLACE THE FIRST STAR"
+              ]
+            },
+            "flow": {
+              "title": "WHAT HAPPENS NEXT?",
+              "cards": [
+                "WHEN NOTHING IS HAPPENING → START TURN",
+                "AFTER EVERYONE MOVES → PICK MINI-GAME",
+                "AFTER MINI-GAME → NEXT ROUND"
+              ]
+            },
+            "players": {
+              "title": "WHO CAN PLAY?",
+              "cards": [
+                "1–4 PLAYERS",
+                "FILL EMPTY SEATS WITH CPU"
+              ]
+            },
+            "movement": {
+              "title": "HOW DO THEY MOVE?",
+              "cards": [
+                "ROLL 1–6",
+                "MOVE ONE SPACE AT A TIME",
+                "RUN EVENTS WHILE MOVING"
+              ]
+            },
+            "minigames": {
+              "title": "WHEN DO MINI-GAMES START?",
+              "cards": [
+                "AFTER EVERY ROUND",
+                "WINNER GETS 10 COINS"
+              ]
+            },
+            "winning": {
+              "title": "WHO WINS?",
+              "cards": [
+                "MOST STARS",
+                "THEN MOST COINS"
+              ]
+            },
+            "special": {
+              "title": "ANY SPECIAL RULES?",
+              "cards": [
+                "ANNOUNCE THE FINAL FIVE ROUNDS"
+              ]
+            }
+          }
+        },
+        "data": {
+          "items": [
+            {
+              "id": "ferry-pass",
+              "name": "FERRY PASS",
+              "icon": "⛴"
+            },
+            {
+              "id": "trail-compass",
+              "name": "TRAIL COMPASS",
+              "icon": "🧭"
+            },
+            {
+              "id": "rain-shell",
+              "name": "RAIN SHELL",
+              "icon": "🧥"
+            },
+            {
+              "id": "double-die",
+              "name": "DOUBLE DIE",
+              "icon": "🎲"
+            }
+          ],
+          "currencies": [
+            {
+              "id": "coins",
+              "name": "COINS",
+              "icon": "●",
+              "color": "gold"
+            },
+            {
+              "id": "stars",
+              "name": "STARS",
+              "icon": "★",
+              "color": "yellow"
+            }
+          ],
+          "toys": [
+            {
+              "id": "coins",
+              "name": "COINS",
+              "icon": "🪙",
+              "category": "currency",
+              "description": "The standard spendable board currency.",
+              "effectType": "coins",
+              "amount": 1,
+              "stackLimit": 999,
+              "consumable": false,
+              "tradable": true,
+              "rarity": "common"
+            },
+            {
+              "id": "stars",
+              "name": "STARS",
+              "icon": "⭐",
+              "category": "currency",
+              "description": "The primary victory collectible.",
+              "effectType": "stars",
+              "amount": 1,
+              "stackLimit": 99,
+              "consumable": false,
+              "tradable": true,
+              "rarity": "legendary"
+            },
+            {
+              "id": "standard-die",
+              "name": "STANDARD DICE BLOCK",
+              "icon": "🎲",
+              "category": "dice",
+              "description": "Roll from 1 to 6 for normal movement.",
+              "effectType": "roll",
+              "amount": 1,
+              "dieFaces": "1,2,3,4,5,6",
+              "stackLimit": 1,
+              "consumable": false,
+              "tradable": false,
+              "rarity": "common"
+            },
+            {
+              "id": "double-die",
+              "name": "DOUBLE DICE BLOCK",
+              "icon": "🎲🎲",
+              "category": "dice",
+              "description": "Roll two dice and move by their total.",
+              "effectType": "roll",
+              "amount": 2,
+              "dieFaces": "1,2,3,4,5,6",
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "triple-die",
+              "name": "TRIPLE DICE BLOCK",
+              "icon": "🎲",
+              "category": "dice",
+              "description": "Roll three dice and move by their total.",
+              "effectType": "roll",
+              "amount": 3,
+              "dieFaces": "1,2,3,4,5,6",
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            },
+            {
+              "id": "slow-die",
+              "name": "SLOW DICE BLOCK",
+              "icon": "🐢",
+              "category": "dice",
+              "description": "Choose a careful roll from 1 to 3.",
+              "effectType": "roll",
+              "amount": 1,
+              "dieFaces": "1,2,3",
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "super-mushroom",
+              "name": "SUPER MUSHROOM",
+              "icon": "🍄",
+              "category": "powerup",
+              "description": "Boost the player's next movement.",
+              "effectType": "move",
+              "amount": 3,
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "warp-whistle",
+              "name": "WARP WHISTLE",
+              "icon": "🪈",
+              "category": "powerup",
+              "description": "Warp to another board space.",
+              "effectType": "warp",
+              "amount": 1,
+              "stackLimit": 1,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            },
+            {
+              "id": "duel-card",
+              "name": "DUEL CARD",
+              "icon": "⚔️",
+              "category": "card",
+              "description": "Challenge another player to a duel.",
+              "effectType": "duel",
+              "amount": 1,
+              "stackLimit": 3,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            },
+            {
+              "id": "coin-card",
+              "name": "COIN BONUS CARD",
+              "icon": "🃏",
+              "category": "card",
+              "description": "Gain a quick coin bonus.",
+              "effectType": "coins",
+              "amount": 10,
+              "stackLimit": 5,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "party-apple",
+              "name": "PARTY APPLE",
+              "icon": "🍎",
+              "category": "food",
+              "description": "A small restorative snack.",
+              "effectType": "heal",
+              "amount": 10,
+              "stackLimit": 5,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "common"
+            },
+            {
+              "id": "celebration-cake",
+              "name": "CELEBRATION CAKE",
+              "icon": "🍰",
+              "category": "food",
+              "description": "A powerful treat that restores the whole party.",
+              "effectType": "heal-party",
+              "amount": 20,
+              "stackLimit": 1,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            },
+            {
+              "id": "heart-potion",
+              "name": "HEART POTION",
+              "icon": "🧪",
+              "category": "healing",
+              "description": "Restore health or clear a minor injury.",
+              "effectType": "heal",
+              "amount": 25,
+              "stackLimit": 5,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "uncommon"
+            },
+            {
+              "id": "first-aid-kit",
+              "name": "FIRST AID KIT",
+              "icon": "🩹",
+              "category": "healing",
+              "description": "Restore health and remove a negative status.",
+              "effectType": "heal-status",
+              "amount": 50,
+              "stackLimit": 2,
+              "consumable": true,
+              "tradable": true,
+              "rarity": "rare"
+            }
+          ],
+          "spaceTypes": [
+            "START",
+            "BLUE",
+            "RED",
+            "LUCKY",
+            "EVENT"
+          ],
+          "statuses": [
+            "TRAIL READY",
+            "TAILWIND",
+            "RAIN SOAKED",
+            "HOT-SPRING GLOW"
+          ],
+          "minigamePools": [
+            {
+              "id": "party-mix",
+              "name": "PARTY MIX",
+              "enabled": true
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

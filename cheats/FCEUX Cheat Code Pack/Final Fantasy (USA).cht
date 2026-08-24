@@ -1,0 +1,126 @@
+﻿
+S00f5:ff:No random battles (alt)
+S6021:01:Have Lute
+S6022:01:Have Crown
+S6023:01:Have Crystal
+S6024:01:Have Herb
+S6025:01:Have Key
+S6026:01:Have TNT
+S6027:01:Have Adamant
+S6028:01:Have Slab
+S6029:01:Have Ruby
+S602a:01:Have Rod
+S602b:01:Have Floater
+S602c:01:Have Chime
+S602d:01:Have Tail
+S602e:01:Have Cube
+S602f:01:Have Bottle
+S6030:01:Have Oxyale
+S6031:01:Have Canoe
+S6032:01:Have first Crystal lit
+S6033:01:Have second Crystal lit
+S6034:01:Have third Crystal lit
+S6035:01:Have last Crystal lit
+S610a:ff:Character 1 - 255 HP
+S6110:63:Character 1 - 99 STR
+S6111:63:Character 1 - 99 AGL
+S6112:63:Character 1 - 99 INT
+S6113:63:Character 1 - 99 VIT
+S6114:63:Character 1 - 99 Luck
+S6120:ff:Character 1 - 255 Damage
+S6121:ff:Character 1 - 255 Hit %
+S6122:ff:Character 1 - 255 Absorb
+S6123:ff:Character 1 - 255 Evade %
+S614a:ff:Character 2 - 255 HP
+S6150:63:Character 2 - 99 STR
+S6151:63:Character 2 - 99 AGL
+S6152:63:Character 2 - 99 INT
+S6153:63:Character 2 - 99 VIT
+S6154:63:Character 2 - 99 Luck
+S6160:ff:Character 2 - 255 Damage
+S6161:ff:Character 2 - 255 Hit %
+S6162:ff:Character 2 - 255 Absorb
+S6163:ff:Character 2 - 255 Evade %
+S618a:ff:Character 3 - 255 HP
+S6190:63:Character 3 - 99 STR
+S6191:63:Character 3 - 99 AGL
+S6192:63:Character 3 - 99 INT
+S6193:63:Character 3 - 99 VIT
+S6194:63:Character 3 - 99 Luck
+S61a0:ff:Character 3 - 255 Damage
+S61a1:ff:Character 3 - 255 Hit %
+S61a2:ff:Character 3 - 255 Absorb
+S61a3:ff:Character 3 - 255 Evade %
+S61ca:ff:Character 4 - 255 HP
+S61d0:63:Character 4 - 99 STR
+S61d1:63:Character 4 - 99 AGL
+S61d2:63:Character 4 - 99 INT
+S61d3:63:Character 4 - 99 VIT
+S61d4:63:Character 4 - 99 Luck
+S61e0:ff:Character 4 - 255 Damage
+S61e1:ff:Character 4 - 255 Hit %
+S61e2:ff:Character 4 - 255 Absorb
+S61e3:ff:Character 4 - 255 Evade %
+S6320:08:Character 1 - Infinite level 1 magic use (1 of 2)
+S6321:08:Character 1 - Infinite level 2 magic use (1 of 2)
+S6322:08:Character 1 - Infinite level 3 magic use (1 of 2)
+S6323:08:Character 1 - Infinite level 4 magic use (1 of 2)
+S6324:08:Character 1 - Infinite level 5 magic use (1 of 2)
+S6325:08:Character 1 - Infinite level 6 magic use (1 of 2)
+S6326:08:Character 1 - Infinite level 7 magic use (1 of 2)
+S6327:08:Character 1 - Infinite level 8 magic use (1 of 2)
+S6328:08:Character 1 - Infinite level 1 magic use (2 of 2)
+S6329:08:Character 1 - Infinite level 2 magic use (2 of 2)
+S632a:08:Character 1 - Infinite level 3 magic use (2 of 2)
+S632b:08:Character 1 - Infinite level 4 magic use (2 of 2)
+S632c:08:Character 1 - Infinite level 5 magic use (2 of 2)
+S632d:08:Character 1 - Infinite level 6 magic use (2 of 2)
+S632e:08:Character 1 - Infinite level 7 magic use (2 of 2)
+S632f:08:Character 1 - Infinite level 8 magic use (2 of 2)
+S99e6:91:No random battles
+S9ed9:01:Gain 65535 EXP from every battle
+SCa4d1:2c:ed:Almost infinite Gold (1 of 2)
+SCa4da:2c:ed:Almost infinite Gold (2 of 2)
+SCab0e:b0:f0:Non-magic users can use level 1 magic (1 of 3)
+SCb01c:20:90:Start with 800 Gold (1 of 2)
+SCb01d:03:01:Start with 800 Gold (2 of 2)
+SCb01e:ff:00:999999+ Gold
+SCb035:ad:de:LIFE spell never uses up Magic Points
+SCb041:46:23:Double Fighter Hit Points
+SCb046:0a:05:Double Fighter's Luck
+SCb048:14:0a:Double Fighter's Hit
+SCb049:6a:35:Double Fighter's Evade
+SCb051:3c:1e:Double Thief's Hit Points
+SCb056:1e:0f:Double Thief's Luck
+SCb057:06:02:Triple Thief's Damage
+SCb058:0a:05:Double Thief's Hit
+SCb059:74:3a:Double Thief's Evade
+SCb061:42:21:Double Black Belt's Hit Points
+SCb066:0a:05:Double Black Belt's Luck
+SCb067:06:02:Triple Black Belt's Damage
+SCb068:0a:05:Double Black Belt's Hit
+SCb069:6a:35:Double Black Belt's Evade
+SCb06b:ad:de:LIF2 spell never uses up Magic Points
+SCb071:3c:1e:Double Red Mage's Hit Points
+SCb076:0a:05:Double Red Mage's Luck
+SCb077:0a:05:Double Red Mage's Damage
+SCb078:0e:07:Double Red Mage's Hit
+SCb079:74:3a:Double Red Mage's Evade
+SCb081:38:1c:Double White Mage's Hit Points
+SCb086:0a:05:Double White Mage's Luck
+SCb087:06:02:Triple White Mage's Damage
+SCb088:0a:05:Double White Mage's Hit
+SCb089:6a:35:Double White Mage's Evade
+SCb091:32:19:Double Black Mage's Hit Points
+SCb096:14:0a:Double Black Mage's Luck
+SCb097:03:01:Triple Black Mage's Damage
+SCb098:0a:05:Double Black Mage's Hit
+SCb099:74:3a:Double Black Mage's Evade
+Sb323:80:Enemies don't attack
+SCb8fa:ad:20:Skip intro screens (2 of 2)
+SCc7d0:00:0c:Non-magic users can use level 1 magic (2 of 3)
+SCc7d4:00:08:Non-magic users can use level 1 magic (3 of 3)
+SCc7d6:06:02:Magic users start with 6 Magic Points
+SCc7d6:09:02:Magic users start with 9 Magic Points
+SCca72:00:f8:Walk through walls in towns and dungeons
+SCf532:5c:0f:Skip intro screens (1 of 2)

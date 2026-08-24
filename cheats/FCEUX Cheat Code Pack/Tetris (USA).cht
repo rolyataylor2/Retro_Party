@@ -1,0 +1,20 @@
+﻿
+S00bf:02:Next piece is a T-block
+S00bf:07:Next piece is a J-block
+S00bf:08:Next piece is a Z-block
+S00bf:0a:Next piece is a square block
+S00bf:0b:Next piece is a S-block
+S00bf:0e:Next piece is a L-block
+S00bf:12:Next piece is a straight line block
+SC875c:10:25:Need only complete 10 lines in game B
+SC875c:50:25:Must complete 50 lines in game B
+SC875c:80:25:Must complete 80 lines in game B
+SC8783:f8:f7:2P interactive game
+SC8953:09:01:Faster forced fall rate
+SC9a15:4c:f0:Disable Game Over (press start) (2 of 4)
+SC9a16:47:30:Disable Game Over (press start) (4 of 4)
+SC9a17:9a:a5:Disable Game Over (press start) (3 of 4)
+SC9a94:00:37:Lines are cleared when a piece is dropped
+SC9c8b:00:08:999999 score with one piece dropped
+SC9d10:04:03:Disable Game Over (press start) (1 of 4)
+SCa3b7:1e:16:Puzzle area doesn't disappear on pause

@@ -1,0 +1,16 @@
+﻿
+SCc6d9:01:03:Start with 1 continue
+SCc6d9:05:03:Start with 5 continues
+SCc6d9:09:03:Start with 9 continues
+SCc6e6:01:05:Start with 1 life
+SCc6e6:03:05:Start with 3 lives
+SCc6e6:09:05:Start with 9 lives
+SCc6ea:01:ff:Start with very little health - first life only
+SCc6ea:40:ff:Start with 1/4 health - first life only
+SCc6ea:70:ff:Start with 1/2 health - first life only
+SCc6ea:b0:ff:Start with 3/4 health - first life only
+SCc75f:a9:c3:Infinite lives (1 of 2)
+SCc762:a9:f0:Infinite lives (2 of 2)
+SCc846:a9:c6:Infinite continues (2 of 2)
+SCc848:a9:30:Infinite continues (1 of 2)
+SCe784:a5:85:Infinite health

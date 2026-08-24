@@ -1,0 +1,104 @@
+.game-view {
+  color: white;
+}
+
+.game-header {
+  max-width: 1000px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.game-header h2 {
+  margin: 2px 0;
+  font-size: 31px;
+}
+
+.game-header p {
+  margin: 0;
+  color: #d6d1ee;
+}
+
+.timer-pill {
+  margin-left: auto;
+  min-width: 75px;
+  text-align: center;
+  background: var(--gold);
+  color: #513b18;
+  border-radius: 18px;
+  padding: 14px;
+  font-weight: 950;
+}
+
+.console-wrap {
+  max-width: 960px;
+  margin: auto;
+}
+
+.screen-shell {
+  position: relative;
+  max-width: 790px;
+  margin: auto;
+  aspect-ratio: 256/240;
+  border: 15px solid #eeeaf4;
+  border-radius: 30px;
+  overflow: hidden;
+  background: #050510;
+  box-shadow: 0 20px 0 #817b9c, 0 45px 80px #05031399;
+}
+
+.screen-shell canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  image-rendering: pixelated;
+}
+
+.scanlines {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, #0000 0 3px, #0002 3px 4px);
+}
+
+.game-result {
+  position: absolute;
+  inset: 8%;
+  z-index: 5;
+  border-radius: 25px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: #fffdf5ed;
+  color: var(--ink);
+  backdrop-filter: blur(5px);
+  padding: 30px;
+}
+
+.game-result>span {
+  color: var(--gold);
+  font-size: 66px;
+}
+
+.game-result h2 {
+  font-size: 38px;
+  margin: 0;
+}
+
+.game-result button {
+  margin-top: 20px;
+  min-width: 280px;
+}
+
+.nes-help {
+  display: flex;
+  gap: 25px;
+  justify-content: center;
+  padding: 35px;
+  color: #d5d0ee;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+

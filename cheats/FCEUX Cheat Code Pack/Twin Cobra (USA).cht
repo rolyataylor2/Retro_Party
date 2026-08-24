@@ -1,0 +1,18 @@
+﻿
+SCc59d:09:05:Start with 9 continues
+SCc5b2:00:02:Start with 1 life
+SCc5b2:05:02:Start with 6 lives
+SCc5b2:08:02:Start with 9 lives
+SCc64f:00:01:Infinite continues
+SCc67b:00:02:Start with 1 life after a continue
+SCc67b:05:02:Start with 6 lives after a continue
+SCc67b:08:02:Start with 9 lives after a continue
+SCcd04:0a:03:Start with 9 Bombs
+SCcd04:14:03:Start with 20 Bombs
+SCd26c:ad:ce:Infinite lives
+SCd270:0a:03:9 Bombs after dying
+SCd270:14:03:20 Bombs after dying
+SCd276:24:85:Keep weapon type after death
+SCd278:24:85:Keep super chargers after death
+SCf916:00:1b:Autofire
+SCf972:ad:ce:Infinite Bombs

@@ -1,0 +1,15 @@
+﻿
+SC8cb1:2c:ce:Don't lose a life on Ground Pursuit, Boat and Hang Glider stages
+SCa8ad:09:06:9 seconds on clock pick-up
+SCa992:00:02:Full energy on pick-up
+SCa9b4:e9:e5:Minimum damage taken (1 of 2)
+SCa9b5:01:ff:Minimum damage taken (2 of 2)
+SCae2e:40:78:Shield lasts a shorter time on Human Fly stages
+SCae2e:ff:78:Shield lasts longer on Human Fly stages
+SCaffc:ad:ce:Don't lose a life against end-of-stage bosses and on street combat stages
+SCbdaa:ad:ce:Don't lose a life on Human Fly stages
+SCd2ff:ad:ce:Infinite time
+SCdbaf:ad:ce:Infinite 'Crez' weapon until end of stage
+SCecff:00:02:Start with 1 life (first credit only)
+SCecff:05:02:Start with 6 lives (first credit only)
+SCecff:08:02:Start with 9 lives (first credit only)

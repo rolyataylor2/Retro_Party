@@ -1,0 +1,45 @@
+﻿
+S0001:01:Start on match 02 - Von Keiser
+S0001:02:Start on match 03 - Piston Honda
+S0001:03:Start on match 04 - Don Flamenco
+S0001:04:Start on match 05 - King Hippo
+S0001:05:Start on match 06 - Great Tiger
+S0001:06:Start on match 07 - Bald Bull
+S0001:07:Start on match 08 - Piston Honda (2nd match)
+S0001:08:Start on match 09 - Soda Popinski
+S0001:09:Start on match 10 - Bald Bull (2nd match)
+S0001:0a:Start on match 11 - Don Flamenco (2nd match)
+S0001:0b:Start on match 12 - Mr. Sandman
+S0001:0c:Start on match 13 - Super Macho Man
+S0001:0d:Start on match 14 - Mike Tyson
+S0305:00:Infinite time (1 of 3)
+S0306:00:Infinite time (2 of 3)
+S0307:00:Infinite time (3 of 3)
+S0324:0a:Infinite hearts (alt 2)
+S0342:03:Start with and have infinite stars (alt)
+S0391:60:Infinite health (alt)
+S0398:00:No health for opponent (alt)
+S03ca:02:First knockdown will be a TKO (alt) (1 of 2)
+S03d1:02:First knockdown will be a TKO (alt) (2 of 2)
+SC8080:00:e5:Invincibility (1 of 2)
+SC815b:ad:20:No health replenishment for opponent
+SC8160:ad:6d:Take less damage
+SC8163:ad:20:Take even less damage
+SC8167:30:f0:Start with and have infinite stars
+SC8168:00:1e:Infinite stars
+SC82b5:75:f5:Invincibility (2 of 2)
+SC836e:00:04:Normal punches do more damage
+SC844e:24:e5:Infinite hearts (alt)
+SC84c7:ad:8d:No health for opponent (2 of 2)
+SC8503:60:a2:Infinite health
+SC879f:ad:ee:Infinite time (alt)
+SC87ab:a2:8e:Infinite time (1 of 2)
+SC87de:bd:9d:Infinite time (2 of 2)
+SC881a:60:8d:No health for opponent (1 of 2)
+SC892b:09:00:Infinite hearts
+SC8950:03:00:Start each round with 3 stars
+SC897e:30:f0:Infinite stars once obtained
+S9d3d:2f:Instant win
+S9d3d:ab:Instant loss
+S9ddf:28:First knockdown will be a TKO
+SCa290:f8:01:Skip intro

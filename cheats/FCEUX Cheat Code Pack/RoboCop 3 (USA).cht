@@ -1,0 +1,16 @@
+﻿
+S001c:00:Have main weapon - regular
+S001c:01:Have main weapon - Rapid
+S001c:02:Have main weapon - 3-Way
+S001d:00:Have secondary weapon - Missiles
+S001d:01:Have secondary weapon - Homing Missiles
+S001d:02:Have secondary weapon - Bang
+S06a4:09:Infinite P
+SCc0c3:ee:06:Lots of repair icons
+SCc265:0c:19:Start with 1/2 health
+SCc265:32:19:Start with 2x health
+SCf088:00:eb:Hit anywhere
+SCf0b8:7c:fc:One hit kills
+SCf19b:a9:e5:Infinite efficiency (1 of 2)
+SCf19c:19:e2:Infinite efficiency (2 of 2)
+SCf1a1:b9:9d:Infinite efficiency (alt)

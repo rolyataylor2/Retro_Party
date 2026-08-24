@@ -1,0 +1,312 @@
+.pointer.show {
+  opacity: 1;
+}
+
+@keyframes point {
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+[data-nav].nav-focus {
+  transform: translateY(-3px) scale(1.025);
+  box-shadow: 0 0 0 5px white, 0 0 0 10px var(--gold), var(--shadow);
+  position: relative;
+  z-index: 20;
+}
+
+.round-button.nav-focus,
+.back-button.nav-focus {
+  transform: scale(1.08);
+}
+
+.edge-nav.nav-focus {
+  position: fixed;
+  z-index: 46;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.moment-cheats-btn.nav-focus {
+  position: absolute !important;
+  top: 14px !important;
+  left: 14px !important;
+}
+
+.toast {
+  position: fixed;
+  z-index: 200;
+  left: 50%;
+  bottom: 25px;
+  transform: translate(-50%, 30px);
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 540px;
+  padding: 14px 20px;
+  border-radius: 17px;
+  color: var(--ink);
+  background: white;
+  box-shadow: 0 15px 50px #050315aa;
+  transition: .25s;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.toast span {
+  color: var(--gold);
+  font-size: 22px;
+}
+
+.toast p {
+  margin: 0;
+  font-weight: 750;
+}
+
+@media (max-width: 1200px) {
+  .wizard-actions {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 2px solid #f2eff9;
+    pointer-events: auto;
+  }
+
+  .wizard-actions>button,
+  .wizard-actions>.wizard-btn:first-child,
+  .wizard-actions>button:last-child {
+    position: static;
+    width: auto;
+    transform: none;
+  }
+
+  .wizard-actions>button:last-child {
+    margin-left: auto;
+  }
+
+  .wizard-actions>.wizard-btn:hover,
+  .wizard-actions>[data-nav].nav-focus {
+    position: relative;
+    transform: translateY(-3px) scale(1.025);
+  }
+
+  .confirm-actions .launch-action {
+    width: 100%;
+    max-width: 420px;
+    margin-left: auto;
+  }
+}
+
+@media (max-width: 1050px) {
+  .home-view.active {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-copy h1 {
+    font-size: 52px;
+  }
+
+  .creator-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .maker-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .board-space {
+    width: 28px;
+  }
+
+  .step-card {
+    padding: 26px 24px;
+  }
+
+  .confirmation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .draft-status {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .party-bar {
+    padding: 10px 16px;
+  }
+
+  .controller-status {
+    display: none;
+  }
+
+  .view {
+    padding: 20px 16px 55px;
+  }
+
+  .mode-wheel {
+    grid-template-columns: 1fr;
+  }
+
+  .mode-card:first-child {
+    grid-column: auto;
+  }
+
+  .mode-card,
+  .mode-card:first-child {
+    min-height: 130px;
+  }
+
+  .mode-card:first-child .mode-art,
+  .mode-art {
+    flex-basis: 80px;
+    height: 80px;
+    font-size: 36px;
+  }
+
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .filter-ribbon {
+    overflow-x: auto;
+  }
+
+  .form-grid,
+  .checklist {
+    grid-template-columns: 1fr;
+  }
+
+  .score-card {
+    min-width: 130px;
+  }
+
+  .turn-card {
+    width: 250px;
+  }
+
+  .creator-step {
+    grid-template-columns: 40px 1fr;
+  }
+
+  .creator-step>button {
+    grid-column: 2;
+  }
+
+  .package-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .package-fields>* {
+    grid-column: 1 !important;
+  }
+
+  .player-count-picker {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .character-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .character-card-art {
+    height: 130px;
+  }
+
+  .character-card-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .character-card-copy em {
+    margin-top: 3px;
+  }
+
+  .draft-player-art {
+    flex-basis: 34px;
+    height: 34px;
+  }
+
+  .card-options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .setup-progress {
+    display: none;
+  }
+
+  .wizard-actions {
+    flex-direction: column-reverse;
+    margin: 10px 0 0;
+  }
+
+  .wizard-actions>button,
+  .wizard-btn,
+  .confirm-actions .launch-action {
+    width: 100%;
+    max-width: none;
+    justify-content: center;
+    margin-left: 0;
+  }
+
+  .collection-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .collection-card {
+    grid-template-columns: 52px 1fr;
+    padding: 17px;
+  }
+
+  .collection-card kbd {
+    display: none;
+  }
+
+  .collection-card .collection-icon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .editor-actions {
+    margin: 22px 0 0;
+    flex-direction: column-reverse;
+  }
+
+  .editor-actions .big-action,
+  .editor-actions .wizard-btn {
+    width: 100%;
+    max-width: none;
+    justify-content: center;
+    border-radius: 16px;
+  }
+
+  .edge-nav {
+    top: auto;
+    bottom: 18px;
+    width: 60px;
+    min-height: 70px;
+    transform: none;
+  }
+
+  .edge-nav.nav-focus {
+    transform: scale(1.05);
+  }
+
+  .edge-nav span {
+    font-size: 34px;
+  }
+
+  .edge-nav small {
+    font-size: 7px;
+  }
+}
+

@@ -1,0 +1,25 @@
+﻿
+S0092:40:Infinite health
+S009a:09:Infinite time
+S00c6:02:Infinite ammo (1 of 2)
+S00c8:02:Infinite ammo (2 of 2)
+SC8018:02:01:More time on scene 7
+SC801c:09:06:More ammo picked up on scene 7
+SC8021:03:05:Less time on scene 5
+SC8021:06:05:More time on scene 5
+SC802b:02:04:Less time on scene 2
+SC802b:06:04:More time on scene 2
+SC802f:02:04:Less time on scene 3
+SC802f:06:04:More time on scene 3
+SC81ab:01:02:Less time on scene 1
+SC81ab:04:02:More time on scene 1
+SC8418:b5:d6:Infinite energy on scenes 1 and 4
+SC847e:05:10:Less ammo picked up on scene 2
+SC847e:20:10:More ammo picked up on scene 2
+SC84b2:a5:c6:Infinite time on scenes 1 and 4
+SC86c0:a5:c6:Infinite energy on scene 2
+SCc02e:00:0c:Start on scene 2
+SCc02e:02:0c:Start on scene 3
+SCc02e:04:0c:Start on scene 4
+SCc02e:06:0c:Start on scene 5
+SCc02e:0a:0c:Start on scene 7

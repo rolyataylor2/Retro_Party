@@ -1,0 +1,24 @@
+﻿
+SC841b:ad:ce:Infinite slides on pick-up
+SC8450:ad:ce:Infinite flying fists on pick-up
+SC846e:ad:ce:Infinite darts on pick-up
+SC9385:01:03:Start with 1 life instead of 3
+SC9385:05:03:Start with 5 lives
+SC9385:07:03:Start with 7 lives
+SC9385:09:03:Start with 9 lives
+SC9385:19:03:Start with 25 lives
+SC9385:32:03:Start with 50 lives
+SC9385:4b:03:Start with 75 lives
+SC9385:63:03:Start with 99 lives
+SCe65b:ad:ce:Become almost invincible after losing 1 life point (against most enemies, vacuum cleaner can still kill you)
+SCec1b:01:06:Extra life with every pizza slice
+SCec1b:02:06:Extra life with 2 pizza slices
+SCec1b:03:06:Extra life with 3 pizza slices
+SCec1b:04:06:Extra life with 4 pizza slices
+SCec1b:05:06:Extra life with 5 pizza slices instead of 6
+SCfcf6:08:04:Every 4 cookies count as 8
+SCfcf6:0c:04:Every 4 cookies count as 12
+SCfcf6:10:04:Every 4 cookies count as 16
+SCfcf6:14:04:Every 4 cookies count as 20 (extra life point)
+SCfd75:ad:ce:Infinite power units/life points
+SCfe04:ad:ce:Infinite lives

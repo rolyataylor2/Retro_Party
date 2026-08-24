@@ -1,0 +1,9 @@
+﻿
+SC8494:04:00:Start on scene 5
+SC8494:09:00:Start on scene 10
+SC8494:0e:00:Start on scene 15
+SC9b67:00:14:Jump OK, even with no power
+SC9b6f:40:00:Jump OK at any speed
+SC9b77:03:05:Set jump OK speed to 130
+SC9b77:09:05:Set jump OK speed to 190
+SCa530:02:01:Gain double power on every pick-up

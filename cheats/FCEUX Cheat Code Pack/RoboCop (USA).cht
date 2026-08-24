@@ -1,0 +1,24 @@
+﻿
+S006e:00:Infinite health
+S0082:00:Infinite time (alt)
+SCa29d:00:3b:Bosses die automatically
+SCa5cf:a5:e6:Infinite time
+SCa7c3:9d:bd:Can't harm civilian at the end of level 1
+SCb62f:bd:20:Invincibility (2 of 2)
+SCd10a:01:00:Start on level 2 (3 of 3)
+SCd10a:02:00:Start on level 3 (3 of 3)
+SCd10a:03:00:Start on level 4 (3 of 3)
+SCd10a:04:00:Start on level 5 (3 of 3)
+SCd10a:05:00:Start on level 6 (3 of 3)
+SCd10b:85:95:Start on level X (1 of 3)
+SCd10c:66:85:Start on level X (2 of 3)
+SCd128:0f:01:Use with COP Code 2 to start with machine gun and Cobra gun
+SCd224:0f:0e:Press Start to finish the level
+SCe276:3b:35:Invincibility (1 of 2)
+SCeb14:c5:05:Infinite ammunition
+SCee49:a5:85:No damage from touching enemies
+SCef6e:a5:85:No damage from enemy bullets
+SCfd17:09:03:Triple normal power on power food pick-up
+SCfd17:16:03:Full power on power food pick-up
+SCfd28:09:03:Triple normal time on battery pick-up
+SCfd28:16:03:Max time on battery pick-up

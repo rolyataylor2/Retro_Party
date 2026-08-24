@@ -1,0 +1,10 @@
+﻿
+SCbe0a:00:04:Shots use up no energy
+SCbe0a:02:04:Shots use up less energy
+SCbe0a:08:04:Shots use up more energy
+SCbe88:00:0a:No energy for shooting enemy
+SCbe88:04:0a:Less energy for shooting enemy
+SCbe88:14:0a:Bonus energy for shooting enemy
+SCefb8:00:14:Enemy bombs do no damage
+SCefb8:08:14:Enemy bombs do half damage
+SCefb8:28:14:Enemy bombs do more damage

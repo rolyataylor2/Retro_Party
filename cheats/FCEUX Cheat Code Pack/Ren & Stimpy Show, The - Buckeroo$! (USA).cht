@@ -1,0 +1,17 @@
+﻿
+SC82b1:01:03:Start with 2 lives
+SC82b1:05:03:Start with 6 lives
+SC82b1:07:03:Start with 8 lives
+SC82b1:09:03:Start with 10 lives
+SC85ab:fe:9d:Start with $11 instead of 0
+SC8709:a9:d0:Start on XX level (1 of 2)
+SC870a:01:22:Start on Rescue the Maiden/Out West levels (2 of 3)
+SC870a:02:22:Start on Robin Hoek level (3 of 3)
+SC870b:8d:ee:Start on Out West/Robin Hoek levels (3 of 3)
+SC8a82:b9:99:Infinite collectibles
+SCea39:ff:06:Infinite lives
+SCf229:02:05:2 custard pies on pick-up
+SCf229:09:05:9 custard pies on pick-up
+SCfb01:1f:3c:Shorter invincibility after getting hit
+SCfb01:65:3c:Longer invincibility after getting hit
+SCfb12:ff:07:Infinite health

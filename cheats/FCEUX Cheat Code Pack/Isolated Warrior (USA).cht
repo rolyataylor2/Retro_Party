@@ -1,0 +1,25 @@
+﻿
+S00a4:0c:Full Power Gun #1
+S00a5:0c:Full Power Gun #2
+S00da:04:Full speed
+S00e3:00:Invincibility (alt)
+S06a8:04:Full Power Bombs
+SC807c:01:00:Start on Scene 2 (3 of 3)
+SC807c:02:00:Start on Scene 3 (3 of 3)
+SC807c:03:00:Start on Scene 4 (3 of 3)
+SC807c:04:00:Start on Scene 5 (3 of 3)
+SC807c:05:00:Start on Scene 6 (3 of 3)
+SC807f:8e:8d:Start on Scene X (1 of 3)
+SC8082:8e:8d:Start on Scene X (2 of 3)
+SC8790:01:02:Less health restored on pick-up
+SC8790:06:02:More health restored on pick-up
+SC9a94:a9:30:Invincibility (1 of 3)
+SC9a96:85:a5:Invincibility (2 of 3)
+SC9d2a:ad:ce:Infinite Bombs
+SCd46c:ea:26:Infinite health
+SCe039:a5:c6:Infinite lives
+SCe225:01:03:Start with 1 life
+SCe225:06:03:Start with 6 lives
+SCe225:09:03:Start with 9 lives
+SCe25e:00:09:Start with maximum health and Bombs
+SCe7c0:e3:a2:Invincibility (3 of 3)

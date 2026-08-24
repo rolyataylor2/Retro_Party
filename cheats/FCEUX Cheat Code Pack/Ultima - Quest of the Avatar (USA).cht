@@ -1,0 +1,35 @@
+﻿
+SC8f04:00:02:Bow costs 168 instead of 680
+SC8f0b:01:14:Staff costs 1 instead of 20
+SC8f0f:01:e1:Axe costs 1 instead of 225
+SC8f12:00:01:Sword costs 144 instead of 400
+SC8f21:01:c8:Leather costs 1 instead of 200
+SC8f24:00:02:Chain costs 88 instead of 600
+SC8f2a:00:09:Plate costs 196 instead of 2500
+SC9546:00:01:Start with 144 Gold Pieces (for experts)
+SC9546:10:01:Start with 4240 Gold Pieces
+SC9546:20:01:Start with 8336 Gold Pieces
+SC9562:63:32:Start with perfect virtues (worthy of Avatarhood)
+SC95e6:02:00:Mage starts with 712 HP
+SC95ea:03:01:Fighter starts with 812 HP
+SC95f7:4b:00:Fighter starts with 75 MP
+SC95fd:20:10:Mage starts with Strength of 32
+SC95ff:30:1b:Fighter starts with Strength of 48
+SC9616:01:00:Mage starts with 381 EXP
+SC9619:ff:cd:Fighter starts with 255 EXP
+SC9625:64:08:Start with 100 Ash instead of 8
+SC9626:64:08:Start with 100 Ginseng instead of 8
+SC9627:64:09:Start with 100 Garlic instead of 9
+SC9628:64:07:Start with 100 Silkweb instead of 7
+SC9629:64:08:Start with 100 Moss instead of 8
+SC962a:64:04:Start with 100 Pearl instead of 4
+SC962b:64:00:Start with 100 Fungus instead of none
+SC962c:64:00:Start with 100 Manroot instead of none
+SCa032:b9:99:Infinite MP
+SCb28d:bd:de:Infinite Torches
+SCb5ec:ad:ce:Infinite Gems
+SCbc74:ad:ce:Infinite Oil
+SCd563:00:0a:Cure poison costs nothing
+SCd5c6:00:46:Heal costs nothing instead of 70
+SCe952:a5:85:No random battles
+SCec9f:bd:de:Infinite Herbs

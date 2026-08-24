@@ -1,0 +1,16 @@
+﻿
+SC800e:00:04:Start with 1 life
+SC800e:09:04:Start with 9 lives
+SC8112:24:85:Keep power-ups after losing a life
+SC8136:a5:c6:Infinite lives
+SC89dd:02:01:Faster Ken
+SCc238:b5:95:Infinite time
+SCd45b:f0:d0:Invincibility
+SCd4b1:00:02:Infinite health
+SCd4b1:01:02:Take less damage
+SCd4b1:03:02:Take more damage
+SCd4c7:00:02:Keep power-ups when hit
+SCd57b:ad:d9:Hit anywhere (3 of 3)
+SCd57e:d0:b0:Hit anywhere (2 of 3)
+SCd57f:20:11:Hit anywhere (1 of 3)
+SCebe6:ad:ce:Portal always stays open

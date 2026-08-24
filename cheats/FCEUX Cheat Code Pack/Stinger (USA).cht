@@ -1,0 +1,23 @@
+﻿
+S0038:09:Infinite lives (alt)
+S0056:50:Invincibility
+SCc301:01:01:Start at stage 2 (wait for demo game then press start) (2 of 2)
+SCc301:02:01:Start at stage 3 (wait for demo game then press start) (2 of 2)
+SCc301:03:01:Start at stage 4 (wait for demo game then press start) (2 of 2)
+SCc301:04:01:Start at stage 5 (wait for demo game then press start) (2 of 2)
+SCc301:05:01:Start at stage 6 (wait for demo game then press start) (2 of 2)
+SCc3db:05:00:Skip intro
+SCc415:24:85:Start at stage X (wait for demo game then press start) (1 of 2)
+SCc429:01:03:Start with 1 life
+SCc429:06:03:Start with 6 lives
+SCc429:09:03:Start with 9 lives
+SCc46e:01:10:Start with Dual Cannons (2 of 2)
+SCc46e:02:10:Start with Laser (2 of 2)
+SCc46e:04:10:Start with Shoot Right (2 of 2)
+SCc46e:08:10:Start with Shoot Left (2 of 2)
+SCc46e:10:10:Start with Five Direction Firing (2 of 2)
+SCc46e:20:10:Start with Three Direction Firing (2 of 2)
+SCc46e:40:10:Start with Force field (2 of 2)
+SCc470:47:3e:Start with XX (1 of 2)
+SCcb6c:a9:d6:Infinite lives
+SCcb77:24:95:Keep weapons after death

@@ -1,0 +1,1331 @@
+[
+  {
+    "id": "49a846e2-d24a-4bfb-9cc6-6d12a63ffc12",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 3,
+    "actionCount": 4,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 3
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Player 4 rolled 4 and lost 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Player 1",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 7,
+        "stars": 0,
+        "position": 4
+      },
+      {
+        "id": 2,
+        "name": "Player 2",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 10,
+        "stars": 0,
+        "position": 6
+      },
+      {
+        "id": 3,
+        "name": "Player 3",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 7,
+        "stars": 0,
+        "position": 4
+      },
+      {
+        "id": 4,
+        "name": "Player 4",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 7,
+        "stars": 0,
+        "position": 4
+      }
+    ],
+    "createdAt": "2026-08-16T18:54:08.453Z",
+    "updatedAt": "2026-08-16T18:54:22.387Z"
+  },
+  {
+    "id": "a922c9db-d253-439c-8f76-7142c979ea83",
+    "status": "playing",
+    "boardId": "gearbolt-station",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 0,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "The party is starting! Player 1 rolls first.",
+    "players": [
+      {
+        "id": 1,
+        "name": "Player 1",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 10,
+        "stars": 0,
+        "position": 0
+      },
+      {
+        "id": 2,
+        "name": "Player 2",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 10,
+        "stars": 0,
+        "position": 0
+      },
+      {
+        "id": 3,
+        "name": "Player 3",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 10,
+        "stars": 0,
+        "position": 0
+      },
+      {
+        "id": 4,
+        "name": "Player 4",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 10,
+        "stars": 0,
+        "position": 0
+      }
+    ],
+    "createdAt": "2026-08-16T18:54:32.505Z",
+    "updatedAt": "2026-08-16T18:54:32.505Z"
+  },
+  {
+    "id": "3aa54aea-ed33-4dda-82b2-e25e13b0bc2c",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 2,
+    "currentPlayerIndex": 0,
+    "actionCount": 4,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Luna CPU 2 cleared the mini-game and won 10 coins!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 7,
+        "stars": 0,
+        "position": 4
+      },
+      {
+        "id": 2,
+        "name": "Marina CPU 1",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 13,
+        "stars": 0,
+        "position": 5
+      },
+      {
+        "id": 3,
+        "name": "Luna CPU 2",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 27,
+        "stars": 0,
+        "position": 3
+      },
+      {
+        "id": 4,
+        "name": "Sprig CPU 3",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 7,
+        "stars": 0,
+        "position": 4
+      }
+    ],
+    "createdAt": "2026-08-16T19:16:25.857Z",
+    "updatedAt": "2026-08-16T19:16:52.860Z"
+  },
+  {
+    "id": "828e6c7b-a08f-44fe-a4b5-44846daff7a9",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 3,
+    "currentPlayerIndex": 0,
+    "actionCount": 8,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Luna CPU 2 cleared the mini-game and won 10 coins!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 10,
+        "stars": 0,
+        "position": 7
+      },
+      {
+        "id": 2,
+        "name": "Sprig CPU 1",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 20,
+        "stars": 0,
+        "position": 7
+      },
+      {
+        "id": 3,
+        "name": "Luna CPU 2",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 33,
+        "stars": 0,
+        "position": 6
+      },
+      {
+        "id": 4,
+        "name": "Nimbus CPU 3",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 10,
+        "stars": 0,
+        "position": 10
+      }
+    ],
+    "createdAt": "2026-08-16T19:21:14.331Z",
+    "updatedAt": "2026-08-16T19:30:39.491Z"
+  },
+  {
+    "id": "a1169acd-6532-48d3-a2e4-bc62c8547c96",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Prime Audit rolled 2 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Prime Audit",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 13,
+        "stars": 0,
+        "position": 2
+      }
+    ],
+    "createdAt": "2026-08-16T19:29:07.687Z",
+    "updatedAt": "2026-08-16T19:29:07.918Z"
+  },
+  {
+    "id": "180ede0e-c6e0-4800-a719-b1cc4ddf4796",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Audit Player rolled 2 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Audit Player",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 13,
+        "stars": 0,
+        "position": 2
+      }
+    ],
+    "createdAt": "2026-08-16T19:29:18.079Z",
+    "updatedAt": "2026-08-16T19:29:19.013Z"
+  },
+  {
+    "id": "6eddaf54-bd5c-4c58-a2a2-06fc52e04ecd",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Prime Audit rolled 2 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Prime Audit",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 13,
+        "stars": 0,
+        "position": 2
+      }
+    ],
+    "createdAt": "2026-08-16T19:30:07.412Z",
+    "updatedAt": "2026-08-16T19:30:07.639Z"
+  },
+  {
+    "id": "6b908855-acdf-4cf0-a004-8ff45d8a2c2b",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Audit Player rolled 2 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Audit Player",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 13,
+        "stars": 0,
+        "position": 2
+      }
+    ],
+    "createdAt": "2026-08-16T19:30:19.399Z",
+    "updatedAt": "2026-08-16T19:30:25.931Z"
+  },
+  {
+    "id": "dd92552f-bf80-4fbf-a65e-8e0eec3f3167",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 3,
+    "currentPlayerIndex": 0,
+    "actionCount": 8,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "The mini-game slipped away. Better luck next time!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 30,
+        "stars": 0,
+        "position": 5
+      },
+      {
+        "id": 2,
+        "name": "Marina CPU 1",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 16,
+        "stars": 0,
+        "position": 5
+      },
+      {
+        "id": 3,
+        "name": "Nimbus CPU 2",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 13,
+        "stars": 0,
+        "position": 11
+      },
+      {
+        "id": 4,
+        "name": "Luna CPU 3",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 13,
+        "stars": 0,
+        "position": 6
+      }
+    ],
+    "createdAt": "2026-08-16T19:31:16.488Z",
+    "updatedAt": "2026-08-16T19:33:01.559Z"
+  },
+  {
+    "id": "751d8b51-046c-42fc-be03-9f9080bc5039",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Prime Audit rolled 2 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Prime Audit",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 13,
+        "stars": 0,
+        "position": 2
+      }
+    ],
+    "createdAt": "2026-08-16T19:31:40.369Z",
+    "updatedAt": "2026-08-16T19:31:40.741Z"
+  },
+  {
+    "id": "009782af-7768-40bb-a5aa-bb7e961873d3",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Audit Player rolled 3 and met BOLT-0 but needs 20 coins for a Star. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Audit Player",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 17,
+        "stars": 0,
+        "position": 3
+      }
+    ],
+    "createdAt": "2026-08-16T19:31:52.761Z",
+    "updatedAt": "2026-08-16T19:31:54.247Z"
+  },
+  {
+    "id": "c9a54e8b-8b42-4774-8f91-c7995a835b64",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Prime Audit rolled 3 and met BOLT-0 but needs 20 coins for a Star. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Prime Audit",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 17,
+        "stars": 0,
+        "position": 3
+      }
+    ],
+    "createdAt": "2026-08-16T19:32:45.741Z",
+    "updatedAt": "2026-08-16T19:32:46.376Z"
+  },
+  {
+    "id": "242a6652-602b-4f65-b79a-e63718ec6d52",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Audit Player rolled 2 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Audit Player",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 13,
+        "stars": 0,
+        "position": 2
+      }
+    ],
+    "createdAt": "2026-08-16T19:33:06.827Z",
+    "updatedAt": "2026-08-16T19:33:09.114Z"
+  },
+  {
+    "id": "6f4435ca-93ad-4723-8690-5ccf1c97de5c",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Prime Audit rolled 6 and landed on an event space. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Prime Audit",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 10,
+        "stars": 0,
+        "position": 6
+      }
+    ],
+    "createdAt": "2026-08-16T19:44:54.322Z",
+    "updatedAt": "2026-08-16T19:44:54.691Z"
+  },
+  {
+    "id": "1c073b2b-284b-4029-881a-4ac1ccbf5c79",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 2,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "The mini-game slipped away. Better luck next time!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Audit Player",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 13,
+        "stars": 0,
+        "position": 1
+      }
+    ],
+    "createdAt": "2026-08-16T19:45:11.145Z",
+    "updatedAt": "2026-08-16T19:45:28.411Z"
+  },
+  {
+    "id": "9cae9482-689a-4afa-a1fe-3384978a7bf9",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Prime Audit rolled 1 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Prime Audit",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 13,
+        "stars": 0,
+        "position": 1
+      }
+    ],
+    "createdAt": "2026-08-16T19:47:00.074Z",
+    "updatedAt": "2026-08-16T19:47:00.460Z"
+  },
+  {
+    "id": "0625ad34-4a07-445d-b37a-30f679a60cf9",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 2,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "The mini-game slipped away. Better luck next time!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Audit Player",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 17,
+        "stars": 0,
+        "position": 3
+      }
+    ],
+    "createdAt": "2026-08-16T19:47:16.820Z",
+    "updatedAt": "2026-08-16T19:47:34.705Z"
+  },
+  {
+    "id": "05ae9985-576d-4584-ae8a-0e1c96977ed1",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 3,
+    "actionCount": 3,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Luna CPU 2 rolled 6 and landed on an event space.",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 13,
+        "stars": 0,
+        "position": 1
+      },
+      {
+        "id": 2,
+        "name": "Nimbus CPU 1",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 10,
+        "stars": 0,
+        "position": 6
+      },
+      {
+        "id": 3,
+        "name": "Luna CPU 2",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 10,
+        "stars": 0,
+        "position": 6
+      },
+      {
+        "id": 4,
+        "name": "Sprig CPU 3",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 10,
+        "stars": 0,
+        "position": 0
+      }
+    ],
+    "createdAt": "2026-08-16T19:48:38.740Z",
+    "updatedAt": "2026-08-16T19:48:57.381Z"
+  },
+  {
+    "id": "bb433dcd-1711-475d-b9c5-03953798816d",
+    "status": "playing",
+    "boardId": "gearbolt-station",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 3,
+    "currentPlayerIndex": 0,
+    "actionCount": 8,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Roly cleared the mini-game and won 10 coins!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 33,
+        "stars": 0,
+        "position": 6
+      },
+      {
+        "id": 2,
+        "name": "Luna CPU 1",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 4,
+        "stars": 0,
+        "position": 7
+      },
+      {
+        "id": 3,
+        "name": "Sprig CPU 2",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 14,
+        "stars": 0,
+        "position": 4
+      },
+      {
+        "id": 4,
+        "name": "Nimbus CPU 3",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 16,
+        "stars": 0,
+        "position": 3
+      }
+    ],
+    "createdAt": "2026-08-17T03:18:42.341Z",
+    "updatedAt": "2026-08-17T03:20:24.467Z"
+  },
+  {
+    "id": "f4cb0adc-31fa-4656-ba63-60a7305eaa9e",
+    "status": "playing",
+    "boardId": "gearbolt-station",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 3,
+    "currentPlayerIndex": 3,
+    "actionCount": 12,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 3
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Luna CPU 3 rolled 2 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 24,
+        "stars": 0,
+        "position": 12
+      },
+      {
+        "id": 2,
+        "name": "Nova CPU 1",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 19,
+        "stars": 0,
+        "position": 5
+      },
+      {
+        "id": 3,
+        "name": "Sprig CPU 2",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 33,
+        "stars": 0,
+        "position": 5
+      },
+      {
+        "id": 4,
+        "name": "Luna CPU 3",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 20,
+        "stars": 0,
+        "position": 11
+      }
+    ],
+    "createdAt": "2026-08-17T17:08:25.326Z",
+    "updatedAt": "2026-08-17T17:10:34.941Z"
+  },
+  {
+    "id": "c00e1988-1dcb-41aa-a072-758be1289c0a",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 2,
+    "currentPlayerIndex": 0,
+    "actionCount": 4,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Roly cleared the mini-game and won 10 coins!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 23,
+        "stars": 0,
+        "position": 2
+      },
+      {
+        "id": 2,
+        "name": "Nova CPU 1",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 17,
+        "stars": 0,
+        "position": 3
+      },
+      {
+        "id": 3,
+        "name": "Nimbus CPU 2",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 7,
+        "stars": 0,
+        "position": 4
+      },
+      {
+        "id": 4,
+        "name": "Sprig CPU 3",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 13,
+        "stars": 0,
+        "position": 5
+      }
+    ],
+    "createdAt": "2026-08-17T18:16:49.250Z",
+    "updatedAt": "2026-08-17T18:17:33.259Z"
+  },
+  {
+    "id": "feafea3b-4c8c-4b6a-9b43-9b5e92ff23dd",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 4,
+    "currentPlayerIndex": 3,
+    "actionCount": 16,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 3
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Luna CPU 3 rolled 5 and landed on an event space. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 50,
+        "stars": 0,
+        "position": 12
+      },
+      {
+        "id": 2,
+        "name": "Marina CPU 1",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 7,
+        "stars": 0,
+        "position": 9
+      },
+      {
+        "id": 3,
+        "name": "Sprig CPU 2",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 14,
+        "stars": 0,
+        "position": 19
+      },
+      {
+        "id": 4,
+        "name": "Luna CPU 3",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 16,
+        "stars": 0,
+        "position": 16
+      }
+    ],
+    "createdAt": "2026-08-17T18:27:30.193Z",
+    "updatedAt": "2026-08-17T18:30:52.924Z"
+  },
+  {
+    "id": "72724f88-0909-4a5b-817b-a68d77966084",
+    "status": "playing",
+    "boardId": "gearbolt-station",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 3,
+    "currentPlayerIndex": 0,
+    "actionCount": 2,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Roly cleared the mini-game and won 10 coins!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 36,
+        "stars": 0,
+        "position": 5
+      }
+    ],
+    "createdAt": "2026-08-17T18:34:47.279Z",
+    "updatedAt": "2026-08-17T18:36:36.109Z"
+  },
+  {
+    "id": "d11b4ef5-2138-42fa-92da-55dcc605bf98",
+    "status": "playing",
+    "boardId": "gearbolt-station",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 0,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "The party is starting! Player 1 rolls first.",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 10,
+        "stars": 0,
+        "position": 0
+      },
+      {
+        "id": 2,
+        "name": "Marina CPU 1",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 10,
+        "stars": 0,
+        "position": 0
+      },
+      {
+        "id": 3,
+        "name": "Sprig CPU 2",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 10,
+        "stars": 0,
+        "position": 0
+      },
+      {
+        "id": 4,
+        "name": "Luna CPU 3",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 10,
+        "stars": 0,
+        "position": 0
+      }
+    ],
+    "createdAt": "2026-08-17T18:41:02.815Z",
+    "updatedAt": "2026-08-17T18:41:02.815Z"
+  },
+  {
+    "id": "56956612-b89c-4da8-a3cd-7d8047f85bc4",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 3,
+    "currentPlayerIndex": 3,
+    "actionCount": 12,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 3
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Luna CPU 3 rolled 4 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 27,
+        "stars": 0,
+        "position": 12
+      },
+      {
+        "id": 2,
+        "name": "Marina CPU 1",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 16,
+        "stars": 0,
+        "position": 6
+      },
+      {
+        "id": 3,
+        "name": "Nimbus CPU 2",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 10,
+        "stars": 0,
+        "position": 9
+      },
+      {
+        "id": 4,
+        "name": "Luna CPU 3",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 10,
+        "stars": 0,
+        "position": 10
+      }
+    ],
+    "createdAt": "2026-08-17T18:41:37.446Z",
+    "updatedAt": "2026-08-17T18:45:15.733Z"
+  },
+  {
+    "id": "f3e0f84b-d3c2-4bbd-a077-c7088d1d4827",
+    "status": "complete",
+    "boardId": "gearbolt-station",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 5,
+    "currentPlayerIndex": 0,
+    "actionCount": 20,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Roly wins with 0 stars and 53 coins!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#ef8b32",
+        "characterId": "dash",
+        "coins": 53,
+        "stars": 0,
+        "position": 17
+      },
+      {
+        "id": 2,
+        "name": "Nova CPU 1",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 21,
+        "stars": 0,
+        "position": 20
+      },
+      {
+        "id": 3,
+        "name": "Marina CPU 2",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 15,
+        "stars": 0,
+        "position": 18
+      },
+      {
+        "id": 4,
+        "name": "Sprig CPU 3",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 34,
+        "stars": 0,
+        "position": 12
+      }
+    ],
+    "createdAt": "2026-08-17T18:48:31.568Z",
+    "updatedAt": "2026-08-17T18:55:12.144Z"
+  },
+  {
+    "id": "5d3ab10e-1d06-41ce-b961-06344535c1b2",
+    "status": "playing",
+    "boardId": "gearbolt-station",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 3,
+    "currentPlayerIndex": 3,
+    "actionCount": 12,
+    "pendingMinigame": {
+      "challengeId": "stomp-the-target",
+      "title": "Stomp the Target!",
+      "playerIndex": 3
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Luna CPU 3 rolled 6 and gained 3 coins. Next up: Stomp the Target!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 17,
+        "stars": 0,
+        "position": 9
+      },
+      {
+        "id": 2,
+        "name": "Marina CPU 1",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 33,
+        "stars": 0,
+        "position": 9
+      },
+      {
+        "id": 3,
+        "name": "Nimbus CPU 2",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 26,
+        "stars": 0,
+        "position": 12
+      },
+      {
+        "id": 4,
+        "name": "Luna CPU 3",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 17,
+        "stars": 0,
+        "position": 13
+      }
+    ],
+    "createdAt": "2026-08-17T18:57:12.801Z",
+    "updatedAt": "2026-08-17T18:59:39.904Z"
+  },
+  {
+    "id": "5d1c809c-3c1c-405a-bfe8-508328009040",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 5,
+    "currentPlayerIndex": 0,
+    "actionCount": 16,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Roly cleared the mini-game and won 10 coins!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 47,
+        "stars": 0,
+        "position": 9
+      },
+      {
+        "id": 2,
+        "name": "Marina CPU 1",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 16,
+        "stars": 0,
+        "position": 15
+      },
+      {
+        "id": 3,
+        "name": "Nimbus CPU 2",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 10,
+        "stars": 0,
+        "position": 17
+      },
+      {
+        "id": 4,
+        "name": "Luna CPU 3",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 33,
+        "stars": 0,
+        "position": 23
+      }
+    ],
+    "createdAt": "2026-08-17T19:01:38.631Z",
+    "updatedAt": "2026-08-17T19:06:48.574Z"
+  },
+  {
+    "id": "74750973-2bae-4f31-86d4-8455836467d4",
+    "status": "complete",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 5,
+    "currentPlayerIndex": 0,
+    "actionCount": 20,
+    "pendingMinigame": null,
+    "starPosition": 18,
+    "starCost": 20,
+    "lastEvent": "Roly wins with 1 stars and 43 coins!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 43,
+        "stars": 1,
+        "position": 11
+      },
+      {
+        "id": 2,
+        "name": "Marina CPU 1",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 6,
+        "stars": 1,
+        "position": 20
+      },
+      {
+        "id": 3,
+        "name": "Nimbus CPU 2",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 3,
+        "stars": 1,
+        "position": 13
+      },
+      {
+        "id": 4,
+        "name": "Luna CPU 3",
+        "color": "#8d63dc",
+        "characterId": "luna",
+        "coins": 33,
+        "stars": 0,
+        "position": 21
+      }
+    ],
+    "createdAt": "2026-08-17T19:10:02.786Z",
+    "updatedAt": "2026-08-17T19:13:59.864Z"
+  },
+  {
+    "id": "d52e583b-338b-49ca-8f32-bac1eceb0832",
+    "status": "playing",
+    "boardId": "starlight-circuit",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 3,
+    "currentPlayerIndex": 0,
+    "actionCount": 8,
+    "pendingMinigame": null,
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Roly cleared the mini-game and won 10 coins!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Roly",
+        "color": "#f2b92f",
+        "characterId": "nimbus",
+        "coins": 34,
+        "stars": 0,
+        "position": 4
+      },
+      {
+        "id": 2,
+        "name": "Eleni",
+        "color": "#28b9d6",
+        "characterId": "marina",
+        "coins": 16,
+        "stars": 0,
+        "position": 5
+      },
+      {
+        "id": 3,
+        "name": "Nova CPU 1",
+        "color": "#f04d5e",
+        "characterId": "nova",
+        "coins": 14,
+        "stars": 0,
+        "position": 9
+      },
+      {
+        "id": 4,
+        "name": "Sprig CPU 2",
+        "color": "#4ebc79",
+        "characterId": "sprig",
+        "coins": 4,
+        "stars": 0,
+        "position": 9
+      }
+    ],
+    "createdAt": "2026-08-18T04:04:08.346Z",
+    "updatedAt": "2026-08-18T04:06:56.385Z"
+  }
+]

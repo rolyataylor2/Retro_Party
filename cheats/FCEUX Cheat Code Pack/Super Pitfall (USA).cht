@@ -1,0 +1,13 @@
+﻿
+S00dc:ff:Invincibility (blinking) - both players
+SCbbf0:01:02:10 bullets gained on pick-up
+SCbbf0:03:02:30 bullets gained on pick-up
+SCcfaf:01:02:Start with 10 bullets
+SCcfaf:03:02:Start with 30 bullets
+SCd061:01:03:Start with 1 life - both players
+SCd061:06:03:Start with 6 lives - both players
+SCd061:09:03:Start with 9 lives - both players
+SCd548:ad:ce:Infinite lives - 1P game
+SCd58e:ad:ce:Infinite lives - P1
+SCd5aa:ad:ce:Infinite lives - P2
+SCf395:00:01:Infinite bullets

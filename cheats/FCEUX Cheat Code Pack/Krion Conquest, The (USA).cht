@@ -1,0 +1,21 @@
+﻿
+S0043:02:Infinite lives (alt)
+S004c:28:Infinite health (alt)
+S0057:1f:Moon-jump (disable in underwater stage)
+S0318:05:Infinite oxygen in underwater stage
+S03de:02:Invincibility (1 of 2)
+S03e0:3a:Invincibility (2 of 2)
+SC8129:a0:a9:Start on stage X (1 of 3)
+SC812a:01:00:Start on stage 2 (3 of 3)
+SC812a:02:00:Start on stage 3 (3 of 3)
+SC812a:03:00:Start on stage 4 (3 of 3)
+SC812d:84:85:Start on stage X (2 of 3)
+SC8140:00:02:Start with 1 life
+SC8140:05:02:Start with 6 lives
+SC8140:08:02:Start with 9 lives
+SCbde1:a5:c6:Infinite lives
+SCc69f:00:16:Float spell
+SCcde1:01:04:Quicker supershot
+SCdbf6:a5:85:Infinite health
+SCf096:05:09:Less health used on fire spell (2 of 2)
+SCf0a3:04:08:Less health used on fire spell (1 of 2)

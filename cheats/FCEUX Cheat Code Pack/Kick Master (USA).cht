@@ -1,0 +1,20 @@
+﻿
+SCa1bf:d0:90:Hit anywhere
+SCa6e7:00:03:Quick level up
+SCab61:a9:f0:Invincibility after one hit
+SCb3b7:ad:ce:Infinite lives (1 of 2)
+SCbd81:b5:95:Infinite magic points
+SCd32c:01:03:Start with 1 life
+SCd32c:05:03:Start with 5 lives
+SCd32c:09:03:Start with 9 lives
+SCd33b:65:60:Start with more EXP and magic points
+SCd3ba:a9:f0:Infinite lives (2 of 2)
+SCde11:ad:8d:Invincibility (2 of 3)
+SCde19:00:3c:Don't flash at all after getting hit
+SCde19:05:3c:Barely flash at all after getting hit
+SCde19:15:3c:Don't flash as long after getting hit
+SCde1a:10:85:Invincibility (1 of 3)
+SCde1b:06:d2:Invincibility (3 of 3)
+SCfde0:03:40:Start with very little health
+SCfde0:20:40:Start with half health
+SCfde0:80:40:Start with twice as much health

@@ -1,0 +1,491 @@
+.home-view {
+  padding: 0 !important;
+  margin: 0 !important;
+  display: none;
+  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+.home-view.active {
+  display: block;
+}
+
+.lab-menu-frame {
+  position: absolute;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border-radius: 0;
+  border: 0;
+}
+
+.lab-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  border-radius: 0;
+  border: 0;
+  image-rendering: auto;
+  z-index: 1;
+}
+
+/* Adventure Table: 1/4 scene width, 1/3 away from right side, 1/3 up from bottom */
+.lab-adventure-table {
+  position: absolute;
+  left: 51.67%;
+  top: 72.67%;
+  transform: translate(-50%, -50%);
+  width: 25vw;
+  max-width: 25vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+  z-index: 25;
+  user-select: none;
+}
+
+.lab-adventure-table.nav-focus,
+.lab-adventure-table:focus,
+.lab-adventure-table:focus-visible {
+  position: absolute !important;
+  transform: translate(-50%, -50%) !important;
+  box-shadow: none !important;
+}
+
+/* Mini-Game Confabulator Station: 1/5 scene width, 5% from left, 3% up from bottom */
+.lab-confabulator-station {
+  position: absolute;
+  right: 5%;
+  bottom: 21%;
+  width: 28vw;
+  max-width: 26vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: pointer;
+  z-index: 25;
+  user-select: none;
+}
+
+.lab-confabulator-station.nav-focus,
+.lab-confabulator-station:focus,
+.lab-confabulator-station:focus-visible {
+  position: absolute !important;
+  box-shadow: none !important;
+}
+
+.confabulator-station-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.75));
+  transition: filter 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  image-rendering: auto;
+}
+
+/* Glowing highlight when Confabulator Station is hovered/focused (stays exact same size) */
+.lab-confabulator-station:hover .confabulator-station-img,
+.lab-confabulator-station:focus .confabulator-station-img,
+.lab-confabulator-station:focus-visible .confabulator-station-img,
+.lab-confabulator-station.nav-focus .confabulator-station-img {
+  filter: drop-shadow(0 0 24px rgba(167, 139, 250, 0.95)) drop-shadow(0 0 48px rgba(56, 189, 248, 0.8)) drop-shadow(0 16px 32px rgba(0, 0, 0, 0.85));
+}
+
+.lab-confabulator-station:active .confabulator-station-img {
+  filter: drop-shadow(0 0 16px rgba(167, 139, 250, 0.8)) drop-shadow(0 0 32px rgba(56, 189, 248, 0.7));
+}
+
+/* Confabulator Station Dialog Popup */
+.confabulator-station-dialog-box {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(8, 6, 22, 0.92);
+  backdrop-filter: blur(14px);
+  border: 2px solid #a78bfa;
+  border-radius: 18px;
+  padding: 10px 22px;
+  min-width: 260px;
+  max-width: 360px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 26px rgba(167, 139, 250, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 50;
+  white-space: nowrap;
+}
+
+/* Tail pointing down to the Confabulator Station */
+.confabulator-station-dialog-box::after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 9px solid #a78bfa;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+
+.confabulator-station-dialog-box small {
+  color: #a78bfa;
+  font-size: 8.5px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.confabulator-station-dialog-box b {
+  font-family: var(--pixel);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin: 2px 0 1px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.confabulator-station-dialog-box em {
+  color: #c8c2ea;
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Reveal Confabulator Station info popup on selection */
+.lab-confabulator-station:hover .confabulator-station-dialog-box,
+.lab-confabulator-station:focus .confabulator-station-dialog-box,
+.lab-confabulator-station:focus-visible .confabulator-station-dialog-box,
+.lab-confabulator-station.nav-focus .confabulator-station-dialog-box {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.table-img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.75));
+  transition: filter 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  image-rendering: auto;
+}
+
+/* Glowing highlight when Adventure Table is hovered/focused (stays exact same size) */
+.lab-adventure-table:hover .table-img,
+.lab-adventure-table:focus .table-img,
+.lab-adventure-table:focus-visible .table-img,
+.lab-adventure-table.nav-focus .table-img {
+  filter: drop-shadow(0 0 24px rgba(255, 110, 108, 0.95)) drop-shadow(0 0 48px rgba(255, 209, 92, 0.8)) drop-shadow(0 16px 32px rgba(0, 0, 0, 0.85));
+}
+
+.lab-adventure-table:active .table-img {
+  filter: drop-shadow(0 0 16px rgba(255, 110, 108, 0.8)) drop-shadow(0 0 32px rgba(255, 209, 92, 0.7));
+}
+
+/* Adventure Table Dialog Popup */
+.table-dialog-box {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%) translateY(8px);
+  background: rgba(8, 6, 22, 0.92);
+  backdrop-filter: blur(14px);
+  border: 2px solid #ff6e6c;
+  border-radius: 18px;
+  padding: 10px 22px;
+  min-width: 260px;
+  max-width: 360px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 26px rgba(255, 110, 108, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 50;
+  white-space: nowrap;
+}
+
+/* Tail pointing down to the Adventure Table */
+.table-dialog-box::after {
+  content: "";
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 9px solid #ff6e6c;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.5));
+}
+
+.table-dialog-box small {
+  color: #ff6e6c;
+  font-size: 8.5px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.table-dialog-box b {
+  font-family: var(--pixel);
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin: 2px 0 1px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.table-dialog-box em {
+  color: #c8c2ea;
+  font-size: 10.5px;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Reveal Adventure Table info popup on selection */
+.lab-adventure-table:hover .table-dialog-box,
+.lab-adventure-table:focus .table-dialog-box,
+.lab-adventure-table:focus-visible .table-dialog-box,
+.lab-adventure-table.nav-focus .table-dialog-box {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lab-sidebar-nav {
+  position: absolute;
+  left: 5vw;
+  top: 96px;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  z-index: 20;
+  pointer-events: auto;
+}
+
+.sidebar-nav-divider {
+  width: 32px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 2px;
+  margin: 2px 11px;
+}
+
+/* Stationary Menu Button */
+.lab-menu-btn {
+  --btn-color: #ffd15c;
+  position: relative;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  outline: none;
+  width: 54px;
+  height: 54px;
+  flex-shrink: 0;
+}
+
+.lab-menu-btn.coral {
+  --btn-color: #ff6e6c;
+}
+
+.lab-menu-btn.violet {
+  --btn-color: #a78bfa;
+}
+
+.lab-menu-btn.cyan {
+  --btn-color: #38bdf8;
+}
+
+.lab-menu-btn.gold {
+  --btn-color: #ffd15c;
+}
+
+.lab-menu-btn.mint {
+  --btn-color: #34d399;
+}
+
+/* Stationary Circular Icon Badge */
+.btn-circle-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 24px;
+  color: #ffffff;
+  background: rgba(14, 11, 38, 0.88);
+  backdrop-filter: blur(8px);
+  border: 2.5px solid var(--btn-color);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.65), 0 0 12px color-mix(in srgb, var(--btn-color) 30%, transparent);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  flex-shrink: 0;
+}
+
+/* Icon Highlight on hover / focus */
+.lab-menu-btn:hover .btn-circle-icon,
+.lab-menu-btn:focus .btn-circle-icon,
+.lab-menu-btn:focus-visible .btn-circle-icon,
+.lab-menu-btn.nav-focus .btn-circle-icon {
+  transform: scale(1.08);
+  background: color-mix(in srgb, var(--btn-color) 45%, #100b2e);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.85), 0 0 28px var(--btn-color);
+  border-color: #ffffff;
+}
+
+.lab-menu-btn:active .btn-circle-icon {
+  transform: scale(0.96);
+}
+
+/* Translucent Black Dialog Box on the right with tail pointing left */
+.btn-dialog-box {
+  position: absolute;
+  left: calc(100% + 18px);
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  background: rgba(8, 6, 22, 0.88);
+  backdrop-filter: blur(14px);
+  border: 2px solid var(--btn-color);
+  border-radius: 18px;
+  padding: 10px 18px;
+  min-width: 240px;
+  max-width: 320px;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.85), 0 0 24px color-mix(in srgb, var(--btn-color) 35%, transparent);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1), transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 50;
+  white-space: nowrap;
+}
+
+/* Dialog tail facing left towards the icon */
+.btn-dialog-box::after {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 9px solid var(--btn-color);
+  filter: drop-shadow(-2px 0 2px rgba(0, 0, 0, 0.5));
+}
+
+.btn-dialog-box small {
+  color: var(--btn-color);
+  font-size: 8.5px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.btn-dialog-box b {
+  font-family: var(--pixel);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  margin: 2px 0 1px;
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
+}
+
+.btn-dialog-box em {
+  color: #c8c2ea;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Reveal dialog box when option is focused / hovered */
+.lab-menu-btn:hover .btn-dialog-box,
+.lab-menu-btn:focus .btn-dialog-box,
+.lab-menu-btn:focus-visible .btn-dialog-box,
+.lab-menu-btn.nav-focus .btn-dialog-box {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) translateX(0);
+}
+
+.home-hint {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #d8d3f6;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  z-index: 50;
+  background: rgba(10, 8, 26, 0.75);
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+  white-space: nowrap;
+}
+
+.home-hint kbd,
+.nes-help kbd {
+  border: 1px solid #ffffff4a;
+  border-radius: 6px;
+  padding: 3px 6px;
+  background: #ffffff1f;
+  color: white;
+}

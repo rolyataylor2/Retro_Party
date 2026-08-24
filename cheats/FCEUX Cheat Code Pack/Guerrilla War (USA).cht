@@ -1,0 +1,25 @@
+﻿
+S0028:05:Infinite lives - P1
+S0029:04:Infinite lives - P2
+S0039:01:Start on stage 02 (disable after loading stage)
+S0039:02:Start on stage 03 (disable after loading stage)
+S0039:03:Start on stage 04 (disable after loading stage)
+S0039:04:Start on stage 05 (disable after loading stage)
+S0039:05:Start on stage 06 (disable after loading stage)
+S0039:06:Start on stage 07 (disable after loading stage)
+S0039:07:Start on stage 08 (disable after loading stage)
+S0039:08:Start on stage 09 (disable after loading stage)
+S0039:09:Start on stage 10 (disable after loading stage)
+S04c2:fa:Infinite time for tank
+S0680:02:Invincibility - P1
+S0681:02:Invincibility - P2
+SCa0a8:09:08:Start a new game to view ending
+SCc75f:0b:11:Press Start to complete the level
+Sc9b6:00:Start with 1 life - both players
+Sc9b6:05:Start with 6 lives - both players
+Sc9b6:09:Start with 9 lives - both players
+SCce69:ad:de:Infinite lives - both players (alt)
+Sce69:bd:Infinite lives - both players
+SCe454:f0:d0:Invincibility (1 of 2)
+SCebb0:ad:9d:Keep weapon after death
+SCec03:d0:f0:Invincibility (2 of 2)

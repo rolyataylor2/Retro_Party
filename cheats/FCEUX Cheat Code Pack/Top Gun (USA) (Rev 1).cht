@@ -1,0 +1,15 @@
+﻿
+S0031:02:Infinite lives
+S0036:0a:Infinite fuel (alt)
+S003c:3f:Infinite Missiles (alt)
+S004e:0c:Infinite health
+SCc103:02:01:Start on Mission 2
+SCc103:03:01:Start on Mission 3
+SCc103:04:01:Start on Mission 4
+SCc17b:05:0a:Start with half fuel
+SCc18e:50:28:Take off with double Hound Missiles
+SCc18f:28:14:Take off with double Wolf Missiles
+SCc190:14:0a:Take off with double Tiger Missiles
+SCdbcf:00:03:Immune to Bullets (not Missiles)
+SCdcbf:24:c6:Infinite fuel
+SCddc4:24:c6:Infinite Missiles

@@ -1,0 +1,53 @@
+﻿
+S006d:01:Start on stage 1-2
+S006d:02:Start on stage 2-1
+S006d:03:Start on stage 2-2
+S006d:04:Start on stage 2-3
+S006d:05:Start on stage 3-1
+S006d:06:Start on stage 3-2
+S006d:07:Start on stage 3-3
+S006d:08:Start on stage 4-1
+S006d:09:Start on stage 4-2
+S006d:0a:Start on stage 4-3
+S006d:0b:Start on stage 4-4
+S006d:0c:Start on stage 5-1
+S006d:0d:Start on stage 5-2
+S006d:0e:Start on stage 5-3
+S006d:0f:Start on stage 5-4
+S006d:10:Start on stage 6-1
+S006d:11:Start on stage 6-2
+S006d:12:Start on stage 6-3
+S006d:13:Start on stage 6-4 (1st boss)
+S006d:14:Start on stage 6-4 (2nd boss)
+S006d:15:Start on stage 6-5 (final boss)
+S0093:80:Invincibility after first hit (2 of 2)
+S0095:02:Invincibility after first hit (1 of 2)
+S0497:00:One hit kills bosses
+SC805e:04:e6:Sound test - hold down and press Start at Tecmo Presents screen
+SCdc04:10:06:Maximum strength regained from restorer
+SCddf2:00:03:Enemies die instantly (1 of 6)
+SCded5:00:24:Enemies die instantly (2 of 6)
+Sded5:00:Hit anywhere (1 of 5)
+SCdee3:00:15:Enemies die instantly (3 of 6)
+Sdee3:00:Hit anywhere (2 of 5)
+SCdeeb:00:09:Enemies die instantly (4 of 6)
+Sdeeb:00:Hit anywhere (3 of 5)
+SCdef3:10:90:Enemies die instantly (5 of 6)
+Sdef3:10:Hit anywhere (4 of 5)
+SCdef7:d0:90:Enemies die instantly (6 of 6)
+Sdef7:d0:Hit anywhere (5 of 5)
+Se162:a9:Invincibility
+SCe177:60:a9:Invincibility (alt)
+SCe1af:a5:85:Infinite health
+SCe401:a5:c6:Infinite lives
+SCe53b:00:02:Start with 1 life
+SCe53b:05:02:Start with 6 lives
+SCe53b:08:02:Start with 9 lives
+SCeb8d:00:80:Multi-jump (1 of 5)
+SCeced:24:d0:Multi-jump (3 of 5)
+SCed92:00:1d:Multi-jump (2 of 5)
+SCee35:24:d0:Multi-jump (4 of 5)
+SCeef6:a5:85:Multi-jump (5 of 5)
+SCef03:00:05:Use fire-wheel without losing spiritual strength
+SCef67:00:03:Use shuriken without losing spiritual strength
+SCefae:00:05:Use windmill throwing-star without losing spiritual strength

@@ -1,0 +1,22 @@
+﻿
+S0039:00:One hit kills on bosses
+S0702:07:Infinite health (alt)
+S0703:05:Infinite first special move
+S0705:09:Infinite second special move
+SC82c8:4c:c5:Hit anywhere (1 of 3)
+SC82c9:e1:09:Hit anywhere (2 of 3)
+SC82ca:82:90:Hit anywhere (3 of 3)
+SCca62:01:02:Less health from Energy Bowl
+SCca62:06:02:Max health from Energy Bowl
+SCca82:ae:8d:Infinite health
+SCcad8:ad:ce:Infinite special attacks
+SCdbd7:d0:f0:Invincibility
+Sdc78:69:Take less damage
+SCdfd4:00:07:0 Tornado Attacks on pick-up
+SCdfd4:09:07:9 Tornado Attacks on pick-up
+SCdfd5:00:09:0 180o Spin Kicks on pick-up
+SCdfd6:00:07:0 360o Spin Kicks on pick-up
+SCdfd6:09:07:9 360o Spin Kicks on pick-up
+SCdfd7:00:07:0 Sky Attacks on pick-up
+SCdfd7:09:07:9 Sky Attacks on pick-up
+SCe596:00:04:Multi-jump

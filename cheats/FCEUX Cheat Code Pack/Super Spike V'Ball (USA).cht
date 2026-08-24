@@ -1,0 +1,22 @@
+﻿
+S0090:00:Auto select character (Player 1)
+S0092:00:Auto select character (Player 2)
+S0090:00:Auto select character (Player 1)
+S0092:00:Auto select character (Player 2)
+S007a:09:Computer players out of field
+SC9c2f:00:6b:Hit the ball anywhere
+S007b:20:Need only 1 point to win (Players 1 and 2)
+S007d:20:Need only 1 point to win (Players 3 and 4)
+S007b:20:Need only 1 point to win (Player 1&amp;2)
+S007d:20:Need only 1 point to win (Player 3&amp;4)
+S8050:55:No Court
+Sab0e:00:Opponent sucks!
+SCce47:08:04:Play as girls (Nintendo World Cup - Tournament Mode)
+SCcf60:08:04:Play as girls (Nintendo World Cup - Versus Mode)
+SCcfa2:08:04:Play as girls (Tournament Mode)
+SCd0bb:08:04:Play as girls (Versus Mode)
+S007d:00:Score modifier - Team 1
+S007c:00:Score modifier - Team 2
+S0054:00:Stage match select
+S80a0:85:Strobe lights
+S8818:d9:Too easy

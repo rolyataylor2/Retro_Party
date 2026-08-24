@@ -1,0 +1,36 @@
+﻿
+S0033:00:Weapon level 1
+S0033:01:Weapon level 2
+S0033:02:Weapon level 3
+S0033:03:Weapon level 4
+S0033:04:Weapon level 5
+S0033:05:Weapon level 6
+S0033:06:Weapon level 7
+S0033:07:Weapon level 8
+S0034:00:Weapon type 1
+S0034:01:Weapon type 2
+S0034:02:Weapon type 3
+S0034:03:Weapon type 4
+S0034:04:Weapon type 5
+S003b:01:Bomb power level 2
+S003b:02:Bomb power level 3
+S003b:03:Bomb power level 4
+S003c:01:Turbo power level 2
+S003c:02:Turbo power level 3
+S003c:03:Turbo power level 4
+S003c:04:Turbo power level 5
+S0180:02:Start on level 2
+S0180:03:Start on level 3
+S0180:04:Start on level 4
+S0180:05:Start on level 5
+S0180:06:Start on level 6
+S0180:07:Start on level 7
+S0180:08:Start on level 8
+S018d:03:Infinite lives (alt)
+S018f:04:Infinite Bombs
+S0400:02:Invincibility (alt)
+SCa001:40:50:Invincibility (1 of 2)
+SCa13c:40:50:Invincibility (2 of 2)
+SCa2e6:ad:8d:Infinite special weapons
+SCa397:ad:8d:Infinite lives
+SCd707:d0:90:One hit kills

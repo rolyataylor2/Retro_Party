@@ -1,0 +1,23 @@
+﻿
+SCa5bf:ad:ce:Infinite horizontal torpedoes
+SCa631:ad:ce:Infinite vertical torpedoes
+SCaa82:a5:c6:Infinite lives
+SCb0e7:01:05:Start with 1 life
+SCb0e7:0a:05:Start with 10 lives
+SCb389:ad:ce:Infinite time
+SCbc08:a9:c9:Maximum power horizontal torpedoes on pick-up (2 of 2)
+SCbc0e:00:01:Maximum power horizontal torpedoes on pick-up (1 of 2)
+SCbc57:a9:c9:Maximum power vertical torpedoes on pick-up (2 of 2)
+SCbc5d:00:01:Maximum power vertical torpedoes on pick-up (1 of 2)
+SCbc76:0a:19:Start with 10 horizontal torpedoes
+SCbc76:32:19:Start with 50 horizontal torpedoes
+SCbc76:63:19:Start with 99 horizontal torpedoes
+SCbc7b:05:0f:Start with 5 vertical torpedoes
+SCbc7b:32:0f:Start with 50 vertical torpedoes
+SCbc7b:63:0f:Start with 99 vertical torpedoes
+SCbc85:05:0a:Start with 5 caterpillars
+SCbc85:32:0a:Start with 50 caterpillars
+SCbc85:63:0a:Start with 99 caterpillars
+SCbc8a:05:0a:Start with 5 ECM's
+SCbc8a:32:0a:Start with 50 ECM's
+SCbc8a:63:0a:Start with 99 ECM's
