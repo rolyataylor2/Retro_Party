@@ -489,3 +489,10 @@
   background: #ffffff1f;
   color: white;
 }
+
+@media (max-height: 700px) {
+  .lab-sidebar-nav { top: 68px; bottom: 20px; gap: 5px; }
+  .lab-menu-btn { width: 46px; height: 46px; }
+  .btn-circle-icon { width: 44px; height: 44px; font-size: 20px; }
+  .sidebar-nav-divider { margin-block: 0; }
+}

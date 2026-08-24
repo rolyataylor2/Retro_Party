@@ -95,3 +95,28 @@ test("applies all pokes for collapsed multi-part modifiers", () => {
   ]);
 });
 
+test("edits, resets, and deletes creator goal and loss rules", () => {
+  const session = new BrowserEmulatorSession();
+  const candidates = [
+    { id: "auto", address: 12, operator: "equals", value: 2, description: "Auto", confidence: 95 },
+    { id: "alternate", address: 13, operator: "equals", value: 7, description: "Alternate", confidence: 70 },
+  ];
+  session.creator = {
+    milestones: [{ id: "goal-1", title: "Goal 1", candidates, selectedCandidateIds: ["auto"], autoSelectedCandidateIds: ["auto"], condition: candidates[0], enabled: true }],
+    lossGuards: [{ id: "loss-1", title: "Loss 1", candidates, selectedCandidateIds: ["auto"], autoSelectedCandidateIds: ["auto"], condition: candidates[0], enabled: true }],
+    rules: { failConditions: [candidates[0]] }, verified: true, positives: [], negatives: [], priorPositiveCount: 0, priorNegativeCount: 0,
+  };
+
+  session.renameCreatorRule("goal", "goal-1", "Collect the Key");
+  session.updateMilestoneCondition("goal-1", ["auto", "alternate"]);
+  assert.equal(session.creator.milestones[0].title, "Collect the Key");
+  assert.equal(session.creator.milestones[0].condition.operator, "all");
+  session.resetCreatorRule("goal", "goal-1");
+  assert.deepEqual(session.creator.milestones[0].selectedCandidateIds, ["auto"]);
+
+  session.renameCreatorRule("loss", "loss-1", "Touch the Lava");
+  session.updateLossGuardCondition("loss-1", ["alternate"]);
+  assert.equal(session.creator.lossGuards[0].condition.title, "Touch the Lava");
+  session.removeLossGuard("loss-1");
+  assert.equal(session.creator.lossGuards.length, 0);
+});

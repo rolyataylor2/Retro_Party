@@ -3070,9 +3070,7 @@ async function boot() {
     renderGames(); renderPacks(); renderRules(); renderSetup(); renderMultiCreatorStages(); renderLibrary(); renderSettings();
     const musicBtn = $("#music-toggle");
     if (musicBtn) musicBtn.textContent = audio.enabled ? "♫" : "♩";
-    const studioRoute = new URLSearchParams(location.search).get("studioRoute");
-    navigate(["moment-maker", "multi-creator"].includes(studioRoute) ? studioRoute : "title", false);
-    if (studioRoute) history.replaceState({}, "", "/");
+    navigate("title", false);
     setInterval(refreshStatus, 500);
     requestAnimationFrame(function frames() { nextFrame(); requestAnimationFrame(frames); });
     requestAnimationFrame(pollGamepad);

@@ -212,8 +212,8 @@ export class BrowserEmulatorSession {
       const deathCond = { id: "loss-smb-death", operator: "equals-any", address: 0x000E, values: [0x06, 0x0B], description: "Mario entered death state ($000E == 6/11)", confidence: 99, hits: 1 };
       const lifeCond = { id: "loss-smb-life", operator: "decreased", address: 0x075A, description: "Mario lost a life ($075A decreased)", confidence: 99, hits: 1 };
       defaultLossGuards.push(
-        { id: "loss-smb-death", title: "Loss Mario Dies", candidates: [deathCond], selectedCandidateIds: [deathCond.id], condition: deathCond, enabled: true, hits: 1 },
-        { id: "loss-smb-life", title: "Loss Lost Life", candidates: [lifeCond], selectedCandidateIds: [lifeCond.id], condition: lifeCond, enabled: true, hits: 1 }
+        { id: "loss-smb-death", title: "Loss Mario Dies", candidates: [deathCond], selectedCandidateIds: [deathCond.id], autoSelectedCandidateIds: [deathCond.id], condition: deathCond, enabled: true, hits: 1 },
+        { id: "loss-smb-life", title: "Loss Lost Life", candidates: [lifeCond], selectedCandidateIds: [lifeCond.id], autoSelectedCandidateIds: [lifeCond.id], condition: lifeCond, enabled: true, hits: 1 }
       );
     }
 
@@ -241,11 +241,11 @@ export class BrowserEmulatorSession {
     const milestones = selected.conditions
       ? selected.conditions.map((c, i) => {
           const code = c.title?.startsWith("Goal ") ? c.title.replace("Goal ", "") : randomCode(6);
-          return { id: c.id || `goal-${code.toLowerCase()}`, title: c.title || `Goal ${code}`, candidates: [c], selectedCandidateIds: [c.id || `cond-${i + 1}`], condition: c, enabled: true, hits: 1 };
+          return { id: c.id || `goal-${code.toLowerCase()}`, title: c.title || `Goal ${code}`, candidates: [c], selectedCandidateIds: [c.id || `cond-${i + 1}`], autoSelectedCandidateIds: [c.id || `cond-${i + 1}`], condition: c, enabled: true, hits: 1 };
         })
       : (() => {
           const code = selected.title?.startsWith("Goal ") ? selected.title.replace("Goal ", "") : randomCode(6);
-          return [{ id: selected.id || `goal-${code.toLowerCase()}`, title: selected.title || `Goal ${code}`, candidates: [selected], selectedCandidateIds: [selected.id], condition: selected, enabled: true, hits: 1 }];
+          return [{ id: selected.id || `goal-${code.toLowerCase()}`, title: selected.title || `Goal ${code}`, candidates: [selected], selectedCandidateIds: [selected.id], autoSelectedCandidateIds: [selected.id], condition: selected, enabled: true, hits: 1 }];
         })();
 
     this.creator = {
@@ -253,7 +253,7 @@ export class BrowserEmulatorSession {
       kind: "creator", gameId: this.game.id, romFile: this.game.fileHint, mode: "review", startState: this.core.saveState(), start: snapshot.values,
       valid: snapshot.valid, positives: decode(challenge.training?.positives), negatives: decode(challenge.training?.negatives),
       priorPositiveCount: Number(challenge.training?.priorPositiveCount) || 0, priorNegativeCount: Number(challenge.training?.priorNegativeCount) || 0,
-      candidates: [selected], lossCandidates: [], milestones, lossGuards: (challenge.rules?.failConditions || []).map((c, i) => ({ id: `loss-${i + 1}`, title: c.title || `Loss ${randomCode(6)}`, candidates: [c], selectedCandidateIds: [c.id || `loss-${i + 1}`], condition: c, enabled: true, hits: 1 })),
+      candidates: [selected], lossCandidates: [], milestones, lossGuards: (challenge.rules?.failConditions || []).map((c, i) => ({ id: `loss-${i + 1}`, title: c.title || `Loss ${randomCode(6)}`, candidates: [c], selectedCandidateIds: [c.id || `loss-${i + 1}`], autoSelectedCandidateIds: [c.id || `loss-${i + 1}`], condition: c, enabled: true, hits: 1 })),
       selectedConditionIds: [selected.id], selectedLossIds: [], selected, attempt: null, goalDetected: false, verified: true,
     };
     return this.creatorSummary();
@@ -301,6 +301,7 @@ export class BrowserEmulatorSession {
       title: `Goal ${code}`,
       candidates,
       selectedCandidateIds: top ? [top.id] : [],
+      autoSelectedCandidateIds: top ? [top.id] : [],
       condition: top,
       enabled: true,
       hits: 1,
@@ -326,7 +327,8 @@ export class BrowserEmulatorSession {
       title: `Loss ${code}`,
       candidates,
       selectedCandidateIds: top ? [top.id] : [],
-      condition: top,
+      autoSelectedCandidateIds: top ? [top.id] : [],
+      condition: top ? { ...top, title: `Loss ${code}` } : null,
       enabled: true,
       hits: 1,
     };
@@ -367,7 +369,8 @@ export class BrowserEmulatorSession {
       const top = g.candidates[0];
       g.selectedCandidateIds = top ? [top.id] : [];
     }
-    g.condition = buildConditionFromSelection(g.candidates, g.selectedCandidateIds);
+    const condition = buildConditionFromSelection(g.candidates, g.selectedCandidateIds);
+    g.condition = condition ? { ...condition, title: g.title } : null;
     creator.rules.failConditions = creator.lossGuards.filter((item) => item.enabled).map((item) => item.condition).filter(Boolean);
     return { guard: g, summary: this.creatorSummary() };
   }
@@ -392,11 +395,40 @@ export class BrowserEmulatorSession {
     const g = creator.lossGuards.find((item) => item.id === lossId);
     if (g) {
       g.selectedCandidateIds = selectedCandidateIds;
-      g.condition = buildConditionFromSelection(g.candidates, selectedCandidateIds);
+      const condition = buildConditionFromSelection(g.candidates, selectedCandidateIds);
+      g.condition = condition ? { ...condition, title: g.title } : null;
       creator.rules.failConditions = creator.lossGuards.filter((item) => item.enabled).map((item) => item.condition);
       creator.verified = false;
     }
     return this.creatorSummary();
+  }
+
+  renameCreatorRule(type, id, title) {
+    const creator = this.creator;
+    if (!creator) return null;
+    const list = type === "loss" ? creator.lossGuards : creator.milestones;
+    const rule = list.find((item) => item.id === id);
+    if (!rule) return this.creatorSummary();
+    rule.title = String(title || "").trim().slice(0, 80) || (type === "loss" ? "Loss Guard" : "Goal");
+    if (type === "loss") {
+      if (rule.condition) rule.condition = { ...rule.condition, title: rule.title };
+      creator.rules.failConditions = creator.lossGuards.filter((item) => item.enabled && item.condition).map((item) => item.condition);
+    } else {
+      creator.selected = buildMilestoneGoal(creator.milestones);
+      this.eventLedger = createEventLedger(creator.selected);
+    }
+    creator.verified = false;
+    return this.creatorSummary();
+  }
+
+  resetCreatorRule(type, id) {
+    const creator = this.creator;
+    if (!creator) return null;
+    const list = type === "loss" ? creator.lossGuards : creator.milestones;
+    const rule = list.find((item) => item.id === id);
+    if (!rule) return this.creatorSummary();
+    const selected = rule.autoSelectedCandidateIds?.length ? rule.autoSelectedCandidateIds : (rule.candidates[0]?.id ? [rule.candidates[0].id] : []);
+    return type === "loss" ? this.updateLossGuardCondition(id, selected) : this.updateMilestoneCondition(id, selected);
   }
 
   finishGameWon() {
@@ -542,7 +574,7 @@ export class BrowserEmulatorSession {
   challengePackage(fields) {
     const creator = this.creator;
     if (!creator?.selected || !creator.verified) throw new Error("Verify a learned goal before saving");
-    const encode = (attempts) => attempts.map((attempt) => ({ endBase64: toBase64(attempt.end), frames: attempt.frames }));
+    const encode = (attempts) => attempts.map((attempt) => ({ endBase64: toBase64(attempt.end) }));
     const original = creator.original || {};
     return {
       id: creator.editingId || null, format: "nes-minigame-v1", coreId: this.coreId,

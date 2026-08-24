@@ -86,3 +86,24 @@ test("collapses multipart (1 of 2) (2 of 2) cheat codes into a single modifier",
   }
 });
 
+test("merges saved modifiers with the complete flattened cheat catalogue", () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "nes-cheat-merge-test-"));
+  try {
+    const cheatsDir = path.join(tmp, "cheats", "FCEUX Cheat Code Pack");
+    fs.mkdirSync(cheatsDir, { recursive: true });
+    fs.writeFileSync(path.join(cheatsDir, "Merge Game.cht"), [
+      "S0080:05:Catalogue Only",
+      "SC9298:ad:20:Combined Power (1 of 2)",
+      "SC94e9:ad:20:Combined Power (2 of 2)",
+    ].join("\n"));
+    const lib = new ModifierLibrary(tmp);
+    lib.addModifier("merge-game", "Merge Game.nes", { name: "Saved Only", address: 0x12, value: 3 });
+
+    const modifiers = lib.listModifiers("merge-game", "Merge Game.nes");
+    assert.ok(modifiers.some((modifier) => modifier.name === "Saved Only"));
+    assert.ok(modifiers.some((modifier) => modifier.name === "Catalogue Only"));
+    assert.equal(modifiers.find((modifier) => modifier.name === "Combined Power").entries.length, 2);
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+});
