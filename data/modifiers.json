@@ -45,6 +45,48 @@
         "address": 1882,
         "value": 99,
         "category": "Lives"
+      },
+      {
+        "id": "score-mod-71c",
+        "name": "Score $071C",
+        "description": "RAM Freeze $71C",
+        "kind": "freeze",
+        "address": 1823,
+        "value": 59,
+        "entries": [
+          {
+            "address": 1823,
+            "value": 59
+          }
+        ],
+        "category": "Score"
+      },
+      {
+        "id": "score-mod-mt7l8wmt",
+        "name": "Lock Screen Scroll",
+        "description": "4 grouped score values",
+        "kind": "freeze",
+        "address": 134,
+        "value": 174,
+        "entries": [
+          {
+            "address": 134,
+            "value": 174
+          },
+          {
+            "address": 1820,
+            "value": 62
+          },
+          {
+            "address": 1821,
+            "value": 61
+          },
+          {
+            "address": 1855,
+            "value": 62
+          }
+        ],
+        "category": "Score"
       }
     ]
   }

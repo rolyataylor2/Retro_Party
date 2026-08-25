@@ -103,6 +103,7 @@ export class BrowserEmulatorSession {
       if (item.enabled === true && item.kind === "freeze") {
         if (Array.isArray(item.entries) && item.entries.length > 0) {
           for (const entry of item.entries) {
+            if (entry.enabled === false) continue;
             this.core.poke(Number(entry.address) & 0xffff, Number(entry.value) & 0xff);
           }
         } else if (item.address !== undefined && item.address !== null) {
@@ -190,8 +191,9 @@ export class BrowserEmulatorSession {
     } else if (evaluateCandidate(selected, snapshot.values, tracker.start, tracker.frames, this.eventLedger)) {
       this.outcome = { completed: true, reason: "Goal detected" };
       if (this.creator) { this.creator.mode = "detected"; this.creator.goalDetected = true; }
-    } else if (rules.timeLimitFrames && this.frameNumber >= rules.timeLimitFrames) {
+    } else if (rules.timeLimitFrames && tracker.frameCount >= rules.timeLimitFrames) {
       this.outcome = { completed: false, reason: "Time expired" };
+      if (this.creator) { this.creator.mode = "failed"; this.creator.failureDetected = true; this.creator.failureReason = "Time expired"; }
     }
   }
 
@@ -226,7 +228,7 @@ export class BrowserEmulatorSession {
       priorNegativeCount: editing.priorNegativeCount || 0, candidates: [], lossCandidates: [],
       milestones: editing.milestones || [], lossGuards: editing.lossGuards || defaultLossGuards,
       selectedConditionIds: [], selectedLossIds: [], selected: null,
-      attempt: null, goalDetected: false, verified: false,
+      scoring: editing.scoring || [], memoryExports: editing.memoryExports || [], attempt: null, goalDetected: false, verified: false,
     };
     if (this.creator.lossGuards.length > 0) {
       this.creator.rules.failConditions = this.creator.lossGuards.filter((g) => g.enabled).map((g) => g.condition);
@@ -253,7 +255,7 @@ export class BrowserEmulatorSession {
       kind: "creator", gameId: this.game.id, romFile: this.game.fileHint, mode: "review", startState: this.core.saveState(), start: snapshot.values,
       valid: snapshot.valid, positives: decode(challenge.training?.positives), negatives: decode(challenge.training?.negatives),
       priorPositiveCount: Number(challenge.training?.priorPositiveCount) || 0, priorNegativeCount: Number(challenge.training?.priorNegativeCount) || 0,
-      candidates: [selected], lossCandidates: [], milestones, lossGuards: (challenge.rules?.failConditions || []).map((c, i) => ({ id: `loss-${i + 1}`, title: c.title || `Loss ${randomCode(6)}`, candidates: [c], selectedCandidateIds: [c.id || `loss-${i + 1}`], autoSelectedCandidateIds: [c.id || `loss-${i + 1}`], condition: c, enabled: true, hits: 1 })),
+      candidates: [selected], lossCandidates: [], milestones, lossGuards: (challenge.rules?.failConditions || []).map((c, i) => ({ id: `loss-${i + 1}`, title: c.title || `Loss ${randomCode(6)}`, candidates: [c], selectedCandidateIds: [c.id || `loss-${i + 1}`], autoSelectedCandidateIds: [c.id || `loss-${i + 1}`], condition: c, enabled: true, hits: 1 })), scoring: challenge.scoring || [], memoryExports: challenge.memoryExports || [],
       selectedConditionIds: [selected.id], selectedLossIds: [], selected, attempt: null, goalDetected: false, verified: true,
     };
     return this.creatorSummary();
@@ -261,8 +263,7 @@ export class BrowserEmulatorSession {
 
   beginAttempt(mode = "recording") {
     if (!this.creator) throw new Error("Create Mini-Game mode has not started");
-    this.core.loadState(this.creator.startState);
-    this.applyFreezes();
+    this.resetCreatorState();
     const snapshot = this.captureSnapshot();
     this.eventLedger = mode === "verification" && this.creator.selected ? createEventLedger(this.creator.selected) : null;
     Object.assign(this.creator, {
@@ -280,6 +281,21 @@ export class BrowserEmulatorSession {
     });
     this.outcome = null;
     return this.creatorSummary();
+  }
+
+  resetCreatorState() {
+    if (!this.creator?.startState) throw new Error("No mini-game starting state is available");
+    if (!this.core.loadState(this.creator.startState)) throw new Error("Could not reset the mini-game to its starting state");
+    this.applyFreezes();
+    this.outcome = null;
+    return this.captureSnapshot();
+  }
+
+  previewCurrentState() {
+    const state = this.core.saveState();
+    const output = this.core.runFrame(0);
+    if (!this.core.loadState(state)) throw new Error("Could not preserve the mini-game starting state");
+    return output;
   }
 
   tagMilestone() {
@@ -582,7 +598,8 @@ export class BrowserEmulatorSession {
       rom: { sha256: this.game.sha256, fileHint: this.game.fileHint }, startStateBase64: toBase64(creator.startState), goal: creator.selected,
       rules: { timeLimitFrames: Math.max(0, Number(fields.timeLimitFrames) || 0), failConditions: creator.rules?.failConditions || [] },
       training: { priorPositiveCount: creator.priorPositiveCount, priorNegativeCount: creator.priorNegativeCount, positives: encode(creator.positives), negatives: encode(creator.negatives) },
-      modifiers: this.modifiers.map(({ cheatIndex, ...item }) => item),
+      modifiers: this.modifiers.map(({ cheatIndex, ...item }) => item), scoring: (creator.scoring || []).map((item) => ({ ...item })),
+      memoryExports: (creator.memoryExports || []).map((item) => ({ id: item.id, name: item.name, address: Number(item.address) & 0xffff })),
       presentation: { title: String(fields.title || "Untitled Challenge").slice(0, 80), instructions: String(fields.instructions || "Complete the demonstrated goal!").slice(0, 240) },
       metadata: { category: fields.category || "Skill", difficulty: fields.difficulty || "Medium", playerCount: Math.max(1, Math.min(4, Number(fields.playerCount) || 1)), mode: fields.mode || "Solo", gameId: this.game.id, gameName: this.game.title, tags: fields.tags || [] },
     };

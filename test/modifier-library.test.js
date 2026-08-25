@@ -107,3 +107,19 @@ test("merges saved modifiers with the complete flattened cheat catalogue", () =>
     fs.rmSync(tmp, { recursive: true, force: true });
   }
 });
+
+test("keeps deleted cheat-catalogue modifiers hidden", () => {
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "nes-cheat-delete-test-"));
+  try {
+    const cheatsDir = path.join(tmp, "cheats", "FCEUX Cheat Code Pack");
+    fs.mkdirSync(cheatsDir, { recursive: true });
+    fs.writeFileSync(path.join(cheatsDir, "Delete Game.cht"), "S0080:05:Catalogue Cheat\n");
+    const lib = new ModifierLibrary(tmp);
+    const modifier = lib.listModifiers("delete-game", "Delete Game.nes")[0];
+
+    assert.equal(lib.deleteModifier("delete-game", "Delete Game.nes", modifier.id), true);
+    assert.deepEqual(lib.listModifiers("delete-game", "Delete Game.nes"), []);
+  } finally {
+    fs.rmSync(tmp, { recursive: true, force: true });
+  }
+});
