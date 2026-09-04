@@ -2,10 +2,14 @@ import { PartyAudio } from "./audio.js";
 import { bitsToMask, firstConnectedGamepad, gamepadInputMask, nesBits } from "./input.js";
 import { BrowserEmulatorSession, browserBytes } from "./emulator/session.js";
 import { TasMovie, TasPlaybackEngine } from "./emulator/tas-player.js";
+import { mountBoardRenderer } from "./board-renderer.js";
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const audio = new PartyAudio();
+let mainBoardRenderer=null,mainBoardId=null,mainBoardMount=0;
+async function renderPixiMainBoard(board){const host=$("#board-stage");if(!host)return;const actors=(app.session?.players||[]).map((player,index)=>{const avatar=getCharacter(player.characterId,index);return{id:player.id,name:player.name,color:avatar.color,position:player.position,icon:String(index+1),spriteSheet:"/assets/rainshadow-roster.png",spriteX:avatar.x,spriteY:avatar.y};});actors.push({id:"star-vendor",name:"Star Shop",color:"#ffd55a",position:app.session.starPosition,icon:"★"});if(!mainBoardRenderer||mainBoardId!==board.id){const generation=++mainBoardMount,renderer=await mountBoardRenderer(host,board,{interactive:true,starPosition:app.session.starPosition});if(generation!==mainBoardMount){renderer?.destroy();return;}mainBoardRenderer=renderer;mainBoardId=board.id;host.classList.add("pixi-active");}mainBoardRenderer.options.starPosition=app.session.starPosition;mainBoardRenderer.setActors(actors);if(!host.querySelector(".main-board-camera"))host.insertAdjacentHTML("beforeend",`<nav class="main-board-camera" aria-label="Board camera"><button data-main-camera="left">←</button><button data-main-camera="up">↑</button><button data-main-camera="right">→</button><button data-main-camera="out">−</button><button data-main-camera="in">＋</button><button data-main-camera="rotate-left">↶</button><button data-main-camera="rotate-right">↷</button><button data-main-camera="reset">⌂</button></nav>`);}
+document.addEventListener("click",event=>{const control=event.target.closest("[data-main-camera]")?.dataset.mainCamera,renderer=mainBoardRenderer;if(!control||!renderer)return;if(control==="left")renderer.panBy(80,0);else if(control==="right")renderer.panBy(-80,0);else if(control==="up")renderer.panBy(0,65);else if(control==="out")renderer.zoomBy(.84);else if(control==="in")renderer.zoomBy(1.2);else if(control==="rotate-left")renderer.rotateBy(-Math.PI/24);else if(control==="rotate-right")renderer.rotateBy(Math.PI/24);else renderer.setCamera({x:0,y:0,zoom:1,rotation:0});});
 const emulator = new BrowserEmulatorSession();
 const tasPlayback = new TasPlaybackEngine(emulator);
 
@@ -451,7 +455,7 @@ function renderBoardCards() {
     const isSelected = board.id === app.selectedBoardId;
     return `
       <button type="button" class="option-choice-card board-option-card ${isSelected ? "selected" : ""}" data-nav data-select-board="${board.id}">
-        <div class="card-art-preview" style="background-image: url('${board.image || "/assets/party-board.png"}')">
+        <div class="card-art-preview pixi-board-host" data-main-board-preview="${board.id}">
           <span class="card-tag difficulty">${board.difficulty || "Standard"}</span>
           <span class="card-tag spaces-count">${(board.spaces || []).length} SPACES</span>
         </div>
@@ -465,6 +469,14 @@ function renderBoardCards() {
       </button>
     `;
   }).join("");
+  mountMainBoardPreviews(container);
+}
+
+function mountMainBoardPreviews(scope = document) {
+  for (const host of scope.querySelectorAll("[data-main-board-preview]")) {
+    const board = app.catalog.boards.find((item) => item.id === host.dataset.mainBoardPreview);
+    if (board) mountBoardRenderer(host, board, { interactive: false }).catch(() => {});
+  }
 }
 
 function renderPackCards() {
@@ -571,7 +583,7 @@ function renderSetupSummary() {
         </div>
         <button type="button" class="summary-edit-btn" data-nav data-wizard-jump="3">Edit</button>
       </div>
-      <div class="summary-board-preview" style="background-image: url('${board?.image || "/assets/party-board.png"}')">
+      <div class="summary-board-preview pixi-board-host" data-main-board-preview="${board?.id || ""}">
         <span class="board-preview-pill">${(board?.spaces || []).length} Spaces · ${board?.difficulty || "Friendly"}</span>
       </div>
     </div>
@@ -609,6 +621,7 @@ function renderSetupSummary() {
       </div>
     </div>
   `;
+  mountMainBoardPreviews(container);
 }
 
 function filteredGames() {
@@ -1609,8 +1622,9 @@ function renderBoard() {
   const board = app.catalog.boards.find((item) => item.id === app.session.boardId) || app.catalog.boards[0];
   const rules = app.catalog.rulesets.find((item) => item.id === app.session.rulesetId) || app.catalog.rulesets[0];
   if (!board) return;
+  renderPixiMainBoard(board).catch(error=>console.warn("Pixi board renderer could not update",error));
   const boardStage = $("#board-stage");
-  boardStage.style.backgroundImage = `url('${board.image || "/assets/party-board.png"}')`;
+  boardStage.style.backgroundImage = "none";
   boardStage.dataset.boardId = board.id;
   if ($("#board-tokens").dataset.sessionId !== app.session.id) {
     $("#board-tokens").innerHTML = "";

@@ -460,6 +460,10 @@
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, transparent 50%, rgba(0, 0, 0, 0.6) 100%);
   pointer-events: none;
 }
+.card-art-preview .pixi-board-canvas,
+.summary-board-preview .pixi-board-canvas { border-radius: inherit; }
+.card-art-preview > span,
+.summary-board-preview > span { z-index: 2; }
 
 .card-tag {
   position: relative;
@@ -859,4 +863,3 @@
 .launch-action .launch-label {
   font-size: 13px;
 }
-

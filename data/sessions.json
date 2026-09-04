@@ -1,63 +1,5 @@
 [
   {
-    "id": "49a846e2-d24a-4bfb-9cc6-6d12a63ffc12",
-    "status": "playing",
-    "boardId": "starlight-circuit",
-    "packId": "party-mix",
-    "rulesetId": "classic-party",
-    "round": 1,
-    "currentPlayerIndex": 3,
-    "actionCount": 4,
-    "pendingMinigame": {
-      "challengeId": "stomp-the-target",
-      "title": "Stomp the Target!",
-      "playerIndex": 3
-    },
-    "starPosition": 3,
-    "starCost": 20,
-    "lastEvent": "Player 4 rolled 4 and lost 3 coins. Next up: Stomp the Target!",
-    "players": [
-      {
-        "id": 1,
-        "name": "Player 1",
-        "color": "#f04d5e",
-        "characterId": "nova",
-        "coins": 7,
-        "stars": 0,
-        "position": 4
-      },
-      {
-        "id": 2,
-        "name": "Player 2",
-        "color": "#28b9d6",
-        "characterId": "marina",
-        "coins": 10,
-        "stars": 0,
-        "position": 6
-      },
-      {
-        "id": 3,
-        "name": "Player 3",
-        "color": "#f2b92f",
-        "characterId": "nimbus",
-        "coins": 7,
-        "stars": 0,
-        "position": 4
-      },
-      {
-        "id": 4,
-        "name": "Player 4",
-        "color": "#4ebc79",
-        "characterId": "sprig",
-        "coins": 7,
-        "stars": 0,
-        "position": 4
-      }
-    ],
-    "createdAt": "2026-08-16T18:54:08.453Z",
-    "updatedAt": "2026-08-16T18:54:22.387Z"
-  },
-  {
     "id": "a922c9db-d253-439c-8f76-7142c979ea83",
     "status": "playing",
     "boardId": "gearbolt-station",
@@ -1327,5 +1269,36 @@
     ],
     "createdAt": "2026-08-18T04:04:08.346Z",
     "updatedAt": "2026-08-18T04:06:56.385Z"
+  },
+  {
+    "id": "4014f20c-7cad-43cf-8688-9957544c6c77",
+    "status": "playing",
+    "boardId": "rainshadow-reach",
+    "packId": "party-mix",
+    "rulesetId": "classic-party",
+    "round": 1,
+    "currentPlayerIndex": 0,
+    "actionCount": 1,
+    "pendingMinigame": {
+      "challengeId": "double-trouble-goombas",
+      "title": "Double Trouble Goombas",
+      "playerIndex": 0
+    },
+    "starPosition": 3,
+    "starCost": 20,
+    "lastEvent": "Player 1 rolled 2 and landed on an event space. Next up: Double Trouble Goombas!",
+    "players": [
+      {
+        "id": 1,
+        "name": "Player 1",
+        "color": "#e65b4f",
+        "characterId": "nova",
+        "coins": 10,
+        "stars": 0,
+        "position": 2
+      }
+    ],
+    "createdAt": "2026-08-31T18:18:37.486Z",
+    "updatedAt": "2026-08-31T18:18:48.407Z"
   }
 ]

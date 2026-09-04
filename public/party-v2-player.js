@@ -1,4 +1,5 @@
 import { BrowserEmulatorSession } from "./emulator/session.js";
+import { destroyBoardRenderers, mountBoardRenderer } from "./board-renderer.js";
 
 const root = document.querySelector("#party-v2-player");
 const headerCode = document.querySelector("#v2-header-code");
@@ -72,7 +73,7 @@ function setupView(room) {
   } else if (step === "ai-difficulty") {
     content = `<h1>AI difficulty.</h1><p>How competitive should computer players be?</p><div class="v2-options">${room.catalog.aiDifficulties.map((difficulty) => choice(difficulty.name, config.aiDifficulty === difficulty.id, difficulty.id === "easy" ? "Relaxed rivals" : difficulty.id === "hard" ? "No mercy" : "Balanced play", `data-pick="aiDifficulty" data-value="${difficulty.id}" data-next="board"`)).join("")}</div>`;
   } else if (step === "board") {
-    content = `<h1>Choose the board.</h1><p>Pick a world for tonight's adventure.</p><div class="v2-options v2-board-options">${room.catalog.boards.map((board) => `<button type="button" class="v2-choice v2-board-choice ${config.boardId === board.id ? "selected" : ""}" data-pick="boardId" data-value="${board.id}" data-next="review"><i style="background-image:url('${escapeHtml(board.image)}')"></i><span><em>${escapeHtml(board.difficulty || "Party")}</em><b>${escapeHtml(board.name)}</b><small>${escapeHtml(board.description)}</small></span></button>`).join("")}</div>`;
+    content = `<h1>Choose the board.</h1><p>Pick a world for tonight's adventure.</p><div class="v2-options v2-board-options">${room.catalog.boards.map((board) => `<button type="button" class="v2-choice v2-board-choice ${config.boardId === board.id ? "selected" : ""}" data-pick="boardId" data-value="${board.id}" data-next="review"><i class="pixi-board-host" data-player-board-preview="${escapeHtml(board.id)}"></i><span><em>${escapeHtml(board.difficulty || "Party")}</em><b>${escapeHtml(board.name)}</b><small>${escapeHtml(board.description)}</small></span></button>`).join("")}</div>`;
   } else {
     const board = find(room.catalog.boards, config.boardId), pack = find(room.catalog.packs, config.packId), rules = find(room.catalog.rulesets, config.rulesetId);
     content = `<h1>Ready to party?</h1><p>Confirm this setup to start the synchronized countdown.</p><div class="v2-review"><div><small>PLAYERS</small><b>${room.players.length} human · ${(config.aiPlayers || []).length} AI</b></div><div><small>ROUNDS</small><b>${config.rounds}</b></div><div><small>MINI-GAMES</small><b>${escapeHtml(pack?.name)}</b></div><div><small>RULESET</small><b>${escapeHtml(rules?.name)}</b></div><div><small>AI DIFFICULTY</small><b>${title(config.aiDifficulty)}</b></div><div><small>BOARD</small><b>${escapeHtml(board?.name)}</b></div></div><button class="v2-button gold" data-action="confirm-setup">CONFIRM & START ★</button>`;
@@ -128,6 +129,7 @@ function deriveView(room) {
 function render() {
   const room = state.visible || state.room;
   if (!room) return;
+  destroyBoardRenderers(root);
   headerCode.textContent = room.code;
   document.body.classList.toggle("phone-playing", state.view === "minigame");
   clearInterval(state.countdownTimer);
@@ -144,6 +146,10 @@ function render() {
   else if (state.view === "results") root.innerHTML = waiting(room.summary?.winnerName ? `${room.summary.winnerName} wins!` : "Round complete", "The next round will begin automatically.");
   else if (state.view === "final-results") root.innerHTML = finalView(room);
   else root.innerHTML = `<section class="v2-phone-card v2-wait"><span class="v2-construction-mark">✦</span><span class="v2-eyebrow">PARTY PLAYER</span><h1>Syncing…</h1><p>The Director is preparing your next action.</p></section>`;
+  for (const host of root.querySelectorAll("[data-player-board-preview]")) {
+    const board = room.catalog.boards.find((item) => item.id === host.dataset.playerBoardPreview);
+    if (board) mountBoardRenderer(host, board, { interactive: false }).catch(() => {});
+  }
 }
 
 async function startPhoneMinigame(target) {

@@ -80,6 +80,7 @@ function mimeType(file) {
   return ({
     ".html": "text/html; charset=utf-8",
     ".js": "text/javascript; charset=utf-8",
+    ".mjs": "text/javascript; charset=utf-8",
     ".css": "text/css; charset=utf-8",
     ".png": "image/png",
     ".webp": "image/webp",
@@ -130,6 +131,7 @@ function serveStatic(request, response, requestPath) {
   const sharedFiles = {
     "/lib/goal-learner.js": path.join(root, "lib", "goal-learner.js"),
     "/lib/challenge-runtime.js": path.join(root, "lib", "challenge-runtime.js"),
+    "/vendor/pixi.mjs": path.join(root, "node_modules", "pixi.js", "dist", "pixi.min.mjs"),
   };
 
   const isShared = Boolean(sharedFiles[requestPath]);
@@ -151,9 +153,9 @@ function serveStatic(request, response, requestPath) {
       ? "party-v2-primary.html"
       : /^\/party\/boards\/?$/.test(requestPath)
         ? "party-studio.html"
-      : /^\/party\/board\/[a-z0-9-]+(?:\/editor\/(?:map|scene|event|rules|data|test))?\/?$/.test(requestPath)
+      : /^\/party\/board\/[a-z0-9-]+(?:\/editor\/(?:map|actors|scene|event|rules|data|effects|placements|test))?\/?$/.test(requestPath)
         ? "party-studio.html"
-      : /^\/party\/editor\/(map|scene|event|rules|data|test)\/?$/.test(requestPath)
+      : /^\/party\/editor\/(map|actors|scene|event|rules|data|effects|placements|test)\/?$/.test(requestPath)
         ? "party-studio.html"
       : null;
 
@@ -258,7 +260,7 @@ async function handleAPI(request, response, url) {
   if (request.method === "POST" && url.pathname === "/api/party/studio/boards") return sendJSON(response, 201, partyStudio.createBoard(await bodyJSON(request)));
   const studioBoardMatch = url.pathname.match(/^\/api\/party\/studio\/boards\/([a-z0-9-]+)\/select$/);
   if (request.method === "POST" && studioBoardMatch) return sendJSON(response, 200, partyStudio.selectBoard(studioBoardMatch[1]));
-  const studioSectionMatch = url.pathname.match(/^\/api\/party\/studio\/(map|scenes|events|rules|data)$/);
+  const studioSectionMatch = url.pathname.match(/^\/api\/party\/studio\/(map|actors|scenes|events|rules|data)$/);
   if (request.method === "PUT" && studioSectionMatch) return sendJSON(response, 200, partyStudio.update(studioSectionMatch[1], await bodyJSON(request)));
   if (request.method === "POST" && url.pathname === "/api/party/studio/reset") return sendJSON(response, 200, partyStudio.reset());
 

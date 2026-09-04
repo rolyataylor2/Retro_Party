@@ -1,6 +1,8 @@
+import { destroyBoardRenderers, mountBoardRenderer } from "./board-renderer.js";
+
 const root = document.querySelector("#party-v2-primary");
 const code = (location.pathname.match(/^\/party\/([A-Za-z]{4})\/?$/)?.[1] || "").toUpperCase();
-const state = { room: null, visible: null, pending: [], processing: false, ws: null, reconnect: null, countdownTimer: null, lastGameEvent: null, lastAnimation: null };
+const state = { room: null, visible: null, pending: [], processing: false, ws: null, reconnect: null, countdownTimer: null, lastGameEvent: null, lastAnimation: null, boardRenderer:null, boardGeneration:0 };
 
 function escapeHtml(value) {
   return String(value ?? "").replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character]);
@@ -22,12 +24,6 @@ function art(room, id) {
 }
 function lookup(items, id) { return items.find((item) => item.id === id); }
 function label(value) { return value ? String(value).replace(/-/g, " ").replace(/\b\w/g, (letter) => letter.toUpperCase()) : "Not chosen yet"; }
-function boardPaths(board) {
-  const spaces=board.spaces||[],byId=new Map(spaces.map(space=>[space.id,space]));
-  const paths=board.paths?.length?board.paths:spaces.map((space,index)=>({from:space.id,to:spaces[(index+1)%spaces.length]?.id}));
-  return `<svg class="party-board-paths" viewBox="0 0 100 100" preserveAspectRatio="none">${paths.map(path=>{const from=byId.get(path.from),to=byId.get(path.to);return from&&to?`<line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}"/>`:"";}).join("")}</svg>`;
-}
-
 function roster(room) {
   const entries = [...room.players, ...(room.configuration.aiPlayers || []).map((player) => ({ ...player, ai: true }))];
   return `<div class="v2-roster">${Array.from({ length: 4 }, (_, index) => {
@@ -44,12 +40,12 @@ function construction() {
 function gameBoard(room) {
   const game = room.game;
   const board = room.catalog.boards.find((item) => item.id === game.boardId) || room.catalog.boards[0];
-  const spaces = (board.spaces || []).map((space) => `<i class="v2-board-space ${space.type} shape-${space.shape || "oval"} ${space.activity ? "has-activity" : ""} ${space.id === game.starPosition ? "star" : ""}" style="left:${space.x}%;top:${space.y}%;--space-size:${space.size || 3};transform:translate(-50%,-50%) rotate(${space.rotation || 0}deg)" title="${escapeHtml(space.activity?.title || space.type)}">${space.activity ? `<span>${escapeHtml(space.activity.icon || "✦")}</span>` : ""}</i>`).join("");
-  const tokens = game.players.map((player, index) => { const space = board.spaces[player.position] || board.spaces[0]; return `<i class="v2-board-token ${index === game.currentPlayerIndex ? "active" : ""}" style="left:${space.x}%;top:${space.y}%">${art(room, player.characterId)}</i>`; }).join("");
   const scores = game.players.map((player, index) => `<article class="v2-game-score ${index === game.currentPlayerIndex ? "active" : ""}">${art(room, player.characterId)}<span><b>${escapeHtml(player.nickname)}</b><small>★ ${player.stars} &nbsp; ● ${player.coins}</small></span></article>`).join("");
   const event = state.lastGameEvent;
-  return `<section class="v2-game-stage"><div class="v2-game-hud"><div><small>PARTY · ${room.code}</small><b>ROUND ${game.round} <i>OF ${game.totalRounds}</i></b></div><strong>${game.lastRoll ? `🎲 ${game.lastRoll}` : "★"}</strong></div><div class="v2-board party-board-surface" style="background-image:url('${escapeHtml(board.image)}')">${boardPaths(board)}${spaces}${tokens}</div><div class="v2-game-scores">${scores}</div>${event ? `<div class="v2-game-banner"><small>${escapeHtml(event.icon || "")} ${escapeHtml(event.title || titleForEvent(event.event))}</small><b>${escapeHtml(event.message || event.label || (event.roll ? `${game.players[event.playerIndex]?.nickname || "Player"} rolls ${event.roll}!` : "Party update!"))}</b></div>` : ""}</section>`;
+  return `<section class="v2-game-stage"><div class="v2-game-hud"><div><small>PARTY · ${room.code}</small><b>ROUND ${game.round} <i>OF ${game.totalRounds}</i></b></div><strong>${game.lastRoll ? `🎲 ${game.lastRoll}` : "★"}</strong></div><div class="v2-board party-board-surface pixi-board-host" data-pixi-board="gameplay"></div><nav class="v2-board-camera" aria-label="Board camera"><button data-board-camera="left">←</button><button data-board-camera="up">↑</button><button data-board-camera="down">↓</button><button data-board-camera="right">→</button><button data-board-camera="out">−</button><button data-board-camera="in">＋</button><button data-board-camera="rotate-left">↶</button><button data-board-camera="rotate-right">↷</button><button data-board-camera="reset">⌂</button></nav><div class="v2-game-scores">${scores}</div>${event ? `<div class="v2-game-banner"><small>${escapeHtml(event.icon || "")} ${escapeHtml(event.title || titleForEvent(event.event))}</small><b>${escapeHtml(event.message || event.label || (event.roll ? `${game.players[event.playerIndex]?.nickname || "Player"} rolls ${event.roll}!` : "Party update!"))}</b></div>` : ""}</section>`;
 }
+async function mountGameplayBoard(room){const host=root.querySelector('[data-pixi-board="gameplay"]');if(!host)return;const generation=++state.boardGeneration,sourceBoard=room.catalog.boards.find(item=>item.id===room.game.boardId)||room.catalog.boards[0],board=structuredClone(sourceBoard),overrides=room.game.spaceAppearanceOverrides||{};for(const space of board.spaces||[]){const appearance=overrides[space.id];if(appearance)Object.assign(space,appearance);}const actors=room.game.players.map((player,index)=>{const avatar=character(room,player.characterId)||{};return{id:player.id,name:player.nickname,color:avatar.color,position:player.position,icon:String(index+1),spriteSheet:"/assets/rainshadow-roster.png",spriteX:avatar.x,spriteY:avatar.y};});const renderer=await mountBoardRenderer(host,board,{interactive:true,starPosition:room.game.starPosition});if(generation!==state.boardGeneration){renderer?.destroy();return;}state.boardRenderer=renderer;renderer.setActors(actors);}
+async function mountSetupBoard(board){const host=root.querySelector('[data-pixi-board="setup"]');if(host&&board)await mountBoardRenderer(host,board,{interactive:false});}
 
 function titleForEvent(event) { return String(event || "party update").replace(/-/g, " ").toUpperCase(); }
 
@@ -82,6 +78,7 @@ function demoView(room) {
 
 function render(room = state.visible || state.room) {
   if (!room) return;
+  destroyBoardRenderers(root);state.boardRenderer=null;
   clearInterval(state.countdownTimer);
   const view = room.displayView || room.status;
   if (["board", "playing", "roulette", "minigame", "results", "final-results", "complete"].includes(view) && !room.game) {
@@ -89,7 +86,7 @@ function render(room = state.visible || state.room) {
     return;
   }
   if (view === "under-construction") { root.innerHTML = construction(); return; }
-  if (["board", "playing"].includes(view)) { root.innerHTML = gameBoard(room); return; }
+  if (["board", "playing"].includes(view)) { root.innerHTML = gameBoard(room); mountGameplayBoard(room).catch(showError); return; }
   if (["roulette"].includes(view)) { root.innerHTML = rouletteView(room); return; }
   if (["minigame"].includes(view)) { root.innerHTML = minigameView(room); return; }
   if (["results"].includes(view)) { root.innerHTML = resultsView(room); return; }
@@ -121,7 +118,8 @@ function render(room = state.visible || state.room) {
     ${selection("ruleset", "Ruleset", rules?.name || "Not chosen yet")}
     ${selection("ai-difficulty", "AI difficulty", label(config.aiDifficulty))}
     ${selection("board", "Board", board?.name || "Not chosen yet")}
-  </div>${roster(room)}</div><div class="v2-preview" ${board?.image ? `style="background-image:url('${escapeHtml(board.image)}')"` : ""}><span class="v2-eyebrow">CURRENT STEP</span><h2>${label(room.setupStep)}</h2><p>${escapeHtml(board?.description || "Selections will appear here as the primary player moves through the wizard.")}</p></div></div></section>`;
+  </div>${roster(room)}</div><div class="v2-preview pixi-board-host" data-pixi-board="setup"><div class="v2-preview-copy"><span class="v2-eyebrow">CURRENT STEP</span><h2>${label(room.setupStep)}</h2><p>${escapeHtml(board?.description || "Selections will appear here as the primary player moves through the wizard.")}</p></div></div></div></section>`;
+  mountSetupBoard(board).catch(showError);
 }
 
 function applyPatch(object, patch) {
@@ -138,6 +136,7 @@ function applyPatch(object, patch) {
     parent[finalKey] = parent[finalKey].filter((entry) => !Object.entries(match).every(([key, value]) => entry?.[key] === value));
   }
 }
+root.addEventListener("click",event=>{const control=event.target.closest("[data-board-camera]")?.dataset.boardCamera,renderer=state.boardRenderer;if(!control||!renderer)return;if(control==="left")renderer.panBy(90,0);else if(control==="right")renderer.panBy(-90,0);else if(control==="up")renderer.panBy(0,70);else if(control==="down")renderer.panBy(0,-70);else if(control==="in")renderer.zoomBy(1.2);else if(control==="out")renderer.zoomBy(.84);else if(control==="rotate-left")renderer.rotateBy(-Math.PI/24);else if(control==="rotate-right")renderer.rotateBy(Math.PI/24);else renderer.setCamera({x:0,y:0,zoom:1,rotation:0});});
 
 function applyQueueItem(item, latest) {
   const visible = state.visible;

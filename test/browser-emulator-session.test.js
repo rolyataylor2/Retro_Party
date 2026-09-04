@@ -188,3 +188,28 @@ test("packages named memory exports for the board-game interface", () => {
     { id: "export-coins", name: "coins", address: 0x075e },
   ]);
 });
+
+test("packages grouped memory exports as cumulative-capable arrays", () => {
+  const session = new BrowserEmulatorSession();
+  session.coreId = "nes";
+  session.game = { id: "fake", title: "Fake", fileHint: "fake.nes", sha256: "abc" };
+  session.creator = {
+    selected: { id: "goal", operator: "equals", address: 12, value: 2 }, verified: true,
+    startState: Uint8Array.of(1), positives: [], negatives: [], priorPositiveCount: 0, priorNegativeCount: 0,
+    rules: {}, scoring: [], memoryExports: [{
+      id: "export-position", name: "position", address: 0x10,
+      entries: [
+        { id: "position-x", address: 0x10, cumulative: true },
+        { id: "position-y", address: 0x11, cumulative: false },
+      ],
+    }],
+  };
+
+  assert.deepEqual(session.challengePackage({ title: "Export Array", timeLimitFrames: 600 }).memoryExports[0], {
+    id: "export-position", name: "position", address: 0x10,
+    entries: [
+      { id: "position-x", address: 0x10, cumulative: true },
+      { id: "position-y", address: 0x11, cumulative: false },
+    ],
+  });
+});

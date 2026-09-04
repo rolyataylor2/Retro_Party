@@ -599,7 +599,15 @@ export class BrowserEmulatorSession {
       rules: { timeLimitFrames: Math.max(0, Number(fields.timeLimitFrames) || 0), failConditions: creator.rules?.failConditions || [] },
       training: { priorPositiveCount: creator.priorPositiveCount, priorNegativeCount: creator.priorNegativeCount, positives: encode(creator.positives), negatives: encode(creator.negatives) },
       modifiers: this.modifiers.map(({ cheatIndex, ...item }) => item), scoring: (creator.scoring || []).map((item) => ({ ...item })),
-      memoryExports: (creator.memoryExports || []).map((item) => ({ id: item.id, name: item.name, address: Number(item.address) & 0xffff })),
+      memoryExports: (creator.memoryExports || []).map((item) => {
+        const exported = { id: item.id, name: item.name, address: Number(item.address ?? item.entries?.[0]?.address) & 0xffff };
+        if (item.entries?.length) exported.entries = item.entries.map((entry, index) => ({
+          id: entry.id || `${item.id}-entry-${index}`,
+          address: Number(entry.address) & 0xffff,
+          cumulative: entry.cumulative === true,
+        }));
+        return exported;
+      }),
       presentation: { title: String(fields.title || "Untitled Challenge").slice(0, 80), instructions: String(fields.instructions || "Complete the demonstrated goal!").slice(0, 240) },
       metadata: { category: fields.category || "Skill", difficulty: fields.difficulty || "Medium", playerCount: Math.max(1, Math.min(4, Number(fields.playerCount) || 1)), mode: fields.mode || "Solo", gameId: this.game.id, gameName: this.game.title, tags: fields.tags || [] },
     };
