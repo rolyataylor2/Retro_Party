@@ -75,7 +75,7 @@ const app = {
   // Video Editor Multi-Track Timeline State
   timelinePlaying: false, timelinePlayhead: 0, timelineZoom: 100, timelineScrollLeft: 0, timelineTriggeringPlayer: 1,
   timelineSelectedClipId: null, timelineActiveTrackId: "track-main",
-  timelineSideTab: "inspector", timelineBlockCategory: "all", timelineBlockSearch: "", sequenceFoldedMap: new Set(),
+  timelineSideTab: "preview", timelineBlockCategory: "all", timelineBlockSearch: "", sequenceFoldedMap: new Set(),
   timelineDraggingPlayhead: false, timelineDraggingClip: null, timelineTimer: null,
   timelinePreviewWaiting: null, timelinePreviewHandled: new Set(), timelinePreviewBranches: {}, editingActivationId: null,
   toyCategory: "all", editingToy: null,
@@ -2639,7 +2639,7 @@ function spaceActionEditor(entry) {
 
   // Tab 4: Cutscene Timeline (Video Editor Multi-Track System)
   else if (tab === "script") {
-    const sideTab = app.timelineSideTab || "inspector";
+    const sideTab = app.timelineSideTab || "preview";
     tabContent = `
       <div class="cutscene-edit-workspace timeline-split-workspace">
         <div class="timeline-left-workspace">
@@ -2648,12 +2648,11 @@ function spaceActionEditor(entry) {
         </div>
 
         <div class="timeline-right-workspace">
-          <div class="timeline-right-preview-pane">
-            ${timelineLivePreview(entry)}
-          </div>
-
           <div class="timeline-right-tabs-pane">
             <nav class="timeline-side-tabs-nav">
+              <button type="button" data-nav data-timeline-side-tab="preview" class="side-tab-btn ${sideTab === "preview" ? "active" : ""}">
+                🎬 PREVIEW
+              </button>
               <button type="button" data-nav data-timeline-side-tab="inspector" class="side-tab-btn ${sideTab === "inspector" ? "active" : ""}">
                 🔍 BLOCK INSPECTOR
               </button>
@@ -2664,8 +2663,8 @@ function spaceActionEditor(entry) {
                 🔀 SEQUENCES
               </button>
             </nav>
-            <div class="timeline-side-tab-content">
-              ${sideTab === "inspector" ? timelineBlockInspector(entry) : sideTab === "blocks" ? timelineBlockPalette(entry) : timelineSequencesAccordion(entry)}
+            <div class="timeline-side-tab-content ${sideTab === "preview" ? "preview-tab-active" : ""}">
+              ${sideTab === "preview" ? timelineLivePreview(entry) : sideTab === "inspector" ? timelineBlockInspector(entry) : sideTab === "blocks" ? timelineBlockPalette(entry) : timelineSequencesAccordion(entry)}
             </div>
           </div>
         </div>
