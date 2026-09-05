@@ -267,7 +267,8 @@
       {
         "id": "path-1",
         "from": 0,
-        "to": 1
+        "to": 1,
+        "render": {}
       },
       {
         "id": "path-3",
@@ -332,7 +333,8 @@
         "from": 18,
         "to": 19,
         "render": {
-          "curve": "smooth"
+          "curve": "smooth",
+          "width": 0.5
         },
         "points": [
           {
@@ -343,7 +345,9 @@
             "lighting": "unchanged",
             "sound": "default"
           }
-        ]
+        ],
+        "oneWay": true,
+        "direction": "forward"
       },
       {
         "id": "path-20",

@@ -1089,9 +1089,71 @@ body.party-studio-editor-view::after{content:"";position:fixed;z-index:999;inset
 .map-left-stage-column .map-editor-stage{position:relative!important;inset:auto!important;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;width:100%!important;height:100%!important;transform:none!important;aspect-ratio:auto!important;border:3px solid var(--phosphor-line)!important;border-radius:10px!important;box-shadow:0 12px 36px #000,0 0 20px rgba(56,255,115,.2)!important;overflow:hidden!important;background:#041208!important}
 .map-left-stage-column .board-showcase-map{position:absolute;inset:0;width:100%;height:100%}
 .map-overview-board{position:absolute;inset:0;background-position:center;background-size:cover;transform-origin:center;touch-action:none}
-.map-maker-overview .showcase-space{pointer-events:auto;cursor:grab}
-.map-maker-overview .showcase-space:active{cursor:grabbing}
-.space-editor-number{position:absolute!important;z-index:8;right:-7px!important;bottom:-7px!important;left:auto!important;top:auto!important;min-width:14px;height:14px;padding:1px 2px;display:grid!important;place-items:center;transform:none!important;border:1px solid #fff;border-radius:8px;background:#061009;color:#fff!important;font-size:7px!important;font-weight:900;line-height:1;filter:none!important}
+.map-maker-overview .showcase-space,
+.map-interaction-overlay .map-space{
+  --space-size:3;
+  position:absolute!important;
+  box-sizing:border-box!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  box-shadow:none!important;
+  outline:none!important;
+  background:transparent!important;
+  opacity:.001!important;
+  pointer-events:auto!important;
+  cursor:grab!important;
+  width:calc((1% + var(--space-size) * .6%) * 1.14)!important;
+  aspect-ratio:1.14 / .86!important;
+  border-radius:50%!important;
+  transition:none!important;
+  scale:1!important;
+  transform-origin:center center!important
+}
+.map-maker-overview .showcase-space:hover,
+.map-interaction-overlay .map-space:hover{scale:1!important}
+.map-maker-overview .showcase-space:active,
+.map-interaction-overlay .map-space:active{cursor:grabbing!important}
+.map-maker-overview .showcase-space.shape-round,
+.map-interaction-overlay .map-space.shape-round{
+  width:calc(1% + var(--space-size) * .6%)!important;
+  aspect-ratio:1 / 1!important;
+  border-radius:50%!important;
+  clip-path:none!important
+}
+.map-maker-overview .showcase-space.shape-star,
+.map-interaction-overlay .map-space.shape-star{
+  width:calc(1% + var(--space-size) * .6%)!important;
+  aspect-ratio:1 / 1!important;
+  border-radius:0!important;
+  clip-path:polygon(50% 0,61% 34%,98% 35%,68% 56%,79% 94%,50% 72%,21% 94%,32% 56%,2% 35%,39% 34%)!important
+}
+.map-maker-overview .showcase-space.shape-diamond,
+.map-interaction-overlay .map-space.shape-diamond{
+  width:calc(1% + var(--space-size) * .6%)!important;
+  aspect-ratio:1 / 1!important;
+  border-radius:0!important;
+  clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)!important
+}
+.map-maker-overview .showcase-space.shape-hex,
+.map-interaction-overlay .map-space.shape-hex{
+  width:calc(1% + var(--space-size) * .6%)!important;
+  aspect-ratio:1 / 1!important;
+  border-radius:0!important;
+  clip-path:polygon(50% 0,93% 25%,93% 75%,50% 100%,7% 75%,7% 25%)!important
+}
+.map-maker-overview .showcase-space.shape-shield,
+.map-interaction-overlay .map-space.shape-shield{
+  width:calc(1% + var(--space-size) * .6%)!important;
+  aspect-ratio:1 / 1!important;
+  border-radius:0!important;
+  clip-path:polygon(0 0,100% 0,100% 60%,50% 100%,0 60%)!important
+}
+.map-maker-overview .showcase-space *,
+.map-interaction-overlay .map-space *{
+  pointer-events:none!important
+}
+.space-editor-number{position:absolute!important;z-index:8;right:-7px!important;bottom:-7px!important;left:auto!important;top:auto!important;min-width:14px;height:14px;padding:1px 2px;display:grid!important;place-items:center;transform:none!important;border:1px solid #fff;border-radius:8px;background:#061009;color:#fff!important;font-size:7px!important;font-weight:900;line-height:1;filter:none!important;pointer-events:none!important}
 .space-drop-shadow{position:absolute;z-index:8;width:34px;aspect-ratio:1;transform:translate(-50%,-50%);border:2px dashed #fff36e;border-radius:50%;background:rgba(255,243,110,.2);box-shadow:0 0 14px #fff36e;pointer-events:none}
 .map-floating-toolbar{position:absolute!important;z-index:12!important;left:50%!important;bottom:14px!important;transform:translateX(-50%)!important;padding:6px 10px!important;display:flex!important;align-items:center!important;gap:5px!important;border:1px solid var(--phosphor-line)!important;border-radius:9px!important;background:rgba(1,12,6,.94)!important;box-shadow:0 8px 28px #000,var(--phosphor-glow)!important;backdrop-filter:blur(4px)!important}
 .map-floating-toolbar button,.map-floating-toolbar b{min-height:34px;padding:6px 10px;border:1px solid var(--phosphor-line);border-radius:5px;background:#031009;color:var(--phosphor-bright);font:inherit;font-size:.52rem;font-weight:700}
@@ -1104,7 +1166,7 @@ body.party-studio-editor-view::after{content:"";position:fixed;z-index:999;inset
 .board-path .pattern-dashed{stroke-dasharray:7 5}
 .board-path .pattern-dotted{stroke-dasharray:1 5;stroke-linecap:round}
 .board-path.is-hidden:not(.selected){opacity:.12}
-.board-path .path-hit{fill:none;stroke:transparent;stroke-width:12;vector-effect:non-scaling-stroke;pointer-events:stroke;cursor:crosshair}
+.board-path .path-hit{fill:none;stroke:transparent;stroke-width:18px;vector-effect:non-scaling-stroke;pointer-events:stroke;cursor:pointer}
 .board-path.selected .path-visible{filter:drop-shadow(0 0 3px #6dff98)}
 .path-control-point{fill:#fff36e;stroke:#08142f;stroke-width:.5;vector-effect:non-scaling-stroke;pointer-events:all;cursor:grab}
 .map-right-sidebar-column{min-width:0!important;height:100%!important;display:flex!important;flex-direction:column!important;border:1px solid var(--phosphor-line)!important;border-radius:10px!important;background:#031009!important;box-shadow:0 12px 36px #000,var(--phosphor-glow)!important;overflow:hidden!important}

@@ -4,7 +4,7 @@
     "id": "rainshadow-reach",
     "name": "Rainshadow Reach",
     "host": "Bramble",
-    "updatedAt": "2026-09-05T18:16:30.938Z"
+    "updatedAt": "2026-09-05T18:30:44.828Z"
   },
   "actors": [
     {
@@ -94172,7 +94172,8 @@
       {
         "id": "path-1",
         "from": 0,
-        "to": 1
+        "to": 1,
+        "render": {}
       },
       {
         "id": "path-3",
@@ -94237,7 +94238,8 @@
         "from": 18,
         "to": 19,
         "render": {
-          "curve": "smooth"
+          "curve": "smooth",
+          "width": 0.5
         },
         "points": [
           {
@@ -94248,7 +94250,9 @@
             "lighting": "unchanged",
             "sound": "default"
           }
-        ]
+        ],
+        "oneWay": true,
+        "direction": "forward"
       },
       {
         "id": "path-20",
@@ -166210,7 +166214,8 @@
             {
               "id": "path-1",
               "from": 0,
-              "to": 1
+              "to": 1,
+              "render": {}
             },
             {
               "id": "path-3",
@@ -166275,7 +166280,8 @@
               "from": 18,
               "to": 19,
               "render": {
-                "curve": "smooth"
+                "curve": "smooth",
+                "width": 0.5
               },
               "points": [
                 {
@@ -166286,7 +166292,9 @@
                   "lighting": "unchanged",
                   "sound": "default"
                 }
-              ]
+              ],
+              "oneWay": true,
+              "direction": "forward"
             },
             {
               "id": "path-20",

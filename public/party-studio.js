@@ -693,16 +693,19 @@ function mapComponentInspector(map) {
 }
 
 function mapEditor() {
-  const map = app.project.map, actions = app.project.events.entries.map(ensureSpaceActionDefaults), selected = map.spaces.find(space => space.id === (app.mapInspector ?? app.selectedSpace));
+  const map = app.project.map, defaults = map.defaults || {}, actions = app.project.events.entries.map(ensureSpaceActionDefaults), selected = map.spaces.find(space => space.id === (app.mapInspector ?? app.selectedSpace));
   const spaces = map.spaces.map(space => {
     const spaceActors = space.actors || (actions.find(a => a.id === space.action || a.id === space.activity?.id)?.characters) || [];
-    const sizeRatio = Number(space.size || 3) / 3;
+    const size = Number(space.size ?? defaults.spaceSize ?? 3);
+    const shape = space.shape ?? defaults.spaceShape ?? "oval";
+    const type = space.type ?? defaults.spaceType ?? "blue";
+    const sizeRatio = size / 3;
     const actorPins = spaceActors.filter(a => a.alwaysVisible !== false && a.visibleOnBoard !== false).map(a => `
       <span class="space-board-actor" style="left:calc(50% + ${(Number(a.offsetX ?? 0)) * sizeRatio}px);top:calc(50% + ${(Number(a.offsetY ?? -34)) * sizeRatio}px);transform:translate(-50%,-50%) scale(${Math.max(0.2, (Number(a.scale ?? 1.0)) * sizeRatio)});">
         ${a.sprite ? `<img src="${html(a.sprite)}" style="width:28px;height:28px;object-fit:contain;">` : `<span style="font-size:1.2rem;">${html(a.icon || (a.isHost ? "👑" : "👤"))}</span>`}
       </span>
     `).join("");
-    return `<button data-space="${space.id}" class="showcase-space map-space ${space.type} shape-${space.shape || "oval"} ${space.activity ? "has-activity" : ""} ${app.selectedSpaces.has(space.id)||selected?.id === space.id ? "selected" : ""} ${app.pathPickFrom === space.id ? "path-origin" : ""}" style="left:${space.x}%;top:${space.y}%;--space-size:${space.size || 3};transform:translate(-50%,-50%) rotate(${space.rotation || 0}deg)" title="${html(space.activity?.title || `${space.type} space`)}">${space.activity ? `<span class="space-action-icon">${html(space.activity.icon || "✦")}</span>` : ""}<small class="space-editor-number">${space.id + 1}</small>${actorPins}</button>`;
+    return `<button data-space="${space.id}" class="showcase-space map-space ${type} shape-${shape} ${space.activity ? "has-activity" : ""} ${app.selectedSpaces.has(space.id)||selected?.id === space.id ? "selected" : ""} ${app.pathPickFrom === space.id ? "path-origin" : ""}" style="left:${space.x}%;top:${space.y}%;--space-size:${size};transform:translate(-50%,-50%) rotate(${space.rotation || 0}deg)" title="${html(space.activity?.title || `${type} space`)}">${space.activity ? `<span class="space-action-icon">${html(space.activity.icon || "✦")}</span>` : ""}<small class="space-editor-number">${space.id + 1}</small>${actorPins}</button>`;
   }).join("");
 
   const overlayStyle = `transform:translate(${app.mapPan.x}px,${app.mapPan.y}px) scale(${app.mapZoom}) rotate(${app.mapRotation||0}rad)`;
