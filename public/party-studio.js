@@ -80,8 +80,8 @@ const app = {
   timelinePreviewWaiting: null, timelinePreviewHandled: new Set(), timelinePreviewBranches: {}, editingActivationId: null,
   toyCategory: "all", editingToy: null,
   boardEditorDrawerOpen: false, mapSettingsOpen: false, mapSettingsTab: "details", selectedSpaces: new Set(), activeEffectId: null, placementEffectId: null, placementInspectorId: null, effectPresetMenu: false, newEffectMenu: false, effectPropertyTab: "identity",
-  mapInspector: null, mapInspectorTab: "space", mapHold: null, mapHoldMenu: null, suppressMapClick: false,
-  pathPickFrom: null, editingPath: null, pathPointMenu: null, pathPointHoldMenu: null, draggingPathPoint: null, mapPathHold: null,
+  mapSideTab: "spaces", mapInspector: null, mapInspectorTab: "space", suppressMapClick: false,
+  pathPickFrom: null, editingPath: null, pathPointMenu: null, draggingPathPoint: null,
   actorEditorId: null, actorEditorTab: "ragdoll-animations", actorAnimationId: null, actorPreviewTime: 0, actorPreviewPlaying: false, actorKeyframeIndex: 0, actorKeyframeSelected: false,
 };
 
@@ -169,6 +169,106 @@ function go(path) {
 }
 function randomCode() { const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ"; return Array.from({ length: 4 }, () => chars[Math.floor(Math.random() * chars.length)]).join(""); }
 function remember() { app.history.push(structuredClone(app.project)); app.history = app.history.slice(-30); app.future = []; }
+function restoreStudioHistory(source, destination) {
+  const previous = app.project;
+  destination.push(structuredClone(previous));
+  app.project = source.pop();
+  const saved = new Set();
+  for (const [editor, section] of Object.entries(sections)) {
+    if (!saved.has(section) && JSON.stringify(previous[section]) !== JSON.stringify(app.project[section])) {
+      save(editor);
+      saved.add(section);
+    }
+  }
+  render();
+}
+function resetEditorPiece() {
+  app.ragdollRenderer?.flush?.();
+  clearInterval(app.timelineTimer);
+  app.timelinePlaying = false;
+  app.spaceActionCatalogView = true;
+  for (const key of ["actorEditorId", "editingToy", "editingCommand", "mapInspector", "editingPath", "placementInspectorId", "playerSelectorEditor", "valuePickerEditor", "particlePickerEditor"]) app[key] = null;
+  app.actionPickerOpen = false;
+  app.previewingCutscene = false;
+  app.mapSettingsOpen = false;
+}
+
+// Share the navigation shell while retaining each editor's existing tab handlers.
+function mountStudioTopbar() {
+  const shell = root.querySelector(".studio-shell");
+  if (!shell) return;
+  const actor = app.actorEditorId && (ensureBoardActors().find(item => String(item.id) === String(app.actorEditorId)) || currentAction()?.characters?.find(item => String(item.id) === String(app.actorEditorId)));
+  const action = app.editor === "event" && !app.spaceActionCatalogView ? currentAction() : null;
+  const toy = app.editingToy?.toy;
+  const historyContext = `${app.project.boardProjects.selectedId}:${app.editor}:${actor?.id || toy?.id || action?.id || (app.editor === "scene" ? app.project.scenes.selectedId : app.editor === "map" ? app.editingPath ?? app.mapInspector ?? "" : "")}`;
+  if (app.pieceHistoryContext !== historyContext) {
+    app.history = []; app.future = [];
+    app.pieceHistoryContext = historyContext;
+  }
+  const piece = actor?.name || toy?.name || action?.name || (app.editor === "scene" ? app.project.scenes.entries.find(item => item.id === app.project.scenes.selectedId)?.name : "") || (app.editor === "effects" ? app.project.data.effects?.find(item => item.id === app.activeEffectId)?.name : "");
+  const boardPath = `/party/board/${app.project.boardProjects.selectedId}`;
+  const bar = document.createElement("header");
+  bar.className = "studio-topbar";
+  bar.innerHTML = `<a class="studio-site-logo" href="/" aria-label="Starlight home"><img src="/assets/game_title.png" alt="Starlight"></a><details class="studio-board-switch"><summary data-nav aria-label="Choose another board" title="Choose another board">▾</summary><nav aria-label="Boards">${app.project.boardProjects.entries.map(board => `<button data-nav data-select-board="${html(board.id)}" ${board.id === app.project.boardProjects.selectedId ? 'aria-current="true"' : ""}>${html(board.id === app.project.boardProjects.selectedId ? app.project.map.name : board.name)}</button>`).join("")}<button data-nav data-go="/party/boards">All boards</button></nav></details><nav class="studio-breadcrumbs" aria-label="Editor breadcrumbs"><button data-nav data-topbar-board>${html(app.project.map.name)}</button>${app.editor ? `<span aria-hidden="true">-</span><button data-nav data-topbar-editor>${html(stationMeta[app.editor].name)}</button>` : ""}${piece ? `<span aria-hidden="true">-</span><span aria-current="page" class="studio-piece-name">${html(piece)}</span>` : ""}</nav><div class="studio-topbar-actions"><button data-nav data-undo aria-label="Undo" title="Undo" ${app.history.length ? "" : "disabled"}>↶</button><button data-nav data-redo aria-label="Redo" title="Redo" ${app.future.length ? "" : "disabled"}>↷</button><details class="studio-context-menu"><summary data-nav aria-label="Editor menu" title="Editor menu">☰</summary><nav aria-label="Editor menu"><div class="studio-context-tabs"></div><div class="studio-editor-links">${Object.entries(stationMeta).map(([id, meta]) => `<button data-nav data-go="${boardPath}/editor/${id}" ${id === app.editor ? 'aria-current="page"' : ""}>${meta.icon} ${html(meta.name)}</button>`).join("")}</div><button data-nav data-open-map-settings>⚙ BOARD SETTINGS</button></nav></details></div>`;
+  const tabs = bar.querySelector(".studio-context-tabs");
+  const tabSelector = actor ? ".actor-settings-dialog > nav button" : app.editor === "event" ? ".editor-tabs-group button" : app.editor === "effects" ? ".effect-property-tabs button" : app.editor === "rules" ? ".rule-book > nav button" : "";
+  if (tabSelector) shell.querySelectorAll(tabSelector).forEach(button => { button.setAttribute("data-nav", ""); if (button.classList.contains("active")) button.setAttribute("aria-current", "page"); tabs.append(button); });
+  const saveButton = shell.querySelector("[data-save-space-action]");
+  saveButton?.remove();
+  if (app.editor) {
+    bar.querySelector(".studio-editor-links").remove();
+    bar.querySelector("[data-open-map-settings]").remove();
+  }
+  if (!bar.querySelector(".studio-context-menu nav button")) bar.querySelector(".studio-context-menu").remove();
+  const historyAvailable = !actor && !toy && (Boolean(action) || app.editor === "scene" || (app.editor === "map" && (app.mapInspector != null || app.editingPath != null)));
+  if (!historyAvailable) bar.querySelectorAll("[data-undo], [data-redo]").forEach(button => button.remove());
+  app.ragdollHistoryObserver?.disconnect();
+  if (actor && ["ragdoll-paint", "ragdoll-infill"].includes(app.actorEditorTab)) {
+    const controls = bar.querySelector(".studio-topbar-actions");
+    const sync = () => {
+      controls.querySelectorAll("[data-piece-history]").forEach(button => button.remove());
+      for (const kind of ["redo", "undo"]) {
+        const original = shell.querySelector(`[data-rag-${kind}]`);
+        if (!original) continue;
+        const button = document.createElement("button");
+        button.dataset.pieceHistory = kind;
+        button.setAttribute("data-nav", "");
+        button.setAttribute("aria-label", kind === "undo" ? "Undo" : "Redo");
+        button.title = button.getAttribute("aria-label");
+        button.textContent = kind === "undo" ? "↶" : "↷";
+        button.disabled = original.disabled;
+        button.addEventListener("click", () => original.click());
+        controls.prepend(button);
+      }
+    };
+    const host = shell.querySelector(".ragdoll-tab-host");
+    if (host) { app.ragdollHistoryObserver = new MutationObserver(sync); app.ragdollHistoryObserver.observe(host, { childList: true, subtree: true, attributes: true, attributeFilter: ["disabled"] }); }
+    sync();
+  }
+  shell.querySelectorAll(".catalog-title-group, .toy-catalogue-header > div").forEach(node => {
+    node.innerHTML = `<p class="studio-editor-note">${app.editor === "event" ? "Create reusable spaces, cast actors, and script board moments." : "Build collectibles players can earn, buy, trade, or use."}</p>`;
+  });
+  if (app.editor === "actors" && app.actorEditorId) {
+    shell.querySelector(".actor-settings-page .actor-settings-dialog")?.setAttribute("aria-label", `${actor?.name || "Actor"} settings`);
+  }
+  shell.querySelectorAll(":scope > .studio-bar, :scope > .board-showcase-header, .board-editor-drawer, .consolidated-editor-bar, .compact-history-controls, .map-floating-toolbar [data-undo], .map-floating-toolbar [data-redo]").forEach(node => node.remove());
+  shell.prepend(bar);
+  shell.classList.add("has-studio-topbar");
+  if (app.mapSettingsOpen && !shell.querySelector(".map-settings-backdrop")) shell.insertAdjacentHTML("beforeend", mapSettingsModal());
+}
+
+document.addEventListener("click", event => {
+  root.querySelectorAll(".studio-topbar details[open]").forEach(menu => {
+    if (!menu.contains(event.target) || event.target.closest("button")) menu.open = false;
+  });
+});
+document.addEventListener("keydown", event => {
+  if (event.key !== "Escape") return;
+  const open = root.querySelectorAll(".studio-topbar details[open]");
+  if (!open.length) return;
+  event.preventDefault(); event.stopImmediatePropagation();
+  open.forEach(menu => { menu.open = false; menu.querySelector("summary").focus(); });
+}, true);
 function frame(meta, content, extra = "", options = {}) {
   const compact = options.compact === true;
   const header = compact ? "" : `<header class="studio-bar"><button data-nav data-go="/party/board/${app.project.boardProjects.selectedId}" class="studio-back">◀ BOARD</button><div class="studio-mini-logo"><strong>STARLIGHT</strong><small>PARTY STUDIO</small></div><div class="studio-station-title"><small>${meta.kicker}</small><b>${meta.name}</b></div><nav class="studio-quick"><button data-nav data-undo ${app.history.length ? "" : "disabled"}>↶ <span>UNDO</span></button><button data-nav data-redo ${app.future.length ? "" : "disabled"}>↷ <span>REDO</span></button></nav></header>`;
@@ -243,21 +343,357 @@ function mapSpaceAction(space, action, index) {
     }
   };
 }
-function spaceInspectorModal() {
-  const space = app.project.map.spaces.find(item => item.id === app.mapInspector); if (!space) return "";
-  const defaults=app.project.map.defaults||{},connected = app.project.map.paths.filter(path => path.from === space.id || path.to === space.id), tab = app.mapInspectorTab;
-  return `<div class="map-modal-backdrop"><section class="map-inspector"><header><div><small>SPACE ${space.id + 1}</small><b>${html(space.activity?.title || `${space.type} space`)}</b></div><button data-close-map-inspector>×</button></header><nav><button data-map-inspector-tab="space" class="${tab === "space" ? "active" : ""}">SPACE</button><button data-map-inspector-tab="paths" class="${tab === "paths" ? "active" : ""}">PATHS <i>${connected.length}</i></button></nav>${tab === "paths" ? `<div class="path-list">${connected.map(path => { const other = path.from === space.id ? path.to : path.from; return `<article><span><b>TO SPACE ${other + 1}</b><small>${path.oneWay ? "ONE-WAY" : "TWO-WAY"} · ${html(path.render?.pattern || "SOLID")}</small></span><button data-edit-path="${html(path.id)}">EDIT</button><button data-delete-path="${html(path.id)}">DELETE</button></article>`; }).join("") || `<p>No paths connect to this space yet.</p>`}<button class="map-primary" data-add-path-from="${space.id}">＋ ADD PATH</button></div>` : `<form class="space-edit-form"><label>NAME<input data-space-edit="name" value="${html(space.activity?.title || "")}" placeholder="Space name"></label><label>TYPE<select data-space-edit="type">${["blue","red","lucky","event","start","shop","duel","warp","trap"].map(value=>`<option ${value===(space.type??defaults.spaceType??"blue")?"selected":""}>${value}</option>`).join("")}</select></label><label>SIZE<input data-space-edit="size" type="range" min=".25" max="5" step=".25" value="${space.size ?? defaults.spaceSize ?? 3}"></label><label>SHAPE<select data-space-edit="shape">${["oval","round","star","diamond","hex","shield"].map(value => `<option ${(space.shape??defaults.spaceShape??"oval") === value ? "selected" : ""}>${value}</option>`).join("")}</select></label><label>ROTATION<input data-space-edit="rotation" type="number" min="-180" max="180" value="${space.rotation ?? defaults.spaceRotation ?? 0}"></label><label>OUTLINE WIDTH<input data-space-edit="borderWidth" type="range" min="0" max="16" step=".5" value="${space.borderWidth??defaults.spaceBorderWidth??3}"></label><label>OUTLINE COLOR<input data-space-edit="borderColor" type="color" value="${space.borderColor??defaults.spaceBorderColor??"#ffffff"}"></label><label>OUTLINE OPACITY<input data-space-edit="borderOpacity" type="range" min="0" max="1" step=".05" value="${space.borderOpacity??defaults.spaceBorderOpacity??1}"></label><label><input data-space-edit="shadow" type="checkbox" ${(space.shadow??defaults.spaceShadow??false)?"checked":""}> DROP SHADOW</label><label>SHADOW COLOR<input data-space-edit="shadowColor" type="color" value="${space.shadowColor??defaults.spaceShadowColor??"#000000"}"></label><label>SHADOW OPACITY<input data-space-edit="shadowOpacity" type="range" min="0" max="1" step=".05" value="${space.shadowOpacity??defaults.spaceShadowOpacity??.45}"></label><label>SHADOW BLUR<input data-space-edit="shadowBlur" type="range" min="0" max="30" step="1" value="${space.shadowBlur??defaults.spaceShadowBlur??8}"></label><label>SHADOW OFFSET<input data-space-edit="shadowOffset" type="range" min="-30" max="30" step="1" value="${space.shadowOffset??defaults.spaceShadowOffset??5}"></label><button type="button" data-reset-space-defaults>↺ RESET TO MAP DEFAULTS</button><button type="button" class="danger-button" data-delete-space>DELETE SPACE</button></form>`}</section></div>`;
+const standardSpacePresets = [
+  { type: "blue", shape: "oval", icon: "+3", label: "Blue Space", desc: "+3 Coins on landing" },
+  { type: "red", shape: "oval", icon: "-3", label: "Red Space", desc: "-3 Coins on landing" },
+  { type: "lucky", shape: "oval", icon: "★", label: "Lucky Space", desc: "Bonus coins or roulette" },
+  { type: "star", shape: "star", icon: "⭐", label: "Star Space", desc: "Star purchase space (20 Coins)" },
+  { type: "event", shape: "oval", icon: "✦", label: "Event Space", desc: "Triggers cutscene or event" },
+  { type: "shop", shape: "oval", icon: "🛍️", label: "Shop Space", desc: "Buy dice and powerups" },
+  { type: "duel", shape: "oval", icon: "⚔️", label: "Duel Space", desc: "1v1 coin/star showdown" },
+  { type: "warp", shape: "oval", icon: "🌀", label: "Warp Space", desc: "Teleport to another space" },
+  { type: "trap", shape: "oval", icon: "💀", label: "Trap Space", desc: "Set hidden board hazard" },
+  { type: "start", shape: "oval", icon: "🚩", label: "Start Space", desc: "Board start position" },
+];
+
+function mapSpacesPalette(map, actions) {
+  const presetsHtml = standardSpacePresets.map(preset => `
+    <article class="map-palette-card space-preset-card type-${preset.type}" draggable="true" data-draggable-space-preset="${preset.type}">
+      <div class="map-palette-token-wrap">
+        <div class="space-token-visual shape-${preset.shape} color-${preset.type}">
+          <span>${preset.icon}</span>
+        </div>
+      </div>
+      <div class="map-palette-info">
+        <b>${html(preset.label)}</b>
+        <small>${html(preset.desc)}</small>
+      </div>
+      <button type="button" class="map-palette-add-btn" data-add-space-preset="${preset.type}" title="Add to board">＋ ADD</button>
+    </article>
+  `).join("");
+
+  const actionsHtml = actions.length ? actions.map(action => `
+    <article class="map-palette-card action-preset-card" draggable="true" data-catalog-action="${html(action.id)}">
+      <div class="map-palette-token-wrap">
+        ${renderSpaceToken(action.space || {}, "catalog-token")}
+      </div>
+      <div class="map-palette-info">
+        <b>${html(action.name)}</b>
+        <small>${html(action.space?.type || "event")} · ${action.timeline?.tracks?.reduce((acc, t) => acc + (t.clips?.length || 0), 0) || 0} clips</small>
+      </div>
+      <button type="button" class="map-palette-add-btn" data-add-space-action="${html(action.id)}" title="Add to board">＋ ADD</button>
+    </article>
+  `).join("") : `<p style="font-size:0.55rem;color:#79a786;margin:4px 0;">No custom Space Actions yet.</p>`;
+
+  return `
+    <div class="map-sidebar-palette">
+      <section class="map-palette-section">
+        <header>
+          <small>STANDARD SPACES</small>
+          <b>DRAG OR CLICK ＋</b>
+        </header>
+        <div class="map-palette-grid">
+          ${presetsHtml}
+        </div>
+      </section>
+
+      <section class="map-palette-section" style="margin-top:12px;">
+        <header>
+          <small>CUSTOM SPACE ACTIONS</small>
+          <b>CATALOG (${actions.length})</b>
+        </header>
+        <div class="map-palette-grid">
+          ${actionsHtml}
+        </div>
+        <button type="button" class="map-palette-footer-btn" data-go="${boardEditorPath("event")}">⚙ EDIT SPACE ACTION CATALOG</button>
+      </section>
+    </div>
+  `;
 }
-function pathInspectorModal() {
-  const path = app.project.map.paths.find(item => item.id === app.editingPath); if (!path) return ""; const render = path.render ||= {},defaults=app.project.map.defaults||{};
-  return `<div class="map-modal-backdrop path-editor-backdrop"><section class="map-inspector path-inspector"><header><div><small>PATH EDITOR</small><b>SPACE ${path.from + 1} → ${path.to + 1}</b></div><button data-close-path-editor>×</button></header><p>Click the highlighted route to add a control point, then drag points to shape it.</p><div class="path-options"><label>DIRECTION<select data-path-edit="direction"><option value="both" ${(path.oneWay==null?(defaults.pathDirection??"both")==="both":!path.oneWay) ? "selected" : ""}>↔ Two-way</option><option value="forward" ${(path.oneWay==null?defaults.pathDirection==="forward":path.oneWay&&path.direction!=="reverse") ? "selected" : ""}>→ One-way</option><option value="reverse" ${(path.oneWay==null?defaults.pathDirection==="reverse":path.oneWay&&path.direction==="reverse") ? "selected" : ""}>← One-way</option></select></label><label>WIDTH<input data-path-render="width" type="range" min=".25" max="20" step=".25" value="${Number(render.width ?? defaults.pathWidth ?? 5)}"></label><label>CURVE<select data-path-render="curve"><option value="hard" ${(render.curve??defaults.pathCurve??"hard") !== "smooth" ? "selected" : ""}>Hard edges</option><option value="smooth" ${(render.curve??defaults.pathCurve??"hard") === "smooth" ? "selected" : ""}>Smooth curve</option></select></label><label>🎨 LINE<select data-path-render="pattern"><option value="solid" ${(render.pattern??defaults.pathPattern??"solid")==="solid"?"selected":""}>Solid</option><option value="dashed" ${(render.pattern??defaults.pathPattern)==="dashed" ? "selected" : ""}>Dashed</option><option value="dotted" ${(render.pattern??defaults.pathPattern)==="dotted" ? "selected" : ""}>Dotted</option></select></label><label>COLOR<input data-path-render="color" type="color" value="${html(render.color??defaults.pathColor??"#fff0a9")}"></label><label>OPACITY<input data-path-render="opacity" type="range" min="0" max="1" step=".05" value="${Number(render.opacity??defaults.pathOpacity??1)}"></label><label><input data-path-render="border" type="checkbox" ${(render.border??defaults.pathBorder??true) ? "checked" : ""}> SIDE BORDERS</label><label><input data-path-render="hidden" type="checkbox" ${(render.hidden??defaults.pathHidden??false) ? "checked" : ""}> INVISIBLE IN GAME</label></div><button data-reset-path-defaults>↺ RESET TO MAP DEFAULTS</button><button class="danger-button" data-delete-path="${html(path.id)}">DELETE PATH</button></section></div>`;
+
+function mapComponentInspector(map) {
+  // 1. Point Inspector
+  if (app.pathPointMenu) {
+    const menu = app.pathPointMenu;
+    const path = app.project.map.paths.find(item => item.id === menu.pathId);
+    const point = path?.points?.[menu.index];
+    if (point) {
+      return `
+        <div class="map-sidebar-inspector point-inspector-pane">
+          <div class="map-inspector-header-card">
+            <div>
+              <small>PATH CONTROL POINT #${menu.index + 1}</small>
+              <b>ROUTE ${path.from + 1} → ${path.to + 1}</b>
+            </div>
+            <button type="button" data-close-point-editor class="studio-mini-btn" title="Back to path">✕</button>
+          </div>
+          <div class="map-inspector-fields">
+            <label>MOVEMENT
+              <select data-point-edit="movement">
+                ${["walk","hop","climb","crawl","swim","slide","fly","teleport"].map(val => `<option ${point.movement === val ? "selected" : ""}>${val}</option>`).join("")}
+              </select>
+            </label>
+            <label>SPEED <output>${Number(point.speed || 1).toFixed(1)}x</output>
+              <input data-point-edit="speed" type="range" min=".1" max="3" step=".1" value="${Number(point.speed || 1)}">
+            </label>
+            <label>LIGHTING
+              <select data-point-edit="lighting">
+                ${["unchanged","brighten","dim","dark","spotlight"].map(val => `<option ${point.lighting === val ? "selected" : ""}>${val}</option>`).join("")}
+              </select>
+            </label>
+            <label>WALK SOUND
+              <input data-point-edit="sound" value="${html(point.sound || "default")}">
+            </label>
+            <label class="setting-check">
+              <input data-point-edit="hidden" type="checkbox" ${point.hidden ? "checked" : ""}> HIDE CHARACTER HERE
+            </label>
+            <label>INTERACTION NOTES
+              <input data-point-edit="interaction" value="${html(point.interaction || "")}" placeholder="duck under branch, open door…">
+            </label>
+          </div>
+          <div class="map-inspector-actions-row">
+            <button type="button" class="danger-button" data-delete-path-point>🗑 DELETE CONTROL POINT</button>
+            <button type="button" data-close-point-editor>◀ BACK TO PATH</button>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // 2. Path Inspector
+  if (app.editingPath) {
+    const path = app.project.map.paths.find(item => item.id === app.editingPath);
+    if (path) {
+      const render = path.render ||= {};
+      const defaults = app.project.map.defaults || {};
+      return `
+        <div class="map-sidebar-inspector path-inspector-pane">
+          <div class="map-inspector-header-card">
+            <div>
+              <small>PATH ROUTE</small>
+              <b>SPACE #${path.from + 1} ↔ SPACE #${path.to + 1}</b>
+            </div>
+            <button type="button" data-close-path-editor class="studio-mini-btn" title="Deselect path">✕</button>
+          </div>
+          <p style="font-size:0.55rem;color:#79a786;line-height:1.4;margin:0;">Click the highlighted path on the board to add control points. Drag points to shape it.</p>
+          <div class="map-inspector-fields">
+            <label>DIRECTION
+              <select data-path-edit="direction">
+                <option value="both" ${(path.oneWay==null?(defaults.pathDirection??"both")==="both":!path.oneWay) ? "selected" : ""}>↔ Two-way</option>
+                <option value="forward" ${(path.oneWay==null?defaults.pathDirection==="forward":path.oneWay&&path.direction!=="reverse") ? "selected" : ""}>→ One-way</option>
+                <option value="reverse" ${(path.oneWay==null?defaults.pathDirection==="reverse":path.oneWay&&path.direction==="reverse") ? "selected" : ""}>← One-way</option>
+              </select>
+            </label>
+            <label>WIDTH <output>${Number(render.width ?? defaults.pathWidth ?? 5).toFixed(1)}</output>
+              <input data-path-render="width" type="range" min=".25" max="20" step=".25" value="${Number(render.width ?? defaults.pathWidth ?? 5)}">
+            </label>
+            <label>CURVE
+              <select data-path-render="curve">
+                <option value="hard" ${(render.curve??defaults.pathCurve??"hard") !== "smooth" ? "selected" : ""}>Hard edges</option>
+                <option value="smooth" ${(render.curve??defaults.pathCurve??"hard") === "smooth" ? "selected" : ""}>Smooth curve</option>
+              </select>
+            </label>
+            <label>LINE PATTERN
+              <select data-path-render="pattern">
+                <option value="solid" ${(render.pattern??defaults.pathPattern??"solid")==="solid"?"selected":""}>Solid</option>
+                <option value="dashed" ${(render.pattern??defaults.pathPattern)==="dashed" ? "selected" : ""}>Dashed</option>
+                <option value="dotted" ${(render.pattern??defaults.pathPattern)==="dotted" ? "selected" : ""}>Dotted</option>
+              </select>
+            </label>
+            <label>COLOR
+              <input data-path-render="color" type="color" value="${html(render.color??defaults.pathColor??"#fff0a9")}">
+            </label>
+            <label>OPACITY <output>${Math.round(Number(render.opacity??defaults.pathOpacity??1) * 100)}%</output>
+              <input data-path-render="opacity" type="range" min="0" max="1" step=".05" value="${Number(render.opacity??defaults.pathOpacity??1)}">
+            </label>
+            <label class="setting-check">
+              <input data-path-render="border" type="checkbox" ${(render.border??defaults.pathBorder??true) ? "checked" : ""}> SIDE BORDERS
+            </label>
+            <label class="setting-check">
+              <input data-path-render="hidden" type="checkbox" ${(render.hidden??defaults.pathHidden??false) ? "checked" : ""}> INVISIBLE IN GAME
+            </label>
+          </div>
+          ${(path.points || []).length ? `
+            <div class="map-path-points-list" style="display:flex;flex-direction:column;gap:5px;">
+              <small style="font-size:0.52rem;color:#fff36e;font-weight:700;">CONTROL POINTS (${path.points.length})</small>
+              ${path.points.map((pt, i) => `
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:5px 8px;border:1px solid rgba(109,255,152,0.2);border-radius:5px;background:#06170d;font-size:0.55rem;">
+                  <span>#${i + 1}: ${pt.movement || "walk"} (${Math.round(pt.x)}%, ${Math.round(pt.y)}%)</span>
+                  <button type="button" data-edit-point-index="${i}" data-edit-point-path="${html(path.id)}" style="padding:3px 6px;font-size:0.5rem;">EDIT</button>
+                </div>
+              `).join("")}
+            </div>
+          ` : ""}
+          <div class="map-inspector-actions-row">
+            <button type="button" data-reset-path-defaults>↺ RESET TO MAP DEFAULTS</button>
+            <button type="button" class="danger-button" data-delete-path="${html(path.id)}">🗑 DELETE PATH</button>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // 3. Multi-Space Inspector
+  if (app.selectedSpaces.size > 1) {
+    const count = app.selectedSpaces.size;
+    return `
+      <div class="map-sidebar-inspector multi-space-inspector-pane">
+        <div class="map-inspector-header-card">
+          <div>
+            <small>MULTI-EDIT</small>
+            <b>${count} SPACES SELECTED</b>
+          </div>
+          <button type="button" data-close-map-inspector class="studio-mini-btn" title="Clear selection">✕</button>
+        </div>
+        <p style="font-size:0.55rem;color:#79a786;line-height:1.4;margin:0;">Changes below apply to every selected space.</p>
+        <div class="map-inspector-fields">
+          <label>SIZE
+            <input data-multi-space-edit="size" type="range" min=".25" max="5" step=".25" value="3">
+          </label>
+          <label>SHAPE
+            <select data-multi-space-edit="shape">
+              <option value="">Keep individual shapes</option>
+              ${["oval","round","star","diamond","hex","shield"].map(value=>`<option>${value}</option>`).join("")}
+            </select>
+          </label>
+          <label>TYPE
+            <select data-multi-space-edit="type">
+              <option value="">Keep individual types</option>
+              ${["blue","red","lucky","event","start","shop","duel","warp","trap"].map(value=>`<option>${value}</option>`).join("")}
+            </select>
+          </label>
+          <label>ROTATION
+            <input data-multi-space-edit="rotation" type="number" min="-180" max="180" value="0">
+          </label>
+        </div>
+        <div class="map-inspector-actions-row">
+          <button type="button" class="danger-button" data-delete-selected-spaces>🗑 DELETE ${count} SPACES</button>
+        </div>
+      </div>
+    `;
+  }
+
+  // 4. Single Space Inspector
+  const targetId = app.mapInspector ?? app.selectedSpace;
+  const space = targetId != null ? app.project.map.spaces.find(item => item.id === targetId) : null;
+  if (space) {
+    const defaults = app.project.map.defaults || {};
+    const connected = app.project.map.paths.filter(path => path.from === space.id || path.to === space.id);
+    const tab = app.mapInspectorTab || "space";
+    const actions = app.project.events.entries || [];
+    return `
+      <div class="map-sidebar-inspector space-inspector-pane">
+        <div class="map-inspector-header-card">
+          <div>
+            <small>SPACE #${space.id + 1} (${(space.type || "blue").toUpperCase()})</small>
+            <b>${html(space.activity?.title || `${space.type || "blue"} Space`)}</b>
+          </div>
+          <button type="button" data-close-map-inspector class="studio-mini-btn" title="Deselect space">✕</button>
+        </div>
+        <nav class="map-inspector-subtabs">
+          <button type="button" data-map-inspector-tab="space" class="${tab === "space" ? "active" : ""}">PROPERTIES</button>
+          <button type="button" data-map-inspector-tab="paths" class="${tab === "paths" ? "active" : ""}">PATHS (${connected.length})</button>
+        </nav>
+        ${tab === "paths" ? `
+          <div class="map-inspector-fields">
+            <div class="path-list">
+              ${connected.map(path => {
+                const other = path.from === space.id ? path.to : path.from;
+                return `
+                  <article>
+                    <span>
+                      <b>TO SPACE #${other + 1}</b>
+                      <small>${path.oneWay ? "ONE-WAY" : "TWO-WAY"} · ${html(path.render?.pattern || "SOLID")}</small>
+                    </span>
+                    <button type="button" data-edit-path="${html(path.id)}">EDIT</button>
+                    <button type="button" data-delete-path="${html(path.id)}">DELETE</button>
+                  </article>
+                `;
+              }).join("") || `<p style="font-size:0.55rem;color:#79a786;margin:0;">No paths connect to this space yet.</p>`}
+            </div>
+            <button type="button" class="map-primary" data-add-path-from="${space.id}">＋ CONNECT NEW PATH</button>
+          </div>
+        ` : `
+          <div class="space-edit-form map-inspector-fields">
+            <label>LABEL / TITLE
+              <input data-space-edit="name" value="${html(space.activity?.title || "")}" placeholder="Space name">
+            </label>
+            <label>TYPE
+              <select data-space-edit="type">
+                ${["blue","red","lucky","event","start","shop","duel","warp","trap"].map(value=>`<option ${value===(space.type??defaults.spaceType??"blue")?"selected":""}>${value}</option>`).join("")}
+              </select>
+            </label>
+            <label>SPACE ACTION BINDING
+              <select data-space-bind-action>
+                <option value="">None (Standard Board Space)</option>
+                ${actions.map(a => `<option value="${html(a.id)}" ${(space.action === a.id || space.activity?.id === a.id) ? "selected" : ""}>${html(a.name)}</option>`).join("")}
+              </select>
+            </label>
+            <fieldset>
+              <legend>GEOMETRY & APPEARANCE</legend>
+              <label>SIZE <output>${Number(space.size ?? defaults.spaceSize ?? 3).toFixed(2)}</output>
+                <input data-space-edit="size" type="range" min=".25" max="5" step=".25" value="${space.size ?? defaults.spaceSize ?? 3}">
+              </label>
+              <label>SHAPE
+                <select data-space-edit="shape">
+                  ${["oval","round","star","diamond","hex","shield"].map(value => `<option ${(space.shape??defaults.spaceShape??"oval") === value ? "selected" : ""}>${value}</option>`).join("")}
+                </select>
+              </label>
+              <label>ROTATION
+                <input data-space-edit="rotation" type="number" min="-180" max="180" value="${space.rotation ?? defaults.spaceRotation ?? 0}">
+              </label>
+              <label>OUTLINE WIDTH
+                <input data-space-edit="borderWidth" type="range" min="0" max="16" step=".5" value="${space.borderWidth??defaults.spaceBorderWidth??3}">
+              </label>
+              <label>OUTLINE COLOR
+                <input data-space-edit="borderColor" type="color" value="${space.borderColor??defaults.spaceBorderColor??"#ffffff"}">
+              </label>
+              <label>OUTLINE OPACITY
+                <input data-space-edit="borderOpacity" type="range" min="0" max="1" step=".05" value="${space.borderOpacity??defaults.spaceBorderOpacity??1}">
+              </label>
+              <label class="setting-check">
+                <input data-space-edit="shadow" type="checkbox" ${(space.shadow??defaults.spaceShadow??false)?"checked":""}> DROP SHADOW
+              </label>
+              <label>SHADOW COLOR
+                <input data-space-edit="shadowColor" type="color" value="${space.shadowColor??defaults.spaceShadowColor??"#000000"}">
+              </label>
+              <label>SHADOW OPACITY
+                <input data-space-edit="shadowOpacity" type="range" min="0" max="1" step=".05" value="${space.shadowOpacity??defaults.spaceShadowOpacity??.45}">
+              </label>
+              <label>SHADOW BLUR
+                <input data-space-edit="shadowBlur" type="range" min="0" max="30" step="1" value="${space.shadowBlur??defaults.spaceShadowBlur??8}">
+              </label>
+              <label>SHADOW OFFSET
+                <input data-space-edit="shadowOffset" type="range" min="-30" max="30" step="1" value="${space.shadowOffset??defaults.spaceShadowOffset??5}">
+              </label>
+            </fieldset>
+            <div class="map-inspector-actions-row">
+              <button type="button" data-reset-space-defaults>↺ RESET TO MAP DEFAULTS</button>
+              <button type="button" class="danger-button" data-delete-space>🗑 DELETE SPACE</button>
+            </div>
+          </div>
+        `}
+      </div>
+    `;
+  }
+
+  // 5. Empty / No selection
+  return `
+    <div class="map-empty-inspector">
+      <span class="empty-icon">🔍</span>
+      <b>NO COMPONENT SELECTED</b>
+      <p>Click on any space or path on the board to inspect and configure it here.</p>
+      <p>Or drag new spaces from the <b>＋ SPACES</b> tab directly onto the board.</p>
+      <div style="display:flex;flex-direction:column;gap:8px;width:100%;margin-top:8px;">
+        <button type="button" data-map-side-tab="spaces" class="map-primary">＋ BROWSE SPACES PALETTE</button>
+        <button type="button" data-open-map-settings>⚙ MAP SETTINGS & BACKDROP</button>
+      </div>
+    </div>
+  `;
 }
-function pointInspectorModal() { const menu = app.pathPointMenu, path = menu && app.project.map.paths.find(item => item.id === menu.pathId), point = path?.points?.[menu.index]; if (!point) return ""; return `<div class="map-modal-backdrop"><section class="map-inspector point-inspector"><header><div><small>PATH CONTROL POINT</small><b>MOVEMENT & ENVIRONMENT</b></div><button data-close-point-editor>×</button></header><div class="path-options"><label>MOVEMENT<select data-point-edit="movement">${["walk","hop","climb","crawl","swim","slide","fly","teleport"].map(value => `<option ${point.movement === value ? "selected" : ""}>${value}</option>`).join("")}</select></label><label>SPEED<input data-point-edit="speed" type="range" min=".1" max="3" step=".1" value="${Number(point.speed || 1)}"></label><label>LIGHTING<select data-point-edit="lighting">${["unchanged","brighten","dim","dark","spotlight"].map(value => `<option ${point.lighting === value ? "selected" : ""}>${value}</option>`).join("")}</select></label><label>WALK SOUND<input data-point-edit="sound" value="${html(point.sound || "default")}"></label><label><input data-point-edit="hidden" type="checkbox" ${point.hidden ? "checked" : ""}> HIDE CHARACTER HERE</label><label>INTERACTION<input data-point-edit="interaction" value="${html(point.interaction || "")}" placeholder="duck under branch, open door…"></label></div><button class="danger-button" data-delete-path-point>DELETE POINT</button></section></div>`; }
-function mapHoldMenu() { const space = app.project.map.spaces.find(item => item.id === app.mapHoldMenu); return space ? `<div class="map-hold-menu"><b>${html(space.activity?.title || `Space ${space.id + 1}`)}</b><button data-hold-edit-space="${space.id}">EDIT</button><button data-hold-delete-space="${space.id}">DELETE</button><button data-close-hold-menu>CANCEL</button></div>` : ""; }
-function pointHoldMenu() { const menu=app.pathPointHoldMenu;return menu?`<div class="map-hold-menu"><b>PATH CONTROL POINT</b><button data-hold-edit-point>EDIT</button><button data-hold-delete-point>DELETE</button><button data-close-point-hold>CANCEL</button></div>`:""; }
-function multiSpaceInspectorModal(){const ids=[...app.selectedSpaces];if(app.mapInspector==null||ids.length<2)return "";return `<div class="map-modal-backdrop"><section class="map-inspector"><header><div><small>MULTI-EDIT</small><b>${ids.length} SPACES SELECTED</b></div><button data-close-map-inspector>×</button></header><div class="space-edit-form"><p>Changes below apply to every selected space.</p><label>SIZE<input data-multi-space-edit="size" type="range" min=".25" max="5" step=".25" value="3"></label><label>SHAPE<select data-multi-space-edit="shape"><option value="">Keep individual shapes</option>${["oval","round","star","diamond","hex","shield"].map(value=>`<option>${value}</option>`).join("")}</select></label><label>TYPE<select data-multi-space-edit="type"><option value="">Keep individual types</option>${["blue","red","lucky","event","start","shop","duel","warp","trap"].map(value=>`<option>${value}</option>`).join("")}</select></label><label>ROTATION<input data-multi-space-edit="rotation" type="number" min="-180" max="180" value="0"></label><button type="button" class="danger-button" data-delete-selected-spaces>DELETE ${ids.length} SPACES</button></div></section></div>`;}
+
 function mapEditor() {
-  const map = app.project.map, actions = app.project.events.entries.map(ensureSpaceActionDefaults), selected = map.spaces.find(space => space.id === app.selectedSpace);
+  const map = app.project.map, actions = app.project.events.entries.map(ensureSpaceActionDefaults), selected = map.spaces.find(space => space.id === (app.mapInspector ?? app.selectedSpace));
   const spaces = map.spaces.map(space => {
     const spaceActors = space.actors || (actions.find(a => a.id === space.action || a.id === space.activity?.id)?.characters) || [];
     const sizeRatio = Number(space.size || 3) / 3;
@@ -268,9 +704,56 @@ function mapEditor() {
     `).join("");
     return `<button data-space="${space.id}" class="showcase-space map-space ${space.type} shape-${space.shape || "oval"} ${space.activity ? "has-activity" : ""} ${app.selectedSpaces.has(space.id)||selected?.id === space.id ? "selected" : ""} ${app.pathPickFrom === space.id ? "path-origin" : ""}" style="left:${space.x}%;top:${space.y}%;--space-size:${space.size || 3};transform:translate(-50%,-50%) rotate(${space.rotation || 0}deg)" title="${html(space.activity?.title || `${space.type} space`)}">${space.activity ? `<span class="space-action-icon">${html(space.activity.icon || "✦")}</span>` : ""}<small class="space-editor-number">${space.id + 1}</small>${actorPins}</button>`;
   }).join("");
-  const catalog = `<aside class="map-action-catalog"><header><small>SPACE ACTIONS</small><b>DRAG ONTO BOARD</b></header><div>${actions.map((action,index) => `<button data-catalog-action="${html(action.id)}">${renderSpaceToken(action.space || {}, "catalog-token")}<span><b>${html(action.name)}</b><small>${html(action.space?.type || "event")} · USE ANY NUMBER OF TIMES</small></span></button>`).join("") || `<p>Create Space Actions in the catalog first.</p>`}</div><button data-go="${boardEditorPath("event")}">EDIT SPACE ACTION CATALOG</button></aside>`;
-  const overlayStyle=`transform:translate(${app.mapPan.x}px,${app.mapPan.y}px) scale(${app.mapZoom}) rotate(${app.mapRotation||0}rad)`;
-  return `<section class="studio-shell board-showcase-shell map-maker-overview"><header class="board-showcase-header"><button data-go="/party/board/${app.project.boardProjects.selectedId}">◀ BOARD OVERVIEW</button><div><small>SPACE/PATH EDITOR</small><h1>${html(map.name)}</h1><p>${map.spaces.length} spaces · ${map.paths.length} paths</p></div></header><main class="board-showcase-stage map-editor-stage"><div id="map-viewport" class="board-showcase-map pixi-board-host" data-pixi-board="editor"><div id="map-board" class="map-interaction-overlay" style="${overlayStyle}">${pathsSvg(map,true)}${spaces}</div></div></main>${catalog}<nav class="map-floating-toolbar"><button data-map-tool="select" class="${map.tool !== "pan" ? "active" : ""}">⌁ SELECT</button><button data-map-tool="pan" class="${map.tool === "pan" ? "active" : ""}">✋ PAN</button><button data-undo ${app.history.length ? "" : "disabled"}>↶ UNDO</button><button data-redo ${app.future.length ? "" : "disabled"}>↷ REDO</button><button data-map-rotate="-.087">↶</button><button data-map-zoom="-.2">−</button><b>${Math.round(app.mapZoom * 100)}%</b><button data-map-zoom=".2">＋</button><button data-map-rotate=".087">↷</button><button data-map-reset>⌂</button></nav>${mapHoldMenu()}${pointHoldMenu()}${app.selectedSpaces.size>1?multiSpaceInspectorModal():spaceInspectorModal()}${pathInspectorModal()}${pointInspectorModal()}</section>`;
+
+  const overlayStyle = `transform:translate(${app.mapPan.x}px,${app.mapPan.y}px) scale(${app.mapZoom}) rotate(${app.mapRotation||0}rad)`;
+  const activeSideTab = app.mapSideTab || "spaces";
+  const inspectorBadge = app.selectedSpaces.size > 1 ? `<span class="map-side-tab-badge">${app.selectedSpaces.size}</span>` : (app.mapInspector != null || app.selectedSpace != null) ? `<span class="map-side-tab-badge">#${((app.mapInspector ?? app.selectedSpace) + 1)}</span>` : app.editingPath ? `<span class="map-side-tab-badge">Path</span>` : app.pathPointMenu ? `<span class="map-side-tab-badge">Pt</span>` : "";
+
+  return `
+    <section class="studio-shell board-showcase-shell map-maker-overview">
+      <header class="board-showcase-header">
+        <button data-go="/party/board/${app.project.boardProjects.selectedId}">◀ BOARD OVERVIEW</button>
+        <div>
+          <small>SPACE/PATH EDITOR</small>
+          <h1>${html(map.name)}</h1>
+          <p>${map.spaces.length} spaces · ${map.paths.length} paths</p>
+        </div>
+      </header>
+      <div class="map-two-column-layout">
+        <div class="map-left-stage-column">
+          <main class="board-showcase-stage map-editor-stage">
+            <div id="map-viewport" class="board-showcase-map pixi-board-host" data-pixi-board="editor">
+              <div id="map-board" class="map-interaction-overlay" style="${overlayStyle}">
+                ${pathsSvg(map,true)}
+                ${spaces}
+              </div>
+            </div>
+          </main>
+          <nav class="map-floating-toolbar">
+            <button data-map-tool="select" class="${map.tool !== "pan" ? "active" : ""}">⌁ SELECT</button>
+            <button data-map-tool="pan" class="${map.tool === "pan" ? "active" : ""}">✋ PAN</button>
+            <button data-undo ${app.history.length ? "" : "disabled"}>↶ UNDO</button>
+            <button data-redo ${app.future.length ? "" : "disabled"}>↷ REDO</button>
+            <button data-map-rotate="-.087">↶</button>
+            <button data-map-zoom="-.2">−</button>
+            <b>${Math.round(app.mapZoom * 100)}%</b>
+            <button data-map-zoom=".2">＋</button>
+            <button data-map-rotate=".087">↷</button>
+            <button data-map-reset>⌂</button>
+          </nav>
+        </div>
+        <aside class="map-right-sidebar-column">
+          <nav class="map-side-tabs-nav">
+            <button type="button" data-map-side-tab="spaces" class="map-side-tab-btn ${activeSideTab === "spaces" ? "active" : ""}">＋ SPACES</button>
+            <button type="button" data-map-side-tab="inspector" class="map-side-tab-btn ${activeSideTab === "inspector" ? "active" : ""}">🔍 INSPECTOR ${inspectorBadge}</button>
+          </nav>
+          <div class="map-side-tab-content">
+            ${activeSideTab === "spaces" ? mapSpacesPalette(map, actions) : mapComponentInspector(map)}
+          </div>
+        </aside>
+      </div>
+    </section>
+  `;
 }
 const starterEffects = [
   {id:"sfx-smoke",name:"Smoke",kind:"particle",type:"smoke",icon:"☁",color:"#b8c2c8",secondaryColor:"#515966",shape:"circle",blend:"normal",rate:14,count:36,life:3.5,size:22,sizeEnd:50,speed:22,spread:34,angle:-90,gravity:-4,drag:.96,opacity:.55,radius:70},
@@ -3791,6 +4274,9 @@ function bindParticleToPlacement(placement,particle){placement.boundEffectId=par
 
 function actorsEditor() {
   const actors = ensureBoardActors();
+  if (app.actorEditorId && actors.some(actor => String(actor.id) === String(app.actorEditorId))) {
+    return frame(stationMeta.actors, `<div class="actor-settings-page">${actorSettingsModal()}</div>`);
+  }
   if (app.actorMigrationPendingSave) {
     app.actorMigrationPendingSave = false;
     save("actors");
@@ -3934,6 +4420,9 @@ function actorsEditor() {
 }
 
 function render() {
+  actorSectionState("actors");
+  actorSectionState("event");
+  const actorSectionsClean = ["actors", "event"].filter(section => !actorSectionChanged(section) && !actorSectionState(section).pending && !app.saveTimers[section]);
   clearInterval(app.testTimer); app.testTimer = null;
   const isTimelineTab = (app.spaceActionTab === "script" || app.spaceActionTab === "timeline");
   const preserveTimelineActors = isTimelineTab && Boolean(root.querySelector("[data-timeline-pixi-actor]"));
@@ -3961,6 +4450,10 @@ function render() {
   mountStudioBoard();
   if(app.editor==="event" && isTimelineTab) mountTimelinePixiStage(currentAction());
   mountRagdollTab();
+  mountStudioTopbar();
+  for (const section of actorSectionsClean) {
+    if (!app.saveTimers[section]) actorSectionState(section).saved = JSON.stringify(app.project[sections[section]]);
+  }
   if (app.testStartedAt && ["scene","test"].includes(app.editor)) startTestClock();
 }
 let confabulatorResizeFrame = 0;
@@ -3981,7 +4474,38 @@ function acceptSavedSection(section, savedProject) {
     if (key === "map") activeBoard.name = liveSection.name || activeBoard.name;
   }
 }
+const actorSectionSaves = new Map();
+function actorSectionState(section) {
+  const key = `${app.project.boardProjects.selectedId}:${sections[section]}`;
+  if (!actorSectionSaves.has(key)) actorSectionSaves.set(key, { saved: JSON.stringify(app.project[sections[section]]), pending: null });
+  return actorSectionSaves.get(key);
+}
+function actorSectionChanged(section) {
+  return actorSectionState(section).saved !== JSON.stringify(app.project[sections[section]]);
+}
+async function persistActorSection(section) {
+  const state = actorSectionState(section);
+  if (state.pending) await state.pending;
+  const body = JSON.stringify(app.project[sections[section]]);
+  if (state.saved === body) return false;
+  state.pending = api(`/api/party/studio/${sections[section]}`, { method: "PUT", body });
+  try {
+    const result = await state.pending;
+    state.saved = body;
+    acceptSavedSection(section, result);
+    return true;
+  } finally { state.pending = null; }
+}
 function save(section) {
+  if (section === "actors" || (section === "event" && app.editor === "actors")) {
+    clearTimeout(app.saveTimers[section]);
+    app.saveTimers[section] = setTimeout(async () => {
+      app.saveTimers[section] = null;
+      try { if (await persistActorSection(section)) toast("SAVED! ★"); }
+      catch (error) { toast(error.message); }
+    }, 280);
+    return;
+  }
   const lamp = document.querySelector("#save-lamp"); if (lamp) { lamp.textContent = "● SAVING"; lamp.classList.add("busy"); }
   clearTimeout(app.saveTimers[section]); app.saveTimers[section] = setTimeout(async () => { try { const savedProject = await api(`/api/party/studio/${sections[section]}`, { method: "PUT", body: app.project[sections[section]] }); acceptSavedSection(section,savedProject); toast("SAVED! ★"); sound(660,.12); const next=document.querySelector("#save-lamp"); if(next){next.textContent="● SAVED";next.classList.remove("busy");} } catch(error){ toast(error.message); } }, 280);
 }
@@ -3993,11 +4517,12 @@ async function saveActorEditorNow() {
     const dialog = root.querySelector(".actor-settings-dialog");
     if (dialog) {
       const oldName = actor.name;
+      let changed = false;
       dialog.querySelectorAll("[data-actor-field]").forEach((input) => {
         const field = input.dataset.actorField;
-        if (field) actor[field] = input.value;
+        if (field && actor[field] !== input.value) { actor[field] = input.value; changed = true; }
       });
-      syncActorToAllSpaceActions(actor.id, oldName, actor);
+      if (changed) syncActorToAllSpaceActions(actor.id, oldName, actor);
     }
   }
   clearTimeout(app.saveTimers.actors);
@@ -4005,16 +4530,14 @@ async function saveActorEditorNow() {
   clearTimeout(app.saveTimers.event);
   app.saveTimers.event = null;
   const isBoardActor = ensureBoardActors().some((a) => String(a.id) === String(app.actorEditorId));
-  const sectionKey = isBoardActor ? "actors" : "events";
-  const sectionProp = isBoardActor ? "actors" : "events";
+  const candidates = isBoardActor ? ["actors", "event"] : ["event"];
+  const changedSections = candidates.filter(section => actorSectionChanged(section));
+  if (!changedSections.length) return true;
   const lamp = document.querySelector("#save-lamp");
   if (lamp) { lamp.textContent = "● SAVING"; lamp.classList.add("busy"); }
   try {
-    const savedProject = await api(`/api/party/studio/${sectionKey}`, { method: "PUT", body: app.project[sectionProp] });
-    acceptSavedSection(isBoardActor ? "actors" : "event", savedProject);
-    if (isBoardActor && app.project.events) {
-      const savedEvents = await api(`/api/party/studio/events`, { method: "PUT", body: app.project.events });
-      acceptSavedSection("event", savedEvents);
+    for (const section of changedSections) {
+      await persistActorSection(section);
     }
     if (lamp) { lamp.textContent = "● SAVED"; lamp.classList.remove("busy"); }
     toast("ACTOR SAVED! ★");
@@ -4022,6 +4545,8 @@ async function saveActorEditorNow() {
   } catch (error) {
     console.warn("Actor editor save note:", error);
     if (lamp) { lamp.textContent = "● LOCAL"; lamp.classList.remove("busy"); }
+    toast("Actor changes could not be saved. Please try again.");
+    return false;
   }
   return true;
 }
@@ -4036,6 +4561,13 @@ function boardPoint(board, event) {
 }
 function updateMapCamera(next={},immediate=false){if(next.zoom!=null)app.mapZoom=Math.max(.8,Math.min(8,Number(next.zoom)));if(next.x!=null)app.mapPan.x=Number(next.x);if(next.y!=null)app.mapPan.y=Number(next.y);if(next.rotation!=null)app.mapRotation=Number(next.rotation);studioBoardRenderer?.setCamera({x:app.mapPan.x,y:app.mapPan.y,zoom:app.mapZoom,rotation:app.mapRotation||0},immediate);const readout=root.querySelector(".map-floating-toolbar > b,.placement-zoom > b");if(readout)readout.textContent=`${Math.round(app.mapZoom*100)}%`;}
 root.addEventListener("click", async (event) => {
+  if (event.target.closest("[data-topbar-board], [data-topbar-editor]")) {
+    if (!await saveActorEditorNow()) return;
+    const path = event.target.closest("[data-topbar-editor]") ? boardEditorPath(app.editor) : `/party/board/${app.project.boardProjects.selectedId}`;
+    resetEditorPiece();
+    go(path);
+    return;
+  }
   const setHost = event.target.closest("[data-set-host]");
   if (setHost) {
     const actorId = setHost.dataset.setHost;
@@ -4389,47 +4921,57 @@ root.addEventListener("click", async (event) => {
   if(event.target.closest("[data-remove-map-image]")){remember();app.project.map.image="";save("map");render();sound(240,.12);toast("MAP IMAGE REMOVED (DEFAULT GRID ACTIVE)");return;}
   const settingsTab=event.target.closest("[data-map-settings-tab]");if(settingsTab){app.mapSettingsTab=settingsTab.dataset.mapSettingsTab;render();return;}
   if(event.target.closest("[data-preview-map-music]")){app.mapPreviewAudio?.pause();if(app.project.map.music){app.mapPreviewAudio=new Audio(app.project.map.music);app.mapPreviewAudio.volume=.45;app.mapPreviewAudio.play().catch(()=>toast("THIS TRACK COULD NOT BE PREVIEWED"));}return;}
-  if(event.target.closest("[data-delete-selected-spaces]")){remember();const ids=app.selectedSpaces,map=app.project.map;map.spaces=map.spaces.filter(space=>!ids.has(space.id));map.paths=map.paths.filter(path=>!ids.has(path.from)&&!ids.has(path.to));app.selectedSpaces.clear();app.mapInspector=null;save("map");render();toast("SELECTED SPACES DELETED");return;}
-  if(event.target.closest("[data-reset-space-defaults]")){const space=app.project.map.spaces.find(item=>item.id===app.mapInspector);if(space){remember();for(const key of ["type","size","shape","rotation","borderWidth","borderColor","borderOpacity","shadow","shadowColor","shadowOpacity","shadowBlur","shadowOffset"])delete space[key];save("map");render();toast("SPACE NOW USES MAP DEFAULTS");}return;}
+  if(event.target.closest("[data-delete-selected-spaces]")){remember();const ids=app.selectedSpaces,map=app.project.map;map.spaces=map.spaces.filter(space=>!ids.has(space.id));map.paths=map.paths.filter(path=>!ids.has(path.from)&&!ids.has(path.to));app.selectedSpaces.clear();app.selectedSpace=null;app.mapInspector=null;save("map");render();toast("SELECTED SPACES DELETED");return;}
+  if(event.target.closest("[data-reset-space-defaults]")){const targetId=app.mapInspector??app.selectedSpace,space=app.project.map.spaces.find(item=>item.id===targetId);if(space){remember();for(const key of ["type","size","shape","rotation","borderWidth","borderColor","borderOpacity","shadow","shadowColor","shadowOpacity","shadowBlur","shadowOffset"])delete space[key];save("map");render();toast("SPACE NOW USES MAP DEFAULTS");}return;}
   if(event.target.closest("[data-reset-path-defaults]")){const path=app.project.map.paths.find(item=>item.id===app.editingPath);if(path){remember();delete path.render;delete path.oneWay;delete path.direction;save("map");render();toast("PATH NOW USES MAP DEFAULTS");}return;}
-  const goTarget = event.target.closest("[data-go]"); if (goTarget) { event.preventDefault(); go(goTarget.dataset.go); return; }
-  const boardTarget = event.target.closest("[data-select-board]"); if (boardTarget) { try { app.project = await api(`/api/party/studio/boards/${boardTarget.dataset.selectBoard}/select`, { method: "POST" }); app.history=[];app.future=[];go(`/party/board/${app.project.boardProjects.selectedId}`); } catch(error) { toast(error.message); } return; }
+  const mapSideTab=event.target.closest("[data-map-side-tab]");if(mapSideTab){app.mapSideTab=mapSideTab.dataset.mapSideTab;render();sound(420);return;}
+  const addSpacePreset=event.target.closest("[data-add-space-preset]");if(addSpacePreset){remember();const type=addSpacePreset.dataset.addSpacePreset,map=app.project.map,id=Math.max(-1,...map.spaces.map(s=>s.id))+1,defaults=map.defaults||{},prev=map.spaces.at(-1),x=prev?Math.max(10,Math.min(90,(prev.x+7)%92)):50,y=prev?Math.max(10,Math.min(90,(prev.y+7)%92)):50;const space={id,x,y,type,size:defaults.spaceSize??(type==="star"?3.5:3),shape:defaults.spaceShape??(type==="star"?"star":"oval"),rotation:defaults.spaceRotation??0,depth:2};map.spaces.push(space);app.selectedSpace=id;app.mapInspector=id;app.selectedSpaces.clear();app.selectedSpaces.add(id);app.justPlacedSpace=id;app.mapSideTab="inspector";save("map");render();toast(`ADDED ${type.toUpperCase()} SPACE`);sound(620,.1);return;}
+  const addSpaceAction=event.target.closest("[data-add-space-action]");if(addSpaceAction){const action=app.project.events.entries.find(item=>item.id===addSpaceAction.dataset.addSpaceAction);if(action){remember();const map=app.project.map,id=Math.max(-1,...map.spaces.map(s=>s.id))+1,prev=map.spaces.at(-1),x=prev?Math.max(10,Math.min(90,(prev.x+7)%92)):50,y=prev?Math.max(10,Math.min(90,(prev.y+7)%92)):50,space=mapSpaceAction({id,x,y,depth:2},action,map.spaces.length);map.spaces.push(space);app.selectedSpace=id;app.mapInspector=id;app.selectedSpaces.clear();app.selectedSpaces.add(id);app.justPlacedSpace=id;app.mapSideTab="inspector";save("map");render();toast(`ADDED ${action.name.toUpperCase()}`);sound(620,.1);}return;}
+  const editPointBtn=event.target.closest("[data-edit-point-index]");if(editPointBtn){app.pathPointMenu={pathId:editPointBtn.dataset.editPointPath,index:Number(editPointBtn.dataset.editPointIndex)};app.mapSideTab="inspector";render();return;}
+  const goTarget = event.target.closest("[data-go]"); if (goTarget) { event.preventDefault(); if (!await saveActorEditorNow()) return; resetEditorPiece(); go(goTarget.dataset.go); return; }
+  const boardTarget = event.target.closest("[data-select-board]"); if (boardTarget) { try {
+    if (!await saveActorEditorNow()) return;
+    for (const section of Object.keys(app.saveTimers)) {
+      if (!app.saveTimers[section]) continue;
+      clearTimeout(app.saveTimers[section]); app.saveTimers[section] = null;
+      const saved = await api(`/api/party/studio/${sections[section]}`, { method: "PUT", body: app.project[sections[section]] });
+      acceptSavedSection(section, saved);
+    }
+    const editor = app.editor;
+    app.project = await api(`/api/party/studio/boards/${boardTarget.dataset.selectBoard}/select`, { method: "POST" });
+    resetEditorPiece(); app.selectedSpaces.clear(); app.activeEffectId = null;
+    app.history=[];app.future=[];go(`/party/board/${app.project.boardProjects.selectedId}${editor ? `/editor/${editor}` : ""}`);
+  } catch(error) { toast(error.message); } return; }
   if (event.target.closest("[data-create-board]")) { const name=prompt("Name your new board:","New Board");if(!name)return;try{app.project=await api("/api/party/studio/boards",{method:"POST",body:{name}});app.history=[];app.future=[];go(`/party/board/${app.project.boardProjects.selectedId}`);}catch(error){toast(error.message);}return; }
   if (event.target.closest("[data-board-editor-drawer]")) { app.boardEditorDrawerOpen=!app.boardEditorDrawerOpen;render();sound(app.boardEditorDrawerOpen?620:320);return; }
   if (event.target.closest("[data-new-party]")) { const code=randomCode(); try { await api(`/api/party/rooms/${code}`,{method:"POST"}); location.href=`/party/${code}`; } catch(error){toast(error.message);} return; }
   if (event.target.closest("[data-test-shortcut]")) { go(boardEditorPath("test")); return; }
   if (event.target.closest("[data-workshop-toggle]")) { app.workshopsOpen = !app.workshopsOpen; render(); sound(app.workshopsOpen ? 620 : 320); return; }
   const issueTarget=event.target.closest("[data-show-issue]");if(issueTarget){const editor=issueTarget.dataset.showIssue;if(editor==="map"&&issueTarget.dataset.issueSpace!=null){app.project.map.tool="path";app.pathFrom=Number(issueTarget.dataset.issueSpace);app.selectedSpace=null;}go(boardEditorPath(editor));setTimeout(()=>toast(editor==="map"&&app.pathFrom!=null?"CONNECT THIS SPACE TO FINISH ITS PATH 〰":"HERE'S THE TROUBLE SPOT!"),0);return;}
-  if (event.target.closest("[data-undo]") && app.history.length && sections[app.editor]) { app.future.push(structuredClone(app.project)); app.project=app.history.pop(); save(app.editor); render(); sound(280); return; }
-  if (event.target.closest("[data-redo]") && app.future.length && sections[app.editor]) { app.history.push(structuredClone(app.project)); app.project=app.future.pop(); save(app.editor); render(); sound(380); return; }
+  if (event.target.closest("[data-undo]") && app.history.length) { restoreStudioHistory(app.history, app.future); sound(280); return; }
+  if (event.target.closest("[data-redo]") && app.future.length) { restoreStudioHistory(app.future, app.history); sound(380); return; }
   if (event.target.closest("[data-map-zoom]")) {updateMapCamera({zoom:app.mapZoom+Number(event.target.closest("[data-map-zoom]").dataset.mapZoom)});sound(460);return; }
   if (event.target.closest("[data-map-reset]")) {updateMapCamera({zoom:1,x:0,y:0,rotation:0});sound(520);return; }
   const rotateMap=event.target.closest("[data-map-rotate]");if(rotateMap){updateMapCamera({rotation:(app.mapRotation||0)+Number(rotateMap.dataset.mapRotate)});sound(430);return;}
-  if (event.target.closest("[data-close-hold-menu]")) { app.mapHoldMenu=null;render();return; }
-  const holdEdit=event.target.closest("[data-hold-edit-space]");if(holdEdit){app.mapHoldMenu=null;app.mapInspector=Number(holdEdit.dataset.holdEditSpace);if(!app.selectedSpaces.has(app.mapInspector)){app.selectedSpaces.clear();app.selectedSpaces.add(app.mapInspector);}app.mapInspectorTab="space";render();return;}
-  const holdDelete=event.target.closest("[data-hold-delete-space]");if(holdDelete){remember();const id=Number(holdDelete.dataset.holdDeleteSpace),map=app.project.map;map.spaces=map.spaces.filter(space=>space.id!==id);map.paths=map.paths.filter(path=>path.from!==id&&path.to!==id);app.mapHoldMenu=null;save("map");render();toast("SPACE DELETED");return;}
-  if(event.target.closest("[data-close-map-inspector]")){app.mapInspector=null;render();return;}
+  if(event.target.closest("[data-close-map-inspector]")){app.mapInspector=null;app.selectedSpace=null;app.selectedSpaces.clear();render();return;}
   const inspectorTab=event.target.closest("[data-map-inspector-tab]");if(inspectorTab){app.mapInspectorTab=inspectorTab.dataset.mapInspectorTab;render();return;}
-  const addPath=event.target.closest("[data-add-path-from]");if(addPath){app.pathPickFrom=Number(addPath.dataset.addPathFrom);app.mapInspector=null;app.project.map.tool="select";render();toast("SELECT ANOTHER SPACE TO CONNECT");return;}
-  const editPath=event.target.closest("[data-edit-path]");if(editPath){app.editingPath=editPath.dataset.editPath;app.mapInspector=null;render();toast("CLICK THE PATH TO ADD A CONTROL POINT");return;}
+  const addPath=event.target.closest("[data-add-path-from]");if(addPath){app.pathPickFrom=Number(addPath.dataset.addPathFrom);app.project.map.tool="select";render();toast("SELECT TARGET SPACE ON BOARD TO CONNECT 〰");return;}
+  const editPath=event.target.closest("[data-edit-path]");if(editPath){app.editingPath=editPath.dataset.editPath;app.selectedSpace=null;app.mapInspector=null;app.selectedSpaces.clear();app.mapSideTab="inspector";render();toast("PATH SELECTED");return;}
   const deletePath=event.target.closest("[data-delete-path]");if(deletePath){remember();app.project.map.paths=app.project.map.paths.filter(path=>path.id!==deletePath.dataset.deletePath);if(app.editingPath===deletePath.dataset.deletePath)app.editingPath=null;save("map");render();toast("PATH DELETED");return;}
   if(event.target.closest("[data-close-path-editor]")){app.editingPath=null;render();return;}
-  const pathHit=event.target.closest(".path-hit");if(pathHit){event.stopPropagation();if(app.suppressMapClick){app.suppressMapClick=false;return;}const pathId=pathHit.closest("[data-path-id]")?.dataset.pathId;if(!pathId)return;if(app.editingPath&&app.editingPath===pathId){const board=document.querySelector("#map-board"),path=app.project.map.paths.find(item=>item.id===pathId);if(board&&path){remember();const point=boardPoint(board,event);path.points||=[];path.points.push({...point,movement:"walk",speed:1,lighting:"unchanged",sound:"default"});save("map");render();toast("CONTROL POINT ADDED — DRAG TO SHAPE");}}else if(app.editingPath||app.mapInspector!=null||app.pathPointMenu){app.editingPath=pathId;app.mapInspector=null;app.pathPointMenu=null;render();toast("PATH FOCUS CHANGED");}return;}
+  const pathHit=event.target.closest(".path-hit");if(pathHit){event.stopPropagation();if(app.suppressMapClick){app.suppressMapClick=false;return;}const pathId=pathHit.closest("[data-path-id]")?.dataset.pathId;if(!pathId)return;if(app.editingPath&&app.editingPath===pathId){const board=document.querySelector("#map-board"),path=app.project.map.paths.find(item=>item.id===pathId);if(board&&path){remember();const point=boardPoint(board,event);path.points||=[];path.points.push({...point,movement:"walk",speed:1,lighting:"unchanged",sound:"default"});save("map");render();toast("CONTROL POINT ADDED — DRAG TO SHAPE");}}else{app.editingPath=pathId;app.selectedSpace=null;app.mapInspector=null;app.pathPointMenu=null;app.selectedSpaces.clear();app.mapSideTab="inspector";render();sound(400);toast("PATH SELECTED");}return;}
   if(event.target.closest("[data-close-point-editor]")){app.pathPointMenu=null;render();return;}
-  if(event.target.closest("[data-close-point-hold]")){app.pathPointHoldMenu=null;render();return;}
-  if(event.target.closest("[data-hold-edit-point]")){app.pathPointMenu=app.pathPointHoldMenu;app.pathPointHoldMenu=null;render();return;}
-  if(event.target.closest("[data-hold-delete-point]")){const menu=app.pathPointHoldMenu,path=menu&&app.project.map.paths.find(item=>item.id===menu.pathId);if(path){remember();path.points.splice(menu.index,1);app.pathPointHoldMenu=null;save("map");render();toast("CONTROL POINT DELETED");}return;}
   if(event.target.closest("[data-delete-path-point]")){const menu=app.pathPointMenu,path=menu&&app.project.map.paths.find(item=>item.id===menu.pathId);if(path){remember();path.points.splice(menu.index,1);app.pathPointMenu=null;save("map");render();toast("CONTROL POINT DELETED");}return;}
   const boardMutation = event.target.closest("#map-board") && app.project.map.tool === "space" && !event.target.closest("[data-space]") && !app.panMoved;
   if (boardMutation || event.target.closest("[data-space-adjust],[data-space-shape],[data-space-type],[data-delete-space],[data-clip-adjust],[data-add-clip],[data-add-command],[data-command-move],[data-command-toggle],[data-command-delete],[data-command-kind],[data-command-amount],[data-command-phrase],[data-trigger-kind],[data-trigger-adjust],[data-event-add],[data-event-delete],[data-cartridge],[data-rule-toggle],[data-data-remove],[data-data-add]")) remember();
   const tool = event.target.closest("[data-map-tool]"); if(tool){app.project.map.tool=tool.dataset.mapTool;app.pathFrom=null;app.selectedSpace=null;app.selectedMarker=null;save("map");render();sound(420);return;}
-  const spaceButton = event.target.closest("[data-space]"); if(spaceButton){event.stopPropagation();const id=Number(spaceButton.dataset.space),space=app.project.map.spaces.find(item=>item.id===id);if(app.suppressMapClick){app.suppressMapClick=false;return;}if(event.shiftKey||event.metaKey||event.ctrlKey){app.selectedSpaces.has(id)?app.selectedSpaces.delete(id):app.selectedSpaces.add(id);app.selectedSpace=id;render();return;}if(!app.selectedSpaces.has(id)){app.selectedSpaces.clear();app.selectedSpaces.add(id);}if(app.pathPickFrom!=null){if(app.pathPickFrom!==id){const exists=app.project.map.paths.some(path=>(path.from===app.pathPickFrom&&path.to===id)||(path.from===id&&path.to===app.pathPickFrom));if(!exists){remember();const path={id:`path-${Date.now()}`,from:app.pathPickFrom,to:id,points:[],oneWay:false,render:{pattern:"solid",curve:"hard",color:"#fff0a9",opacity:1,border:true}};app.project.map.paths.push(path);app.editingPath=path.id;save("map");toast("PATH CREATED");}else toast("THOSE SPACES ARE ALREADY CONNECTED");}app.pathPickFrom=null;render();return;}if(app.mapInspector!=null||app.editingPath||app.pathPointMenu){app.mapInspector=id;app.mapInspectorTab="space";app.editingPath=null;app.pathPointMenu=null;render();return;}if(app.project.map.tool==="path"){if(app.pathFrom==null){app.pathFrom=id;app.selectedSpace=null;toast("FIRST SPACE READY — PICK THE NEXT! 〰");sound(240);render();return;}if(app.pathFrom!==id){const exists=app.project.map.paths.some(path=>path.from===app.pathFrom&&path.to===id);if(!exists){remember();app.project.map.paths.push({id:`path-${Date.now()}`,from:app.pathFrom,to:id});save("map");sound(720,.13);}else{sound(110);toast("THOSE SPACES ARE ALREADY CONNECTED");}app.pathFrom=id;render();return;}}app.selectedSpace=id;app.selectedMarker=null;render();sound(360);return;}
+  const spaceButton = event.target.closest("[data-space]"); if(spaceButton){event.stopPropagation();const id=Number(spaceButton.dataset.space),space=app.project.map.spaces.find(item=>item.id===id);if(app.suppressMapClick){app.suppressMapClick=false;return;}if(event.shiftKey||event.metaKey||event.ctrlKey){app.selectedSpaces.has(id)?app.selectedSpaces.delete(id):app.selectedSpaces.add(id);app.selectedSpace=id;app.mapInspector=id;app.mapSideTab="inspector";render();return;}if(app.pathPickFrom!=null){if(app.pathPickFrom!==id){const exists=app.project.map.paths.some(path=>(path.from===app.pathPickFrom&&path.to===id)||(path.from===id&&path.to===app.pathPickFrom));if(!exists){remember();const path={id:`path-${Date.now()}`,from:app.pathPickFrom,to:id,points:[],oneWay:false,render:{pattern:"solid",curve:"hard",color:"#fff0a9",opacity:1,border:true}};app.project.map.paths.push(path);app.editingPath=path.id;app.mapInspector=null;app.selectedSpace=null;app.mapSideTab="inspector";save("map");toast("PATH CREATED");}else toast("THOSE SPACES ARE ALREADY CONNECTED");}app.pathPickFrom=null;render();return;}if(app.project.map.tool==="path"){if(app.pathFrom==null){app.pathFrom=id;app.selectedSpace=null;toast("FIRST SPACE READY — PICK THE NEXT! 〰");sound(240);render();return;}if(app.pathFrom!==id){const exists=app.project.map.paths.some(path=>path.from===app.pathFrom&&path.to===id);if(!exists){remember();app.project.map.paths.push({id:`path-${Date.now()}`,from:app.pathFrom,to:id});save("map");sound(720,.13);}else{sound(110);toast("THOSE SPACES ARE ALREADY CONNECTED");}app.pathFrom=id;render();return;}}app.selectedSpaces.clear();app.selectedSpaces.add(id);app.selectedSpace=id;app.mapInspector=id;app.editingPath=null;app.pathPointMenu=null;app.selectedMarker=null;app.mapSideTab="inspector";render();sound(360);return;}
   const board = event.target.closest("#map-board");
-  if(board && !app.panMoved && app.project.map.tool==="space"){const point=boardPoint(board,event),map=app.project.map,id=Math.max(-1,...map.spaces.map(s=>s.id))+1,type=map.spaceType||"blue",space={id,...point,type,size:3,depth:2,rotation:0,shape:"oval",action:`${type}-space-event`};const previous=map.spaces.at(-1);map.spaces.push(space);if(previous)map.paths.push({id:`path-${Date.now()}`,from:previous.id,to:id});app.selectedSpace=id;app.selectedMarker=null;save("map");render();sound(220,.08);return;}
-  const adjust = event.target.closest("[data-space-adjust]"); if(adjust){const [key,amount]=adjust.dataset.spaceAdjust.split(":"),space=app.project.map.spaces.find(s=>s.id===app.selectedSpace);space[key]=Math.max(key==="size"?1:key==="depth"?0:-180,Math.min(key==="size"?5:key==="depth"?5:180,Number(space[key])+Number(amount)));save("map");render();return;}
-  const shape = event.target.closest("[data-space-shape]"); if(shape){const options=["oval","round","star"],space=app.project.map.spaces.find(s=>s.id===app.selectedSpace),index=options.indexOf(space.shape||"oval");space.shape=options[(index+Number(shape.dataset.spaceShape)+options.length)%options.length];save("map");render();return;}
-  const type = event.target.closest("[data-space-type]"); if(type){const space=app.project.map.spaces.find(s=>s.id===app.selectedSpace),oldDefault=`${space.type}-space-event`;space.type=type.dataset.spaceType;if(!space.action||space.action===oldDefault)space.action=`${space.type}-space-event`;app.project.map.spaceType=space.type;save("map");render();sound(300);return;}
-  if(event.target.closest("[data-delete-space]")){const map=app.project.map;map.spaces=map.spaces.filter(s=>s.id!==app.selectedSpace);map.paths=map.paths.filter(p=>p.from!==app.selectedSpace&&p.to!==app.selectedSpace);app.selectedSpace=null;save("map");render();sound(120,.14);return;}
+  if(board && !app.panMoved && app.project.map.tool==="space"){const point=boardPoint(board,event),map=app.project.map,id=Math.max(-1,...map.spaces.map(s=>s.id))+1,type=map.spaceType||"blue",space={id,...point,type,size:3,depth:2,rotation:0,shape:"oval",action:`${type}-space-event`};const previous=map.spaces.at(-1);map.spaces.push(space);if(previous)map.paths.push({id:`path-${Date.now()}`,from:previous.id,to:id});app.selectedSpace=id;app.mapInspector=id;app.selectedMarker=null;app.mapSideTab="inspector";save("map");render();sound(220,.08);return;}
+  const adjust = event.target.closest("[data-space-adjust]"); if(adjust){const [key,amount]=adjust.dataset.spaceAdjust.split(":"),space=app.project.map.spaces.find(s=>s.id===(app.mapInspector??app.selectedSpace));if(space){space[key]=Math.max(key==="size"?1:key==="depth"?0:-180,Math.min(key==="size"?5:key==="depth"?5:180,Number(space[key])+Number(amount)));save("map");render();}return;}
+  const shape = event.target.closest("[data-space-shape]"); if(shape){const options=["oval","round","star"],space=app.project.map.spaces.find(s=>s.id===(app.mapInspector??app.selectedSpace));if(space){const index=options.indexOf(space.shape||"oval");space.shape=options[(index+Number(shape.dataset.spaceShape)+options.length)%options.length];save("map");render();}return;}
+  const type = event.target.closest("[data-space-type]"); if(type){const space=app.project.map.spaces.find(s=>s.id===(app.mapInspector??app.selectedSpace));if(space){const oldDefault=`${space.type}-space-event`;space.type=type.dataset.spaceType;if(!space.action||space.action===oldDefault)space.action=`${space.type}-space-event`;app.project.map.spaceType=space.type;save("map");render();sound(300);}return;}
+  if(event.target.closest("[data-delete-space]")){const targetId=app.mapInspector??app.selectedSpace,map=app.project.map;if(targetId!=null){remember();map.spaces=map.spaces.filter(s=>s.id!==targetId);map.paths=map.paths.filter(p=>p.from!==targetId&&p.to!==targetId);app.selectedSpace=null;app.mapInspector=null;app.selectedSpaces.clear();save("map");render();sound(120,.14);toast("SPACE DELETED");}return;}
   const clipButton=event.target.closest("[data-clip]");if(clipButton){if(app.ignoreClipClick)return;app.selectedClip=clipButton.dataset.clip;render();return;}
   const clipAdjust=event.target.closest("[data-clip-adjust]");if(clipAdjust){const scene=app.project.scenes.entries[0],[key,amount]=clipAdjust.dataset.clipAdjust.split(":"),clip=scene.clips.find(c=>c.id===app.selectedClip);clip[key]=Math.max(key==="duration"?.25:0,Math.min(scene.duration,Number(clip[key])+Number(amount)));save("scene");render();return;}
   if(event.target.closest("[data-add-clip]")){const scene=app.project.scenes.entries[0],id=`clip-${Date.now()}`;scene.clips.push({id,track:"effects",label:"NEW SURPRISE",start:Math.min(scene.duration-1,scene.clips.length),duration:1,color:"cyan",resources:["effects"]});app.selectedClip=id;save("scene");render();sound(240);return;}
@@ -6143,8 +6685,9 @@ root.addEventListener("change",event=>{
   const effectField=event.target.closest("[data-effect-edit]");if(effectField){const effect=ensureEffects().find(item=>item.id===app.activeEffectId);if(effect){const key=effectField.dataset.effectEdit;effect[key]=effectField.type==="range"?Number(effectField.value):effectField.value;if(key==="kind"){effect.type=effect.kind==="controller"?"emitter":effect.kind==="lightsource"?"point-light":"particle";app.effectPropertyTab="identity";}save("data");render();}return;}
   const mapSetting=event.target.closest("[data-map-setting]");if(mapSetting){remember();app.project.map[mapSetting.dataset.mapSetting]=mapSetting.value;save("map");render();return;}
   const mapDefault=event.target.closest("[data-map-default]");if(mapDefault){remember();app.project.map.defaults||={};app.project.map.defaults[mapDefault.dataset.mapDefault]=mapDefault.type==="checkbox"?mapDefault.checked:["range","number"].includes(mapDefault.type)?Number(mapDefault.value):mapDefault.value;save("map");render();return;}
-  const multiSpace=event.target.closest("[data-multi-space-edit]");if(multiSpace&&multiSpace.value!==""){remember();const key=multiSpace.dataset.multiSpaceEdit,value=["size","rotation"].includes(key)?Number(multiSpace.value):space.value;for(const space of app.project.map.spaces.filter(item=>app.selectedSpaces.has(item.id)))space[key]=value;save("map");render();return;}
-  const spaceField=event.target.closest("[data-space-edit]");if(spaceField){const space=app.project.map.spaces.find(item=>item.id===app.mapInspector);if(!space)return;remember();const key=spaceField.dataset.spaceEdit,value=spaceField.type==="checkbox"?spaceField.checked:spaceField.type==="number"||spaceField.type==="range"?Number(spaceField.value):spaceField.value;if(key==="name"){space.activity||={id:space.action||`space-${space.id}`,icon:"✦"};space.activity.title=value;}else space[key]=value;save("map");render();return;}
+  const multiSpace=event.target.closest("[data-multi-space-edit]");if(multiSpace&&multiSpace.value!==""){remember();const key=multiSpace.dataset.multiSpaceEdit,value=["size","rotation"].includes(key)?Number(multiSpace.value):multiSpace.value;for(const space of app.project.map.spaces.filter(item=>app.selectedSpaces.has(item.id)))space[key]=value;save("map");render();return;}
+  const spaceBindAction=event.target.closest("[data-space-bind-action]");if(spaceBindAction){const targetId=app.mapInspector??app.selectedSpace,space=app.project.map.spaces.find(item=>item.id===targetId);if(space){remember();const actionId=spaceBindAction.value;if(actionId){const action=app.project.events.entries.find(a=>a.id===actionId);if(action)Object.assign(space,mapSpaceAction(space,action,space.id));}else{delete space.action;delete space.activity;delete space.actors;}save("map");render();toast(actionId?"SPACE ACTION LINKED":"SPACE ACTION UNLINKED");}return;}
+  const spaceField=event.target.closest("[data-space-edit]");if(spaceField){const targetId=app.mapInspector??app.selectedSpace,space=app.project.map.spaces.find(item=>item.id===targetId);if(!space)return;remember();const key=spaceField.dataset.spaceEdit,value=spaceField.type==="checkbox"?spaceField.checked:spaceField.type==="number"||spaceField.type==="range"?Number(spaceField.value):spaceField.value;if(key==="name"){space.activity||={id:space.action||`space-${space.id}`,icon:"✦"};space.activity.title=value;}else space[key]=value;save("map");render();return;}
   const pathDirection=event.target.closest("[data-path-edit=direction]");if(pathDirection){const path=app.project.map.paths.find(item=>item.id===app.editingPath);if(path){remember();path.oneWay=pathDirection.value!=="both";path.direction=pathDirection.value==="reverse"?"reverse":"forward";save("map");render();}return;}
   const pathRender=event.target.closest("[data-path-render]");if(pathRender){const path=app.project.map.paths.find(item=>item.id===app.editingPath);if(path){remember();path.render||={};const key=pathRender.dataset.pathRender;path.render[key]=pathRender.type==="checkbox"?pathRender.checked:pathRender.type==="range"?Number(pathRender.value):pathRender.value;save("map");render();}return;}
   const pointField=event.target.closest("[data-point-edit]");if(pointField){const menu=app.pathPointMenu,path=menu&&app.project.map.paths.find(item=>item.id===menu.pathId),point=path?.points?.[menu.index];if(point){remember();const key=pointField.dataset.pointEdit;point[key]=pointField.type==="checkbox"?pointField.checked:pointField.type==="range"?Number(pointField.value):pointField.value;save("map");render();}return;}
@@ -6175,6 +6718,12 @@ root.addEventListener("dragstart", (event) => {
     event.dataTransfer.effectAllowed = "copy";
     return;
   }
+  const preset = event.target.closest("[data-draggable-space-preset]");
+  if (preset) {
+    event.dataTransfer?.setData("text/x-space-preset", preset.dataset.draggableSpacePreset);
+    event.dataTransfer.effectAllowed = "copy";
+    return;
+  }
   const action = event.target.closest("[data-catalog-action]");
   if (action) event.dataTransfer?.setData("text/x-space-action", action.dataset.catalogAction);
 });
@@ -6197,7 +6746,7 @@ root.addEventListener("dragover", (event) => {
     return;
   }
   const board = event.target.closest("#map-board");
-  if (board && event.dataTransfer?.types.includes("text/x-space-action")) {
+  if (board && (event.dataTransfer?.types.includes("text/x-space-action") || event.dataTransfer?.types.includes("text/x-space-preset"))) {
     event.preventDefault();
     event.dataTransfer.dropEffect = "copy";
     const point = boardPoint(board, event);
@@ -6252,7 +6801,27 @@ root.addEventListener("drop", (event) => {
     }
     return;
   }
-  const board = event.target.closest("#map-board"), actionId = event.dataTransfer?.getData("text/x-space-action");
+  const board = event.target.closest("#map-board"), presetType = event.dataTransfer?.getData("text/x-space-preset");
+  if (board && presetType) {
+    document.querySelector(".catalog-shadow")?.remove();
+    event.preventDefault();
+    remember();
+    const map = app.project.map, id = Math.max(-1, ...map.spaces.map((s) => s.id)) + 1, point = boardPoint(board, event), defaults = map.defaults || {};
+    const space = { id, ...point, type: presetType, size: defaults.spaceSize ?? (presetType === "star" ? 3.5 : 3), shape: defaults.spaceShape ?? (presetType === "star" ? "star" : "oval"), rotation: defaults.spaceRotation ?? 0, depth: 2 };
+    map.spaces.push(space);
+    app.selectedSpace = id;
+    app.mapInspector = id;
+    app.selectedSpaces.clear();
+    app.selectedSpaces.add(id);
+    app.justPlacedSpace = id;
+    app.mapSideTab = "inspector";
+    save("map");
+    render();
+    toast(`PLACED ${presetType.toUpperCase()} SPACE`);
+    sound(620, .1);
+    return;
+  }
+  const actionId = event.dataTransfer?.getData("text/x-space-action");
   document.querySelector(".catalog-shadow")?.remove();
   if (!board || !actionId) return;
   event.preventDefault();
@@ -6262,10 +6831,14 @@ root.addEventListener("drop", (event) => {
   const map = app.project.map, id = Math.max(-1, ...map.spaces.map((space) => space.id)) + 1, point = boardPoint(board, event), space = mapSpaceAction({ id, ...point, depth: 2 }, action, map.spaces.length);
   map.spaces.push(space);
   app.selectedSpace = id;
+  app.mapInspector = id;
+  app.selectedSpaces.clear();
+  app.selectedSpaces.add(id);
   app.justPlacedSpace = id;
+  app.mapSideTab = "inspector";
   save("map");
   render();
-  toast(`PLACED ${action.name}`);
+  toast(`PLACED ${action.name.toUpperCase()}`);
   sound(620, .1);
 });
 root.addEventListener("pointerdown",(event)=>{
@@ -6296,9 +6869,7 @@ root.addEventListener("pointerdown",(event)=>{
   const keyframeDot=event.target.closest("[data-actor-keyframe]");if(keyframeDot&&event.button===0){const {animation}=selectedActorAnimation(),track=keyframeDot.closest(".actor-keyframe-track");if(animation&&track){app.actorKeyframeIndex=Number(keyframeDot.dataset.actorKeyframe);app.actorKeyframeSelected=true;app.actorKeyframeDrag={pointerId:event.pointerId,track,animation};keyframeDot.setPointerCapture?.(event.pointerId);event.preventDefault();}return;}
   const placementMarker=event.target.closest("[data-effect-placement]");if(placementMarker&&event.button===0){const placement=app.project.map.effectPlacements.find(item=>item.id===placementMarker.dataset.effectPlacement);if(placement){app.placementDrag={pointerId:event.pointerId,id:placement.id,startX:event.clientX,startY:event.clientY,before:structuredClone(app.project),moved:false,holdTimer:setTimeout(()=>{app.placementInspectorId=placement.id;app.placementDrag=null;render();sound(260,.12);},650)};placementMarker.setPointerCapture?.(event.pointerId);event.preventDefault();}return;}
   const catalogAction=event.target.closest("[data-catalog-action]");if(catalogAction&&event.button===0){const avatar=catalogAction.querySelector(".space-token-visual")?.cloneNode(true)||document.createElement("span");avatar.classList.add("catalog-drag-avatar");document.body.append(avatar);app.catalogDrag={pointerId:event.pointerId,actionId:catalogAction.dataset.catalogAction,avatar};catalogAction.setPointerCapture?.(event.pointerId);avatar.style.left=`${event.clientX}px`;avatar.style.top=`${event.clientY}px`;event.preventDefault();return;}
-  const heldSpace=event.target.closest("[data-space]");if(heldSpace&&event.button===0){const id=Number(heldSpace.dataset.space);app.mapHold={pointerId:event.pointerId,id,startX:event.clientX,startY:event.clientY,timer:setTimeout(()=>{app.suppressMapClick=true;app.mapHoldMenu=id;app.mapHold=null;render();sound(260,.12);},650)};}
-  const heldPath=event.target.closest(".path-hit");if(heldPath&&event.button===0&&!app.mapInspector&&!app.editingPath&&!app.pathPointMenu){const pathId=heldPath.closest("[data-path-id]")?.dataset.pathId;app.mapPathHold={pointerId:event.pointerId,pathId,startX:event.clientX,startY:event.clientY,timer:setTimeout(()=>{app.suppressMapClick=true;app.editingPath=pathId;app.mapPathHold=null;render();sound(260,.12);},650)};}
-  const point=event.target.closest("[data-path-point]");if(point&&app.editingPath&&event.button===0){const index=Number(point.dataset.pathPoint),path=app.project.map.paths.find(item=>item.id===app.editingPath);app.draggingPathPoint={pointerId:event.pointerId,pathId:path.id,index,before:structuredClone(app.project),startX:event.clientX,startY:event.clientY,moved:false,holdTimer:setTimeout(()=>{app.pathPointHoldMenu={pathId:path.id,index};app.draggingPathPoint=null;render();},650)};point.setPointerCapture?.(event.pointerId);event.preventDefault();return;}
+  const point=event.target.closest("[data-path-point]");if(point&&app.editingPath&&event.button===0){const index=Number(point.dataset.pathPoint),path=app.project.map.paths.find(item=>item.id===app.editingPath);app.draggingPathPoint={pointerId:event.pointerId,pathId:path.id,index,before:structuredClone(app.project),startX:event.clientX,startY:event.clientY,moved:false};point.setPointerCapture?.(event.pointerId);event.preventDefault();return;}
   // Video Editor Timeline Clip Dragging (Space Actions) with Multi-Select
   const timelineClip = event.target.closest(".timeline-clip-block");
   if (timelineClip && !event.target.closest(".clip-mini-btn, .clip-trim-handle, button") && event.button === 0) {
@@ -6403,10 +6974,7 @@ root.addEventListener("pointermove",(event)=>{
   if(app.timelineStageDrag?.pointerId===event.pointerId){const drag=app.timelineStageDrag,rect=drag.scene.getBoundingClientRect();if(rect.width&&rect.height){const x=Math.max(-90,Math.min(90,((event.clientX-rect.left)/rect.width*100-50)*2)),y=Math.max(-70,Math.min(70,((event.clientY-rect.top)/rect.height*100-53)*2));drag.clip.stagePosition={x:Math.round(x*10)/10,y:Math.round(y*10)/10};drag.node.style.cssText=timelineStageStyle(drag.clip.stagePosition);drag.moved=true;}return;}
   if(app.actorKeyframeDrag?.pointerId===event.pointerId){const rect=app.actorKeyframeDrag.track.getBoundingClientRect(),seconds=Math.max(0,Math.min(app.actorKeyframeDrag.animation.duration,(event.clientX-rect.left)/rect.width*app.actorKeyframeDrag.animation.duration));moveSelectedKeyframe(seconds);for(const dot of root.querySelectorAll("[data-actor-keyframe]"))dot.classList.toggle("selected",Number(dot.dataset.actorKeyframe)===app.actorKeyframeIndex);const selected=root.querySelector(`[data-actor-keyframe="${app.actorKeyframeIndex}"]`);if(selected)selected.style.left=`${(app.actorPreviewTime/app.actorKeyframeDrag.animation.duration)*100}%`;const time=root.querySelector("[data-keyframe-time]");if(time)time.value=app.actorPreviewTime.toFixed(2);app.actorPreviewRenderer?.seek(app.actorPreviewTime);return;}
   if(app.placementDrag?.pointerId===event.pointerId){const drag=app.placementDrag,placement=app.project.map.effectPlacements.find(item=>item.id===drag.id);if(!placement||!studioBoardRenderer)return;if(Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY)>4){clearTimeout(drag.holdTimer);drag.moved=true;}if(drag.moved){const rect=studioBoardRenderer.app.canvas.getBoundingClientRect(),next=studioBoardRenderer.percentFromScreen(event.clientX-rect.left,event.clientY-rect.top);placement.x=next.x;placement.y=next.y;const marker=root.querySelector(`[data-effect-placement="${drag.id}"]`);if(marker){marker.style.left=`${next.x}%`;marker.style.top=`${next.y}%`;}}return;}
-  if(app.catalogDrag?.pointerId===event.pointerId){const drag=app.catalogDrag,viewport=document.querySelector("#map-viewport"),board=document.querySelector("#map-board");drag.avatar.style.left=`${event.clientX}px`;drag.avatar.style.top=`${event.clientY}px`;if(viewport&&board){const rect=viewport.getBoundingClientRect(),inside=event.clientX>=rect.left&&event.clientX<=rect.right&&event.clientY>=rect.top&&event.clientY<=rect.bottom;let shadow=board.querySelector(".space-drop-shadow.catalog-shadow");if(inside){const next=boardPoint(board,event);if(!shadow){shadow=document.createElement("span");shadow.className="space-drop-shadow catalog-shadow";board.append(shadow);}shadow.style.left=`${next.x}%`;shadow.style.top=`${next.y}%`;drag.point=next;}else{shadow?.remove();drag.point=null;}}return;}
-  if(app.mapHold?.pointerId===event.pointerId&&Math.hypot(event.clientX-app.mapHold.startX,event.clientY-app.mapHold.startY)>6){clearTimeout(app.mapHold.timer);app.mapHold=null;}
-  if(app.mapPathHold?.pointerId===event.pointerId&&Math.hypot(event.clientX-app.mapPathHold.startX,event.clientY-app.mapPathHold.startY)>6){clearTimeout(app.mapPathHold.timer);app.mapPathHold=null;}
-  if(app.draggingPathPoint?.pointerId===event.pointerId){const drag=app.draggingPathPoint,board=document.querySelector("#map-board"),path=app.project.map.paths.find(item=>item.id===drag.pathId),point=path?.points?.[drag.index];if(!board||!point)return;if(Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY)>4){clearTimeout(drag.holdTimer);drag.moved=true;}const next=boardPoint(board,event);point.x=next.x;point.y=next.y;const node=document.querySelector(`[data-path-point="${drag.index}"]`);if(node){node.setAttribute("cx",next.x);node.setAttribute("cy",next.y);}studioBoardRenderer?.refreshPaths();return;}
+  if(app.draggingPathPoint?.pointerId===event.pointerId){const drag=app.draggingPathPoint,board=document.querySelector("#map-board"),path=app.project.map.paths.find(item=>item.id===drag.pathId),point=path?.points?.[drag.index];if(!board||!point)return;if(Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY)>4)drag.moved=true;const next=boardPoint(board,event);point.x=next.x;point.y=next.y;const node=document.querySelector(`[data-path-point="${drag.index}"]`);if(node){node.setAttribute("cx",next.x);node.setAttribute("cy",next.y);}studioBoardRenderer?.refreshPaths();return;}
   // Video Editor Timeline Clip Dragging Movement (Group support)
   if (app.timelineDraggingClip?.pointerId === event.pointerId) {
     const drag = app.timelineDraggingClip;
@@ -6487,10 +7055,8 @@ root.addEventListener("pointerup",(event)=>{
   if(app.timelineStageDrag?.pointerId===event.pointerId){const drag=app.timelineStageDrag;app.timelineStageDrag=null;drag.node.releasePointerCapture?.(event.pointerId);if(drag.moved){save("event");render();toast("STAGE POSITION SAVED");}return;}
   if(app.actorKeyframeDrag?.pointerId===event.pointerId){app.actorKeyframeDrag=null;save("event");render();return;}
   if(app.placementDrag?.pointerId===event.pointerId){const drag=app.placementDrag;clearTimeout(drag.holdTimer);app.placementDrag=null;if(drag.moved){app.history.push(drag.before);app.history=app.history.slice(-30);app.future=[];save("map");render();toast("PLACEMENT MOVED");}return;}
-  if(app.catalogDrag?.pointerId===event.pointerId){const drag=app.catalogDrag;app.catalogDrag=null;drag.avatar.remove();document.querySelector(".catalog-shadow")?.remove();if(drag.point){const action=app.project.events.entries.find(item=>item.id===drag.actionId);if(action){remember();const map=app.project.map,id=Math.max(-1,...map.spaces.map(space=>space.id))+1,space=mapSpaceAction({id,...drag.point,depth:2},action,map.spaces.length);map.spaces.push(space);app.selectedSpace=id;app.justPlacedSpace=id;save("map");render();toast(`PLACED ${action.name}`);sound(620,.1);}}return;}
-  if(app.mapHold?.pointerId===event.pointerId){clearTimeout(app.mapHold.timer);app.mapHold=null;}
-  if(app.mapPathHold?.pointerId===event.pointerId){clearTimeout(app.mapPathHold.timer);app.mapPathHold=null;}
-  if(app.draggingPathPoint?.pointerId===event.pointerId){const drag=app.draggingPathPoint;clearTimeout(drag.holdTimer);app.draggingPathPoint=null;if(drag.moved){app.history.push(drag.before);app.history=app.history.slice(-30);app.future=[];save("map");render();toast("PATH SHAPE SAVED");}return;}
+  if(app.catalogDrag?.pointerId===event.pointerId){const drag=app.catalogDrag;app.catalogDrag=null;drag.avatar.remove();document.querySelector(".catalog-shadow")?.remove();if(drag.point){const action=app.project.events.entries.find(item=>item.id===drag.actionId);if(action){remember();const map=app.project.map,id=Math.max(-1,...map.spaces.map(space=>space.id))+1,space=mapSpaceAction({id,...drag.point,depth:2},action,map.spaces.length);map.spaces.push(space);app.selectedSpace=id;app.mapInspector=id;app.selectedSpaces.clear();app.selectedSpaces.add(id);app.justPlacedSpace=id;app.mapSideTab="inspector";save("map");render();toast(`PLACED ${action.name.toUpperCase()}`);sound(620,.1);}}return;}
+  if(app.draggingPathPoint?.pointerId===event.pointerId){const drag=app.draggingPathPoint;app.draggingPathPoint=null;if(drag.moved){app.history.push(drag.before);app.history=app.history.slice(-30);app.future=[];save("map");render();toast("PATH SHAPE SAVED");}else{app.pathPointMenu={pathId:drag.pathId,index:drag.index};app.mapSideTab="inspector";render();}return;}
   // Video Editor Timeline Clip Drop (Group & Movement)
   if (app.timelineDraggingClip?.pointerId === event.pointerId) {
     const drag = app.timelineDraggingClip;

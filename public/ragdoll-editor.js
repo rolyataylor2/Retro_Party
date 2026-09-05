@@ -956,7 +956,7 @@ export class RagdollEditor{
     }
   }
 
-  flush(){clearTimeout(this.changeTimer);this.dirty=false;this.onChange(this.rig);return this.rig;}
+  flush(){clearTimeout(this.changeTimer);if(this.dirty){this.dirty=false;this.onChange(this.rig);}return this.rig;}
   destroy(){
     this.pauseAnimation();
     if(this.dirty)this.flush();

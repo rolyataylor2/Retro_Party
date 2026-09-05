@@ -1,0 +1,41 @@
+import test from "node:test";
+import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import vm from "node:vm";
+
+const source = readFileSync(new URL("../public/party-studio.js", import.meta.url), "utf8");
+test("actor persistence skips unchanged data and retries failed changes", async () => {
+  const app = { project: { boardProjects: { selectedId: "board" }, actors: [{ name: "Host" }] } };
+  const writes = [];
+  let fail = false;
+  const context = vm.createContext({ app, sections: { actors: "actors" }, acceptSavedSection() {}, api: async (path, options) => { if (fail) throw new Error("offline"); writes.push(options.body); return {}; } });
+  vm.runInContext(source.slice(source.indexOf("const actorSectionSaves ="), source.indexOf("function save(section)")), context);
+  vm.runInContext('actorSectionState("actors")', context);
+  assert.equal(await vm.runInContext('persistActorSection("actors")', context), false);
+  app.project.actors[0].name = "New host";
+  assert.equal(await vm.runInContext('persistActorSection("actors")', context), true);
+  assert.equal(await vm.runInContext('persistActorSection("actors")', context), false);
+  assert.equal(writes.length, 1);
+  app.project.actors[0].name = "Another host";
+  fail = true;
+  await assert.rejects(vm.runInContext('persistActorSection("actors")', context), /offline/);
+  fail = false;
+  assert.equal(await vm.runInContext('persistActorSection("actors")', context), true);
+  assert.equal(writes.length, 2);
+});
+test("shared history restores and saves changed sections from the board overview", () => {
+  const before = { map: { name: "Before" }, data: { effects: [] } };
+  const after = { map: { name: "After" }, data: { effects: ["spark"] } };
+  const app = { project: after, history: [before], future: [], editor: null };
+  const saved = [];
+  const context = vm.createContext({ app, structuredClone, sections: { map: "map", data: "data", effects: "data", placements: "map" }, save: section => saved.push(section), render() {} });
+  vm.runInContext(source.slice(source.indexOf("function restoreStudioHistory("), source.indexOf("function resetEditorPiece(")), context);
+  vm.runInContext("restoreStudioHistory(app.history, app.future)", context);
+  assert.deepEqual(app.project, before);
+  assert.deepEqual(saved, ["map", "data"]);
+  assert.deepEqual(app.future, [after]);
+  saved.length = 0;
+  vm.runInContext("restoreStudioHistory(app.future, app.history)", context);
+  assert.deepEqual(app.project, after);
+  assert.deepEqual(saved, ["map", "data"]);
+});
