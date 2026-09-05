@@ -3935,7 +3935,8 @@ function actorsEditor() {
 
 function render() {
   clearInterval(app.testTimer); app.testTimer = null;
-  const preserveTimelineActors=app.spaceActionTab==="timeline"&&Boolean(root.querySelector("[data-timeline-pixi-actor]"));
+  const isTimelineTab = (app.spaceActionTab === "script" || app.spaceActionTab === "timeline");
+  const preserveTimelineActors = isTimelineTab && Boolean(root.querySelector("[data-timeline-pixi-actor]"));
   if(!preserveTimelineActors)destroyActorRenderers();const previousTimelineViewport = root.querySelector("#timeline-canvas-viewport");
   if (previousTimelineViewport) app.timelineScrollLeft = previousTimelineViewport.scrollLeft;
   const reusableViewport=app.editor==="map"?root.querySelector("#map-viewport"):null;
@@ -3958,7 +3959,7 @@ function render() {
   if (nextTimelineViewport) nextTimelineViewport.scrollLeft = Math.max(0, Math.min(app.timelineScrollLeft || 0, nextTimelineViewport.scrollWidth - nextTimelineViewport.clientWidth));
   updateConfabulatorViewport();
   mountStudioBoard();
-  if(app.editor==="event"&&app.spaceActionTab==="timeline")mountTimelinePixiStage(currentAction());
+  if(app.editor==="event" && isTimelineTab) mountTimelinePixiStage(currentAction());
   mountRagdollTab();
   if (app.testStartedAt && ["scene","test"].includes(app.editor)) startTestClock();
 }
@@ -4902,7 +4903,15 @@ root.addEventListener("click", async (event) => {
   const tabBtn = event.target.closest("[data-editor-tab]");
   if (tabBtn) {
     app.spaceActionTab = tabBtn.dataset.editorTab;
-    if (app.spaceActionTab === "timeline") { app.timelinePlayhead = 0; app.timelinePreviewWaiting = null; app.timelinePreviewHandled = new Set(); app.timelinePreviewBranches = {}; app.timelinePreviewLeadInUntil = null; app.timelinePreviewLeadInPlayed = false; }
+    if (app.spaceActionTab === "timeline" || app.spaceActionTab === "script") {
+      app.timelinePlayhead = 0;
+      app.timelinePreviewWaiting = null;
+      app.timelinePreviewHandled = new Set();
+      app.timelinePreviewBranches = {};
+      app.timelinePreviewLeadInUntil = null;
+      app.timelinePreviewLeadInPlayed = false;
+      app.timelineSideTab = "preview";
+    }
     render(); playSfx("dialogue-blip"); return;
   }
 
