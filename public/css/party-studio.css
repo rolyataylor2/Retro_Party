@@ -1209,24 +1209,28 @@ body.party-studio-editor-view::after{content:"";position:fixed;z-index:999;inset
    SPACE ACTION TIMELINE SPLIT-SCREEN WORKSPACE OVERHAUL
    ========================================================================== */
 
-.timeline-split-workspace {
-  display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: 14px;
-  align-items: start;
+.space-editor-layout {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
-@media (max-width: 1100px) {
-  .timeline-split-workspace {
-    grid-template-columns: 1fr;
-  }
+.timeline-split-workspace,
+.cutscene-edit-workspace.timeline-split-workspace {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 16px !important;
+  align-items: start !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .timeline-left-workspace {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  min-width: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
 }
 
 .timeline-left-workspace .video-timeline-shell {
@@ -1236,10 +1240,11 @@ body.party-studio-editor-view::after{content:"";position:fixed;z-index:999;inset
 }
 
 .timeline-right-workspace {
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  min-width: 0 !important;
+  width: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
 }
 
 .timeline-right-preview-pane {
