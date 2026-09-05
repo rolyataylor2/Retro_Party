@@ -211,6 +211,7 @@
         "id": 38,
         "x": 46.75124045670972,
         "y": 77.55467672531742,
+        "shape": "oval",
         "activity": {
           "id": "ghost-space",
           "icon": "☠️",
@@ -223,6 +224,7 @@
         "id": 39,
         "x": 22.20751500171453,
         "y": 69.78169723484018,
+        "shape": "oval",
         "activity": {
           "id": "ghost-space",
           "icon": "☠️",
@@ -235,6 +237,7 @@
         "id": 40,
         "x": 34.560523449685654,
         "y": 95.96983499343257,
+        "shape": "oval",
         "activity": {
           "id": "ghost-space",
           "icon": "☠️",
@@ -567,42 +570,6 @@
         },
         "commands": [
           {
-            "id": "clip-1788552959769",
-            "op": "spawn-actor",
-            "icon": "♙",
-            "desc": "Spawn a configured actor into a named anchor.",
-            "parameters": {
-              "actor": "char-1788474981675",
-              "anchor": "Center",
-              "animation": "part-1788485384857-ak1h"
-            },
-            "parameterSchema": [
-              {
-                "key": "actor",
-                "label": "Actor",
-                "type": "actor-picker"
-              },
-              {
-                "key": "anchor",
-                "label": "Anchor",
-                "type": "text"
-              },
-              {
-                "key": "animation",
-                "label": "Animation",
-                "type": "animation-picker"
-              }
-            ],
-            "category": "stage",
-            "kind": "action",
-            "label": "SPAWN ACTOR",
-            "waitForInput": false,
-            "start": 0,
-            "duration": 1.8,
-            "open": true,
-            "depth": 0
-          },
-          {
             "id": "clip-1788550440711",
             "op": "zoom",
             "icon": "⌕",
@@ -633,7 +600,49 @@
             "kind": "action",
             "label": "ZOOM CAMERA",
             "waitForInput": false,
-            "start": 0.25,
+            "start": 0,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1788552959769",
+            "op": "spawn-actor",
+            "icon": "♙",
+            "desc": "Spawn a configured actor into a named anchor.",
+            "parameters": {
+              "actor": "char-1788474981675",
+              "anchor": "Center",
+              "animation": "part-1788485384857-ak1h"
+            },
+            "parameterSchema": [
+              {
+                "key": "actor",
+                "label": "Actor",
+                "type": "actor-picker"
+              },
+              {
+                "key": "anchor",
+                "label": "Anchor",
+                "type": "text"
+              },
+              {
+                "key": "animation",
+                "label": "Animation",
+                "type": "animation-picker"
+              }
+            ],
+            "category": "stage",
+            "kind": "action",
+            "label": "SPAWN ACTOR",
+            "stageEffect": "smoke-poof",
+            "particleDump": {
+              "effectId": "",
+              "count": 24,
+              "controllers": []
+            },
+            "waitForInput": false,
+            "start": 1,
             "duration": 1.8,
             "open": true,
             "depth": 0
@@ -659,7 +668,7 @@
             "kind": "condition",
             "label": "CONFIRM: \"Hey buddy, do you want me to steal some Gems from another player? It costs 10 Coins.\" [YES / NO]",
             "waitForInput": true,
-            "start": 2,
+            "start": 3.5,
             "duration": 1,
             "open": true,
             "depth": 0
@@ -671,7 +680,22 @@
             "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
             "parameters": {
               "choosingPlayer": "Triggering Player",
-              "eligiblePlayers": "All Players",
+              "eligiblePlayers": {
+                "kind": "player-selector",
+                "mode": "dynamic",
+                "seats": [],
+                "base": "all",
+                "multiple": true,
+                "filters": [],
+                "sort": {
+                  "by": "turn-order",
+                  "direction": "ascending",
+                  "asset": "Coins"
+                },
+                "limit": 4,
+                "excludeTriggering": true,
+                "fallback": "triggering"
+              },
               "prompt": "Choose a player",
               "allowSelf": false,
               "allowCancel": false,
@@ -731,7 +755,7 @@
             "kind": "action",
             "label": "CHOOSE ANOTHER PLAYER",
             "waitForInput": true,
-            "start": 3,
+            "start": 4.5,
             "duration": 1,
             "open": true,
             "depth": 0
@@ -742,7 +766,7 @@
             "icon": "💬",
             "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
             "parameters": {
-              "speaker": "147.g_3.c_",
+              "speaker": "Crabby",
               "text": "OK, your loss! ::Scuttle::",
               "style": "speech",
               "waitForInput": true
@@ -771,13 +795,13 @@
             ],
             "category": "dialogue",
             "kind": "action",
-            "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
-            "speaker": "147.g_3.c_",
+            "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
+            "speaker": "Crabby",
             "text": "OK, your loss! ::Scuttle::",
             "style": "speech",
-            "waitForInput": true,
-            "start": 3,
-            "duration": 1,
+            "waitForInput": false,
+            "start": 4.5,
+            "duration": 2,
             "open": true,
             "depth": 0
           },
@@ -787,7 +811,7 @@
             "icon": "✦",
             "desc": "Run a particle preset at a target or screen anchor.",
             "parameters": {
-              "preset": "Coin Burst",
+              "preset": "sfx-smoke",
               "target": "Triggering Player",
               "duration": 1.6,
               "follow": true,
@@ -824,8 +848,8 @@
             "kind": "action",
             "label": "SPAWN PARTICLES",
             "waitForInput": false,
-            "start": 3.5,
-            "duration": 1.8,
+            "start": 5,
+            "duration": 1,
             "open": true,
             "depth": 0
           },
@@ -864,10 +888,10 @@
             ],
             "category": "assets",
             "kind": "player",
-            "label": "TRANSFER ASSET",
+            "label": "TRANSFER: 10 Coins",
             "waitForInput": false,
-            "start": 4,
-            "duration": 1.8,
+            "start": 5.5,
+            "duration": 1,
             "open": true,
             "depth": 0
           },
@@ -895,8 +919,95 @@
             "category": "stage",
             "kind": "action",
             "label": "DESPAWN ACTOR",
+            "stageEffect": "smoke-poof",
+            "particleDump": {
+              "count": 24,
+              "controllers": []
+            },
             "waitForInput": false,
-            "start": 4,
+            "start": 5.5,
+            "duration": 1,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1788576689494",
+            "op": "dialogue",
+            "icon": "💬",
+            "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+            "parameters": {
+              "speaker": "Crabby",
+              "text": "What a jerk stealing from others...",
+              "style": "thought",
+              "waitForInput": true
+            },
+            "parameterSchema": [
+              {
+                "key": "speaker",
+                "label": "Speaker",
+                "type": "text"
+              },
+              {
+                "key": "text",
+                "label": "Text",
+                "type": "text"
+              },
+              {
+                "key": "style",
+                "label": "Style",
+                "type": "text"
+              },
+              {
+                "key": "waitForInput",
+                "label": "Wait For Input",
+                "type": "boolean"
+              }
+            ],
+            "category": "dialogue",
+            "kind": "action",
+            "label": "Crabby: \"What a jerk stealing from others...\"",
+            "speaker": "Crabby",
+            "text": "What a jerk stealing from others...",
+            "style": "thought",
+            "waitForInput": false,
+            "start": 6.5,
+            "duration": 2,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1788576067024",
+            "op": "despawn-actor",
+            "icon": "♙",
+            "desc": "Remove a temporary actor with an exit animation.",
+            "parameters": {
+              "actor": "char-1788474981675",
+              "animation": "part-1788485384857-ak1h"
+            },
+            "parameterSchema": [
+              {
+                "key": "actor",
+                "label": "Actor",
+                "type": "actor-picker"
+              },
+              {
+                "key": "animation",
+                "label": "Animation",
+                "type": "animation-picker"
+              }
+            ],
+            "category": "stage",
+            "kind": "action",
+            "label": "DESPAWN ACTOR",
+            "stageEffect": "fade-from-white",
+            "particleDump": {
+              "count": 24,
+              "controllers": [],
+              "effectId": "sfx-smoke",
+              "shape": "circle"
+            },
+            "waitForInput": false,
+            "start": 7,
             "duration": 1,
             "open": true,
             "depth": 0
@@ -67062,7 +67173,12 @@
               "idleAnimationId": "part-1788546063144-84ws"
             },
             "animationId": "animation-1788474981675-ti7h",
-            "idleAnimationId": "part-1788546063144-84ws"
+            "idleAnimationId": "part-1788546063144-84ws",
+            "offsetX": 136,
+            "offsetY": -74,
+            "scale": 1.4,
+            "alwaysVisible": false,
+            "visibleOnBoard": false
           }
         ],
         "activations": {
@@ -67109,47 +67225,6 @@
               "muted": false,
               "clips": [
                 {
-                  "category": "stage",
-                  "op": "spawn-actor",
-                  "label": "SPAWN ACTOR",
-                  "icon": "♙",
-                  "desc": "Spawn a configured actor into a named anchor.",
-                  "parameters": {
-                    "actor": "char-1788474981675",
-                    "anchor": "Center",
-                    "animation": "part-1788485384857-ak1h"
-                  },
-                  "parameterSchema": [
-                    {
-                      "key": "actor",
-                      "label": "Actor",
-                      "type": "actor-picker"
-                    },
-                    {
-                      "key": "anchor",
-                      "label": "Anchor",
-                      "type": "text"
-                    },
-                    {
-                      "key": "animation",
-                      "label": "Animation",
-                      "type": "animation-picker"
-                    }
-                  ],
-                  "waitForInput": false,
-                  "id": "clip-1788552959769",
-                  "start": 0,
-                  "duration": 1.8,
-                  "kind": "action",
-                  "isDecision": false,
-                  "stageEffect": "smoke-poof",
-                  "particleDump": {
-                    "effectId": "",
-                    "count": 24,
-                    "controllers": []
-                  }
-                },
-                {
                   "category": "camera",
                   "op": "zoom",
                   "label": "ZOOM CAMERA",
@@ -67179,10 +67254,51 @@
                   ],
                   "waitForInput": false,
                   "id": "clip-1788550440711",
-                  "start": 0.25,
+                  "start": 0,
                   "duration": 1.8,
                   "kind": "action",
                   "isDecision": false
+                },
+                {
+                  "category": "stage",
+                  "op": "spawn-actor",
+                  "label": "SPAWN ACTOR",
+                  "icon": "♙",
+                  "desc": "Spawn a configured actor into a named anchor.",
+                  "parameters": {
+                    "actor": "char-1788474981675",
+                    "anchor": "Center",
+                    "animation": "part-1788485384857-ak1h"
+                  },
+                  "parameterSchema": [
+                    {
+                      "key": "actor",
+                      "label": "Actor",
+                      "type": "actor-picker"
+                    },
+                    {
+                      "key": "anchor",
+                      "label": "Anchor",
+                      "type": "text"
+                    },
+                    {
+                      "key": "animation",
+                      "label": "Animation",
+                      "type": "animation-picker"
+                    }
+                  ],
+                  "waitForInput": false,
+                  "id": "clip-1788552959769",
+                  "start": 1,
+                  "duration": 1.8,
+                  "kind": "action",
+                  "isDecision": false,
+                  "stageEffect": "smoke-poof",
+                  "particleDump": {
+                    "effectId": "",
+                    "count": 24,
+                    "controllers": []
+                  }
                 },
                 {
                   "category": "ui",
@@ -67204,7 +67320,7 @@
                   ],
                   "waitForInput": true,
                   "id": "clip-1788390139426",
-                  "start": 2,
+                  "start": 3.5,
                   "duration": 1,
                   "kind": "condition",
                   "isDecision": true,
@@ -67219,7 +67335,22 @@
                   "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                   "parameters": {
                     "choosingPlayer": "Triggering Player",
-                    "eligiblePlayers": "All Players",
+                    "eligiblePlayers": {
+                      "kind": "player-selector",
+                      "mode": "dynamic",
+                      "seats": [],
+                      "base": "all",
+                      "multiple": true,
+                      "filters": [],
+                      "sort": {
+                        "by": "turn-order",
+                        "direction": "ascending",
+                        "asset": "Coins"
+                      },
+                      "limit": 4,
+                      "excludeTriggering": true,
+                      "fallback": "triggering"
+                    },
                     "prompt": "Choose a player",
                     "allowSelf": false,
                     "allowCancel": false,
@@ -67277,7 +67408,7 @@
                   ],
                   "waitForInput": true,
                   "id": "clip-1788388536247",
-                  "start": 3,
+                  "start": 4.5,
                   "duration": 1,
                   "kind": "action",
                   "isDecision": false
@@ -67289,7 +67420,7 @@
                   "icon": "✦",
                   "desc": "Run a particle preset at a target or screen anchor.",
                   "parameters": {
-                    "preset": "Coin Burst",
+                    "preset": "sfx-smoke",
                     "target": "Triggering Player",
                     "duration": 1.6,
                     "follow": true,
@@ -67324,15 +67455,15 @@
                   ],
                   "waitForInput": false,
                   "id": "clip-1788389844948",
-                  "start": 3.5,
-                  "duration": 1.8,
+                  "start": 5,
+                  "duration": 1,
                   "kind": "action",
                   "isDecision": false
                 },
                 {
                   "category": "assets",
                   "op": "transfer-asset",
-                  "label": "TRANSFER ASSET",
+                  "label": "TRANSFER: 10 Coins",
                   "icon": "⇄",
                   "desc": "Move an asset atomically between players, pots, or board holders.",
                   "parameters": {
@@ -67365,10 +67496,90 @@
                   ],
                   "waitForInput": false,
                   "id": "clip-1788388574172",
-                  "start": 4,
-                  "duration": 1.8,
+                  "start": 5.5,
+                  "duration": 1,
                   "kind": "player",
                   "isDecision": false
+                },
+                {
+                  "category": "dialogue",
+                  "op": "dialogue",
+                  "label": "Crabby: \"What a jerk stealing from others...\"",
+                  "icon": "💬",
+                  "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                  "parameters": {
+                    "speaker": "Crabby",
+                    "text": "What a jerk stealing from others...",
+                    "style": "thought",
+                    "waitForInput": true
+                  },
+                  "parameterSchema": [
+                    {
+                      "key": "speaker",
+                      "label": "Speaker",
+                      "type": "text"
+                    },
+                    {
+                      "key": "text",
+                      "label": "Text",
+                      "type": "text"
+                    },
+                    {
+                      "key": "style",
+                      "label": "Style",
+                      "type": "text"
+                    },
+                    {
+                      "key": "waitForInput",
+                      "label": "Wait For Input",
+                      "type": "boolean"
+                    }
+                  ],
+                  "waitForInput": false,
+                  "id": "clip-1788576689494",
+                  "start": 6.5,
+                  "duration": 2,
+                  "kind": "action",
+                  "isDecision": false,
+                  "speaker": "Crabby",
+                  "text": "What a jerk stealing from others...",
+                  "style": "thought"
+                },
+                {
+                  "category": "stage",
+                  "op": "despawn-actor",
+                  "label": "DESPAWN ACTOR",
+                  "icon": "♙",
+                  "desc": "Remove a temporary actor with an exit animation.",
+                  "parameters": {
+                    "actor": "char-1788474981675",
+                    "animation": "part-1788485384857-ak1h"
+                  },
+                  "parameterSchema": [
+                    {
+                      "key": "actor",
+                      "label": "Actor",
+                      "type": "actor-picker"
+                    },
+                    {
+                      "key": "animation",
+                      "label": "Animation",
+                      "type": "animation-picker"
+                    }
+                  ],
+                  "waitForInput": false,
+                  "id": "clip-1788576067024",
+                  "start": 7,
+                  "duration": 1,
+                  "kind": "action",
+                  "isDecision": false,
+                  "stageEffect": "fade-from-white",
+                  "particleDump": {
+                    "count": 24,
+                    "controllers": [],
+                    "effectId": "sfx-smoke",
+                    "shape": "circle"
+                  }
                 }
               ]
             },
@@ -67384,11 +67595,11 @@
                 {
                   "category": "dialogue",
                   "op": "dialogue",
-                  "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
+                  "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
                   "icon": "💬",
                   "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                   "parameters": {
-                    "speaker": "147.g_3.c_",
+                    "speaker": "Crabby",
                     "text": "OK, your loss! ::Scuttle::",
                     "style": "speech",
                     "waitForInput": true
@@ -67415,13 +67626,13 @@
                       "type": "boolean"
                     }
                   ],
-                  "waitForInput": true,
+                  "waitForInput": false,
                   "id": "clip-1788467577880",
-                  "start": 3,
-                  "duration": 1,
+                  "start": 4.5,
+                  "duration": 2,
                   "kind": "action",
                   "isDecision": false,
-                  "speaker": "147.g_3.c_",
+                  "speaker": "Crabby",
                   "text": "OK, your loss! ::Scuttle::",
                   "style": "speech"
                 },
@@ -67449,7 +67660,7 @@
                   ],
                   "waitForInput": false,
                   "id": "clip-1788555004742",
-                  "start": 4,
+                  "start": 5.5,
                   "duration": 1,
                   "kind": "action",
                   "isDecision": false,
@@ -67480,47 +67691,6 @@
                   "muted": false,
                   "clips": [
                     {
-                      "category": "stage",
-                      "op": "spawn-actor",
-                      "label": "SPAWN ACTOR",
-                      "icon": "♙",
-                      "desc": "Spawn a configured actor into a named anchor.",
-                      "parameters": {
-                        "actor": "char-1788474981675",
-                        "anchor": "Center",
-                        "animation": "part-1788485384857-ak1h"
-                      },
-                      "parameterSchema": [
-                        {
-                          "key": "actor",
-                          "label": "Actor",
-                          "type": "actor-picker"
-                        },
-                        {
-                          "key": "anchor",
-                          "label": "Anchor",
-                          "type": "text"
-                        },
-                        {
-                          "key": "animation",
-                          "label": "Animation",
-                          "type": "animation-picker"
-                        }
-                      ],
-                      "waitForInput": false,
-                      "id": "clip-1788552959769",
-                      "start": 0,
-                      "duration": 1.8,
-                      "kind": "action",
-                      "isDecision": false,
-                      "stageEffect": "smoke-poof",
-                      "particleDump": {
-                        "effectId": "",
-                        "count": 24,
-                        "controllers": []
-                      }
-                    },
-                    {
                       "category": "camera",
                       "op": "zoom",
                       "label": "ZOOM CAMERA",
@@ -67550,10 +67720,51 @@
                       ],
                       "waitForInput": false,
                       "id": "clip-1788550440711",
-                      "start": 0.25,
+                      "start": 0,
                       "duration": 1.8,
                       "kind": "action",
                       "isDecision": false
+                    },
+                    {
+                      "category": "stage",
+                      "op": "spawn-actor",
+                      "label": "SPAWN ACTOR",
+                      "icon": "♙",
+                      "desc": "Spawn a configured actor into a named anchor.",
+                      "parameters": {
+                        "actor": "char-1788474981675",
+                        "anchor": "Center",
+                        "animation": "part-1788485384857-ak1h"
+                      },
+                      "parameterSchema": [
+                        {
+                          "key": "actor",
+                          "label": "Actor",
+                          "type": "actor-picker"
+                        },
+                        {
+                          "key": "anchor",
+                          "label": "Anchor",
+                          "type": "text"
+                        },
+                        {
+                          "key": "animation",
+                          "label": "Animation",
+                          "type": "animation-picker"
+                        }
+                      ],
+                      "waitForInput": false,
+                      "id": "clip-1788552959769",
+                      "start": 1,
+                      "duration": 1.8,
+                      "kind": "action",
+                      "isDecision": false,
+                      "stageEffect": "smoke-poof",
+                      "particleDump": {
+                        "effectId": "",
+                        "count": 24,
+                        "controllers": []
+                      }
                     },
                     {
                       "category": "ui",
@@ -67575,7 +67786,7 @@
                       ],
                       "waitForInput": true,
                       "id": "clip-1788390139426",
-                      "start": 2,
+                      "start": 3.5,
                       "duration": 1,
                       "kind": "condition",
                       "isDecision": true,
@@ -67590,7 +67801,22 @@
                       "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                       "parameters": {
                         "choosingPlayer": "Triggering Player",
-                        "eligiblePlayers": "All Players",
+                        "eligiblePlayers": {
+                          "kind": "player-selector",
+                          "mode": "dynamic",
+                          "seats": [],
+                          "base": "all",
+                          "multiple": true,
+                          "filters": [],
+                          "sort": {
+                            "by": "turn-order",
+                            "direction": "ascending",
+                            "asset": "Coins"
+                          },
+                          "limit": 4,
+                          "excludeTriggering": true,
+                          "fallback": "triggering"
+                        },
                         "prompt": "Choose a player",
                         "allowSelf": false,
                         "allowCancel": false,
@@ -67648,7 +67874,7 @@
                       ],
                       "waitForInput": true,
                       "id": "clip-1788388536247",
-                      "start": 3,
+                      "start": 4.5,
                       "duration": 1,
                       "kind": "action",
                       "isDecision": false
@@ -67660,7 +67886,7 @@
                       "icon": "✦",
                       "desc": "Run a particle preset at a target or screen anchor.",
                       "parameters": {
-                        "preset": "Coin Burst",
+                        "preset": "sfx-smoke",
                         "target": "Triggering Player",
                         "duration": 1.6,
                         "follow": true,
@@ -67695,15 +67921,15 @@
                       ],
                       "waitForInput": false,
                       "id": "clip-1788389844948",
-                      "start": 3.5,
-                      "duration": 1.8,
+                      "start": 5,
+                      "duration": 1,
                       "kind": "action",
                       "isDecision": false
                     },
                     {
                       "category": "assets",
                       "op": "transfer-asset",
-                      "label": "TRANSFER ASSET",
+                      "label": "TRANSFER: 10 Coins",
                       "icon": "⇄",
                       "desc": "Move an asset atomically between players, pots, or board holders.",
                       "parameters": {
@@ -67736,10 +67962,90 @@
                       ],
                       "waitForInput": false,
                       "id": "clip-1788388574172",
-                      "start": 4,
-                      "duration": 1.8,
+                      "start": 5.5,
+                      "duration": 1,
                       "kind": "player",
                       "isDecision": false
+                    },
+                    {
+                      "category": "dialogue",
+                      "op": "dialogue",
+                      "label": "Crabby: \"What a jerk stealing from others...\"",
+                      "icon": "💬",
+                      "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                      "parameters": {
+                        "speaker": "Crabby",
+                        "text": "What a jerk stealing from others...",
+                        "style": "thought",
+                        "waitForInput": true
+                      },
+                      "parameterSchema": [
+                        {
+                          "key": "speaker",
+                          "label": "Speaker",
+                          "type": "text"
+                        },
+                        {
+                          "key": "text",
+                          "label": "Text",
+                          "type": "text"
+                        },
+                        {
+                          "key": "style",
+                          "label": "Style",
+                          "type": "text"
+                        },
+                        {
+                          "key": "waitForInput",
+                          "label": "Wait For Input",
+                          "type": "boolean"
+                        }
+                      ],
+                      "waitForInput": false,
+                      "id": "clip-1788576689494",
+                      "start": 6.5,
+                      "duration": 2,
+                      "kind": "action",
+                      "isDecision": false,
+                      "speaker": "Crabby",
+                      "text": "What a jerk stealing from others...",
+                      "style": "thought"
+                    },
+                    {
+                      "category": "stage",
+                      "op": "despawn-actor",
+                      "label": "DESPAWN ACTOR",
+                      "icon": "♙",
+                      "desc": "Remove a temporary actor with an exit animation.",
+                      "parameters": {
+                        "actor": "char-1788474981675",
+                        "animation": "part-1788485384857-ak1h"
+                      },
+                      "parameterSchema": [
+                        {
+                          "key": "actor",
+                          "label": "Actor",
+                          "type": "actor-picker"
+                        },
+                        {
+                          "key": "animation",
+                          "label": "Animation",
+                          "type": "animation-picker"
+                        }
+                      ],
+                      "waitForInput": false,
+                      "id": "clip-1788576067024",
+                      "start": 7,
+                      "duration": 1,
+                      "kind": "action",
+                      "isDecision": false,
+                      "stageEffect": "fade-from-white",
+                      "particleDump": {
+                        "count": 24,
+                        "controllers": [],
+                        "effectId": "sfx-smoke",
+                        "shape": "circle"
+                      }
                     }
                   ]
                 },
@@ -67755,11 +68061,11 @@
                     {
                       "category": "dialogue",
                       "op": "dialogue",
-                      "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
+                      "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
                       "icon": "💬",
                       "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                       "parameters": {
-                        "speaker": "147.g_3.c_",
+                        "speaker": "Crabby",
                         "text": "OK, your loss! ::Scuttle::",
                         "style": "speech",
                         "waitForInput": true
@@ -67786,13 +68092,13 @@
                           "type": "boolean"
                         }
                       ],
-                      "waitForInput": true,
+                      "waitForInput": false,
                       "id": "clip-1788467577880",
-                      "start": 3,
-                      "duration": 1,
+                      "start": 4.5,
+                      "duration": 2,
                       "kind": "action",
                       "isDecision": false,
-                      "speaker": "147.g_3.c_",
+                      "speaker": "Crabby",
                       "text": "OK, your loss! ::Scuttle::",
                       "style": "speech"
                     },
@@ -67820,7 +68126,7 @@
                       ],
                       "waitForInput": false,
                       "id": "clip-1788555004742",
-                      "start": 4,
+                      "start": 5.5,
                       "duration": 1,
                       "kind": "action",
                       "isDecision": false,
@@ -67835,42 +68141,6 @@
               ]
             },
             "commands": [
-              {
-                "id": "clip-1788552959769",
-                "op": "spawn-actor",
-                "icon": "♙",
-                "desc": "Spawn a configured actor into a named anchor.",
-                "parameters": {
-                  "actor": "char-1788474981675",
-                  "anchor": "Center",
-                  "animation": "part-1788485384857-ak1h"
-                },
-                "parameterSchema": [
-                  {
-                    "key": "actor",
-                    "label": "Actor",
-                    "type": "actor-picker"
-                  },
-                  {
-                    "key": "anchor",
-                    "label": "Anchor",
-                    "type": "text"
-                  },
-                  {
-                    "key": "animation",
-                    "label": "Animation",
-                    "type": "animation-picker"
-                  }
-                ],
-                "category": "stage",
-                "kind": "action",
-                "label": "SPAWN ACTOR",
-                "waitForInput": false,
-                "start": 0,
-                "duration": 1.8,
-                "open": true,
-                "depth": 0
-              },
               {
                 "id": "clip-1788550440711",
                 "op": "zoom",
@@ -67902,7 +68172,49 @@
                 "kind": "action",
                 "label": "ZOOM CAMERA",
                 "waitForInput": false,
-                "start": 0.25,
+                "start": 0,
+                "duration": 1.8,
+                "open": true,
+                "depth": 0
+              },
+              {
+                "id": "clip-1788552959769",
+                "op": "spawn-actor",
+                "icon": "♙",
+                "desc": "Spawn a configured actor into a named anchor.",
+                "parameters": {
+                  "actor": "char-1788474981675",
+                  "anchor": "Center",
+                  "animation": "part-1788485384857-ak1h"
+                },
+                "parameterSchema": [
+                  {
+                    "key": "actor",
+                    "label": "Actor",
+                    "type": "actor-picker"
+                  },
+                  {
+                    "key": "anchor",
+                    "label": "Anchor",
+                    "type": "text"
+                  },
+                  {
+                    "key": "animation",
+                    "label": "Animation",
+                    "type": "animation-picker"
+                  }
+                ],
+                "category": "stage",
+                "kind": "action",
+                "label": "SPAWN ACTOR",
+                "stageEffect": "smoke-poof",
+                "particleDump": {
+                  "effectId": "",
+                  "count": 24,
+                  "controllers": []
+                },
+                "waitForInput": false,
+                "start": 1,
                 "duration": 1.8,
                 "open": true,
                 "depth": 0
@@ -67928,7 +68240,7 @@
                 "kind": "condition",
                 "label": "CONFIRM: \"Hey buddy, do you want me to steal some Gems from another player? It costs 10 Coins.\" [YES / NO]",
                 "waitForInput": true,
-                "start": 2,
+                "start": 3.5,
                 "duration": 1,
                 "open": true,
                 "depth": 0
@@ -67940,7 +68252,22 @@
                 "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                 "parameters": {
                   "choosingPlayer": "Triggering Player",
-                  "eligiblePlayers": "All Players",
+                  "eligiblePlayers": {
+                    "kind": "player-selector",
+                    "mode": "dynamic",
+                    "seats": [],
+                    "base": "all",
+                    "multiple": true,
+                    "filters": [],
+                    "sort": {
+                      "by": "turn-order",
+                      "direction": "ascending",
+                      "asset": "Coins"
+                    },
+                    "limit": 4,
+                    "excludeTriggering": true,
+                    "fallback": "triggering"
+                  },
                   "prompt": "Choose a player",
                   "allowSelf": false,
                   "allowCancel": false,
@@ -68000,7 +68327,7 @@
                 "kind": "action",
                 "label": "CHOOSE ANOTHER PLAYER",
                 "waitForInput": true,
-                "start": 3,
+                "start": 4.5,
                 "duration": 1,
                 "open": true,
                 "depth": 0
@@ -68011,7 +68338,7 @@
                 "icon": "💬",
                 "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                 "parameters": {
-                  "speaker": "147.g_3.c_",
+                  "speaker": "Crabby",
                   "text": "OK, your loss! ::Scuttle::",
                   "style": "speech",
                   "waitForInput": true
@@ -68040,13 +68367,13 @@
                 ],
                 "category": "dialogue",
                 "kind": "action",
-                "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
-                "speaker": "147.g_3.c_",
+                "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
+                "speaker": "Crabby",
                 "text": "OK, your loss! ::Scuttle::",
                 "style": "speech",
-                "waitForInput": true,
-                "start": 3,
-                "duration": 1,
+                "waitForInput": false,
+                "start": 4.5,
+                "duration": 2,
                 "open": true,
                 "depth": 0
               },
@@ -68056,7 +68383,7 @@
                 "icon": "✦",
                 "desc": "Run a particle preset at a target or screen anchor.",
                 "parameters": {
-                  "preset": "Coin Burst",
+                  "preset": "sfx-smoke",
                   "target": "Triggering Player",
                   "duration": 1.6,
                   "follow": true,
@@ -68093,8 +68420,8 @@
                 "kind": "action",
                 "label": "SPAWN PARTICLES",
                 "waitForInput": false,
-                "start": 3.5,
-                "duration": 1.8,
+                "start": 5,
+                "duration": 1,
                 "open": true,
                 "depth": 0
               },
@@ -68133,10 +68460,10 @@
                 ],
                 "category": "assets",
                 "kind": "player",
-                "label": "TRANSFER ASSET",
+                "label": "TRANSFER: 10 Coins",
                 "waitForInput": false,
-                "start": 4,
-                "duration": 1.8,
+                "start": 5.5,
+                "duration": 1,
                 "open": true,
                 "depth": 0
               },
@@ -68164,8 +68491,95 @@
                 "category": "stage",
                 "kind": "action",
                 "label": "DESPAWN ACTOR",
+                "stageEffect": "smoke-poof",
+                "particleDump": {
+                  "count": 24,
+                  "controllers": []
+                },
                 "waitForInput": false,
-                "start": 4,
+                "start": 5.5,
+                "duration": 1,
+                "open": true,
+                "depth": 0
+              },
+              {
+                "id": "clip-1788576689494",
+                "op": "dialogue",
+                "icon": "💬",
+                "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                "parameters": {
+                  "speaker": "Crabby",
+                  "text": "What a jerk stealing from others...",
+                  "style": "thought",
+                  "waitForInput": true
+                },
+                "parameterSchema": [
+                  {
+                    "key": "speaker",
+                    "label": "Speaker",
+                    "type": "text"
+                  },
+                  {
+                    "key": "text",
+                    "label": "Text",
+                    "type": "text"
+                  },
+                  {
+                    "key": "style",
+                    "label": "Style",
+                    "type": "text"
+                  },
+                  {
+                    "key": "waitForInput",
+                    "label": "Wait For Input",
+                    "type": "boolean"
+                  }
+                ],
+                "category": "dialogue",
+                "kind": "action",
+                "label": "Crabby: \"What a jerk stealing from others...\"",
+                "speaker": "Crabby",
+                "text": "What a jerk stealing from others...",
+                "style": "thought",
+                "waitForInput": false,
+                "start": 6.5,
+                "duration": 2,
+                "open": true,
+                "depth": 0
+              },
+              {
+                "id": "clip-1788576067024",
+                "op": "despawn-actor",
+                "icon": "♙",
+                "desc": "Remove a temporary actor with an exit animation.",
+                "parameters": {
+                  "actor": "char-1788474981675",
+                  "animation": "part-1788485384857-ak1h"
+                },
+                "parameterSchema": [
+                  {
+                    "key": "actor",
+                    "label": "Actor",
+                    "type": "actor-picker"
+                  },
+                  {
+                    "key": "animation",
+                    "label": "Animation",
+                    "type": "animation-picker"
+                  }
+                ],
+                "category": "stage",
+                "kind": "action",
+                "label": "DESPAWN ACTOR",
+                "stageEffect": "fade-from-white",
+                "particleDump": {
+                  "count": 24,
+                  "controllers": [],
+                  "effectId": "sfx-smoke",
+                  "shape": "circle"
+                },
+                "waitForInput": false,
+                "start": 7,
                 "duration": 1,
                 "open": true,
                 "depth": 0
@@ -68503,7 +68917,12 @@
                 ]
               }
             ],
-            "animationId": "animation-1788469390155-1iaw"
+            "animationId": "animation-1788469390155-1iaw",
+            "offsetX": 0,
+            "offsetY": -34,
+            "scale": 1,
+            "alwaysVisible": true,
+            "visibleOnBoard": true
           }
         ],
         "activations": {
@@ -69345,7 +69764,12 @@
                 ]
               }
             ],
-            "animationId": "animation-1788469390155-6101"
+            "animationId": "animation-1788469390155-6101",
+            "offsetX": 0,
+            "offsetY": -34,
+            "scale": 1,
+            "alwaysVisible": true,
+            "visibleOnBoard": true
           }
         ],
         "activations": {
@@ -69902,7 +70326,12 @@
                 ]
               }
             ],
-            "animationId": "animation-1788469390155-5z2v"
+            "animationId": "animation-1788469390155-5z2v",
+            "offsetX": 0,
+            "offsetY": -34,
+            "scale": 1,
+            "alwaysVisible": true,
+            "visibleOnBoard": true
           }
         ],
         "activations": {
@@ -70195,7 +70624,12 @@
                 ]
               }
             ],
-            "animationId": "animation-1788469390155-rzbp"
+            "animationId": "animation-1788469390155-rzbp",
+            "offsetX": 0,
+            "offsetY": -34,
+            "scale": 1,
+            "alwaysVisible": true,
+            "visibleOnBoard": true
           }
         ],
         "activations": {
@@ -71309,18 +71743,6 @@
       }
     ],
     "actors": [
-      {
-        "id": "host-1",
-        "name": "Host Guide",
-        "role": "Host",
-        "isHost": false,
-        "icon": "✦",
-        "sprite": "",
-        "anchor": "center",
-        "animation": "float",
-        "animations": [],
-        "ragdoll": null
-      },
       {
         "id": "actor-1788496202152",
         "name": "7.g_3.c_",
@@ -164871,9 +165293,294 @@
                   "thumb": "data:image/png;base64,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"
                 }
               ]
+            },
+            {
+              "id": "part-1788555847695-81zk",
+              "name": "Bury",
+              "duration": 1,
+              "loop": false,
+              "snapshots": [
+                {
+                  "id": "part-1788555864069-vjv6",
+                  "pose": [
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    }
+                  ],
+                  "thumb": "data:image/png;base64,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"
+                },
+                {
+                  "id": "part-1788555874368-uiey",
+                  "pose": [
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": -0.335
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": -0.818
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0.277
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": -0.416
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": 0
+                    }
+                  ],
+                  "thumb": "data:image/png;base64,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"
+                },
+                {
+                  "id": "part-1788555885509-5coc",
+                  "pose": [
+                    {
+                      "x": 1.8,
+                      "y": 0.8,
+                      "r": -0.335
+                    },
+                    {
+                      "x": 1.8,
+                      "y": 0.8,
+                      "r": -0.818
+                    },
+                    {
+                      "x": 1.8,
+                      "y": 0.8,
+                      "r": -0.776
+                    },
+                    {
+                      "x": 1.8,
+                      "y": 0.8,
+                      "r": 0
+                    },
+                    {
+                      "x": 1.8,
+                      "y": 0.8,
+                      "r": 0
+                    },
+                    {
+                      "x": 2.2,
+                      "y": 6,
+                      "r": 0.359
+                    },
+                    {
+                      "x": 2.2,
+                      "y": 6,
+                      "r": 0
+                    },
+                    {
+                      "x": 0,
+                      "y": 0,
+                      "r": -0.117
+                    }
+                  ],
+                  "thumb": "data:image/png;base64,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"
+                },
+                {
+                  "id": "part-1788555899095-fsx7",
+                  "pose": [
+                    {
+                      "x": -7.8,
+                      "y": 3.5,
+                      "r": -0.335
+                    },
+                    {
+                      "x": -6.7,
+                      "y": 14.5,
+                      "r": -0.818
+                    },
+                    {
+                      "x": 3.6,
+                      "y": -2.8,
+                      "r": 0.401
+                    },
+                    {
+                      "x": 3.6,
+                      "y": -2.8,
+                      "r": 0
+                    },
+                    {
+                      "x": 1.8,
+                      "y": 0.8,
+                      "r": -0.346
+                    },
+                    {
+                      "x": -1.5,
+                      "y": 5,
+                      "r": -0.412
+                    },
+                    {
+                      "x": -1.5,
+                      "y": 5,
+                      "r": 0
+                    },
+                    {
+                      "x": -3.7,
+                      "y": -1,
+                      "r": -0.117
+                    }
+                  ],
+                  "thumb": "data:image/png;base64,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"
+                },
+                {
+                  "id": "part-1788555910682-5lep",
+                  "pose": [
+                    {
+                      "x": -7.8,
+                      "y": 3.5,
+                      "r": -0.335
+                    },
+                    {
+                      "x": -6.7,
+                      "y": 14.5,
+                      "r": -0.818
+                    },
+                    {
+                      "x": 3.6,
+                      "y": -2.8,
+                      "r": -0.828
+                    },
+                    {
+                      "x": 3.6,
+                      "y": -2.8,
+                      "r": 0
+                    },
+                    {
+                      "x": 1.8,
+                      "y": 0.8,
+                      "r": -0.346
+                    },
+                    {
+                      "x": -1.5,
+                      "y": 5,
+                      "r": 0.166
+                    },
+                    {
+                      "x": -1.5,
+                      "y": 5,
+                      "r": 0
+                    },
+                    {
+                      "x": -3.7,
+                      "y": -1,
+                      "r": -0.117
+                    }
+                  ],
+                  "thumb": "data:image/png;base64,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"
+                },
+                {
+                  "id": "part-1788555920815-569s",
+                  "pose": [
+                    {
+                      "x": -5.5,
+                      "y": 3.7,
+                      "r": -0.939
+                    },
+                    {
+                      "x": -4.4,
+                      "y": 14.7,
+                      "r": 5.001
+                    },
+                    {
+                      "x": 5.8,
+                      "y": -2.6,
+                      "r": 0.215
+                    },
+                    {
+                      "x": 5.8,
+                      "y": -2.6,
+                      "r": 0
+                    },
+                    {
+                      "x": 4,
+                      "y": 1,
+                      "r": -0.346
+                    },
+                    {
+                      "x": -1.8,
+                      "y": 1.6,
+                      "r": -0.358
+                    },
+                    {
+                      "x": 9.5,
+                      "y": 21.4,
+                      "r": -5.795
+                    },
+                    {
+                      "x": -3.7,
+                      "y": -1,
+                      "r": -0.485
+                    }
+                  ],
+                  "thumb": "data:image/png;base64,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"
+                }
+              ]
             }
           ],
-          "activeAnimationId": "part-1788546063144-84ws"
+          "activeAnimationId": "part-1788546063144-84ws",
+          "idleAnimationId": "part-1788546063144-84ws"
         }
       }
     ]

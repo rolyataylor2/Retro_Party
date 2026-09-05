@@ -73,7 +73,7 @@ const app = {
   editingCommand: null, playerSelectorEditor: null, valuePickerEditor: null, particlePickerEditor: null,
   previewingCutscene: false, previewStep: 0, previewTimer: null, previewState: null,
   // Video Editor Multi-Track Timeline State
-  timelinePlaying: false, timelinePlayhead: 0, timelineZoom: 100, timelineScrollLeft: 0,
+  timelinePlaying: false, timelinePlayhead: 0, timelineZoom: 100, timelineScrollLeft: 0, timelineTriggeringPlayer: 1,
   timelineSelectedClipId: null, timelineActiveTrackId: "track-main",
   timelineDraggingPlayhead: false, timelineDraggingClip: null, timelineTimer: null,
   timelinePreviewWaiting: null, timelinePreviewHandled: new Set(), timelinePreviewBranches: {}, editingActivationId: null,
@@ -207,7 +207,41 @@ function pathsSvg(map, editable = false) {
   const paths = map.paths.map((path) => { const from = byId.get(path.from), to = byId.get(path.to); if (!from || !to) return ""; const geometry = pathGeometry(path, from, to), render = path.render || {}, selected = app.editingPath === path.id, arrow = path.oneWay ? path.direction === "reverse" ? `marker-start="url(#path-arrow)"` : `marker-end="url(#path-arrow)"` : ""; return `<g class="board-path ${selected ? "selected" : ""} ${render.hidden ? "is-hidden" : ""} ${render.border === false ? "no-border" : ""}" data-path-id="${html(path.id)}" style="--path-color:${html(render.color || "#fff0a9")};--path-opacity:${Number(render.opacity ?? 1)};--path-width:${Number(render.width || 1.8)};--path-border:${html(render.borderColor || "#172340")}"><${geometry.tag} class="path-border" ${geometry.attrs}/><${geometry.tag} class="path-visible ${render.pattern ? `pattern-${html(render.pattern)}` : ""}" ${geometry.attrs} ${arrow}/>${editable ? `<${geometry.tag} class="path-hit" ${geometry.attrs}/>` : ""}${editable && selected ? (path.points || []).map((point,index)=>`<circle class="path-control-point" data-path-point="${index}" cx="${point.x}" cy="${point.y}" r="1.15"/>`).join("") : ""}</g>`; }).join("");
   return `<svg class="map-paths ${editable ? "editable" : ""}" viewBox="0 0 100 100" preserveAspectRatio="none">${defs}${paths}</svg>`;
 }
-function mapSpaceAction(space, action, index) { return { ...space, type: action.space?.type || "event", shape: action.space?.shape || "oval", size: Number(action.space?.size || 3), rotation: Number(action.space?.rotation || 0), color: action.space?.color, action: action.id, activity: { id: action.id, icon: action.space?.icon || "⚡", title: action.name || `Space Action ${index + 1}` } }; }
+function mapSpaceAction(space, action, index) {
+  const characters = (action.characters || []).map((char) => ({
+    id: char.id,
+    name: char.name,
+    icon: char.icon,
+    sprite: char.sprite,
+    color: char.color,
+    offsetX: Number(char.offsetX ?? 0),
+    offsetY: Number(char.offsetY ?? -34),
+    scale: Number(char.scale ?? 1.0),
+    alwaysVisible: char.alwaysVisible !== false && char.visibleOnBoard !== false,
+    isHost: Boolean(char.isHost),
+    animation: char.animation || "float",
+    idleAnimationId: char.idleAnimationId || char.ragdoll?.idleAnimationId,
+    ragdoll: char.ragdoll,
+    spriteSheet: char.spriteSheet,
+    spriteX: char.spriteX,
+    spriteY: char.spriteY
+  }));
+  return {
+    ...space,
+    type: action.space?.type || "event",
+    shape: action.space?.shape || "oval",
+    size: Number(action.space?.size || 3),
+    rotation: Number(action.space?.rotation || 0),
+    color: action.space?.color,
+    action: action.id,
+    actors: characters,
+    activity: {
+      id: action.id,
+      icon: action.space?.icon || "⚡",
+      title: action.name || `Space Action ${index + 1}`
+    }
+  };
+}
 function spaceInspectorModal() {
   const space = app.project.map.spaces.find(item => item.id === app.mapInspector); if (!space) return "";
   const defaults=app.project.map.defaults||{},connected = app.project.map.paths.filter(path => path.from === space.id || path.to === space.id), tab = app.mapInspectorTab;
@@ -223,7 +257,16 @@ function pointHoldMenu() { const menu=app.pathPointHoldMenu;return menu?`<div cl
 function multiSpaceInspectorModal(){const ids=[...app.selectedSpaces];if(app.mapInspector==null||ids.length<2)return "";return `<div class="map-modal-backdrop"><section class="map-inspector"><header><div><small>MULTI-EDIT</small><b>${ids.length} SPACES SELECTED</b></div><button data-close-map-inspector>×</button></header><div class="space-edit-form"><p>Changes below apply to every selected space.</p><label>SIZE<input data-multi-space-edit="size" type="range" min=".25" max="5" step=".25" value="3"></label><label>SHAPE<select data-multi-space-edit="shape"><option value="">Keep individual shapes</option>${["oval","round","star","diamond","hex","shield"].map(value=>`<option>${value}</option>`).join("")}</select></label><label>TYPE<select data-multi-space-edit="type"><option value="">Keep individual types</option>${["blue","red","lucky","event","start","shop","duel","warp","trap"].map(value=>`<option>${value}</option>`).join("")}</select></label><label>ROTATION<input data-multi-space-edit="rotation" type="number" min="-180" max="180" value="0"></label><button type="button" class="danger-button" data-delete-selected-spaces>DELETE ${ids.length} SPACES</button></div></section></div>`;}
 function mapEditor() {
   const map = app.project.map, actions = app.project.events.entries.map(ensureSpaceActionDefaults), selected = map.spaces.find(space => space.id === app.selectedSpace);
-  const spaces = map.spaces.map(space => `<button data-space="${space.id}" class="showcase-space map-space ${space.type} shape-${space.shape || "oval"} ${space.activity ? "has-activity" : ""} ${app.selectedSpaces.has(space.id)||selected?.id === space.id ? "selected" : ""} ${app.pathPickFrom === space.id ? "path-origin" : ""}" style="left:${space.x}%;top:${space.y}%;--space-size:${space.size || 3};transform:translate(-50%,-50%) rotate(${space.rotation || 0}deg)" title="${html(space.activity?.title || `${space.type} space`)}">${space.activity ? `<span class="space-action-icon">${html(space.activity.icon || "✦")}</span>` : ""}<small class="space-editor-number">${space.id + 1}</small></button>`).join("");
+  const spaces = map.spaces.map(space => {
+    const spaceActors = space.actors || (actions.find(a => a.id === space.action || a.id === space.activity?.id)?.characters) || [];
+    const sizeRatio = Number(space.size || 3) / 3;
+    const actorPins = spaceActors.filter(a => a.alwaysVisible !== false && a.visibleOnBoard !== false).map(a => `
+      <span class="space-board-actor" style="left:calc(50% + ${(Number(a.offsetX ?? 0)) * sizeRatio}px);top:calc(50% + ${(Number(a.offsetY ?? -34)) * sizeRatio}px);transform:translate(-50%,-50%) scale(${Math.max(0.2, (Number(a.scale ?? 1.0)) * sizeRatio)});">
+        ${a.sprite ? `<img src="${html(a.sprite)}" style="width:28px;height:28px;object-fit:contain;">` : `<span style="font-size:1.2rem;">${html(a.icon || (a.isHost ? "👑" : "👤"))}</span>`}
+      </span>
+    `).join("");
+    return `<button data-space="${space.id}" class="showcase-space map-space ${space.type} shape-${space.shape || "oval"} ${space.activity ? "has-activity" : ""} ${app.selectedSpaces.has(space.id)||selected?.id === space.id ? "selected" : ""} ${app.pathPickFrom === space.id ? "path-origin" : ""}" style="left:${space.x}%;top:${space.y}%;--space-size:${space.size || 3};transform:translate(-50%,-50%) rotate(${space.rotation || 0}deg)" title="${html(space.activity?.title || `${space.type} space`)}">${space.activity ? `<span class="space-action-icon">${html(space.activity.icon || "✦")}</span>` : ""}<small class="space-editor-number">${space.id + 1}</small>${actorPins}</button>`;
+  }).join("");
   const catalog = `<aside class="map-action-catalog"><header><small>SPACE ACTIONS</small><b>DRAG ONTO BOARD</b></header><div>${actions.map((action,index) => `<button data-catalog-action="${html(action.id)}">${renderSpaceToken(action.space || {}, "catalog-token")}<span><b>${html(action.name)}</b><small>${html(action.space?.type || "event")} · USE ANY NUMBER OF TIMES</small></span></button>`).join("") || `<p>Create Space Actions in the catalog first.</p>`}</div><button data-go="${boardEditorPath("event")}">EDIT SPACE ACTION CATALOG</button></aside>`;
   const overlayStyle=`transform:translate(${app.mapPan.x}px,${app.mapPan.y}px) scale(${app.mapZoom}) rotate(${app.mapRotation||0}rad)`;
   return `<section class="studio-shell board-showcase-shell map-maker-overview"><header class="board-showcase-header"><button data-go="/party/board/${app.project.boardProjects.selectedId}">◀ BOARD OVERVIEW</button><div><small>SPACE/PATH EDITOR</small><h1>${html(map.name)}</h1><p>${map.spaces.length} spaces · ${map.paths.length} paths</p></div></header><main class="board-showcase-stage map-editor-stage"><div id="map-viewport" class="board-showcase-map pixi-board-host" data-pixi-board="editor"><div id="map-board" class="map-interaction-overlay" style="${overlayStyle}">${pathsSvg(map,true)}${spaces}</div></div></main>${catalog}<nav class="map-floating-toolbar"><button data-map-tool="select" class="${map.tool !== "pan" ? "active" : ""}">⌁ SELECT</button><button data-map-tool="pan" class="${map.tool === "pan" ? "active" : ""}">✋ PAN</button><button data-undo ${app.history.length ? "" : "disabled"}>↶ UNDO</button><button data-redo ${app.future.length ? "" : "disabled"}>↷ REDO</button><button data-map-rotate="-.087">↶</button><button data-map-zoom="-.2">−</button><b>${Math.round(app.mapZoom * 100)}%</b><button data-map-zoom=".2">＋</button><button data-map-rotate=".087">↷</button><button data-map-reset>⌂</button></nav>${mapHoldMenu()}${pointHoldMenu()}${app.selectedSpaces.size>1?multiSpaceInspectorModal():spaceInspectorModal()}${pathInspectorModal()}${pointInspectorModal()}</section>`;
@@ -396,6 +439,8 @@ function syncTimelineToCommands(entry) {
     actorId: clip.actorId,
     animationId: clip.animationId,
     transition: clip.transition,
+    stageEffect: clip.stageEffect,
+    particleDump: clip.particleDump,
     actorAction: clip.actorAction,
     pose: clip.pose,
     rewardType: clip.rewardType,
@@ -496,7 +541,19 @@ function ensureSpaceActionDefaults(entry, index = 0) {
       return char;
     });
   }
-  entry.characters.forEach(ensureActorAnimations);
+  entry.characters.forEach((char) => {
+    ensureActorAnimations(char);
+    char.offsetX = Number(char.offsetX ?? 0);
+    char.offsetY = Number(char.offsetY ?? -34);
+    char.scale = Number(char.scale ?? 1.0);
+    if (char.alwaysVisible == null && char.visibleOnBoard == null) {
+      char.alwaysVisible = true;
+      char.visibleOnBoard = true;
+    } else {
+      char.alwaysVisible = char.alwaysVisible !== false && char.visibleOnBoard !== false;
+      char.visibleOnBoard = char.alwaysVisible;
+    }
+  });
   if (entry.characters.length && !entry.characters.some((c) => c.isHost || c.role === "Host")) {
     entry.characters[0].isHost = true;
     entry.characters[0].role = "Host";
@@ -579,6 +636,8 @@ function ensureSpaceActionDefaults(entry, index = 0) {
         actorId: cmd.actorId,
         animationId: cmd.animationId,
         transition: cmd.transition,
+        stageEffect: cmd.stageEffect,
+        particleDump: cmd.particleDump,
         actorAction: cmd.actorAction,
         pose: cmd.pose,
         rewardType: cmd.rewardType,
@@ -645,19 +704,63 @@ function timelineDecisionChoice(clip) {
 
 function timelineTrackState(timeline, track, time = app.timelinePlayhead || 0) {
   if (!track || track.muted) return "disabled";
-  if (track.boundDecisionId || track.kind === "branch-false" || track.kind === "branch-outcome") {
+  if (!timeline || !Array.isArray(timeline.tracks)) return "active";
+
+  const trackIndex = timeline.tracks.indexOf(track);
+  const isBranch = track.boundDecisionId || track.kind === "branch-false" || track.kind === "branch-outcome" || isBoundBranchTrack(timeline, track.id);
+
+  if (isBranch) {
     let decisionId = track.boundDecisionId;
-    if (!decisionId) {
-      const index = timeline.tracks.indexOf(track);
-      decisionId = [...timeline.tracks.slice(0, index)].reverse().flatMap((candidate) => candidate.clips || []).find(isBranchingDecisionClip)?.id;
+    let decisionClip = null;
+    let decisionTrack = null;
+
+    if (decisionId) {
+      const found = findClipInTimeline(timeline, decisionId);
+      if (found) {
+        decisionClip = found.clip;
+        decisionTrack = found.track;
+      }
     }
-    const found = decisionId && findClipInTimeline(timeline, decisionId);
-    if (!found || time < Number(found.clip.start || 0)) return "pending";
-    const chosen = timelineDecisionChoice(found.clip);
-    if (chosen == null) return "pending";
+
+    if (!decisionClip) {
+      for (let i = trackIndex - 1; i >= 0; i--) {
+        const candidateTrack = timeline.tracks[i];
+        const clip = (candidateTrack.clips || []).find(isBranchingDecisionClip);
+        if (clip) {
+          decisionClip = clip;
+          decisionTrack = candidateTrack;
+          decisionId = clip.id;
+          break;
+        }
+      }
+    }
+
+    if (!decisionClip) return "active";
+
+    const decisionStart = Number(decisionClip.start || 0);
+    if (time < decisionStart) return "pending";
+
+    if (decisionTrack) {
+      if (decisionTrack.muted) return "disabled";
+      const isParentBranch = decisionTrack.boundDecisionId || decisionTrack.kind === "branch-false" || decisionTrack.kind === "branch-outcome" || isBoundBranchTrack(timeline, decisionTrack.id);
+      if (isParentBranch) {
+        const parentStateAtDecision = timelineTrackState(timeline, decisionTrack, Math.max(0, decisionStart - 0.001));
+        if (parentStateAtDecision === "disabled") return "disabled";
+      }
+    }
+
+    const chosen = timelineDecisionChoice(decisionClip);
     const expected = track.outcomeId || "false";
-    return String(chosen) === String(expected) ? "active" : "disabled";
+
+    if (chosen != null) {
+      return String(chosen) === String(expected) ? "active" : "disabled";
+    }
+
+    // Default execution during playback is Track 1 (the True / first branch).
+    // Secondary branch tracks (False branch) remain disabled unless selected.
+    return "disabled";
   }
+
   for (const clip of track.clips || []) {
     if (!isBranchingDecisionClip(clip) || time < Number(clip.start || 0)) continue;
     const chosen = timelineDecisionChoice(clip);
@@ -815,63 +918,200 @@ function spaceActionsCatalog() {
 }
 
 // --- Video Editor Multi-Track Timeline View ---
-function timelinePreviewState(entry) {
-  const playhead=Math.max(0,app.timelinePlayhead||0),tracks=playbackTracks(entry.timeline,playhead),all=tracks.flatMap(track=>track.clips||[]),active=all.filter(clip=>playhead>=Number(clip.start||0)&&playhead<Number(clip.start||0)+Number(clip.duration||2)),latest=category=>active.filter(clip=>clip.category===category).at(-1),camera=latest("camera"),decision=active.find(clip=>isBranchingDecisionClip(clip)&&clip.waitForInput!==false),playerChoice=active.find(clip=>clip.op==="choose-player"&&clip.waitForInput!==false),dialogue=latest("dialogue")||active.find(clip=>clip.op==="dialogue")||decision||playerChoice,waitingCandidate=app.timelinePreviewWaiting?active.find(clip=>clip.id===app.timelinePreviewWaiting):null,waiting=waitingCandidate&&waitingCandidate.waitForInput!==false&&waitingCandidate!==dialogue&&waitingCandidate!==decision&&waitingCandidate!==playerChoice?waitingCandidate:null,actorClips=active.filter(clip=>["actors","stage"].includes(clip.category));
-  // A main track becomes inactive after choosing a secondary logic branch.
-  // Its earlier camera clips have already run, so retain them; only discard
-  // clips placed after the decision that diverted execution.
-  const cameraHistory=(entry.timeline.tracks||[]).flatMap(track=>{const state=timelineTrackState(entry.timeline,track,playhead),disablePoint=state==="disabled"?timelineTrackDisablePoint(track,playhead):null;if(state!=="active"&&disablePoint==null)return [];return (track.clips||[]).filter(clip=>clip.category==="camera"&&Number(clip.start||0)<=playhead&&(state==="active"||Number(clip.start||0)<disablePoint));}).sort((a,b)=>Number(a.start||0)-Number(b.start||0));
-  let zoom=2,panX=0,panY=0,shake=false;
-  for(const cameraClip of cameraHistory){const local=Math.max(0,Math.min(1,(playhead-Number(cameraClip.start||0))/Math.max(.01,Number(cameraClip.duration||1)))),eased=1-(1-local)**3,action=cameraClip.camAction||cameraClip.op||"";if(action==="zoom"||/zoom/i.test(cameraClip.label||""))zoom=2+(Math.max(.7,Number(cameraClip.zoom||cameraClip.parameters?.zoom||2))-2)*eased;if(action==="pan-target"||/pan/i.test(cameraClip.label||"")){panX=(String(cameraClip.parameters?.target||cameraClip.target||"").includes("Actor")?-12:8)*eased;panY=-5*eased;}}
-  if(camera){const action=camera.camAction||camera.op||"";shake=action==="shake"||/shake/i.test(camera.label||"");}
+function getActiveTimelineClips(timeline, time = app.timelinePlayhead || 0) {
+  if (!timeline || !Array.isArray(timeline.tracks)) return [];
+  return timeline.tracks.flatMap((track) => {
+    const state = timelineTrackState(timeline, track, time);
+    const disable = state === "disabled" ? timelineTrackDisablePoint(track, time) : null;
+    if (state !== "active" && disable == null) return [];
 
-  const hidden=new Set(), spawnPending=new Set(), cast=entry.characters||[];
-  for(const actor of cast){
-    const actorIdStr=String(actor.id);
-    const actorAllClips=(entry.timeline?.tracks||[]).flatMap(track=>{
-      const state=timelineTrackState(entry.timeline,track,playhead),disable=state==="disabled"?timelineTrackDisablePoint(track,playhead):null;
-      if(state!=="active"&&disable==null)return [];
-      return (track.clips||[]).filter(clip=>{
-        const targetActor=selectedSpaceActor(cast,clip.actorId||clip.parameters?.actor||clip.target);
-        const match=targetActor?.id===actor.id||String(clip.actorId||clip.parameters?.actor||"")===actorIdStr||clip.target===actor.name;
-        return match&&(state==="active"||Number(clip.start||0)<disable);
-      });
-    }).sort((a,b)=>Number(a.start||0)-Number(b.start||0));
-
-    const despawns=actorAllClips.filter(clip=>{
-      const mode=String(clip.actorAction||clip.op||clip.label||"").toLowerCase();
-      return mode.includes("despawn");
-    });
-    const spawns=actorAllClips.filter(clip=>{
-      const mode=String(clip.actorAction||clip.op||clip.label||"").toLowerCase();
-      return mode.includes("spawn")&&!mode.includes("despawn");
-    });
-
-    if(despawns.length>0){
-      const lastDespawn=despawns[despawns.length-1];
-      const despawnEnd=Number(lastDespawn.start||0)+Number(lastDespawn.duration||1);
-      if(playhead>=despawnEnd){
-        const laterSpawn=spawns.find(s=>Number(s.start||0)>Number(lastDespawn.start||0)&&playhead>=Number(s.start||0));
-        if(!laterSpawn) hidden.add(actorIdStr);
+    let branchMinStart = 0;
+    if (state === "active" && (track.boundDecisionId || track.kind === "branch-false" || track.kind === "branch-outcome" || isBoundBranchTrack(timeline, track.id))) {
+      let decisionClip = null;
+      if (track.boundDecisionId) {
+        decisionClip = findClipInTimeline(timeline, track.boundDecisionId)?.clip;
+      }
+      if (!decisionClip) {
+        const tIdx = timeline.tracks.indexOf(track);
+        for (let i = tIdx - 1; i >= 0; i--) {
+          const clip = (timeline.tracks[i].clips || []).find(isBranchingDecisionClip);
+          if (clip) { decisionClip = clip; break; }
+        }
+      }
+      if (decisionClip) {
+        branchMinStart = Number(decisionClip.start || 0);
       }
     }
-    if(spawns.length>0){
-      const firstSpawn=spawns[0];
-      if(playhead<Number(firstSpawn.start||0)) spawnPending.add(actorIdStr);
+
+    return (track.clips || []).filter((clip) => {
+      const clipStart = Number(clip.start || 0);
+      if (branchMinStart > 0 && clipStart < branchMinStart) return false;
+      if (state === "active") return true;
+      if (disable != null && clipStart < disable) return true;
+      return false;
+    });
+  });
+}
+
+function isActorDespawnClip(clip) {
+  if (!clip) return false;
+  if (["despawn-actor", "despawn"].includes(clip.op)) return true;
+  if (clip.actorAction === "despawn") return true;
+  return false;
+}
+
+function isActorSpawnClip(clip) {
+  if (!clip) return false;
+  if (["spawn-actor", "spawn"].includes(clip.op)) return true;
+  if (clip.actorAction === "spawn") return true;
+  return false;
+}
+
+function isActorLifecycleClip(clip) {
+  return isActorDespawnClip(clip) || isActorSpawnClip(clip);
+}
+
+function evaluateActorTimelineLifecycle(entry, playhead) {
+  const hidden = new Set(), spawnPending = new Set(), cast = entry?.characters || [];
+  const activeClips = getActiveTimelineClips(entry?.timeline, playhead);
+
+  for (const actor of cast) {
+    const actorIdStr = String(actor.id);
+    const actorClips = activeClips.filter((clip) => {
+      const targetActor = selectedSpaceActor(cast, clip.actorId || clip.parameters?.actor || clip.target);
+      return targetActor?.id === actor.id || String(clip.actorId || clip.parameters?.actor || "") === actorIdStr || clip.target === actor.name;
+    }).sort((a, b) => Number(a.start || 0) - Number(b.start || 0));
+
+    const lifecycleClips = actorClips.filter(isActorLifecycleClip);
+
+    if (lifecycleClips.length === 0) {
+      if (actor.visible === false) hidden.add(actorIdStr);
+      continue;
+    }
+
+    const firstSpawn = lifecycleClips.find(isActorSpawnClip);
+
+    if (firstSpawn && lifecycleClips[0] === firstSpawn && playhead < Number(firstSpawn.start || 0)) {
+      spawnPending.add(actorIdStr);
+    }
+
+    let isCurrentlyVisible = actor.visible !== false && !spawnPending.has(actorIdStr);
+    for (const clip of lifecycleClips) {
+      const start = Number(clip.start || 0);
+      const duration = Number(clip.duration || clip.parameters?.duration || 1);
+      if (playhead < start) continue;
+      const isDespawn = isActorDespawnClip(clip);
+      if (isDespawn) {
+        if (playhead >= start + duration) {
+          isCurrentlyVisible = false;
+        } else {
+          isCurrentlyVisible = true;
+        }
+      } else {
+        isCurrentlyVisible = true;
+      }
+    }
+
+    if (!isCurrentlyVisible) {
+      hidden.add(actorIdStr);
     }
   }
 
-  return {playhead,active,dialogue,decision,playerChoice,waiting,actorClips,weather:latest("world"),vfx:latest("vfx")||latest("screen"),banner:active.find(clip=>clip.style==="banner"||clip.banner),zoom,panX,panY,shake,leadIn:Boolean(app.timelinePreviewLeadInUntil),activation:previewActivation(entry),despawnedActorIds:[...hidden],spawnPendingActorIds:[...spawnPending]};
+  return { hidden: [...hidden], spawnPending: [...spawnPending] };
+}
+
+function timelinePreviewState(entry) {
+  const playhead = Math.max(0, app.timelinePlayhead || 0);
+  const activePathClips = getActiveTimelineClips(entry?.timeline, playhead);
+  const active = activePathClips.filter((clip) => playhead >= Number(clip.start || 0) && playhead < Number(clip.start || 0) + Number(clip.duration || 2));
+  const latest = (category) => active.filter((clip) => clip.category === category).at(-1);
+  const camera = latest("camera");
+  const decision = active.find((clip) => isBranchingDecisionClip(clip) && clip.waitForInput !== false);
+  const playerChoice = active.find((clip) => clip.op === "choose-player" && clip.waitForInput !== false);
+  const dialogue = latest("dialogue") || active.find((clip) => clip.op === "dialogue") || decision || playerChoice;
+  const waitingCandidate = app.timelinePreviewWaiting ? active.find((clip) => clip.id === app.timelinePreviewWaiting) : null;
+  const waiting = waitingCandidate && waitingCandidate.waitForInput !== false && waitingCandidate !== dialogue && waitingCandidate !== decision && waitingCandidate !== playerChoice ? waitingCandidate : null;
+  const actorClips = active.filter((clip) => ["actors", "stage", "screen"].includes(clip.category) || clip.op === "spawn-particles" || String(clip.label || "").toLowerCase().includes("particle"));
+
+  const cameraHistory = activePathClips.filter((clip) => clip.category === "camera" && Number(clip.start || 0) <= playhead).sort((a, b) => Number(a.start || 0) - Number(b.start || 0));
+  let zoom = 2, panX = 0, panY = 0, shake = false;
+  for (const cameraClip of cameraHistory) {
+    const local = Math.max(0, Math.min(1, (playhead - Number(cameraClip.start || 0)) / Math.max(0.01, Number(cameraClip.duration || 1))));
+    const eased = 1 - (1 - local) ** 3;
+    const action = cameraClip.camAction || cameraClip.op || "";
+    if (action === "zoom" || /zoom/i.test(cameraClip.label || "")) zoom = 2 + (Math.max(0.7, Number(cameraClip.zoom || cameraClip.parameters?.zoom || 2)) - 2) * eased;
+    if (action === "pan-target" || /pan/i.test(cameraClip.label || "")) {
+      panX = (String(cameraClip.parameters?.target || cameraClip.target || "").includes("Actor") ? -12 : 8) * eased;
+      panY = -5 * eased;
+    }
+  }
+  if (camera) {
+    const action = camera.camAction || camera.op || "";
+    shake = action === "shake" || /shake/i.test(camera.label || "");
+  }
+
+  const { hidden, spawnPending } = evaluateActorTimelineLifecycle(entry, playhead);
+
+  return {
+    playhead,
+    active,
+    dialogue,
+    decision,
+    playerChoice,
+    waiting,
+    actorClips,
+    weather: latest("world"),
+    vfx: latest("vfx") || latest("screen"),
+    banner: active.find((clip) => clip.style === "banner" || clip.banner),
+    zoom,
+    panX,
+    panY,
+    shake,
+    leadIn: Boolean(app.timelinePreviewLeadInUntil),
+    activation: previewActivation(entry),
+    despawnedActorIds: hidden,
+    spawnPendingActorIds: spawnPending
+  };
 }
 function previewActivation(entry){const rule=(entry.activationRules||[]).find(item=>item.enabled!==false&&item.sequenceId===entry.activeSequenceId)||{},trigger=rule.trigger||(entry.activations?.movement?.pass?"pass":entry.activations?.proximity?.enabled?"proximity":entry.activations?.movement?.land!==false?"land":"interact");return {trigger,label:{land:"LAND ON SPACE",pass:"PASS OVER SPACE",proximity:"ENTER PROXIMITY",interact:"PRESS A TO INTERACT","round-start":"ROUND START",signal:"SIGNAL RECEIVED"}[trigger]||"ACTIVATE SPACE"};}
 function timelineStagePosition(clip,fallback={x:0,y:0}){const position=clip?.stagePosition||clip?.parameters?.stagePosition||clip?.parameters?.position||clip?.position||fallback;return{x:Math.max(-90,Math.min(90,Number(position.x??fallback.x)||0)),y:Math.max(-70,Math.min(70,Number(position.y??fallback.y)||0))};}
 function timelineStageStyle(position){return `left:${50+position.x/2}%;top:${53+position.y/2}%;right:auto;transform:translate(-50%,-50%)`;}
 function isStageMoveClip(clip){return Boolean(clip)&&((clip.category==="actors"&&["move","spawn"].includes(clip.actorAction||clip.op))||(clip.category==="player"&&["gather-players","move-stage","move-player","teleport"].includes(clip.op)));}
 function selectedStageMove(entry){const found=app.timelineSelectedClipId&&findClipInTimeline(entry,app.timelineSelectedClipId),clip=found?.clip;if(!isStageMoveClip(clip))return null;return{clip,kind:clip.category==="actors"?"actor":"player",targetId:clip.actorId||clip.parameters?.actor||""};}
-function stageMoveForActor(entry,actor,playhead){return entry.timeline.tracks.flatMap(track=>track.clips||[]).filter(clip=>clip.category==="actors"&&["move","spawn"].includes(clip.actorAction||clip.op)&&(String(clip.actorId||clip.parameters?.actor||"")===String(actor.id)||clip.target===actor.name)&&Number(clip.start||0)<=playhead).sort((a,b)=>Number(a.start||0)-Number(b.start||0)).at(-1);}
-function stageMoveForPlayer(entry,playhead){return entry.timeline.tracks.flatMap(track=>track.clips||[]).filter(clip=>clip.category==="player"&&["gather-players","move-stage","move-player","teleport"].includes(clip.op)&&Number(clip.start||0)<=playhead).sort((a,b)=>Number(a.start||0)-Number(b.start||0)).at(-1);}
+function stageMoveForActor(entry,actor,playhead){const activeClips=getActiveTimelineClips(entry?.timeline,playhead);return activeClips.filter(clip=>clip.category==="actors"&&["move","spawn"].includes(clip.actorAction||clip.op)&&(String(clip.actorId||clip.parameters?.actor||"")===String(actor.id)||clip.target===actor.name)&&Number(clip.start||0)<=playhead).sort((a,b)=>Number(a.start||0)-Number(b.start||0)).at(-1);}
+function stageMoveForPlayer(entry,playhead){const activeClips=getActiveTimelineClips(entry?.timeline,playhead);return activeClips.filter(clip=>clip.category==="player"&&["gather-players","move-stage","move-player","teleport"].includes(clip.op)&&Number(clip.start||0)<=playhead).sort((a,b)=>Number(a.start||0)-Number(b.start||0)).at(-1);}
+function eligiblePreviewPlayerSeats(clip, triggeringSeat = app.timelineTriggeringPlayer || 1) {
+  const p = clip?.parameters || {};
+  const eligible = p.eligiblePlayers || clip?.eligiblePlayers;
+  let seats = [1, 2, 3, 4];
+
+  if (eligible && typeof eligible === "object") {
+    if (eligible.mode === "specific" && Array.isArray(eligible.seats) && eligible.seats.length > 0) {
+      seats = seats.filter((s) => eligible.seats.map(Number).includes(Number(s)));
+    }
+    if (eligible.excludeTriggering === true || eligible.excludeTriggeringPlayer === true || eligible.allowSelf === false) {
+      seats = seats.filter((s) => Number(s) !== Number(triggeringSeat));
+    }
+  }
+
+  const excludeTriggering = p.excludeTriggering === true ||
+    p.excludeTriggeringPlayer === true ||
+    clip?.excludeTriggering === true ||
+    clip?.excludeTriggeringPlayer === true ||
+    p.allowSelf === false ||
+    clip?.allowSelf === false ||
+    p.excludeSelf === true ||
+    clip?.excludeSelf === true;
+
+  if (excludeTriggering) {
+    seats = seats.filter((s) => Number(s) !== Number(triggeringSeat));
+  }
+
+  return seats.length ? seats : [1, 2, 3, 4];
+}
+
 function previewDialogueMarkup(state){const clip=state.dialogue;if(!clip)return "";const speaker=clip.speaker||clip.parameters?.speaker||"NARRATOR",text=clip.text||clip.parameters?.text||clip.parameters?.prompt||clip.questionText||clip.confirmationPrompt||"…",needsButton=clip!==state.decision&&clip!==state.playerChoice&&clip.waitForInput!==false;return `<small>${html(speaker)}</small><p>${html(text)}</p>${needsButton?`<button type="button" data-preview-continue="${html(clip.id)}">OK</button>`:""}`;}
-function previewPromptMarkup(state){const clip=state.decision||state.playerChoice||state.waiting;if(!clip)return "";if(state.decision){const choices=clip.op==="choice"?ensureChoiceOptions(clip):[{id:"true",label:clip.parameters?.trueLabel||clip.trueLabel||clip.choice1||clip.passLabel||"YES"},{id:"false",label:clip.parameters?.falseLabel||clip.falseLabel||clip.choice2||clip.failLabel||"NO"}];return `<small>CONFIRM</small>${choices.map((choice,index)=>`<button type="button" data-preview-branch="${html(clip.id)}:${html(choice.id)}"><i>${index===0?"▶":""}</i>${html(choice.label)}</button>`).join("")}`;}if(state.playerChoice)return `<small>CHOOSE A PLAYER</small>${[1,2,3,4].map((seat,index)=>`<button type="button" data-preview-player="${html(clip.id)}:${seat}"><i>${index===0?"▶":""}</i><b>P${seat}</b> PLAYER ${seat}</button>`).join("")}`;return `<small>PLAYER INPUT</small><button type="button" data-preview-continue="${html(clip.id)}"><i>▶</i>OK</button>`;}
+function previewPromptMarkup(state){const clip=state.decision||state.playerChoice||state.waiting;if(!clip)return "";if(state.decision){const choices=clip.op==="choice"?ensureChoiceOptions(clip):[{id:"true",label:clip.parameters?.trueLabel||clip.trueLabel||clip.choice1||clip.passLabel||"YES"},{id:"false",label:clip.parameters?.falseLabel||clip.falseLabel||clip.choice2||clip.failLabel||"NO"}];return `<small>CONFIRM</small>${choices.map((choice,index)=>`<button type="button" data-preview-branch="${html(clip.id)}:${html(choice.id)}"><i>${index===0?"▶":""}</i>${html(choice.label)}</button>`).join("")}`;}if(state.playerChoice){const seats=eligiblePreviewPlayerSeats(clip,app.timelineTriggeringPlayer||1);return `<small>CHOOSE A PLAYER</small>${seats.map((seat,index)=>`<button type="button" data-preview-player="${html(clip.id)}:${seat}"><i>${index===0?"▶":""}</i><b>P${seat}</b> PLAYER ${seat}</button>`).join("")}`;}return `<small>PLAYER INPUT</small><button type="button" data-preview-continue="${html(clip.id)}"><i>▶</i>OK</button>`;}
 function previewEventChips(state){return state.active.filter(clip=>!(["dialogue","input","ui"].includes(clip.category)||["dialogue","confirm","choice","choose-player"].includes(clip.op))).map(clip=>`<span>${html(clip.icon||"⚡")} ${html(clip.label||clip.op||"Event")}</span>`).join("");}
 function timelinePreviewActorsMarkup(entry,state){const selected=selectedStageMove(entry);return (entry.characters||[]).map(actor=>{const move=stageMoveForActor(entry,actor,state.playhead),position=timelineStagePosition(move,{x:actor.anchor==="left"?-46:actor.anchor==="right"?46:0,y:0}),editing=selected?.kind==="actor"&&String(selected.targetId)===String(actor.id);return `<div class="timeline-pixi-actor actor-${html(actor.anchor||"center")}" data-timeline-pixi-actor="${html(actor.id)}" style="${timelineStageStyle(position)}" ${editing?`data-preview-stage-drag="actor" data-preview-stage-clip="${html(selected.clip.id)}" title="Drag to set actor destination relative to this space"`:""}>${editing?"<span class=\"preview-stage-drag-point\">✥</span>":""}</div>`;}).join("");}
 function timelinePreviewGatheredPlayers(state){const gather=state.active.find(clip=>clip.category==="player"&&clip.op==="gather-players");if(!gather)return "";return [2,3,4].map((seat,index)=>`<div class="preview-gathered-player gathered-${seat}" style="${timelineStageStyle({x:[-38,0,38][index],y:22})}"><b>P${seat}</b></div>`).join("");}
@@ -887,12 +1127,23 @@ function timelinePixiState(entry,state){
   });
   const gather=state.active.find(clip=>clip.category==="player"&&clip.op==="gather-players"),players=[{id:"p1",label:"P1",color:"#4da6ff",stagePosition:timelineStagePosition(playerMove),visible:true},...(gather?[2,3,4].map((seat,index)=>({id:`p${seat}`,label:`P${seat}`,color:"#f1a64d",stagePosition:{x:[-38,0,38][index],y:22},visible:true})):[])],particles=ensureEffects();
   const transitions=state.actorClips.filter(clip=>{
-    const mode=String(clip.actorAction||clip.op||clip.label||"").toLowerCase();
-    return mode.includes("despawn")||mode.includes("spawn")||(clip.stageEffect&&clip.stageEffect!=="none");
+    return isActorLifecycleClip(clip) || (clip.category === "actors" && clip.stageEffect && clip.stageEffect !== "none") || clip.op === "spawn-particles" || String(clip.label || "").toLowerCase().includes("particle");
   }).map(clip=>{
-    const targetActor=selectedSpaceActor(cast,clip.actorId||clip.parameters?.actor||clip.target);
-    const mode=String(clip.actorAction||clip.op||clip.label||"").toLowerCase(),isDespawn=mode.includes("despawn"),isSpawn=mode.includes("spawn")&&!isDespawn;
-    return {...clip,actorId:targetActor?.id||clip.actorId||clip.parameters?.actor,actorAction:isDespawn?"despawn":isSpawn?"spawn":(clip.actorAction||"pose"),stageEffect:clip.stageEffect||(isDespawn?"smoke-poof":isSpawn?"fade":"none"),duration:Number(clip.duration||1),start:Number(clip.start||0),particle:particles.find(effect=>effect.id===clip.particleDump?.effectId)};
+    const isDespawn = isActorDespawnClip(clip);
+    const isSpawn = isActorSpawnClip(clip);
+    const isPureParticle = !isDespawn && !isSpawn && (clip.op === "spawn-particles" || clip.category !== "actors");
+    const targetActor = isPureParticle ? null : selectedSpaceActor(cast, clip.actorId || clip.parameters?.actor || clip.parameters?.target || clip.target);
+    const pKey = clip.particleDump?.effectId || clip.parameters?.preset || clip.preset || clip.parameters?.particle || clip.particle || clip.parameters?.effectId;
+    return {
+      ...clip,
+      actorId: targetActor?.id || null,
+      isParticleBurst: isPureParticle,
+      actorAction: isDespawn ? "despawn" : isSpawn ? "spawn" : (clip.actorAction || "pose"),
+      stageEffect: clip.stageEffect || (isDespawn ? "smoke-poof" : isSpawn ? "fade" : "none"),
+      duration: Number(clip.duration || clip.parameters?.duration || 1),
+      start: Number(clip.start || 0),
+      particle: particles.find(effect => effect.id === pKey || effect.name === pKey || effect.id === clip.particleDump?.effectId)
+    };
   });
   return{actors,players,center:{x:500,y:281},camera:{zoom:state.zoom,x:state.panX*4,y:state.panY*4,shake:state.shake},transitions,playhead:state.playhead,playing:Boolean(app.timelinePlaying),despawnedActorIds:state.despawnedActorIds||[],spawnPendingActorIds:state.spawnPendingActorIds||[]};
 }
@@ -1009,7 +1260,7 @@ function cutsceneTimelineView(entry) {
   const branchLogicMap = new Map();
   timeline.tracks.forEach((track, tIdx) => {
     (track.clips || []).forEach((clip) => {
-      const isBranching = clip.category === "logic" || clip.category === "input" || clip.kind === "condition" || clip.isDecision || clip.inputType || clip.condType || (clip.label && clip.label.toLowerCase().includes("prompt")) || (clip.label && clip.label.toLowerCase().includes("question")) || (clip.label && clip.label.toLowerCase().includes("qte"));
+      const isBranching = isBranchingDecisionClip(clip);
       if (isBranching && tIdx + 1 < timeline.tracks.length) {
         const branchTrack = timeline.tracks[tIdx + 1];
         branchLogicMap.set(branchTrack.id, { parentClip: clip, parentTrack: track, logicStart: clip.start || 0 });
@@ -1102,7 +1353,7 @@ function cutsceneTimelineView(entry) {
     const clipsHtml = (track.clips || []).map((clip) => {
       const isSelected = (app.timelineSelectedClipIds && app.timelineSelectedClipIds.has(clip.id)) || app.timelineSelectedClipId === clip.id;
       const cat = clip.category || (clip.kind === "condition" ? "logic" : "dialogue");
-      const isBranching = cat === "logic" || cat === "input" || clip.kind === "condition" || clip.isDecision || clip.inputType || clip.condType || (clip.label && clip.label.toLowerCase().includes("prompt")) || (clip.label && clip.label.toLowerCase().includes("question")) || (clip.label && clip.label.toLowerCase().includes("qte"));
+      const isBranching = isBranchingDecisionClip(clip);
       const leftPx = (clip.start || 0) * pxPerSec;
       const widthPx = Math.max(48, (clip.duration || 2.0) * pxPerSec);
 
@@ -1330,7 +1581,7 @@ function spaceActionEditor(entry) {
 
   const tabButtons = [
     ["details", "📝 NAME & DETAILS"],
-    ["visuals", "🎨 SPACE VISUALS"],
+    ["visuals", "🎨 SPACE APPEARANCE"],
     ["cast", "👤 ACTOR & CAST"],
     ["script", "🎬 TIMELINE"]
   ].map(([id, label]) => `
@@ -1369,17 +1620,156 @@ function spaceActionEditor(entry) {
       "⚡", "👻", "🤖", "🧚", "⚔️", "🛒", "💎", "🎲", "🔑", "💣", "🌋", "🌟",
       "🎪", "🍄", "🏰", "🎁", "🔥", "❄️", "☠️", "✨", "👑", "🔮", "🛳️", "🏆"
     ];
+    const spaceCast = cast || [];
+    const expandedActorId = app.spaceAppearanceActorId;
+    const previewScale = app.spacePreviewScale || 1.0;
 
     tabContent = `
       <div class="visuals-form-grid">
         <div class="visuals-live-stage">
-          <small style="color:#ffc83b;font-weight:900;letter-spacing:.14em;">LIVE SPACE PREVIEW</small>
-          ${renderSpaceToken(space, "stage-preview-token")}
-          <b style="font-size:1.2rem;color:#fff;">${html(entry.name)}</b>
-          ${space.customImage ? `<button data-nav data-remove-space-image class="cmd-btn danger" style="margin-top:6px;">✕ REMOVE CUSTOM IMAGE</button>` : ""}
+          <div style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+            <small style="color:#ffc83b;font-weight:900;letter-spacing:.14em;">LIVE SPACE PREVIEW</small>
+            <small style="color:#ad99ce;font-size:.68rem;">Drag actors around the space to position</small>
+          </div>
+          <div class="space-preview-arena" id="space-preview-arena">
+            <div class="space-preview-token-wrap" style="transform:scale(${previewScale});pointer-events:none;">
+              ${renderSpaceToken(space, "stage-preview-token")}
+            </div>
+            ${spaceCast.map((char) => {
+              const isSelected = expandedActorId && String(char.id) === String(expandedActorId);
+              const isVisible = char.alwaysVisible !== false && char.visibleOnBoard !== false;
+              const offX = Number(char.offsetX ?? 0) * previewScale;
+              const offY = Number(char.offsetY ?? -34) * previewScale;
+              const sc = Math.max(0.2, Number(char.scale ?? 1.0) * previewScale);
+              return `
+                <div class="space-preview-actor ${isSelected ? "selected" : ""} ${isVisible ? "is-visible" : "cutscene-only"}"
+                     data-space-actor-drag="${html(char.id)}"
+                     title="${html(char.name)}: Drag to position around space"
+                     style="left:calc(50% + ${offX}px);top:calc(50% + ${offY}px);transform:translate(-50%,-50%) scale(${sc});cursor:grab;z-index:${isSelected ? 10 : 5};">
+                  <div class="space-preview-actor-avatar">
+                    ${char.sprite ? `<img src="${html(char.sprite)}" alt="${html(char.name)}" style="width:48px;height:48px;object-fit:contain;pointer-events:none;">` : `<span style="font-size:2.2rem;pointer-events:none;line-height:1;">${html(char.icon || (char.isHost ? "👑" : "👤"))}</span>`}
+                    ${char.isHost ? `<span style="position:absolute;top:-6px;right:-6px;font-size:12px;filter:drop-shadow(0 1px 2px #000);">👑</span>` : ""}
+                  </div>
+                  <div class="space-preview-actor-tag">${html(char.name)}</div>
+                  ${!isVisible ? `<span class="space-actor-hidden-badge">CUTSCENE ONLY</span>` : ""}
+                </div>
+              `;
+            }).join("")}
+          </div>
+
+          <div style="display:flex;align-items:center;gap:10px;width:100%;font-size:.72rem;">
+            <span style="color:#ad99ce;white-space:nowrap;">PREVIEW SPACE SIZE:</span>
+            <input type="range" min="0.5" max="3.0" step="0.1" data-space-preview-scale value="${previewScale}" style="flex:1;">
+            <b style="color:#ffe47a;min-width:32px;">${previewScale.toFixed(1)}x</b>
+          </div>
+
+          <b style="font-size:1.15rem;color:#fff;">${html(entry.name)}</b>
+          ${space.customImage ? `<button data-nav data-remove-space-image class="cmd-btn danger" style="margin-top:2px;">✕ REMOVE CUSTOM IMAGE</button>` : ""}
         </div>
 
         <div class="visuals-inputs">
+          <!-- Space Actors List & Folded Controls -->
+          <div class="input-row-group actor-placement-group" style="border:2px solid rgba(84,214,130,.4);border-radius:12px;padding:16px;background:rgba(12,28,18,.65);">
+            <div style="margin-bottom:12px;">
+              <h3 style="margin:0;color:#54d682;font-size:.95rem;letter-spacing:.08em;">🎭 SPACE ACTORS &amp; PLACEMENT</h3>
+              <small style="color:#c9bee6;font-size:.72rem;">Click an actor to fold/unfold their settings, toggle board visibility, and drag them in the preview arena.</small>
+            </div>
+
+            ${spaceCast.length ? `
+              <div class="space-actors-list">
+                ${spaceCast.map((char) => {
+                  const isSelected = expandedActorId && String(char.id) === String(expandedActorId);
+                  const isVisible = char.alwaysVisible !== false && char.visibleOnBoard !== false;
+                  return `
+                    <div class="space-actor-container ${isSelected ? "selected" : ""}" data-select-appearance-actor="${html(char.id)}">
+                      <div class="space-actor-header">
+                        <div class="space-actor-row-info">
+                          <div class="space-actor-icon-preview">
+                            ${char.sprite ? `<img src="${html(char.sprite)}" alt="${html(char.name)}" style="width:32px;height:32px;object-fit:contain;">` : `<span style="font-size:1.5rem;">${html(char.icon || (char.isHost ? "👑" : "👤"))}</span>`}
+                          </div>
+                          <div>
+                            <b style="color:#fff;font-size:.84rem;display:flex;align-items:center;gap:6px;">
+                              ${html(char.name)}
+                              ${char.isHost ? `<span style="font-size:.65rem;color:#ffd55a;">👑 HOST</span>` : ""}
+                            </b>
+                            <small style="font-size:.7rem;color:${isVisible ? "#54d682" : "#ff9cab"};">
+                              ${isVisible ? "● Visible on Board" : "○ Cutscene Only"}
+                            </small>
+                          </div>
+                        </div>
+
+                        <div style="display:flex;align-items:center;gap:6px;">
+                          <button type="button" data-toggle-actor-visibility="${html(char.id)}" class="actor-visibility-btn ${isVisible ? "is-visible" : "is-hidden"}" title="${isVisible ? "Always visible on board (Click to hide)" : "Hidden on board (Click to show)"}">
+                            ${isVisible ? `
+                              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+                              <span>ON BOARD</span>
+                            ` : `
+                              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>
+                              <span>HIDDEN</span>
+                            `}
+                          </button>
+                          <button type="button" data-space-actor-remove="${html(char.id)}" class="cmd-btn danger" style="padding:4px 7px;font-size:.7rem;border-radius:6px;min-width:26px;" title="Remove ${html(char.name)} from this space">🗑</button>
+                          <span style="color:#ad99ce;font-size:.7rem;display:inline-block;transform:${isSelected ? "rotate(90deg)" : "rotate(0deg)"};transition:transform .15s ease;pointer-events:none;margin-left:2px;">▶</span>
+                        </div>
+                      </div>
+
+                      ${isSelected ? `
+                        <div class="space-actor-folded-body">
+                          <!-- Idle Animation Dropdown Folded Inside Actor -->
+                          <div class="input-row-group" style="gap:4px;">
+                            <label style="font-size:.65rem;color:#ffe47a;letter-spacing:.05em;">IDLE ANIMATION</label>
+                            <select data-space-actor-field="animation" data-actor-id="${html(char.id)}" style="padding:7px 10px;font-size:.78rem;background:#100d24;">
+                              ${(() => {
+                                const allActors = ensureBoardActors();
+                                const fullActor = allActors.find((a) => String(a.id) === String(char.id)) || char;
+                                const anims = ragdollAnimations(fullActor);
+                                if (anims && anims.length > 0) {
+                                  return `
+                                    <option value="" ${!char.animation && !char.idleAnimationId ? "selected" : ""}>Default Idle Pose</option>
+                                    ${anims.map((a) => {
+                                      const isSel = String(char.animation) === String(a.id) || String(char.idleAnimationId) === String(a.id);
+                                      return `<option value="${html(a.id)}" ${isSel ? "selected" : ""}>${html(a.name || a.id)} (${Number(a.duration || 2).toFixed(1)}s)</option>`;
+                                    }).join("")}
+                                  `;
+                                } else {
+                                  return `
+                                    <option value="idle" ${char.animation === "idle" || !char.animation ? "selected" : ""}>Idle Breathing</option>
+                                    <option value="float" ${char.animation === "float" ? "selected" : ""}>Floating / Hover</option>
+                                    <option value="bounce" ${char.animation === "bounce" ? "selected" : ""}>Gentle Bounce</option>
+                                    <option value="pulse" ${char.animation === "pulse" ? "selected" : ""}>Pulse Beacon</option>
+                                    <option value="still" ${char.animation === "still" ? "selected" : ""}>Still Stance</option>
+                                  `;
+                                }
+                              })()}
+                            </select>
+                          </div>
+
+                          <!-- Actor Size Modifier Folded Inside Actor -->
+                          <div class="input-row-group" style="gap:4px;margin-top:6px;">
+                            <label style="display:flex;justify-content:space-between;font-size:.65rem;color:#ffe47a;letter-spacing:.05em;">
+                              <span>ACTOR SIZE (RELATIVE TO SPACE)</span>
+                              <output style="color:#54d682;font-weight:bold;">${Number(char.scale ?? 1.0).toFixed(2)}x</output>
+                            </label>
+                            <input type="range" min="0.25" max="3.0" step="0.05" data-space-actor-field="scale" data-actor-id="${html(char.id)}" value="${Number(char.scale ?? 1.0)}">
+                          </div>
+                        </div>
+                      ` : ""}
+                    </div>
+                  `;
+                }).join("")}
+              </div>
+
+              <button type="button" data-open-space-actor-picker class="picker-btn primary" style="width:100%;margin-top:10px;padding:9px 14px;background:#1b4d2e;border-color:#54d682;color:#fff;font-size:.8rem;font-weight:900;display:flex;align-items:center;justify-content:center;gap:6px;">
+                <span>＋</span> ADD ACTOR TO SPACE
+              </button>
+            ` : `
+              <div style="padding:16px;text-align:center;background:rgba(0,0,0,.3);border-radius:8px;">
+                <p style="margin:0 0 10px;font-size:.8rem;color:#c9bee6;">No actors assigned to this space yet.</p>
+                <button type="button" data-open-space-actor-picker class="picker-btn primary" style="background:#1b4d2e;border-color:#54d682;padding:8px 16px;">＋ ADD ACTOR TO SPACE</button>
+              </div>
+            `}
+          </div>
+
           <div class="input-row-group">
             <label>SPACE SHAPE &amp; DISPLAY</label>
             <div class="shape-picker-row">
@@ -1622,6 +2012,72 @@ function spaceActionEditor(entry) {
     `;
   }
 
+function spaceActorPickerModal(entry) {
+  if (!app.spaceActorPickerOpen) return "";
+  const boardActors = ensureBoardActors();
+  const spaceChars = entry?.characters || [];
+
+  return `
+    <div class="map-modal-backdrop space-actor-picker-backdrop">
+      <section class="map-inspector" style="width:min(560px,94vw);max-height:85vh;display:flex;flex-direction:column;border:3px solid #54d682;border-radius:14px;background:#0d0919;box-shadow:0 20px 80px #000;overflow:hidden;">
+        <header style="display:flex;align-items:center;justify-content:space-between;padding:14px 18px;background:#17122e;border-bottom:1px solid #4e386d;">
+          <div>
+            <small style="color:#54d682;font-weight:900;letter-spacing:.1em;display:block;">BOARD ACTOR ROSTER</small>
+            <b style="color:#fff;font-size:1.1rem;">ADD ACTOR TO SPACE</b>
+          </div>
+          <button type="button" data-close-space-actor-picker style="font-size:1.5rem;background:transparent;border:0;color:#fff;cursor:pointer;">×</button>
+        </header>
+
+        <div style="padding:16px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:12px;">
+          <p style="margin:0;font-size:.78rem;color:#c9bee6;">Choose a character from the board's actor roster to stand at this space:</p>
+          ${boardActors.length ? `
+            <div style="display:grid;grid-template-columns:repeat(auto-fill, minmax(230px, 1fr));gap:10px;">
+              ${boardActors.map((actor) => {
+                const alreadyAdded = spaceChars.some((c) => String(c.id) === String(actor.id));
+                return `
+                  <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;background:rgba(20,16,40,.85);border:2px solid ${alreadyAdded ? "rgba(84,214,130,.4)" : "rgba(255,255,255,.12)"};border-radius:10px;gap:8px;">
+                    <div style="display:flex;align-items:center;gap:10px;min-width:0;">
+                      <div style="width:36px;height:36px;display:grid;place-items:center;font-size:1.5rem;flex-shrink:0;">
+                        ${actor.sprite ? `<img src="${html(actor.sprite)}" style="width:32px;height:32px;object-fit:contain;">` : html(actor.icon || (actor.isHost ? "👑" : "👤"))}
+                      </div>
+                      <div style="min-width:0;">
+                        <b style="color:#fff;font-size:.82rem;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${html(actor.name)}</b>
+                        <small style="color:#ffe47a;font-size:.68rem;">${html(actor.role || (actor.isHost ? "Host" : "Actor"))}</small>
+                      </div>
+                    </div>
+
+                    ${alreadyAdded ? `
+                      <span style="color:#54d682;font-size:.7rem;font-weight:bold;white-space:nowrap;padding:4px 8px;background:rgba(84,214,130,.15);border-radius:6px;">✓ IN SPACE</span>
+                    ` : `
+                      <button type="button" data-add-board-actor-to-space="${html(actor.id)}" class="card-btn primary" style="padding:6px 12px;font-size:.74rem;white-space:nowrap;">
+                        ＋ ADD
+                      </button>
+                    `}
+                  </div>
+                `;
+              }).join("")}
+            </div>
+          ` : `
+            <div style="padding:24px;text-align:center;background:rgba(0,0,0,.3);border-radius:10px;">
+              <p style="color:#c9bee6;margin:0 0 10px;font-size:.85rem;">No actors created on this board yet.</p>
+              <button type="button" data-nav data-go="${boardEditorPath('actors')}" class="card-btn primary">🎭 CREATE ACTORS IN WORKSHOP</button>
+            </div>
+          `}
+        </div>
+
+        <footer style="padding:12px 18px;display:flex;align-items:center;justify-content:space-between;background:#17122e;border-top:1px solid #4e386d;">
+          <button type="button" data-nav data-go="${boardEditorPath('actors')}" class="picker-btn" style="font-size:.75rem;">
+            🎭 OPEN HOST &amp; ACTORS WORKSHOP
+          </button>
+          <button type="button" data-close-space-actor-picker class="card-btn primary" style="padding:7px 18px;">
+            DONE
+          </button>
+        </footer>
+      </section>
+    </div>
+  `;
+}
+
   return frame(stationMeta.event, `
     <div class="space-editor-layout">
       <nav class="editor-sub-nav consolidated-editor-bar">
@@ -1648,6 +2104,7 @@ function spaceActionEditor(entry) {
       ${app.particlePickerEditor ? particlePickerDialog() : ""}
       ${activationEditorModal(entry)}
       ${actorSettingsModal(entry)}
+      ${spaceActorPickerModal(entry)}
     </div>
   `, "", { compact: true });
 }
@@ -1692,16 +2149,16 @@ function typedValuePickerDialog() {
   if (!editor) return "";
   if (editor.type === "color-picker") {
     const colors = ["#ffffff","#080d20","#ff4055","#ff8a3d","#ffc83b","#54d682","#35c9ff","#8b5ce6","#ff69b4","#000000"];
-    return `<div class="cmd-editor-modal-backdrop typed-picker-backdrop" data-close-value-picker><section class="typed-picker-dialog color-picker-dialog" onclick="event.stopPropagation()"><header><div><small>UNIVERSAL PICKER</small><b>Choose color</b></div><button type="button" data-nav data-close-value-picker>×</button></header><div class="typed-picker-body"><input class="large-color-input" type="color" data-color-picker-value value="${html(editor.value || "#ffffff")}"><div class="color-swatch-grid">${colors.map((color) => `<button type="button" data-nav data-pick-color="${color}" style="--swatch:${color}" title="${color}"></button>`).join("")}</div><label>HEX COLOR<input data-color-picker-text value="${html(editor.value || "#ffffff")}" maxlength="9"></label></div><footer><button type="button" data-nav data-close-value-picker>CANCEL</button><button type="button" data-nav data-save-value-picker class="primary">USE COLOR</button></footer></section></div>`;
+    return `<div class="cmd-editor-modal-backdrop typed-picker-backdrop"><section class="typed-picker-dialog color-picker-dialog" role="dialog" aria-modal="true" aria-label="Color picker"><header><div><small>UNIVERSAL PICKER</small><b>Choose color</b></div><button type="button" data-nav data-close-value-picker>×</button></header><div class="typed-picker-body"><input class="large-color-input" type="color" data-color-picker-value value="${html(editor.value || "#ffffff")}"><div class="color-swatch-grid">${colors.map((color) => `<button type="button" data-nav data-pick-color="${color}" style="--swatch:${color}" title="${color}"></button>`).join("")}</div><label>HEX COLOR<input data-color-picker-text value="${html(editor.value || "#ffffff")}" maxlength="9"></label></div><footer><button type="button" data-nav data-close-value-picker>CANCEL</button><button type="button" data-nav data-save-value-picker class="primary">USE COLOR</button></footer></section></div>`;
   }
   if (editor.type === "toy-picker") {
     const toys = ensureToyCatalogue(app.project?.data), categories = [...new Set(toys.map((toy) => toy.category || "other"))];
-    return `<div class="cmd-editor-modal-backdrop typed-picker-backdrop" data-close-value-picker><section class="typed-picker-dialog" onclick="event.stopPropagation()"><header><div><small>TOYBOX</small><b>Choose asset or item</b></div><button type="button" data-nav data-close-value-picker>×</button></header><div class="typed-picker-body"><div class="typed-picker-search"><input id="typed-picker-search" type="search" placeholder="Search assets, items, tags…"><select id="typed-picker-category"><option value="all">All categories</option>${categories.map((category) => `<option value="${html(category)}">${html(category.toUpperCase())}</option>`).join("")}</select></div><div class="toy-picker-grid">${toys.map((toy) => `<button type="button" data-nav data-pick-toy="${html(toy.id)}" data-picker-search="${html(`${toy.name} ${toy.category} ${toy.description || ""}`.toLowerCase())}" data-picker-category="${html(toy.category || "other")}" class="${editor.value === toy.id || editor.value === toy.name ? "selected" : ""}"><span>${html(toy.icon || "◆")}</span><div><b>${html(toy.name)}</b><small>${html(toy.category || "Other")} · ${html(toy.description || "")}</small></div></button>`).join("")}</div></div><footer><div><small>SELECTED</small><b>${html(typedValueSummary(editor.type, editor.value))}</b></div><button type="button" data-nav data-close-value-picker>CANCEL</button><button type="button" data-nav data-save-value-picker class="primary">USE ASSET</button></footer></section></div>`;
+    return `<div class="cmd-editor-modal-backdrop typed-picker-backdrop"><section class="typed-picker-dialog" role="dialog" aria-modal="true" aria-label="Toybox item picker"><header><div><small>TOYBOX</small><b>Choose asset or item</b></div><button type="button" data-nav data-close-value-picker>×</button></header><div class="typed-picker-body"><div class="typed-picker-search"><input id="typed-picker-search" type="search" placeholder="Search assets, items, tags…"><select id="typed-picker-category"><option value="all">All categories</option>${categories.map((category) => `<option value="${html(category)}">${html(category.toUpperCase())}</option>`).join("")}</select></div><div class="toy-picker-grid">${toys.map((toy) => `<button type="button" data-nav data-pick-toy="${html(toy.id)}" data-picker-search="${html(`${toy.name} ${toy.category} ${toy.description || ""}`.toLowerCase())}" data-picker-category="${html(toy.category || "other")}" class="${editor.value === toy.id || editor.value === toy.name ? "selected" : ""}"><span>${html(toy.icon || "◆")}</span><div><b>${html(toy.name)}</b><small>${html(toy.category || "Other")} · ${html(toy.description || "")}</small></div></button>`).join("")}</div></div><footer><div><small>SELECTED</small><b>${html(typedValueSummary(editor.type, editor.value))}</b></div><button type="button" data-nav data-close-value-picker>CANCEL</button><button type="button" data-nav data-save-value-picker class="primary">USE ASSET</button></footer></section></div>`;
   }
   const selector = editor.value && typeof editor.value === "object" ? editor.value : { kind:"space-selector", mode:"dynamic", selector:"This Space", spaceId:"", tag:"", filters:{ type:"any", traversable:"any", visible:"any" }, sort:"nearest" };
   editor.value = selector;
   const spaces = app.project?.map?.spaces || [];
-  return `<div class="cmd-editor-modal-backdrop typed-picker-backdrop" data-close-value-picker><section class="typed-picker-dialog" onclick="event.stopPropagation()"><header><div><small>UNIVERSAL SELECTOR</small><b>Choose space or board reference</b></div><button type="button" data-nav data-close-value-picker>×</button></header><div class="typed-picker-body"><div class="selector-mode-tabs"><button type="button" data-nav data-space-picker-mode="dynamic" class="${selector.mode !== "specific" ? "active" : ""}">⌕ DYNAMIC</button><button type="button" data-nav data-space-picker-mode="specific" class="${selector.mode === "specific" ? "active" : ""}">◎ SPECIFIC SPACE</button></div>${selector.mode === "specific" ? `<div class="space-picker-grid">${spaces.map((space) => `<button type="button" data-nav data-pick-space="${space.id}" class="${String(selector.spaceId) === String(space.id) ? "selected" : ""}">${renderSpaceToken(space,"picker-space-token")}<div><b>SPACE ${space.id}</b><small>${html(space.type || "space")} ${space.activity?.title ? `· ${html(space.activity.title)}` : ""}</small></div></button>`).join("") || `<p>No board spaces are available.</p>`}</div>` : `<div class="space-selector-builder"><label>RESOLVE TO<select data-space-selector-field="selector">${["This Space","Triggering Player's Space","Selected Player's Space","External Space Reference","Space With Tag","Random Matching Space","Nearest Matching Space","Previous Space On Route","Next Space On Route"].map((option) => `<option ${selector.selector === option ? "selected" : ""}>${option}</option>`).join("")}</select></label><label>REFERENCE / TAG<input data-space-selector-field="tag" value="${html(selector.tag || "")}" placeholder="e.g. Villain Lair or shop"></label><div class="space-filter-grid"><label>SPACE TYPE<select data-space-filter-field="type"><option value="any">Any type</option>${["event","lucky","blue","red","shop","duel","warp","trap","custom"].map((type) => `<option value="${type}" ${selector.filters?.type === type ? "selected" : ""}>${type.toUpperCase()}</option>`).join("")}</select></label><label>TRAVERSABLE<select data-space-filter-field="traversable"><option value="any">Either</option><option value="yes" ${selector.filters?.traversable === "yes" ? "selected" : ""}>Traversable</option><option value="no" ${selector.filters?.traversable === "no" ? "selected" : ""}>Scene anchor only</option></select></label><label>VISIBILITY<select data-space-filter-field="visible"><option value="any">Either</option><option value="yes" ${selector.filters?.visible === "yes" ? "selected" : ""}>Visible</option><option value="no" ${selector.filters?.visible === "no" ? "selected" : ""}>Hidden</option></select></label><label>SORT<select data-space-selector-field="sort"><option value="nearest" ${selector.sort === "nearest" ? "selected" : ""}>Nearest first</option><option value="farthest" ${selector.sort === "farthest" ? "selected" : ""}>Farthest first</option><option value="random" ${selector.sort === "random" ? "selected" : ""}>Random authoritative</option><option value="route" ${selector.sort === "route" ? "selected" : ""}>Route order</option></select></label></div></div>`}</div><footer><div><small>RESULT</small><b>${html(typedValueSummary(editor.type, selector))}</b></div><button type="button" data-nav data-close-value-picker>CANCEL</button><button type="button" data-nav data-save-value-picker class="primary">USE SPACE</button></footer></section></div>`;
+  return `<div class="cmd-editor-modal-backdrop typed-picker-backdrop"><section class="typed-picker-dialog" role="dialog" aria-modal="true" aria-label="Space picker"><header><div><small>UNIVERSAL SELECTOR</small><b>Choose space or board reference</b></div><button type="button" data-nav data-close-value-picker>×</button></header><div class="typed-picker-body"><div class="selector-mode-tabs"><button type="button" data-nav data-space-picker-mode="dynamic" class="${selector.mode !== "specific" ? "active" : ""}">⌕ DYNAMIC</button><button type="button" data-nav data-space-picker-mode="specific" class="${selector.mode === "specific" ? "active" : ""}">◎ SPECIFIC SPACE</button></div>${selector.mode === "specific" ? `<div class="space-picker-grid">${spaces.map((space) => `<button type="button" data-nav data-pick-space="${space.id}" class="${String(selector.spaceId) === String(space.id) ? "selected" : ""}">${renderSpaceToken(space,"picker-space-token")}<div><b>SPACE ${space.id}</b><small>${html(space.type || "space")} ${space.activity?.title ? `· ${html(space.activity.title)}` : ""}</small></div></button>`).join("") || `<p>No board spaces are available.</p>`}</div>` : `<div class="space-selector-builder"><label>RESOLVE TO<select data-space-selector-field="selector">${["This Space","Triggering Player's Space","Selected Player's Space","External Space Reference","Space With Tag","Random Matching Space","Nearest Matching Space","Previous Space On Route","Next Space On Route"].map((option) => `<option ${selector.selector === option ? "selected" : ""}>${option}</option>`).join("")}</select></label><label>REFERENCE / TAG<input data-space-selector-field="tag" value="${html(selector.tag || "")}" placeholder="e.g. Villain Lair or shop"></label><div class="space-filter-grid"><label>SPACE TYPE<select data-space-filter-field="type"><option value="any">Any type</option>${["event","lucky","blue","red","shop","duel","warp","trap","custom"].map((type) => `<option value="${type}" ${selector.filters?.type === type ? "selected" : ""}>${type.toUpperCase()}</option>`).join("")}</select></label><label>TRAVERSABLE<select data-space-filter-field="traversable"><option value="any">Either</option><option value="yes" ${selector.filters?.traversable === "yes" ? "selected" : ""}>Traversable</option><option value="no" ${selector.filters?.traversable === "no" ? "selected" : ""}>Scene anchor only</option></select></label><label>VISIBILITY<select data-space-filter-field="visible"><option value="any">Either</option><option value="yes" ${selector.filters?.visible === "yes" ? "selected" : ""}>Visible</option><option value="no" ${selector.filters?.visible === "no" ? "selected" : ""}>Hidden</option></select></label><label>SORT<select data-space-selector-field="sort"><option value="nearest" ${selector.sort === "nearest" ? "selected" : ""}>Nearest first</option><option value="farthest" ${selector.sort === "farthest" ? "selected" : ""}>Farthest first</option><option value="random" ${selector.sort === "random" ? "selected" : ""}>Random authoritative</option><option value="route" ${selector.sort === "route" ? "selected" : ""}>Route order</option></select></label></div></div>`}</div><footer><div><small>RESULT</small><b>${html(typedValueSummary(editor.type, selector))}</b></div><button type="button" data-nav data-close-value-picker>CANCEL</button><button type="button" data-nav data-save-value-picker class="primary">USE SPACE</button></footer></section></div>`;
 }
 
 function ensureChoiceOptions(cmd) {
@@ -1736,7 +2193,6 @@ function parameterOptions(key) {
     music:["Event Theme","Rainshadow Reach","Suspense Theme","Haunted Mansion Theme","Bonus Round Fanfare","Silence (Dramatic Pause)"],
     game:["Choose Minigame","Mega Man Challenge","Super Mario Race","Challenge Lab QTE","Custom Minigame"],
     filter:["Any","Consumable","Key Item","Dice","Power-Up","Equipment"],
-    preset:["Coin Burst","Star Burst","Sparkles","Fire Aura","Lightning Storm","Rain Downpour","Hearts","Smoke"],
     anchor:["Actor","Center","Left","Right","Above Space","Player Stage 1","Player Stage 2"],
     animation:["Appear Pop","Disappear Pop","Fade In","Fade Out","Slide In","Slide Out","Bounce","Float","Pulse"],
     emote:["Happy Bounce","Shocked","Alert !","Heart","Skull","Spark","Idea","Angry"],
@@ -1754,6 +2210,7 @@ function parameterRange(key, value) {
 function canonicalSpaceActor(actor){return ensureBoardActors().find(item=>String(item.id)===String(actor?.id))||actor||null;}
 function selectedSpaceActor(cast,value){return canonicalSpaceActor(cast.find(actor=>String(actor.id)===String(value))||cast.find(actor=>actor.name===value)||cast[0]);}
 function actorPickerOptions(cast,value){return cast.length?cast.map(assigned=>{const actor=canonicalSpaceActor(assigned);return `<option value="${html(actor.id)}" ${String(actor.id)===String(value)||actor.name===value?"selected":""}>${actor.isHost?"👑":"🎭"} ${html(actor.name)} · ${html(actor.role||"Actor")}</option>`;}).join(""):`<option value="">No actors assigned to this space</option>`;}
+function particlePickerOptions(value){const particles=ensureEffects().filter(e=>(e.kind||"particle")==="particle");return particles.length?particles.map(p=>`<option value="${html(p.id)}" ${String(p.id)===String(value)||p.name===value?"selected":""}>${html(p.icon||"✦")} ${html(p.name)} (${html(p.shape||"circle").toUpperCase()})</option>`).join(""):`<option value="">No particles created yet</option>`;}
 function ragdollAnimationPickerOptions(actor,value){const animations=ragdollAnimations(actor),idleId=actor?.idleAnimationId||actor?.ragdoll?.idleAnimationId;return animations.length?animations.map(animation=>{const isIdle=String(animation.id)===String(idleId);return `<option value="${html(animation.id)}" ${String(animation.id)===String(value)?"selected":""}>${html(animation.name||"Untitled")}${isIdle?" (⭐ Idle)":""} · ${Number(animation.duration||2).toFixed(1)}s · ${animation.snapshots?.length||0} poses</option>`;}).join(""):`<option value="">No ragdoll animations created</option>`;}
 
 function syncActorToAllSpaceActions(actorId, oldName, updatedActor) {
@@ -1840,6 +2297,35 @@ function syncActorToAllSpaceActions(actorId, oldName, updatedActor) {
   }
 }
 
+function syncSpaceActionToMapSpaces(actionId, action) {
+  if (!app.project?.map?.spaces || !action) return;
+  const chars = (action.characters || []).map((char) => ({
+    id: char.id,
+    name: char.name,
+    icon: char.icon,
+    sprite: char.sprite,
+    color: char.color,
+    offsetX: Number(char.offsetX ?? 0),
+    offsetY: Number(char.offsetY ?? -34),
+    scale: Number(char.scale ?? 1.0),
+    alwaysVisible: char.alwaysVisible !== false && char.visibleOnBoard !== false,
+    isHost: Boolean(char.isHost),
+    animation: char.animation || "float",
+    idleAnimationId: char.idleAnimationId || char.ragdoll?.idleAnimationId,
+    ragdoll: char.ragdoll,
+    spriteSheet: char.spriteSheet,
+    spriteX: char.spriteX,
+    spriteY: char.spriteY
+  }));
+  for (const space of app.project.map.spaces) {
+    if (space.action === actionId || space.activity?.id === actionId) {
+      space.actors = structuredClone(chars);
+      if (action.space?.shape) space.shape = action.space.shape;
+      if (action.space?.color) space.color = action.space.color;
+    }
+  }
+}
+
 // --- Action Inspector / Command Edit Modal ---
 function actorStageEffectsMarkup(cmd){
   const dump=cmd.particleDump||{},particle=ensureEffects().find(effect=>effect.id===dump.effectId),count=Math.max(1,Math.min(300,Number(dump.count)||24));
@@ -1847,7 +2333,7 @@ function actorStageEffectsMarkup(cmd){
 }
 
 function particlePickerDialog(){
-  const picker=app.particlePickerEditor,particles=ensureEffects().filter(effect=>effect.kind==="particle"),selected=particles.find(effect=>effect.id===picker.effectId),shape=picker.shape||selected?.shape||"circle",color=selected?.color||"#8deaaa",colorEnd=selected?.colorEnd||color,title=picker.kind==="transition"?"Choose a transition burst":picker.kind==="placement"?"Choose a controller particle":"Choose a particle spawn";
+  const picker=app.particlePickerEditor,particles=ensureEffects().filter(effect=>effect.kind==="particle"),selected=particles.find(effect=>effect.id===picker.effectId),shape=picker.shape||selected?.shape||"circle",color=selected?.color||"#8deaaa",colorEnd=selected?.colorEnd||color,title=picker.kind==="transition"?"Choose a transition burst":picker.kind==="placement"?"Choose a controller particle":picker.kind==="timeline-param"?"Choose a particle preset":"Choose a particle spawn";
   const previewParticles=Array.from({length:18},(_,index)=>`<i style="--delay:-${(index%6)*.23}s;--tx:${((index%6)-2.5)*22}px;--ty:${-22-Math.floor(index/6)*25}px"></i>`).join("");
   return `<div class="cmd-editor-modal-backdrop particle-picker-backdrop"><section class="particle-picker-dialog" role="dialog" aria-modal="true" aria-label="Particle picker"><header><div><small>REUSABLE PARTICLE PICKER</small><b>${title}</b></div><button type="button" data-nav data-close-particle-picker>×</button></header><div class="particle-picker-body"><section class="particle-picker-library"><header><b>PARTICLE PRESETS</b><small>${particles.length} reusable effects</small></header><div class="particle-preset-grid"><button type="button" data-nav data-pick-transition-particle="" class="particle-preset-card none ${selected?"":"selected"}"><span>∅</span><div><b>NO PARTICLES</b><small>Use only the parent effect</small></div></button>${particles.map(effect=>`<button type="button" data-nav data-pick-transition-particle="${html(effect.id)}" class="particle-preset-card ${picker.effectId===effect.id?"selected":""}"><span class="particle-card-shape shape-${html(effect.shape||"circle")}" style="--particle-color:${html(effect.color||"#fff")};--particle-color-2:${html(effect.colorEnd||effect.color||"#fff")}"></span><div><b>${html(effect.icon||"✦")} ${html(effect.name)}</b><small>${html(effect.shape||"circle").toUpperCase()} · ${Number(effect.size||4)}px</small></div></button>`).join("")}</div></section><aside class="particle-picker-settings"><div class="particle-picker-preview shape-${html(shape)}" style="--effect-color:${html(color)};--effect-color-2:${html(colorEnd)};--effect-life:${Math.max(.4,Number(selected?.degradeTime||1.4))}s;--effect-opacity:${Number(selected?.opacity??1)};--size:${Math.max(4,Number(selected?.size||6))}px;--end:${Math.max(2,Number(selected?.sizeEnd||selected?.size||6))}px"><div class="preview-grid"></div><span class="preview-emitter"></span><div class="preview-particles">${previewParticles}</div></div><label>TOTAL PARTICLES <output>${Number(picker.count||24)}</output><input type="range" min="1" max="300" step="1" data-particle-picker-field="count" value="${Number(picker.count||24)}"></label><label>BURST SHAPE<select data-particle-picker-field="shape">${["circle","square","line","star","leaf"].map(value=>`<option value="${value}" ${shape===value?"selected":""}>${value.toUpperCase()}</option>`).join("")}</select></label><p>${selected?`Uses <b>${html(selected.name)}</b> and keeps its authored color, size, motion, and lifetime.`:"No particle preset is selected."}</p></aside></div><footer><div><small>SELECTION</small><b>${selected?html(selected.name):"No particles"} · ${Number(picker.count||24)} total</b></div><button type="button" data-nav data-close-particle-picker>CANCEL</button><button type="button" data-nav data-save-particle-picker class="primary">USE PARTICLES</button></footer></section></div>`;
 }
@@ -1933,6 +2419,12 @@ function commandEditorModal(entry) {
       if (parameter.type === "actor-picker" || actorParameterKeys.has(parameter.key) || (cmd.op === "select-actor" && parameter.key === "selector")) return `<div class="cmd-editor-field"><label>${html(parameter.label)}</label><select data-generic-param="${html(parameter.key)}" data-space-actor-picker>${actorPickerOptions(cast,value)}</select><small>Only actors assigned in this Space Action’s Cast tab are available.</small></div>`;
       if (parameter.type === "animation-picker" || animationParameterKeys.has(parameter.key)) { const actor=selectedSpaceActor(cast,cmd.parameters?.actor); return `<div class="cmd-editor-field"><label>${html(parameter.label)}</label><select data-generic-param="${html(parameter.key)}" data-ragdoll-animation-picker>${ragdollAnimationPickerOptions(actor,value)}</select><small>Ragdoll animation for ${html(actor?.name||"the selected actor")}.</small></div>`; }
       if (parameter.type === "player-selector" || playerParameterKeys.has(parameter.key) || (cmd.op === "select-player" && parameter.key === "selector")) return `<div class="cmd-editor-field selector-parameter"><label>${html(parameter.label)}</label><button type="button" data-nav data-open-player-selector="${html(parameter.key)}"><span>👥</span><div><b>${html(playerSelectorSummary(value))}</b><small>Open universal player selector</small></div><em>EDIT ▸</em></button></div>`;
+      if (parameter.type === "particle-picker" || particleParameterKeys.has(parameter.key)) {
+        const particles = ensureEffects().filter(e => (e.kind || "particle") === "particle");
+        const selectedParticle = particles.find(p => String(p.id) === String(value) || p.name === value) || particles[0];
+        const currentId = selectedParticle?.id || value || "";
+        return `<div class="cmd-editor-field selector-parameter"><label>${html(parameter.label)}</label><div style="display:flex;gap:8px;align-items:center;"><select data-generic-param="${html(parameter.key)}" style="flex:1;">${particlePickerOptions(currentId)}</select><button type="button" data-nav data-open-particle-param-picker="${html(parameter.key)}" style="white-space:nowrap;padding:7px 12px;font-size:12px;display:flex;align-items:center;gap:6px;" title="Open Visual Particle Browser"><span class="particle-picker-mini-preview shape-${html(selectedParticle?.shape || "circle")}" style="--particle-color:${html(selectedParticle?.color || "#8deaaa")};--particle-color-2:${html(selectedParticle?.colorEnd || selectedParticle?.color || "#ffffff")};width:16px;height:16px;display:inline-block;vertical-align:middle;"></span>BROWSE ▸</button></div><small>Authored board particles from Special Effects.</small></div>`;
+      }
       const inferredPicker = parameter.type === "toy-picker" || toyParameterKeys.has(parameter.key) ? "toy-picker" : parameter.type === "space-picker" || spaceParameterKeys.has(parameter.key) ? "space-picker" : parameter.type === "color-picker" || parameter.key.toLowerCase().includes("color") ? "color-picker" : "";
       if (inferredPicker) return `<div class="cmd-editor-field selector-parameter"><label>${html(parameter.label)}</label><button type="button" data-nav data-open-value-picker="${html(parameter.key)}" data-picker-type="${inferredPicker}"><span>${inferredPicker === "toy-picker" ? "◆" : inferredPicker === "space-picker" ? "◎" : "🎨"}</span><div><b>${html(typedValueSummary(inferredPicker,value))}</b><small>Open ${inferredPicker.replace("-", " ")}</small></div><em>EDIT ▸</em></button></div>`;
       if (parameter.type === "boolean") return `<label class="primitive-check"><input type="checkbox" data-generic-param="${html(parameter.key)}" ${value ? "checked" : ""}><span>${html(parameter.label)}</span></label>`;
@@ -2201,14 +2693,17 @@ const toyParameterKeys = new Set(["asset", "costAsset", "rewardAsset", "wagerAss
 const spaceParameterKeys = new Set(["space", "connection", "reference"]);
 const actorParameterKeys = new Set(["actor"]);
 const animationParameterKeys = new Set(["animation"]);
+const particleParameterKeys = new Set(["particle", "preset", "particleId", "effectId"]);
 const timelineBlock = (category, op, label, icon, desc, parameters = {}) => ({
   category, op, label, icon, desc, parameters,
-  parameterSchema: Object.entries(parameters).map(([key, value]) => ({ key, label: key.replace(/([A-Z])/g, " $1").replace(/^./, (char) => char.toUpperCase()), type: actorParameterKeys.has(key) || (op === "select-actor" && key === "selector") ? "actor-picker" : animationParameterKeys.has(key) ? "animation-picker" : playerParameterKeys.has(key) || (op === "select-player" && key === "selector") ? "player-selector" : toyParameterKeys.has(key) ? "toy-picker" : spaceParameterKeys.has(key) ? "space-picker" : key.toLowerCase().includes("color") ? "color-picker" : typeof value === "boolean" ? "boolean" : typeof value === "number" ? "number" : "text" })),
+  parameterSchema: Object.entries(parameters).map(([key, value]) => ({ key, label: key.replace(/([A-Z])/g, " $1").replace(/^./, (char) => char.toUpperCase()), type: actorParameterKeys.has(key) || (op === "select-actor" && key === "selector") ? "actor-picker" : animationParameterKeys.has(key) ? "animation-picker" : playerParameterKeys.has(key) || (op === "select-player" && key === "selector") ? "player-selector" : toyParameterKeys.has(key) ? "toy-picker" : spaceParameterKeys.has(key) ? "space-picker" : particleParameterKeys.has(key) ? "particle-picker" : key.toLowerCase().includes("color") ? "color-picker" : typeof value === "boolean" ? "boolean" : typeof value === "number" ? "number" : "text" })),
   waitForInput: ["dialogue", "choice", "confirm", "choose-player", "select-player", "select-asset", "select-item", "select-space", "select-quantity", "launch-minigame", "trade-menu"].includes(op)
 });
 
 function completeTimelineBlockLibrary() {
   const b = timelineBlock;
+  const firstParticle = ensureEffects().find(effect => (effect.kind || "particle") === "particle");
+  const defaultPreset = firstParticle ? firstParticle.id : "";
   return {
     flow: [
       b("flow","entry","ENTRY · Begin sequence","⏵","Named starting point for this sequence.",{entryName:"Main"}), b("flow","end","END · Complete sequence","⏹","Finish normally and release owned resources."), b("flow","delay","DELAY","◷","Wait in event time without blocking unrelated background events.",{seconds:1}), b("flow","barrier","FLOW BARRIER","⏸","Do not advance until the selected interaction or action completes.",{waitFor:"Previous event"}), b("flow","call-sequence","CALL SEQUENCE","↗","Run a reusable Space, Board, or Game sequence.",{scope:"Space",sequence:"Main Event",wait:true}), b("flow","return","RETURN","↩","Return to the sequence that called this one."), b("flow","cancel-sequence","CANCEL SEQUENCE","⊘","Cancel a selected concurrently running sequence.",{sequence:"Sequence name"}), b("flow","cancel-event","CANCEL EVENT","■","Safely terminate the whole Space Action and run cleanup."), b("flow","emit-signal","EMIT SIGNAL","⌁","Broadcast a named signal to board systems and other spaces.",{signal:"gate.opened",payload:""}), b("flow","checkpoint","CHECKPOINT","⚑","Create a safe resume/debug point.",{name:"Checkpoint"}), b("flow","comment","COMMENT / ANNOTATION","✎","Add a non-executing note to the timeline.",{note:"Explain this section"})
@@ -2238,7 +2733,7 @@ function completeTimelineBlockLibrary() {
       b("camera","focus-target","FOCUS CAMERA","⌖","Center on a player, space, actor, anchor, or world target.",{target:"This Space",zoom:1.5}), b("camera","pan-target","PAN TO TARGET","→","Tween camera position to a symbolic target.",{target:"Primary Actor",duration:1,easing:"Ease In Out"}), b("camera","zoom","ZOOM CAMERA","⌕","Animate camera zoom with easing and board clamping.",{zoom:1.8,duration:.8,easing:"Ease Out"}), b("camera","frame-targets","FRAME TARGETS","▣","Automatically frame several selected targets.",{targets:"All Players",padding:10,duration:1}), b("camera","follow-target","FOLLOW TARGET","◎","Track a moving target using strength and dead-zone settings.",{target:"Triggering Player",strength:.8,deadZone:5}), b("camera","set-offset","SET CAMERA OFFSET","↔","Offset current target framing.",{x:0,y:-10,duration:.5}), b("camera","shake","SHAKE CAMERA","⚡","Procedural positional and rotational shake with falloff.",{strength:"Medium",duration:.5,frequency:18}), b("camera","bump","BUMP CAMERA","✹","Single short impact motion.",{strength:"Medium",direction:"Down"}), b("camera","save","SAVE CAMERA","↓","Push the current camera configuration onto automatic cleanup."), b("camera","restore","RESTORE CAMERA","↑","Restore the most recently saved camera configuration.",{duration:.8}), b("camera","release","RELEASE CAMERA","○","Return ownership to normal board-camera behavior.")
     ],
     screen: [
-      b("screen","flash","FLASH SCREEN","☀","Overlay flash with color, intensity, and fade.",{color:"#ffffff",intensity:1,duration:.3}), b("screen","fade","FADE SCREEN","◐","Fade to or from a color overlay.",{direction:"To",color:"#000000",duration:.5}), b("screen","tint","TINT SCREEN","▧","Apply a temporary color treatment.",{color:"#663399",strength:.5,duration:2}), b("screen","vignette","VIGNETTE","◉","Focus or threaten with a configurable vignette.",{strength:.6,duration:2}), b("screen","letterbox","LETTERBOX","═","Animate cinematic top and bottom framing bars.",{enabled:true,duration:.4}), b("screen","freeze-frame","FREEZE FRAME","❄","Freeze presentation without losing event state.",{duration:.2}), b("screen","hit-stop","HIT STOP","✹","Apply a tiny dramatic presentation freeze.",{duration:.08}), b("screen","spawn-particles","SPAWN PARTICLES","✦","Run a particle preset at a target or screen anchor.",{preset:"Coin Burst",target:"Triggering Player",duration:1,follow:true,space:"World"})
+      b("screen","flash","FLASH SCREEN","☀","Overlay flash with color, intensity, and fade.",{color:"#ffffff",intensity:1,duration:.3}), b("screen","fade","FADE SCREEN","◐","Fade to or from a color overlay.",{direction:"To",color:"#000000",duration:.5}), b("screen","tint","TINT SCREEN","▧","Apply a temporary color treatment.",{color:"#663399",strength:.5,duration:2}), b("screen","vignette","VIGNETTE","◉","Focus or threaten with a configurable vignette.",{strength:.6,duration:2}), b("screen","letterbox","LETTERBOX","═","Animate cinematic top and bottom framing bars.",{enabled:true,duration:.4}), b("screen","freeze-frame","FREEZE FRAME","❄","Freeze presentation without losing event state.",{duration:.2}), b("screen","hit-stop","HIT STOP","✹","Apply a tiny dramatic presentation freeze.",{duration:.08}), b("screen","spawn-particles","SPAWN PARTICLES","✦","Run a particle preset at a target or screen anchor.",{preset:defaultPreset,target:"Triggering Player",duration:1,follow:true,space:"World"})
     ],
     minigame: [
       b("minigame","launch-minigame","LAUNCH MINIGAME","🎮","Suspend the event, run an emulator minigame, and expose authoritative results.",{game:"Choose Minigame",participants:"Triggering Player",teams:"Free for all",wagerAsset:"Coins",wager:0,saveAs:"minigameResult"}), b("minigame","start-duel","START DUEL","⚔","Select two players, stakes, minigame, and winner settlement.",{challenger:"Triggering Player",opponent:"Selected Player",stakeAsset:"Coins",stake:10}), b("minigame","start-battle","START BATTLE","💥","Gather contributions, launch multiplayer game, and distribute the pot by ranking.",{players:"All Players",asset:"Coins",contribution:10}), b("minigame","start-team-game","START TEAM MINIGAME","👥","Form teams and launch a selected game or pool.",{players:"All Players",formation:"2 vs 2",game:"Choose Minigame"}), b("minigame","solo-challenge","START SOLO CHALLENGE","🏆","Run a one-player emulator challenge with reward/failure outputs.",{player:"Triggering Player",game:"Choose Minigame",reward:"Reward Sequence"}), b("minigame","read-result","READ MINIGAME RESULT","📊","Extract winner, ranking, scores, success, or custom emulator output.",{result:"minigameResult",field:"Winner",saveAs:"winner"})
@@ -2491,8 +2986,8 @@ function toyEditorModal() {
   if (!draft?.toy) return "";
   const toy = draft.toy;
   return `
-    <div class="cmd-editor-modal-backdrop" data-close-toy-editor>
-      <div class="cmd-editor-modal-dialog toy-editor-dialog" onclick="event.stopPropagation()">
+    <div class="cmd-editor-modal-backdrop toy-editor-backdrop">
+      <div class="cmd-editor-modal-dialog toy-editor-dialog">
         <header class="action-modal-header">
           <h2>${draft.isNew ? "＋ CREATE TOY" : "✏️ EDIT TOY"}</h2>
           <button type="button" data-nav data-close-toy-editor class="modal-close-window-btn" title="Close Window">✕</button>
@@ -2590,7 +3085,43 @@ function moveSelectedKeyframe(seconds){const {animation,frame}=selectedActorAnim
 function updateSelectedFrameControls(frame){const selected=selectedActorAnimation().frame;if(!selected||!frame)return;selected.corners=frame.corners.map(point=>({...point}));selected.anchor={...frame.anchor};selected.corners.forEach((point,index)=>{for(const axis of ["x","y"]){const input=root.querySelector(`[data-keyframe-point="${index}:${axis}"]`);if(input)input.value=Number(point[axis]).toFixed(1);}});for(const axis of ["x","y"]){const input=root.querySelector(`[data-keyframe-anchor="${axis}"]`);if(input)input.value=Number(selected.anchor[axis]).toFixed(1);}}
 function updateActorPreviewDecorations(preview,animation,time,force=false){if(!preview||!animation)return;const duration=Math.max(.1,animation.duration),position=time/duration,frames=[...animation.keyframes].sort((a,b)=>a.time-b.time),frame=[...frames].reverse().find(item=>Number(item.time)<=position+.002),hitTime=frame?Number(frame.time)*duration:-99,visible=Boolean(frame?.emote?.enabled)&&time-hitTime>=-.02&&time-hitTime<Math.min(1,Math.max(.35,duration*.35));preview.className=preview.className.replace(/\s?has-emote|\s?emote-(?:round|thought|burst|square|cloud)|\s?emote-anim-[\w-]+/g,"");if(!visible){delete preview.dataset.emote;return;}preview.dataset.emote=frame.emote.icon||"!";preview.style.setProperty("--emote-color",frame.emote.color||"#ffffff");preview.classList.add("has-emote",`emote-${frame.emote.shape||"round"}`,`emote-anim-${frame.emote.animation||"pop"}`);if(force||app.actorLastEmoteFrame!==frame){app.actorLastEmoteFrame=frame;preview.classList.remove(`emote-anim-${frame.emote.animation||"pop"}`);void preview.offsetWidth;preview.classList.add(`emote-anim-${frame.emote.animation||"pop"}`);}}
 function keyframeInspectorMarkup(){const {animation,frame}=selectedActorAnimation();if(!animation||!frame)return `<section class="keyframe-inspector empty"><b>SELECT A KEYFRAME</b><p>Choose a dot to edit its timing, warp points, emote, sound, and particles.</p></section>`;frame.corners ||= [{x:-60,y:-75},{x:60,y:-75},{x:-60,y:75},{x:60,y:75}];frame.anchor ||= {x:0,y:0};frame.emote ||= {enabled:false,icon:"!",shape:"round",animation:"pop",color:"#ffffff"};frame.particles ||= [];const particles=ensureEffects().filter(effect=>(effect.kind||"particle")==="particle");return `<section class="keyframe-inspector"><header><div><small>SELECTED KEYFRAME</small><b>${(frame.time*animation.duration).toFixed(2)}s</b></div><label>TIME <input data-keyframe-time type="number" min="0" max="${animation.duration}" step=".01" value="${(frame.time*animation.duration).toFixed(2)}"></label></header><div class="keyframe-inspector-tabs"><section><h4>WARP POINTS</h4><div class="point-coordinate-grid">${frame.corners.map((point,index)=>`<fieldset><legend>${["TOP LEFT","TOP RIGHT","BOTTOM LEFT","BOTTOM RIGHT"][index]}</legend><label>X<input data-keyframe-point="${index}:x" type="number" value="${Number(point.x).toFixed(1)}"></label><label>Y<input data-keyframe-point="${index}:y" type="number" value="${Number(point.y).toFixed(1)}"></label></fieldset>`).join("")}<fieldset class="anchor-coordinates"><legend>ANCHOR</legend><label>X<input data-keyframe-anchor="x" type="number" value="${Number(frame.anchor.x).toFixed(1)}"></label><label>Y<input data-keyframe-anchor="y" type="number" value="${Number(frame.anchor.y).toFixed(1)}"></label></fieldset></div></section><section><h4>EMOTE BUBBLE</h4><label class="keyframe-check"><input data-keyframe-emote="enabled" type="checkbox" ${frame.emote.enabled?"checked":""}> SHOW ABOVE ACTOR</label><div class="keyframe-form-grid"><label>ICON<input data-keyframe-emote="icon" value="${html(frame.emote.icon)}" maxlength="4"></label><label>SHAPE<select data-keyframe-emote="shape">${["round","thought","burst","square","cloud"].map(value=>`<option ${frame.emote.shape===value?"selected":""}>${value}</option>`).join("")}</select></label><label>APPEAR ANIMATION<select data-keyframe-emote="animation">${["pop","fade","bounce","spin","elastic","slide-down","rubberband"].map(value=>`<option ${frame.emote.animation===value?"selected":""}>${value}</option>`).join("")}</select></label><label>COLOR<input data-keyframe-emote="color" type="color" value="${html(frame.emote.color)}"></label></div><h4>SOUND EFFECT</h4><div class="sound-picker-row"><select data-keyframe-sound><option value="">No sound</option>${["coin","star-fanfare","thunder-strike","warp-pipe","dice-roll","chest","mystery","lose","laugh","whistle"].map(value=>`<option value="${value}" ${frame.sound===value?"selected":""}>${value}</option>`).join("")}</select><button data-preview-keyframe-sound>▶ TEST</button></div></section><section class="keyframe-particles"><header><h4>PARTICLE SPAWNS</h4><button data-add-keyframe-particle ${particles.length?"":"disabled"}>＋ ADD SPAWN</button></header>${frame.particles.map((spawn,index)=>`<article data-keyframe-particle="${index}"><select data-particle-spawn-field="effectId">${particles.map(p=>`<option value="${html(p.id)}" ${spawn.effectId===p.id?"selected":""}>${html(p.name)}</option>`).join("")}</select><label>X <input data-particle-spawn-field="x" type="number" min="-200" max="200" value="${Number(spawn.x||0)}"></label><label>Y <input data-particle-spawn-field="y" type="number" min="-200" max="200" value="${Number(spawn.y||-80)}"></label><label>COUNT <input data-particle-spawn-field="count" type="number" min="1" max="100" value="${Number(spawn.count||12)}"></label><button data-remove-keyframe-particle="${index}">×</button></article>`).join("")||`<p>No particle spawns on this keyframe. Add one and position it relative to the actor.</p>`}</section></div></section>`;}
-function mountActorStages(){const entry=currentAction?.();if(!entry)return;const now=Number(app.timelinePlayhead||0),clips=entry.timeline.tracks.flatMap(track=>track.clips||[]);for(const host of root.querySelectorAll("[data-timeline-pixi-actor]")){const assigned=entry.characters.find(item=>String(item.id)===String(host.dataset.timelinePixiActor)),actor=canonicalSpaceActor(assigned);if(!actor)continue;const actorClips=clips.filter(clip=>["actors","stage"].includes(clip.category)&&(String(clip.actorId||clip.parameters?.actor||"")===String(actor.id)||clip.target===actor.name)),activeClips=actorClips.filter(clip=>now>=Number(clip.start||0)&&now<Number(clip.start||0)+Number(clip.duration||2)),active=activeClips.find(clip=>clip.animationId||clip.parameters?.animation)||activeClips.at(-1),despawn=actorClips.filter(clip=>clip.op==="despawn-actor"||clip.actorAction==="despawn").sort((a,b)=>Number(a.start||0)-Number(b.start||0))[0],visible=!(Boolean(despawn&&now>=Number(despawn.start||0)+Number(despawn.duration||2)));if(host.dataset.stageVisible!==String(visible)){host.dataset.stageVisible=String(visible);host.classList.toggle("is-stage-hidden",!visible);}const animations=ragdollAnimations(actor),idleId=actor.idleAnimationId||actor.ragdoll?.idleAnimationId||actor.ragdoll?.activeAnimationId||actor.animationId,animation=animations.find(item=>String(item.id)===String(active?.animationId||active?.parameters?.animation||idleId))||animations[0],playbackAnimation=active?animation:{...animation,loop:true},local=active?Math.max(0,now-Number(active.start||0)):now;let renderer=actorRenderers.find(item=>item.host===host||String(item.actor?.id)===String(actor.id));if(renderer instanceof PixiRagdollRenderer){if(renderer.host!==host){renderer.destroy();actorRenderers.splice(actorRenderers.indexOf(renderer),1);renderer=null;}else renderer.setPlayback(playbackAnimation,local,active?.duration);}if(!renderer){renderer=new PixiRagdollRenderer({host,className:"pixi-ragdoll-canvas"});actorRenderers.push(renderer);renderer.init().then(()=>renderer.setActor(actor,playbackAnimation,local,active?.duration)).catch(error=>console.error("Timeline actor preview failed",error));}}}
+function mountActorStages(){
+  const entry=currentAction?.();
+  if(!entry)return;
+  const now=Number(app.timelinePlayhead||0);
+  const activePathClips=getActiveTimelineClips(entry.timeline,now);
+  const {hidden,spawnPending}=evaluateActorTimelineLifecycle(entry,now);
+  const hiddenSet=new Set(hidden),pendingSet=new Set(spawnPending);
+
+  for(const host of root.querySelectorAll("[data-timeline-pixi-actor]")){
+    const assigned=entry.characters.find(item=>String(item.id)===String(host.dataset.timelinePixiActor)),actor=canonicalSpaceActor(assigned);
+    if(!actor)continue;
+    const actorIdStr=String(actor.id);
+    const isHidden=hiddenSet.has(actorIdStr)||pendingSet.has(actorIdStr)||(actor.visible===false&&!activePathClips.some(c=>(String(c.actorId||c.parameters?.actor||"")===actorIdStr||c.target===actor.name)&&["spawn-actor","spawn"].includes(c.op||c.actorAction)&&now>=Number(c.start||0)));
+    const visible=!isHidden;
+    if(host.dataset.stageVisible!==String(visible)){
+      host.dataset.stageVisible=String(visible);
+      host.classList.toggle("is-stage-hidden",!visible);
+    }
+    const actorClips=activePathClips.filter(clip=>["actors","stage"].includes(clip.category)&&(String(clip.actorId||clip.parameters?.actor||"")===actorIdStr||clip.target===actor.name));
+    const activeClips=actorClips.filter(clip=>now>=Number(clip.start||0)&&now<Number(clip.start||0)+Number(clip.duration||2));
+    const active=activeClips.find(clip=>clip.animationId||clip.parameters?.animation)||activeClips.at(-1);
+    const animations=ragdollAnimations(actor),idleId=actor.idleAnimationId||actor.ragdoll?.idleAnimationId||actor.ragdoll?.activeAnimationId||actor.animationId,animation=animations.find(item=>String(item.id)===String(active?.animationId||active?.parameters?.animation||idleId))||animations[0],playbackAnimation=active?animation:{...animation,loop:true},local=active?Math.max(0,now-Number(active.start||0)):now;
+    let renderer=actorRenderers.find(item=>item.host===host||String(item.actor?.id)===actorIdStr);
+    if(renderer instanceof PixiRagdollRenderer){
+      if(renderer.host!==host){
+        renderer.destroy();
+        actorRenderers.splice(actorRenderers.indexOf(renderer),1);
+        renderer=null;
+      } else renderer.setPlayback(playbackAnimation,local,active?.duration);
+    }
+    if(!renderer){
+      renderer=new PixiRagdollRenderer({host,className:"pixi-ragdoll-canvas"});
+      actorRenderers.push(renderer);
+      renderer.init().then(()=>renderer.setActor(actor,playbackAnimation,local,active?.duration)).catch(error=>console.error("Timeline actor preview failed",error));
+    }
+  }
+}
 function mountRagdollTab(){const dialog=root.querySelector(".actor-settings-dialog");if(!dialog)return;const nav=dialog.querySelector(":scope > nav");if(!nav?.querySelector('[data-actor-settings-tab="ragdoll-paint"]'))nav.insertAdjacentHTML("beforeend",`<button type="button" data-actor-settings-tab="ragdoll-paint" class="${app.actorEditorTab==="ragdoll-paint"?"active":""}">RAGDOLL PAINT</button><button type="button" data-actor-settings-tab="ragdoll-infill" class="${app.actorEditorTab==="ragdoll-infill"?"active":""}">RAGDOLL INFILL</button><button type="button" data-actor-settings-tab="ragdoll-test" class="${app.actorEditorTab==="ragdoll-test"?"active":""}">RAGDOLL TEST</button><button type="button" data-actor-settings-tab="ragdoll-animations" class="${app.actorEditorTab==="ragdoll-animations"?"active":""}">RAGDOLL ANIMATIONS</button>`);nav?.querySelectorAll("[data-actor-settings-tab]").forEach(button=>button.classList.toggle("active",button.dataset.actorSettingsTab===app.actorEditorTab));if(!app.actorEditorTab?.startsWith("ragdoll-"))return;actorRenderers.forEach(renderer=>renderer.destroy());actorRenderers=[];app.ragdollRenderer?.destroy();const actor=ensureBoardActors().find(item=>String(item.id)===String(app.actorEditorId))||currentSpaceAction()?.characters?.find(item=>String(item.id)===String(app.actorEditorId)),workspace=dialog.querySelector(".actor-animation-workspace,.ragdoll-tab-host");if(!actor||!workspace){toast("RAGDOLL WORKSPACE COULD NOT OPEN");return;}ensureRagdoll(actor);if(!workspace.classList.contains("ragdoll-tab-host"))workspace.outerHTML=`<div class="ragdoll-tab-host"></div>`;const host=dialog.querySelector(".ragdoll-tab-host");host.innerHTML=`<div class="ragdoll-loading">PREPARING RIGID ARTWORK…</div>`;const mode=app.actorEditorTab==="ragdoll-animations"?"animations":app.actorEditorTab==="ragdoll-test"?"test":app.actorEditorTab==="ragdoll-infill"?"infill":"paint",renderer=new RagdollEditor(host,actor,{mode,onChange:(rig)=>{if(rig?.idleAnimationId)actor.idleAnimationId=rig.idleAnimationId;syncActorToAllSpaceActions(actor.id,actor.name,actor);save("actors");save("event");}});app.ragdollRenderer=renderer;renderer.init().catch(error=>{host.innerHTML=`<div class="ragdoll-error">${html(error.message)}</div>`;toast(`RAGDOLL EDITOR: ${error.message}`);});}
 function syncMapOverlayCamera(camera){for(const board of root.querySelectorAll("#map-board,#effects-board"))board.style.transform=`translate(${camera.x}px,${camera.y}px) scale(${camera.zoom}) rotate(${camera.rotation}rad)`;}
 function mapVisualSignature(){return JSON.stringify({image:app.project.map.image,foreground:app.project.map.foreground,layers:app.project.map.layers,spaces:app.project.map.spaces,paths:app.project.map.paths,objects:app.project.map.objects,triggers:app.project.map.triggers,regions:app.project.map.regions,spawns:app.project.map.spawns,cameras:app.project.map.cameras,effectPlacements:app.project.map.effectPlacements});}
@@ -2954,8 +3485,17 @@ root.addEventListener("click", async (event) => {
     if (source && act) {
       act.characters ||= [];
       if (!act.characters.some((c) => String(c.id) === String(source.id))) {
-        act.characters.push(structuredClone(source));
+        const newChar = structuredClone(source);
+        newChar.offsetX = 0;
+        newChar.offsetY = -34;
+        newChar.scale = 1.0;
+        newChar.alwaysVisible = true;
+        newChar.visibleOnBoard = true;
+        act.characters.push(newChar);
+        app.spaceAppearanceActorId = newChar.id;
+        syncSpaceActionToMapSpaces(act.id, act);
         save("event");
+        save("map");
         render();
         playSfx("star");
         toast(`${source.name.toUpperCase()} ADDED TO THIS SPACE! ★`);
@@ -2963,15 +3503,22 @@ root.addEventListener("click", async (event) => {
     }
     return;
   }
-  const castRemove = event.target.closest("[data-cast-remove]");
+  const castRemove = event.target.closest("[data-cast-remove], [data-space-actor-remove]");
   if (castRemove) {
-    const charId = castRemove.dataset.castRemove;
+    const charId = castRemove.dataset.spaceActorRemove || castRemove.dataset.castRemove;
     const act = currentAction();
     if (act && act.characters) {
+      const removed = act.characters.find((c) => String(c.id) === String(charId));
       act.characters = act.characters.filter((c) => String(c.id) !== String(charId));
+      if (String(app.spaceAppearanceActorId) === String(charId)) {
+        app.spaceAppearanceActorId = null;
+      }
+      syncSpaceActionToMapSpaces(act.id, act);
       save("event");
+      save("map");
       render();
-      toast("ACTOR REMOVED FROM THIS SPACE");
+      playSfx("thunder");
+      toast(`${(removed?.name || "ACTOR").toUpperCase()} REMOVED FROM THIS SPACE`);
     }
     return;
   }
@@ -3020,17 +3567,19 @@ root.addEventListener("click", async (event) => {
   }
   const openValuePicker = event.target.closest("[data-open-value-picker]");
   if (openValuePicker && app.editingCommand?.cmd) { const key = openValuePicker.dataset.openValuePicker; app.valuePickerEditor = { key, type:openValuePicker.dataset.pickerType, value:structuredClone(app.editingCommand.cmd.parameters?.[key] ?? "") }; render(); return; }
-  if (event.target.closest("[data-close-value-picker]")) { app.valuePickerEditor = null; render(); return; }
+  if (event.target.closest("[data-close-value-picker]") || event.target.classList.contains("typed-picker-backdrop")) { app.valuePickerEditor = null; render(); return; }
   const pickToy = event.target.closest("[data-pick-toy]"); if (pickToy && app.valuePickerEditor) { app.valuePickerEditor.value = pickToy.dataset.pickToy; render(); return; }
   const pickColor = event.target.closest("[data-pick-color]"); if (pickColor && app.valuePickerEditor) { app.valuePickerEditor.value = pickColor.dataset.pickColor; render(); return; }
   const spaceMode = event.target.closest("[data-space-picker-mode]"); if (spaceMode && app.valuePickerEditor) { app.valuePickerEditor.value.mode = spaceMode.dataset.spacePickerMode; render(); return; }
   const pickSpace = event.target.closest("[data-pick-space]"); if (pickSpace && app.valuePickerEditor) { app.valuePickerEditor.value.spaceId = pickSpace.dataset.pickSpace; render(); return; }
   if (event.target.closest("[data-save-value-picker]") && app.valuePickerEditor && app.editingCommand?.cmd) { app.editingCommand.cmd.parameters ||= {}; app.editingCommand.cmd.parameters[app.valuePickerEditor.key] = structuredClone(app.valuePickerEditor.value); app.valuePickerEditor = null; render(); return; }
   if(event.target.closest("[data-open-particle-picker]")&&app.editingCommand?.cmd){const dump=app.editingCommand.cmd.particleDump||{},particle=ensureEffects().find(effect=>effect.id===dump.effectId);app.particlePickerEditor={kind:"transition",effectId:dump.effectId||"",count:Number(dump.count||24),shape:dump.shape||particle?.shape||"circle"};render();return;}
+  const openParticleParam=event.target.closest("[data-open-particle-param-picker]");
+  if(openParticleParam&&app.editingCommand?.cmd){const key=openParticleParam.dataset.openParticleParamPicker,currentVal=app.editingCommand.cmd.parameters?.[key],particles=ensureEffects().filter(effect=>(effect.kind||"particle")==="particle"),particle=particles.find(effect=>effect.id===currentVal||effect.name===currentVal)||particles[0];app.particlePickerEditor={kind:"timeline-param",key,effectId:particle?.id||"",count:24,shape:particle?.shape||"circle"};render();return;}
   if(event.target.closest("[data-open-placement-particle-picker]")){const placement=app.project.map.effectPlacements.find(item=>item.id===app.placementInspectorId),particle=ensureEffects().find(effect=>effect.id===placement?.boundEffectId);if(placement){app.particlePickerEditor={kind:"placement",placementId:placement.id,effectId:placement.boundEffectId||"",count:Number(placement.rate||18),shape:particle?.shape||"circle"};render();}return;}
   if(event.target.closest("[data-close-particle-picker]")){app.particlePickerEditor=null;render();return;}
   const pickTransitionParticle=event.target.closest("[data-pick-transition-particle]");if(pickTransitionParticle&&app.particlePickerEditor){const effectId=pickTransitionParticle.dataset.pickTransitionParticle,particle=ensureEffects().find(effect=>effect.id===effectId);app.particlePickerEditor.effectId=effectId;app.particlePickerEditor.shape=particle?.shape||app.particlePickerEditor.shape||"circle";render();return;}
-  if(event.target.closest("[data-save-particle-picker]")&&app.particlePickerEditor){const picker=app.particlePickerEditor,choice={effectId:picker.effectId||"",count:Math.max(1,Math.min(300,Number(picker.count)||24)),shape:picker.shape||"circle"};if(picker.kind==="transition"&&app.editingCommand?.cmd)app.editingCommand.cmd.particleDump={...app.editingCommand.cmd.particleDump,...choice};else if(picker.kind==="keyframe"){const {frame}=selectedActorAnimation();if(frame){frame.particles ||= [];const spawn={id:`spawn-${Date.now()}`,...choice,x:0,y:-80};if(picker.index==null)frame.particles.push(spawn);else Object.assign(frame.particles[picker.index]||spawn,choice);save("actors");save("event");}}else if(picker.kind==="placement"){const placement=app.project.map.effectPlacements.find(item=>item.id===picker.placementId),particle=ensureEffects().find(effect=>effect.id===choice.effectId);if(placement){bindParticleToPlacement(placement,particle);placement.rate=choice.count;placement.shape=choice.shape;save("map");}}app.particlePickerEditor=null;render();return;}
+  if(event.target.closest("[data-save-particle-picker]")&&app.particlePickerEditor){const picker=app.particlePickerEditor,choice={effectId:picker.effectId||"",count:Math.max(1,Math.min(300,Number(picker.count)||24)),shape:picker.shape||"circle"};if(picker.kind==="transition"&&app.editingCommand?.cmd)app.editingCommand.cmd.particleDump={...app.editingCommand.cmd.particleDump,...choice};else if(picker.kind==="timeline-param"&&app.editingCommand?.cmd){app.editingCommand.cmd.parameters ||= {};const selectedParticle=ensureEffects().find(effect=>effect.id===picker.effectId);app.editingCommand.cmd.parameters[picker.key]=selectedParticle?selectedParticle.id:(picker.effectId||"");}else if(picker.kind==="keyframe"){const {frame}=selectedActorAnimation();if(frame){frame.particles ||= [];const spawn={id:`spawn-${Date.now()}`,...choice,x:0,y:-80};if(picker.index==null)frame.particles.push(spawn);else Object.assign(frame.particles[picker.index]||spawn,choice);save("actors");save("event");}}else if(picker.kind==="placement"){const placement=app.project.map.effectPlacements.find(item=>item.id===picker.placementId),particle=ensureEffects().find(effect=>effect.id===choice.effectId);if(placement){bindParticleToPlacement(placement,particle);placement.rate=choice.count;placement.shape=choice.shape;save("map");}}app.particlePickerEditor=null;render();return;}
   if(event.target.closest("[data-open-map-settings]")){app.mapSettingsOpen=true;render();return;}
   if(event.target.closest("[data-remove-map-foreground]")){remember();app.project.map.foreground="";save("map");render();toast("FOREGROUND REMOVED");return;}
   if(event.target.closest("[data-add-effect]")){app.newEffectMenu=true;render();return;}
@@ -3190,6 +3739,7 @@ root.addEventListener("click", async (event) => {
       playSfx("dialogue-blip");
     } else {
       app.timelinePlaying = true;
+      app.timelineTriggeringPlayer = 1;
       const pxPerSec = app.timelineZoom || 100;
       let duration = Math.max(0, ...playbackTracks(act.timeline, app.timelinePlayhead || 0).flatMap((track) => (track.clips || []).map((clip) => Number(clip.start || 0) + Number(clip.duration || 2))));
       if ((app.timelinePlayhead || 0) >= duration) { app.timelinePlayhead = 0; app.timelinePreviewHandled = new Set(); app.timelinePreviewBranches = {}; }
@@ -3603,13 +4153,67 @@ root.addEventListener("click", async (event) => {
     save("event"); render(); playSfx("lose"); toast("CUSTOM SPACE IMAGE REMOVED"); return;
   }
 
-  // Cast Tab: Remove character
-  const removeCastBtn = event.target.closest("[data-cast-remove]");
+  // Space Appearance Tab: Visibility Toggle & Actor Selection
+  const toggleVisibility = event.target.closest("[data-toggle-actor-visibility]");
+  if (toggleVisibility) {
+    event.preventDefault();
+    event.stopPropagation();
+    const act = currentAction();
+    const charId = toggleVisibility.dataset.toggleActorVisibility;
+    const targetChar = (act?.characters || []).find((c) => String(c.id) === String(charId));
+    if (targetChar) {
+      const isCurrentlyVisible = targetChar.alwaysVisible !== false && targetChar.visibleOnBoard !== false;
+      targetChar.alwaysVisible = !isCurrentlyVisible;
+      targetChar.visibleOnBoard = !isCurrentlyVisible;
+      syncSpaceActionToMapSpaces(act.id, act);
+      save("event");
+      save("map");
+      render();
+      playSfx(targetChar.alwaysVisible ? "star" : "dice");
+    }
+    return;
+  }
+  const openActorPicker = event.target.closest("[data-open-space-actor-picker]");
+  if (openActorPicker) {
+    app.spaceActorPickerOpen = true;
+    render();
+    playSfx("dialogue-blip");
+    return;
+  }
+  const closeActorPicker = event.target.closest("[data-close-space-actor-picker]") || (event.target.classList.contains("space-actor-picker-backdrop") ? event.target : null);
+  if (closeActorPicker) {
+    app.spaceActorPickerOpen = false;
+    render();
+    return;
+  }
+  const selectAppearanceActor = event.target.closest("[data-select-appearance-actor]");
+  if (selectAppearanceActor && !event.target.closest("select, input, button, .space-actor-folded-body")) {
+    const nextId = selectAppearanceActor.dataset.selectAppearanceActor;
+    app.spaceAppearanceActorId = (String(app.spaceAppearanceActorId) === String(nextId)) ? null : nextId;
+    render();
+    playSfx("dialogue-blip");
+    return;
+  }
+
+  // Cast Tab / Space Actor Remove: Remove character
+  const removeCastBtn = event.target.closest("[data-cast-remove], [data-space-actor-remove]");
   if (removeCastBtn) {
     const act = currentAction();
-    const charId = removeCastBtn.dataset.castRemove;
-    act.characters = (act.characters || []).filter((c) => c.id !== charId);
-    save("event"); render(); playSfx("thunder"); return;
+    const charId = removeCastBtn.dataset.spaceActorRemove || removeCastBtn.dataset.castRemove;
+    if (act && act.characters) {
+      const removed = act.characters.find((c) => String(c.id) === String(charId));
+      act.characters = act.characters.filter((c) => String(c.id) !== String(charId));
+      if (String(app.spaceAppearanceActorId) === String(charId)) {
+        app.spaceAppearanceActorId = null;
+      }
+      syncSpaceActionToMapSpaces(act.id, act);
+      save("event");
+      save("map");
+      render();
+      playSfx("thunder");
+      toast(`${(removed?.name || "ACTOR").toUpperCase()} REMOVED FROM SPACE`);
+    }
+    return;
   }
 
   // Cast Tab: Restore Host
@@ -3822,9 +4426,16 @@ root.addEventListener("click", async (event) => {
         const foundChoice = findClipInTimeline(act.timeline, targetObj.id);
         if (foundChoice) syncDecisionOutcomeTracks(act.timeline, foundChoice.track, targetObj);
       } else if (Array.isArray(targetObj.parameterSchema) && targetObj.parameterSchema.length > 0) {
-        targetObj.parameters ||= {};
+        targetObj.parameters = { ...(targetObj.parameters || {}), ...(app.editingCommand.cmd.parameters || {}) };
         for (const input of document.querySelectorAll("[data-generic-param]")) targetObj.parameters[input.dataset.genericParam] = input.type === "checkbox" ? input.checked : ["number","range"].includes(input.type) ? Number(input.value) : input.value;
-        if (["spawn-actor","despawn-actor","spawn","despawn"].includes(targetObj.op)) { targetObj.stageEffect=document.querySelector("#edit-cmd-stage-effect")?.value||"none"; targetObj.particleDump={...targetObj.particleDump,count:Math.max(1,Math.min(300,Number(targetObj.particleDump?.count)||24)),controllers:targetObj.particleDump?.controllers||[]}; }
+        if (["spawn-actor","despawn-actor","spawn","despawn"].includes(targetObj.op)) {
+          targetObj.stageEffect = document.querySelector("#edit-cmd-stage-effect")?.value || "none";
+          targetObj.particleDump = {
+            ...(app.editingCommand.cmd.particleDump || {}),
+            count: Math.max(1, Math.min(300, Number(app.editingCommand.cmd.particleDump?.count) || 24)),
+            controllers: app.editingCommand.cmd.particleDump?.controllers || []
+          };
+        }
         if (targetObj.op === "confirm" && targetObj.parameters.prompt) targetObj.label = `CONFIRM: "${targetObj.parameters.prompt}"`;
         else if (targetObj.op === "modify-asset" && targetObj.parameters.asset) targetObj.label = `MODIFY ASSET: ${targetObj.parameters.asset} (${targetObj.parameters.operation || "Add"} ${targetObj.parameters.amount ?? 10})`;
         else if (targetObj.op === "set-asset" && targetObj.parameters.asset) targetObj.label = `SET ASSET: ${targetObj.parameters.asset} = ${targetObj.parameters.amount ?? 0}`;
@@ -3859,7 +4470,15 @@ root.addEventListener("click", async (event) => {
         targetObj.target = target;
         targetObj.actorAction = actAction;
         targetObj.pose = pose;
-        targetObj.actorId=actorId;targetObj.animationId=document.querySelector("#edit-cmd-animation")?.value||"";targetObj.transition=document.querySelector("#edit-cmd-transition")?.value||"crossfade";targetObj.stageEffect=document.querySelector("#edit-cmd-stage-effect")?.value||"none";targetObj.particleDump={...targetObj.particleDump,count:Math.max(1,Math.min(300,Number(targetObj.particleDump?.count)||24)),controllers:targetObj.particleDump?.controllers||[]};
+        targetObj.actorId = actorId;
+        targetObj.animationId = document.querySelector("#edit-cmd-animation")?.value || "";
+        targetObj.transition = document.querySelector("#edit-cmd-transition")?.value || "crossfade";
+        targetObj.stageEffect = document.querySelector("#edit-cmd-stage-effect")?.value || "none";
+        targetObj.particleDump = {
+          ...(app.editingCommand.cmd.particleDump || {}),
+          count: Math.max(1, Math.min(300, Number(app.editingCommand.cmd.particleDump?.count) || 24)),
+          controllers: app.editingCommand.cmd.particleDump?.controllers || []
+        };
         targetObj.label = `${target.toUpperCase()}: ${actAction.toUpperCase()} (${pose.toUpperCase()})`;
       } else if (cat === "inventory" || cat === "rewards") {
         const invOp = document.querySelector("#edit-cmd-inv-op")?.value || "give-coins";
@@ -4007,7 +4626,7 @@ root.addEventListener("click", async (event) => {
     render(); playSfx("chest"); return;
   }
 
-  if (event.target.closest("[data-close-toy-editor]")) {
+  if (event.target.closest("[data-close-toy-editor]") || event.target.classList.contains("toy-editor-backdrop")) {
     app.editingToy = null;
     render(); playSfx("dialogue-blip"); return;
   }
@@ -4260,9 +4879,81 @@ root.addEventListener("change", (event) => {
   if (event.target.id === "act-time-final") { act.activations.timing ||= {}; act.activations.timing.finalRounds = event.target.checked; save("event"); }
   if (event.target.id === "act-cond-coins") { act.activations.conditions ||= {}; act.activations.conditions.minCoins = Number(event.target.value); save("event"); }
   if (event.target.id === "act-cond-map") { act.activations.conditions ||= {}; act.activations.conditions.mapState = event.target.value; save("event"); }
+  const changeActorField = event.target.closest("[data-space-actor-field]");
+  if (changeActorField) {
+    const act = currentAction();
+    const field = changeActorField.dataset.spaceActorField;
+    const targetCharId = changeActorField.dataset.actorId || app.spaceAppearanceActorId;
+    const targetChar = (act.characters || []).find((c) => String(c.id) === String(targetCharId)) || (act.characters || [])[0];
+    if (targetChar) {
+      if (field === "alwaysVisible") {
+        targetChar.alwaysVisible = changeActorField.checked;
+        targetChar.visibleOnBoard = changeActorField.checked;
+      } else if (field === "scale") {
+        targetChar[field] = Number(changeActorField.value);
+      } else if (field === "animation") {
+        targetChar.animation = changeActorField.value;
+        targetChar.idleAnimationId = changeActorField.value;
+      } else {
+        targetChar[field] = changeActorField.value;
+      }
+      syncSpaceActionToMapSpaces(act.id, act);
+      save("event");
+      save("map");
+      render();
+    }
+  }
 });
 
 root.addEventListener("input", (event) => {
+  if (event.target.matches("[data-space-preview-scale]")) {
+    app.spacePreviewScale = Number(event.target.value);
+    const wrap = root.querySelector(".space-preview-token-wrap");
+    if (wrap) wrap.style.transform = `scale(${app.spacePreviewScale})`;
+    const scaleLbl = event.target.closest("div")?.querySelector("b");
+    if (scaleLbl) scaleLbl.textContent = `${app.spacePreviewScale.toFixed(1)}x`;
+    const act = currentAction();
+    (act?.characters || []).forEach((char) => {
+      const node = root.querySelector(`[data-space-actor-drag="${char.id}"]`);
+      if (node) {
+        const sc = Math.max(0.2, Number(char.scale ?? 1.0) * app.spacePreviewScale);
+        const offX = Number(char.offsetX ?? 0) * app.spacePreviewScale;
+        const offY = Number(char.offsetY ?? -34) * app.spacePreviewScale;
+        node.style.left = `calc(50% + ${offX}px)`;
+        node.style.top = `calc(50% + ${offY}px)`;
+        node.style.transform = `translate(-50%, -50%) scale(${sc})`;
+      }
+    });
+    return;
+  }
+  const liveSpaceActorField = event.target.closest("[data-space-actor-field]");
+  if (liveSpaceActorField) {
+    const act = currentAction();
+    const field = liveSpaceActorField.dataset.spaceActorField;
+    const targetCharId = liveSpaceActorField.dataset.actorId || app.spaceAppearanceActorId;
+    const targetChar = (act.characters || []).find((c) => String(c.id) === String(targetCharId)) || (act.characters || [])[0];
+    if (targetChar) {
+      if (field === "scale") {
+        targetChar[field] = Number(liveSpaceActorField.value);
+        const out = liveSpaceActorField.closest(".input-row-group")?.querySelector("output");
+        if (out) out.textContent = `${targetChar[field].toFixed(2)}x`;
+        const previewNode = root.querySelector(`[data-space-actor-drag="${targetChar.id}"]`);
+        if (previewNode) {
+          const previewScale = app.spacePreviewScale || 1.0;
+          const sc = Math.max(0.2, Number(targetChar.scale ?? 1.0) * previewScale);
+          const offX = Number(targetChar.offsetX ?? 0) * previewScale;
+          const offY = Number(targetChar.offsetY ?? -34) * previewScale;
+          previewNode.style.left = `calc(50% + ${offX}px)`;
+          previewNode.style.top = `calc(50% + ${offY}px)`;
+          previewNode.style.transform = `translate(-50%, -50%) scale(${sc})`;
+        }
+      }
+      syncSpaceActionToMapSpaces(act.id, act);
+      save("event");
+      save("map");
+    }
+    return;
+  }
   const liveActorField = event.target.closest("[data-actor-field]");
   if (liveActorField) {
     const actor = ensureBoardActors().find(item => String(item.id) === String(app.actorEditorId)) || currentAction()?.characters?.find(item => String(item.id) === String(app.actorEditorId));
@@ -4297,19 +4988,27 @@ root.addEventListener("input", (event) => {
 // Helper: Detect whether a clip is an originating branching / decision / logic block
 function isBranchingDecisionClip(clip) {
   if (!clip) return false;
-  const cat = clip.category || (clip.kind === "condition" ? "logic" : "dialogue");
-  return cat === "logic" || cat === "input" || clip.kind === "condition" || clip.isDecision || Boolean(clip.inputType) || Boolean(clip.condType) || (clip.label && /prompt|question|qte|decision/i.test(clip.label));
+  const op = String(clip.op || "").toLowerCase();
+  const cat = String(clip.category || (clip.kind === "condition" ? "logic" : "dialogue")).toLowerCase();
+  const branchingOps = ["compare", "confirm", "choice", "check-assets", "check-status", "weighted-random", "switch", "roulette", "decision", "condition", "transaction", "toll", "service-purchase"];
+  if (branchingOps.includes(op)) return true;
+  if (clip.kind === "condition" || clip.isDecision === true) return true;
+  if (cat === "logic" || cat === "input") return true;
+  if (Boolean(clip.inputType) || Boolean(clip.condType)) return true;
+  if (clip.label && /prompt|question|qte|decision|compare|branch|check/i.test(clip.label)) return true;
+  return false;
 }
 
 // Helper: Detect whether a track is a bound-to-logic secondary branch track
 function isBoundBranchTrack(timeline, trackId) {
-  if (!timeline || !timeline.tracks) return false;
+  if (!timeline || !Array.isArray(timeline.tracks)) return false;
   const tIdx = timeline.tracks.findIndex((t) => t.id === trackId);
   if (tIdx <= 0) return false;
   const track = timeline.tracks[tIdx];
   if (track.kind === "branch-false" || track.kind === "branch-outcome" || track.boundDecisionId) return true;
   const prevTrack = timeline.tracks[tIdx - 1];
-  return (prevTrack.clips || []).some(isBranchingDecisionClip);
+  if ((prevTrack?.clips || []).some(isBranchingDecisionClip)) return true;
+  return false;
 }
 
 function releaseDecisionTracks(timeline, decisionId) {
@@ -4580,6 +5279,29 @@ root.addEventListener("drop", (event) => {
   sound(620, .1);
 });
 root.addEventListener("pointerdown",(event)=>{
+  const actorDrag = event.target.closest("[data-space-actor-drag]");
+  if (actorDrag && event.button === 0) {
+    const act = currentAction();
+    const charId = actorDrag.dataset.spaceActorDrag;
+    const targetChar = (act?.characters || []).find((c) => String(c.id) === String(charId));
+    if (targetChar) {
+      app.spaceAppearanceActorId = charId;
+      app.spaceActorDrag = {
+        pointerId: event.pointerId,
+        charId,
+        startX: event.clientX,
+        startY: event.clientY,
+        initialOffsetX: Number(targetChar.offsetX ?? 0),
+        initialOffsetY: Number(targetChar.offsetY ?? -34),
+        node: actorDrag,
+        moved: false
+      };
+      actorDrag.setPointerCapture?.(event.pointerId);
+      event.preventDefault();
+      event.stopPropagation();
+      return;
+    }
+  }
   const previewStageDrag=event.target.closest("[data-preview-stage-drag]");if(previewStageDrag&&event.button===0){const act=currentAction(),found=findClipInTimeline(act,previewStageDrag.dataset.previewStageClip),scene=previewStageDrag.closest("[data-preview-scene]");if(found&&scene){app.timelineStageDrag={pointerId:event.pointerId,clip:found.clip,node:previewStageDrag,scene,moved:false};previewStageDrag.setPointerCapture?.(event.pointerId);event.preventDefault();event.stopPropagation();return;}}
   const keyframeDot=event.target.closest("[data-actor-keyframe]");if(keyframeDot&&event.button===0){const {animation}=selectedActorAnimation(),track=keyframeDot.closest(".actor-keyframe-track");if(animation&&track){app.actorKeyframeIndex=Number(keyframeDot.dataset.actorKeyframe);app.actorKeyframeSelected=true;app.actorKeyframeDrag={pointerId:event.pointerId,track,animation};keyframeDot.setPointerCapture?.(event.pointerId);event.preventDefault();}return;}
   const placementMarker=event.target.closest("[data-effect-placement]");if(placementMarker&&event.button===0){const placement=app.project.map.effectPlacements.find(item=>item.id===placementMarker.dataset.effectPlacement);if(placement){app.placementDrag={pointerId:event.pointerId,id:placement.id,startX:event.clientX,startY:event.clientY,before:structuredClone(app.project),moved:false,holdTimer:setTimeout(()=>{app.placementInspectorId=placement.id;app.placementDrag=null;render();sound(260,.12);},650)};placementMarker.setPointerCapture?.(event.pointerId);event.preventDefault();}return;}
@@ -4609,6 +5331,9 @@ root.addEventListener("pointerdown",(event)=>{
       }
     }
     app.timelineSelectedClipId = clipId;
+    document.querySelectorAll(".timeline-clip-block").forEach((el) => {
+      el.classList.toggle("clip-selected", app.timelineSelectedClipIds?.has(el.dataset.clipId) || el.dataset.clipId === clipId);
+    });
 
     const found = findClipInTimeline(act, clipId);
     if (found) {
@@ -4668,6 +5393,23 @@ root.addEventListener("pointerdown",(event)=>{
 root.addEventListener("wheel",event=>{if(event.target.closest("#placement-viewport")){event.preventDefault();updateMapCamera({zoom:app.mapZoom*(event.deltaY<0?1.12:.89)});}}, {passive:false});
 
 root.addEventListener("pointermove",(event)=>{
+  if (app.spaceActorDrag?.pointerId === event.pointerId) {
+    const act = currentAction();
+    const targetChar = (act?.characters || []).find((c) => String(c.id) === String(app.spaceActorDrag.charId));
+    if (targetChar) {
+      app.spaceActorDrag.moved = true;
+      const previewScale = app.spacePreviewScale || 1.0;
+      const dx = (event.clientX - app.spaceActorDrag.startX) / previewScale;
+      const dy = (event.clientY - app.spaceActorDrag.startY) / previewScale;
+      targetChar.offsetX = Math.round(Math.max(-180, Math.min(180, app.spaceActorDrag.initialOffsetX + dx)));
+      targetChar.offsetY = Math.round(Math.max(-180, Math.min(180, app.spaceActorDrag.initialOffsetY + dy)));
+      const sc = Math.max(0.2, Number(targetChar.scale ?? 1.0) * previewScale);
+      app.spaceActorDrag.node.style.left = `calc(50% + ${targetChar.offsetX * previewScale}px)`;
+      app.spaceActorDrag.node.style.top = `calc(50% + ${targetChar.offsetY * previewScale}px)`;
+      app.spaceActorDrag.node.style.transform = `translate(-50%, -50%) scale(${sc})`;
+    }
+    return;
+  }
   if(app.timelineStageDrag?.pointerId===event.pointerId){const drag=app.timelineStageDrag,rect=drag.scene.getBoundingClientRect();if(rect.width&&rect.height){const x=Math.max(-90,Math.min(90,((event.clientX-rect.left)/rect.width*100-50)*2)),y=Math.max(-70,Math.min(70,((event.clientY-rect.top)/rect.height*100-53)*2));drag.clip.stagePosition={x:Math.round(x*10)/10,y:Math.round(y*10)/10};drag.node.style.cssText=timelineStageStyle(drag.clip.stagePosition);drag.moved=true;}return;}
   if(app.actorKeyframeDrag?.pointerId===event.pointerId){const rect=app.actorKeyframeDrag.track.getBoundingClientRect(),seconds=Math.max(0,Math.min(app.actorKeyframeDrag.animation.duration,(event.clientX-rect.left)/rect.width*app.actorKeyframeDrag.animation.duration));moveSelectedKeyframe(seconds);for(const dot of root.querySelectorAll("[data-actor-keyframe]"))dot.classList.toggle("selected",Number(dot.dataset.actorKeyframe)===app.actorKeyframeIndex);const selected=root.querySelector(`[data-actor-keyframe="${app.actorKeyframeIndex}"]`);if(selected)selected.style.left=`${(app.actorPreviewTime/app.actorKeyframeDrag.animation.duration)*100}%`;const time=root.querySelector("[data-keyframe-time]");if(time)time.value=app.actorPreviewTime.toFixed(2);app.actorPreviewRenderer?.seek(app.actorPreviewTime);return;}
   if(app.placementDrag?.pointerId===event.pointerId){const drag=app.placementDrag,placement=app.project.map.effectPlacements.find(item=>item.id===drag.id);if(!placement||!studioBoardRenderer)return;if(Math.hypot(event.clientX-drag.startX,event.clientY-drag.startY)>4){clearTimeout(drag.holdTimer);drag.moved=true;}if(drag.moved){const rect=studioBoardRenderer.app.canvas.getBoundingClientRect(),next=studioBoardRenderer.percentFromScreen(event.clientX-rect.left,event.clientY-rect.top);placement.x=next.x;placement.y=next.y;const marker=root.querySelector(`[data-effect-placement="${drag.id}"]`);if(marker){marker.style.left=`${next.x}%`;marker.style.top=`${next.y}%`;}}return;}
@@ -4736,6 +5478,22 @@ root.addEventListener("pointermove",(event)=>{
 });
 
 root.addEventListener("pointerup",(event)=>{
+  if (app.spaceActorDrag?.pointerId === event.pointerId) {
+    const drag = app.spaceActorDrag;
+    app.spaceActorDrag = null;
+    try { drag.node?.releasePointerCapture?.(event.pointerId); } catch {}
+    if (drag.moved) {
+      const act = currentAction();
+      if (act) {
+        syncSpaceActionToMapSpaces(act.id, act);
+      }
+      save("event");
+      save("map");
+      render();
+      toast("ACTOR PLACEMENT SAVED");
+    }
+    return;
+  }
   if(app.timelineStageDrag?.pointerId===event.pointerId){const drag=app.timelineStageDrag;app.timelineStageDrag=null;drag.node.releasePointerCapture?.(event.pointerId);if(drag.moved){save("event");render();toast("STAGE POSITION SAVED");}return;}
   if(app.actorKeyframeDrag?.pointerId===event.pointerId){app.actorKeyframeDrag=null;save("event");render();return;}
   if(app.placementDrag?.pointerId===event.pointerId){const drag=app.placementDrag;clearTimeout(drag.holdTimer);app.placementDrag=null;if(drag.moved){app.history.push(drag.before);app.history=app.history.slice(-30);app.future=[];save("map");render();toast("PLACEMENT MOVED");}return;}

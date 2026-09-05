@@ -39,9 +39,9 @@ export class PixiBoardRenderer {
   pathPoints(path){const byId=new Map((this.board.spaces||[]).map(space=>[space.id,space])),from=byId.get(path.from),to=byId.get(path.to);return from&&to?[point(from),...(path.points||[]).map(point),point(to)]:[];}
   refreshPaths(){this.layers.paths.removeChildren().forEach(child=>child.destroy?.({children:true}));this.objects.paths.clear();this.pathPulses=[];this.drawPaths();}
   drawPaths(){for(const path of this.board?.paths||[]){const points=this.pathPoints(path);if(points.length<2)continue;const render=path.render||{},graphics=new Graphics(),draw=()=>{if(["dashed","dotted"].includes(render.pattern)&&render.curve!=="smooth")patternedLine(graphics,points,render.pattern);else{graphics.moveTo(points[0].x,points[0].y);if(render.curve==="smooth"&&points.length>2){for(let i=1;i<points.length-1;i++){const current=points[i],next=points[i+1];graphics.quadraticCurveTo(current.x,current.y,(current.x+next.x)/2,(current.y+next.y)/2);}graphics.lineTo(points.at(-1).x,points.at(-1).y);}else points.slice(1).forEach(value=>graphics.lineTo(value.x,value.y));}};if(render.border!==false){draw();graphics.stroke({color:colorNumber(render.borderColor,0x172340),width:Number(render.width||5)+6,alpha:Number(render.opacity??1)});}draw();graphics.stroke({color:colorNumber(render.color,0xfff0a9),width:Number(render.width||5),alpha:render.hidden?.12:Number(render.opacity??1),pixelLine:false});graphics.eventMode=this.options.editable?"static":"none";graphics.cursor="pointer";graphics.on("pointerdown",event=>this.emitObject("path",path,event));this.layers.paths.addChild(graphics);this.objects.paths.set(path.id,graphics);if(this.options.editable&&(path.oneWay||path.direction)){const pulse=new Graphics().circle(0,0,Math.max(5,Number(render.width||5)*1.15)).fill(0xffffff);pulse.filters=[new BlurFilter({strength:3})];this.layers.paths.addChild(pulse);this.pathPulses.push({view:pulse,points:path.direction==="reverse"?[...points].reverse():points,progress:Math.random(),speed:.00018});}if(this.options.selectedPath===path.id){for(let index=0;index<(path.points||[]).length;index++){const position=point(path.points[index]),handle=new Graphics().circle(position.x,position.y,9).fill(0xfff36e).stroke({color:0x08142f,width:3});handle.eventMode="static";handle.cursor="grab";handle.on("pointerdown",event=>this.emitObject("path-point",{path,index,point:path.points[index]},event));this.layers.paths.addChild(handle);}}}}
-  drawSpaces(){const labelStyle=new TextStyle({fontFamily:"Arial",fontSize:12,fontWeight:"bold",fill:0xffffff,stroke:{color:0x061009,width:3}});for(const space of this.board?.spaces||[]){const position=point(space),container=new Container();container.position.set(position.x,position.y);container.rotation=Number(space.rotation||0)*Math.PI/180;container.zIndex=Number(space.depth||2);const radius=5+Number(space.size||3)*3,shape=new Graphics();if(space.shadow){const shadow=traceSpaceShape(new Graphics(),space,radius).fill({color:colorNumber(space.shadowColor,0x000000),alpha:space.shadowOpacity});shadow.position.set(space.shadowOffset,space.shadowOffset);if(space.shadowBlur)shadow.filters=[new BlurFilter({strength:space.shadowBlur})];container.addChild(shadow);}traceSpaceShape(shape,space,radius).fill(COLORS[space.type]||COLORS.custom);if(space.borderWidth>0)shape.stroke({color:colorNumber(space.borderColor,0xffffff),width:space.borderWidth,alpha:space.borderOpacity});container.addChild(shape);if(space.activity?.icon){const icon=new Text({text:space.activity.icon,style:{fontSize:radius,fontFamily:"Arial"}});icon.anchor.set(.5);container.addChild(icon);}if(this.options.showNumbers){const badge=new Graphics().circle(radius*.75,radius*.75,8).fill(0x061009).stroke({color:0xffffff,width:1});container.addChild(badge);const number=new Text({text:String(Number(space.id)+1),style:labelStyle});number.anchor.set(.5);number.position.set(radius*.75,radius*.75);container.addChild(number);}if(this.options.starPosition===space.id){const star=new Graphics().circle(0,0,radius+8).stroke({color:0xffd55a,width:5,alpha:.8});container.addChildAt(star,0);}container.eventMode=this.options.editable?"static":"none";container.cursor="grab";container.on("pointerdown",event=>this.emitObject("space",space,event));this.layers.spaces.addChild(container);this.objects.spaces.set(space.id,container);}}
+  drawSpaces(){const labelStyle=new TextStyle({fontFamily:"Arial",fontSize:12,fontWeight:"bold",fill:0xffffff,stroke:{color:0x061009,width:3}});for(const space of this.board?.spaces||[]){const position=point(space),container=new Container();container.position.set(position.x,position.y);container.rotation=Number(space.rotation||0)*Math.PI/180;container.zIndex=Number(space.depth||2);const radius=5+Number(space.size||3)*3,shape=new Graphics();if(space.shadow){const shadow=traceSpaceShape(new Graphics(),space,radius).fill({color:colorNumber(space.shadowColor,0x000000),alpha:space.shadowOpacity});shadow.position.set(space.shadowOffset,space.shadowOffset);if(space.shadowBlur)shadow.filters=[new BlurFilter({strength:space.shadowBlur})];container.addChild(shadow);}traceSpaceShape(shape,space,radius).fill(COLORS[space.type]||COLORS.custom);if(space.borderWidth>0)shape.stroke({color:colorNumber(space.borderColor,0xffffff),width:space.borderWidth,alpha:space.borderOpacity});container.addChild(shape);if(space.activity?.icon){const icon=new Text({text:space.activity.icon,style:{fontSize:radius,fontFamily:"Arial"}});icon.anchor.set(.5);container.addChild(icon);}if(this.options.showNumbers){const badge=new Graphics().circle(radius*.75,radius*.75,8).fill(0x061009).stroke({color:0xffffff,width:1});container.addChild(badge);const number=new Text({text:String(Number(space.id)+1),style:labelStyle});number.anchor.set(.5);number.position.set(radius*.75,radius*.75);container.addChild(number);}if(this.options.starPosition===space.id){const star=new Graphics().circle(0,0,radius+8).stroke({color:0xffd55a,width:5,alpha:.8});container.addChildAt(star,0);}container.eventMode=this.options.editable?"static":"none";container.cursor="grab";container.on("pointerdown",event=>this.emitObject("space",space,event));this.layers.spaces.addChild(container);this.objects.spaces.set(space.id,container);const sizeRatio=Number(space.size||3)/3,spaceActors=space.actors||(this.board?.events?.entries?.find(e=>e.id===space.action||e.id===space.activity?.id)?.characters)||[];for(const [actorIdx,actor] of spaceActors.entries()){if(actor.alwaysVisible===false||actor.visibleOnBoard===false)continue;const actorContainer=new Container(),offsetX=(Number(actor.offsetX??0))*sizeRatio,offsetY=(Number(actor.offsetY??-34))*sizeRatio,actorScale=Math.max(.15,(Number(actor.scale??1))*sizeRatio);actorContainer.position.set(position.x+offsetX,position.y+offsetY);actorContainer.zIndex=(Number(space.depth||2)*10)+10+actorIdx;const bodyRadius=18*actorScale,body=new Graphics().circle(0,0,bodyRadius).fill(colorNumber(actor.color,0x55ccff)).stroke({color:0xffffff,width:Math.max(1.5,3*actorScale)});actorContainer.addChild(body);const label=new Text({text:actor.icon||actor.name?.slice(0,1)||"👤",style:{fontFamily:"Arial",fontSize:Math.max(9,15*actorScale),fontWeight:"bold",fill:0xffffff}});label.anchor?.set?.(.5);actorContainer.addChild(label);if(actor.ragdoll?.sections?.length)this.applyRagdollActor(actorContainer,body,label,actor,actorScale).catch(()=>{});else if(actor.spriteSheet)this.applyActorSprite(actorContainer,label,actor,actorScale).catch(()=>{});else if(actor.sprite)this.applyActorImage(actorContainer,label,actor,actorScale).catch(()=>{});this.layers.actors.addChild(actorContainer);this.objects.actors.set(`space-${space.id}-actor-${actor.id||actorIdx}`,actorContainer);}}}
   emitObject(kind,data,event){event.stopPropagation();this.host.dispatchEvent(new CustomEvent(`board-${kind}-down`,{detail:{data,originalEvent:event,world:this.screenToWorld(event.global.x,event.global.y)}}));}
-  setActors(actors=[]){this.actors=actors;this.layers.actors.removeChildren().forEach(child=>child.destroy?.({children:true}));this.objects.actors.clear();for(const [index,actor] of actors.entries()){const space=this.board?.spaces?.find(item=>item.id===(actor.spaceId??actor.position))||this.board?.spaces?.[0];if(!space)continue;const p=point(space),container=new Container();container.position.set(p.x+(index%4-1.5)*10,p.y-22);const body=new Graphics().circle(0,0,22).fill(colorNumber(actor.color,0x55ccff)).stroke({color:0xffffff,width:4});container.addChild(body);const label=new Text({text:actor.icon||actor.name?.slice(0,1)||String(index+1),style:{fontFamily:"Arial",fontSize:18,fontWeight:"bold",fill:0xffffff}});label.anchor.set(.5);container.addChild(label);if(actor.ragdoll?.sections?.length)this.applyRagdollActor(container,body,label,actor).catch(()=>{});else if(actor.spriteSheet)this.applyActorSprite(container,label,actor).catch(()=>{});container.zIndex=100+index;this.layers.actors.addChild(container);this.objects.actors.set(actor.id??index,container);}}
+  setActors(actors=[]){this.actors=actors;this.layers.actors.removeChildren().forEach(child=>child.destroy?.({children:true}));this.objects.actors.clear();this.timelinePlayers?.clear();for(const [index,actor] of actors.entries()){const space=this.board?.spaces?.find(item=>item.id===(actor.spaceId??actor.position))||this.board?.spaces?.[0];if(!space)continue;const p=point(space),container=new Container();container.position.set(p.x+(index%4-1.5)*10,p.y-22);const body=new Graphics().circle(0,0,22).fill(colorNumber(actor.color,0x55ccff)).stroke({color:0xffffff,width:4});container.addChild(body);const label=new Text({text:actor.icon||actor.name?.slice(0,1)||String(index+1),style:{fontFamily:"Arial",fontSize:18,fontWeight:"bold",fill:0xffffff}});label.anchor?.set?.(.5);container.addChild(label);if(actor.ragdoll?.sections?.length)this.applyRagdollActor(container,body,label,actor).catch(()=>{});else if(actor.spriteSheet)this.applyActorSprite(container,label,actor).catch(()=>{});container.zIndex=100+index;this.layers.actors.addChild(container);this.objects.actors.set(actor.id??index,container);}}
   applyTransitionFrame(view, transition, t, basePos = { x: view.x, y: view.y }) {
     const mode = String(transition.actorAction || transition.op || transition.label || "").toLowerCase();
     const out = mode.includes("despawn") || (transition.actorAction === "despawn");
@@ -77,7 +77,11 @@ export class PixiBoardRenderer {
     }
   }
   spawnTransitionParticles(view, transition, effect) {
-    let particle = transition.particleDump?.effectId && transition.particle ? { ...transition.particle, ...transition.particleDump } : null;
+    let particle = (transition.particleDump?.effectId && transition.particle) ? { ...transition.particle, ...transition.particleDump } : (transition.particle || null);
+    if (!particle && (transition.parameters?.preset || transition.parameters?.particle || transition.preset || transition.particle)) {
+      const pKey = transition.parameters?.preset || transition.parameters?.particle || transition.preset || transition.particle;
+      particle = Array.isArray(this.board?.effects) ? this.board.effects.find(e => e.id === pKey || e.name === pKey) : null;
+    }
     if (!particle) {
       if (effect === "smoke-poof") {
         particle = { color: "#ffffff", colorEnd: "#888888", size: 9, speed: 65, life: 0.7, shape: "circle", opacity: 0.85, count: 32 };
@@ -94,14 +98,16 @@ export class PixiBoardRenderer {
       }
     }
     if (particle) {
+      const vx = view?.x != null ? view.x : (BOARD_WORLD.width / 2);
+      const vy = view?.y != null ? view.y : (BOARD_WORLD.height / 2);
       const count = Math.min(300, Math.max(1, Number(particle.count || transition.particleDump?.count || 24)));
       for (let index = 0; index < count; index++) {
         const angle = index / count * Math.PI * 2, spread = 12 + Math.random() * 36;
         this.addParticle({
           ...particle,
           position: {
-            x: (view.x + Math.cos(angle) * spread) / BOARD_WORLD.width * 100,
-            y: (view.y + Math.sin(angle) * spread) / BOARD_WORLD.height * 100
+            x: (vx + Math.cos(angle) * spread) / BOARD_WORLD.width * 100,
+            y: (vy + Math.sin(angle) * spread) / BOARD_WORLD.height * 100
           },
           direction: angle * 180 / Math.PI,
           speed: Number(particle.speed || 70) * (0.55 + Math.random() * 0.8)
@@ -128,10 +134,10 @@ export class PixiBoardRenderer {
 
     for(const actor of actors){
       const view=this.objects.actors.get(actor.id);
-      if(!view)continue;
+      if(!view || view.destroyed || !view.position)continue;
       const actorIdStr = String(actor.id);
       const isHidden = despawned.has(actorIdStr) || spawnPending.has(actorIdStr) || actor.visible === false;
-      const activeTransition = activeTransitions.find(t => String(t.actorId || t.parameters?.actor || "") === actorIdStr);
+      const activeTransition = activeTransitions.find(t => !t.isParticleBurst && t.actorId != null && String(t.actorId || t.parameters?.actor || "") === actorIdStr);
 
       const position=actor.stagePosition||{};
       const targetX = center.x + Number(position.x || 0) * 3.2;
@@ -180,35 +186,45 @@ export class PixiBoardRenderer {
 
     this.timelinePlayers ||= new Map();
     const seats=state.players||[];
+    const activeSeatIds = new Set(seats.map(s => s.id));
+    for(const [id, view] of [...this.timelinePlayers.entries()]){
+      if(!activeSeatIds.has(id) || view.destroyed || !view.position){
+        if(!view.destroyed) view.destroy?.({children:true});
+        this.timelinePlayers.delete(id);
+      }
+    }
     for(const seat of seats){
       let view=this.timelinePlayers.get(seat.id);
-      if(!view){
+      if(!view || view.destroyed || !view.position){
         view=new Container();
         const body=new Graphics().circle(0,0,18).fill(colorNumber(seat.color,0x4da6ff)).stroke({color:0xffffff,width:3});
         const label=new Text({text:seat.label||seat.id,style:{fontFamily:"Arial",fontSize:11,fontWeight:"bold",fill:0xffffff}});
-        label.anchor.set(.5);
+        label.anchor?.set?.(.5);
         view.addChild(body,label);
         view.zIndex=160;
         this.layers.actors.addChild(view);
         this.timelinePlayers.set(seat.id,view);
       }
       view.visible=seat.visible!==false;
-      view.position.set(center.x+Number(seat.stagePosition?.x||0)*3.2,center.y+Number(seat.stagePosition?.y||0)*2.2);
+      if(view.position) view.position.set(center.x+Number(seat.stagePosition?.x||0)*3.2,center.y+Number(seat.stagePosition?.y||0)*2.2);
     }
   }
   playTimelineTransition(transition){
-    const actorId = transition.actorId || transition.parameters?.actor;
-    const view = this.objects.actors.get(actorId) || [...this.objects.actors.values()][0];
-    if(!view)return;
-
+    const actorId = transition.actorId || transition.parameters?.actor || transition.parameters?.target || transition.target;
+    let view = actorId ? this.objects.actors.get(actorId) : null;
+    if(!view && !transition.isParticleBurst){
+      view = [...this.objects.actors.values()][0] || (this.timelinePlayers ? [...this.timelinePlayers.values()][0] : null);
+    }
     const mode = String(transition.actorAction || transition.op || transition.label || "").toLowerCase();
     const out = mode.includes("despawn") || (transition.actorAction === "despawn");
     const effect = transition.stageEffect || (out ? "smoke-poof" : "fade");
+
+    this.spawnTransitionParticles(view, transition, effect);
+    if(transition.isParticleBurst || !view) return;
+
     const duration = Math.max(220, Number(transition.duration || 1) * 1000);
     const started = performance.now();
     const base = { x: view.x, y: view.y, scale: 1, rotation: 0 };
-
-    this.spawnTransitionParticles(view, transition, effect);
 
     view._transitionTweening = true;
     const tick = () => {
@@ -234,8 +250,9 @@ export class PixiBoardRenderer {
     };
     tick();
   }
-  async applyRagdollActor(container,body,label,actor){const ragdoll=new PixiRagdollRenderer({parent:container});const idleId=actor.idleAnimationId||actor.ragdoll?.idleAnimationId||actor.ragdoll?.activeAnimationId||actor.animationId;const initialAnim=actor.ragdoll?.animations?.find(a=>String(a.id)===String(idleId))||actor.ragdoll?.animations?.[0];const initialPlayback=initialAnim?{...initialAnim,loop:true}:null;await ragdoll.setActor(actor,initialPlayback);if(this.destroyed||container.destroyed){ragdoll.destroy();return;}body.visible=false;label.visible=false;const scale=48/Math.max(ragdoll.data.w,ragdoll.data.h);ragdoll.setDisplayTransform({x:-ragdoll.data.w*scale/2,y:-ragdoll.data.h*scale/2,scale});container._ragdoll={renderer:ragdoll,actor};}
-  async applyActorSprite(container,label,actor){const texture=await Assets.load(actor.spriteSheet);if(this.destroyed||container.destroyed)return;const width=texture.width/3,height=texture.height/2,column=Math.round(Number(actor.spriteX||0)/50),row=Math.round(Number(actor.spriteY||0)/100),frame=new Rectangle(column*width,row*height,width,height),cropped=new Texture({source:texture.source,frame}),sprite=new Sprite(cropped);sprite.anchor.set(.5);sprite.width=38;sprite.height=38;container.addChild(sprite);label.visible=false;}
+  async applyRagdollActor(container,body,label,actor,scaleMultiplier=1){const ragdoll=new PixiRagdollRenderer({parent:container});const idleId=actor.idleAnimationId||actor.ragdoll?.idleAnimationId||actor.ragdoll?.activeAnimationId||actor.animationId||actor.animation;const animList=actor.ragdoll?.animations||actor.animations||[];const initialAnim=animList.find(a=>String(a.id)===String(idleId))||animList[0];const initialPlayback=initialAnim?{...initialAnim,loop:true}:null;await ragdoll.setActor(actor,initialPlayback);if(this.destroyed||container.destroyed){ragdoll.destroy();return;}body.visible=false;label.visible=false;const baseScale=48/Math.max(ragdoll.data.w,ragdoll.data.h),scale=baseScale*scaleMultiplier;ragdoll.setDisplayTransform({x:-ragdoll.data.w*scale/2,y:-ragdoll.data.h*scale/2,scale});container._ragdoll={renderer:ragdoll,actor};}
+  async applyActorSprite(container,label,actor,scaleMultiplier=1){const texture=await Assets.load(actor.spriteSheet);if(this.destroyed||container.destroyed)return;const width=texture.width/3,height=texture.height/2,column=Math.round(Number(actor.spriteX||0)/50),row=Math.round(Number(actor.spriteY||0)/100),frame=new Rectangle(column*width,row*height,width,height),cropped=new Texture({source:texture.source,frame}),sprite=new Sprite(cropped);sprite.anchor.set(.5);sprite.width=38*scaleMultiplier;sprite.height=38*scaleMultiplier;container.addChild(sprite);label.visible=false;}
+  async applyActorImage(container,label,actor,scaleMultiplier=1){try{const texture=await Assets.load(actor.sprite);if(this.destroyed||container.destroyed)return;const sprite=new Sprite(texture);sprite.anchor.set(.5);const size=44*scaleMultiplier;sprite.width=size;sprite.height=size;container.addChild(sprite);label.visible=false;}catch{}}
   moveActor(id,target,{duration=500,easing=value=>1-(1-value)**3}={}){const actor=this.objects.actors.get(id),space=typeof target==="object"?target:this.board?.spaces?.find(item=>item.id===target);if(!actor||!space)return Promise.resolve();const start={x:actor.x,y:actor.y},end=point(space),started=performance.now();return new Promise(resolve=>{const update=()=>{const progress=clamp((performance.now()-started)/duration,0,1),amount=easing(progress);actor.position.set(lerp(start.x,end.x,amount),lerp(start.y,end.y-22,amount));if(progress<1)requestAnimationFrame(update);else resolve();};update();});}
   animateSpaceIn(id,{duration=260}={}){const space=this.objects.spaces.get(id);if(!space)return;const started=performance.now();space.scale.set(.35);space.alpha=.25;const update=()=>{if(this.destroyed||space.destroyed)return;const progress=clamp((performance.now()-started)/duration,0,1),amount=1-(1-progress)**3;space.scale.set(lerp(.35,1,amount));space.alpha=lerp(.25,1,amount);if(progress<1)requestAnimationFrame(update);};update();}
   previewSpaceAt(id,position){const space=this.objects.spaces.get(id);if(space){const p=point(position);space.position.set(p.x,p.y);space.alpha=.72;}}

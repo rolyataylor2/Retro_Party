@@ -4,7 +4,7 @@
     "id": "rainshadow-reach",
     "name": "Rainshadow Reach",
     "host": "Bramble",
-    "updatedAt": "2026-09-04T21:15:58.366Z"
+    "updatedAt": "2026-09-05T04:10:05.728Z"
   },
   "actors": [
     {
@@ -94109,6 +94109,7 @@
         "x": 46.75124045670972,
         "y": 77.55467672531742,
         "depth": 2,
+        "shape": "oval",
         "action": "ghost-space",
         "activity": {
           "id": "ghost-space",
@@ -94123,6 +94124,7 @@
         "x": 22.20751500171453,
         "y": 69.78169723484018,
         "depth": 2,
+        "shape": "oval",
         "action": "ghost-space",
         "activity": {
           "id": "ghost-space",
@@ -94137,6 +94139,7 @@
         "x": 34.560523449685654,
         "y": 95.96983499343257,
         "depth": 2,
+        "shape": "oval",
         "action": "ghost-space",
         "activity": {
           "id": "ghost-space",
@@ -94653,42 +94656,6 @@
         },
         "commands": [
           {
-            "id": "clip-1788552959769",
-            "op": "spawn-actor",
-            "icon": "♙",
-            "desc": "Spawn a configured actor into a named anchor.",
-            "parameters": {
-              "actor": "char-1788474981675",
-              "anchor": "Center",
-              "animation": "part-1788485384857-ak1h"
-            },
-            "parameterSchema": [
-              {
-                "key": "actor",
-                "label": "Actor",
-                "type": "actor-picker"
-              },
-              {
-                "key": "anchor",
-                "label": "Anchor",
-                "type": "text"
-              },
-              {
-                "key": "animation",
-                "label": "Animation",
-                "type": "animation-picker"
-              }
-            ],
-            "category": "stage",
-            "kind": "action",
-            "label": "SPAWN ACTOR",
-            "waitForInput": false,
-            "start": 0,
-            "duration": 1.8,
-            "open": true,
-            "depth": 0
-          },
-          {
             "id": "clip-1788550440711",
             "op": "zoom",
             "icon": "⌕",
@@ -94719,7 +94686,49 @@
             "kind": "action",
             "label": "ZOOM CAMERA",
             "waitForInput": false,
-            "start": 0.25,
+            "start": 0,
+            "duration": 1.8,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1788552959769",
+            "op": "spawn-actor",
+            "icon": "♙",
+            "desc": "Spawn a configured actor into a named anchor.",
+            "parameters": {
+              "actor": "char-1788474981675",
+              "anchor": "Center",
+              "animation": "part-1788485384857-ak1h"
+            },
+            "parameterSchema": [
+              {
+                "key": "actor",
+                "label": "Actor",
+                "type": "actor-picker"
+              },
+              {
+                "key": "anchor",
+                "label": "Anchor",
+                "type": "text"
+              },
+              {
+                "key": "animation",
+                "label": "Animation",
+                "type": "animation-picker"
+              }
+            ],
+            "category": "stage",
+            "kind": "action",
+            "label": "SPAWN ACTOR",
+            "stageEffect": "smoke-poof",
+            "particleDump": {
+              "effectId": "",
+              "count": 24,
+              "controllers": []
+            },
+            "waitForInput": false,
+            "start": 1,
             "duration": 1.8,
             "open": true,
             "depth": 0
@@ -94745,7 +94754,7 @@
             "kind": "condition",
             "label": "CONFIRM: \"Hey buddy, do you want me to steal some Gems from another player? It costs 10 Coins.\" [YES / NO]",
             "waitForInput": true,
-            "start": 2,
+            "start": 3.5,
             "duration": 1,
             "open": true,
             "depth": 0
@@ -94757,7 +94766,22 @@
             "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
             "parameters": {
               "choosingPlayer": "Triggering Player",
-              "eligiblePlayers": "All Players",
+              "eligiblePlayers": {
+                "kind": "player-selector",
+                "mode": "dynamic",
+                "seats": [],
+                "base": "all",
+                "multiple": true,
+                "filters": [],
+                "sort": {
+                  "by": "turn-order",
+                  "direction": "ascending",
+                  "asset": "Coins"
+                },
+                "limit": 4,
+                "excludeTriggering": true,
+                "fallback": "triggering"
+              },
               "prompt": "Choose a player",
               "allowSelf": false,
               "allowCancel": false,
@@ -94817,7 +94841,7 @@
             "kind": "action",
             "label": "CHOOSE ANOTHER PLAYER",
             "waitForInput": true,
-            "start": 3,
+            "start": 4.5,
             "duration": 1,
             "open": true,
             "depth": 0
@@ -94828,7 +94852,7 @@
             "icon": "💬",
             "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
             "parameters": {
-              "speaker": "147.g_3.c_",
+              "speaker": "Crabby",
               "text": "OK, your loss! ::Scuttle::",
               "style": "speech",
               "waitForInput": true
@@ -94857,13 +94881,13 @@
             ],
             "category": "dialogue",
             "kind": "action",
-            "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
-            "speaker": "147.g_3.c_",
+            "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
+            "speaker": "Crabby",
             "text": "OK, your loss! ::Scuttle::",
             "style": "speech",
-            "waitForInput": true,
-            "start": 3,
-            "duration": 1,
+            "waitForInput": false,
+            "start": 4.5,
+            "duration": 2,
             "open": true,
             "depth": 0
           },
@@ -94873,7 +94897,7 @@
             "icon": "✦",
             "desc": "Run a particle preset at a target or screen anchor.",
             "parameters": {
-              "preset": "Coin Burst",
+              "preset": "sfx-smoke",
               "target": "Triggering Player",
               "duration": 1.6,
               "follow": true,
@@ -94910,8 +94934,8 @@
             "kind": "action",
             "label": "SPAWN PARTICLES",
             "waitForInput": false,
-            "start": 3.5,
-            "duration": 1.8,
+            "start": 5,
+            "duration": 1,
             "open": true,
             "depth": 0
           },
@@ -94950,10 +94974,10 @@
             ],
             "category": "assets",
             "kind": "player",
-            "label": "TRANSFER ASSET",
+            "label": "TRANSFER: 10 Coins",
             "waitForInput": false,
-            "start": 4,
-            "duration": 1.8,
+            "start": 5.5,
+            "duration": 1,
             "open": true,
             "depth": 0
           },
@@ -94981,8 +95005,95 @@
             "category": "stage",
             "kind": "action",
             "label": "DESPAWN ACTOR",
+            "stageEffect": "smoke-poof",
+            "particleDump": {
+              "count": 24,
+              "controllers": []
+            },
             "waitForInput": false,
-            "start": 4,
+            "start": 5.5,
+            "duration": 1,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1788576689494",
+            "op": "dialogue",
+            "icon": "💬",
+            "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+            "parameters": {
+              "speaker": "Crabby",
+              "text": "What a jerk stealing from others...",
+              "style": "thought",
+              "waitForInput": true
+            },
+            "parameterSchema": [
+              {
+                "key": "speaker",
+                "label": "Speaker",
+                "type": "text"
+              },
+              {
+                "key": "text",
+                "label": "Text",
+                "type": "text"
+              },
+              {
+                "key": "style",
+                "label": "Style",
+                "type": "text"
+              },
+              {
+                "key": "waitForInput",
+                "label": "Wait For Input",
+                "type": "boolean"
+              }
+            ],
+            "category": "dialogue",
+            "kind": "action",
+            "label": "Crabby: \"What a jerk stealing from others...\"",
+            "speaker": "Crabby",
+            "text": "What a jerk stealing from others...",
+            "style": "thought",
+            "waitForInput": false,
+            "start": 6.5,
+            "duration": 2,
+            "open": true,
+            "depth": 0
+          },
+          {
+            "id": "clip-1788576067024",
+            "op": "despawn-actor",
+            "icon": "♙",
+            "desc": "Remove a temporary actor with an exit animation.",
+            "parameters": {
+              "actor": "char-1788474981675",
+              "animation": "part-1788485384857-ak1h"
+            },
+            "parameterSchema": [
+              {
+                "key": "actor",
+                "label": "Actor",
+                "type": "actor-picker"
+              },
+              {
+                "key": "animation",
+                "label": "Animation",
+                "type": "animation-picker"
+              }
+            ],
+            "category": "stage",
+            "kind": "action",
+            "label": "DESPAWN ACTOR",
+            "stageEffect": "fade-from-white",
+            "particleDump": {
+              "count": 24,
+              "controllers": [],
+              "effectId": "sfx-smoke",
+              "shape": "circle"
+            },
+            "waitForInput": false,
+            "start": 7,
             "duration": 1,
             "open": true,
             "depth": 0
@@ -161148,7 +161259,12 @@
               "idleAnimationId": "part-1788546063144-84ws"
             },
             "animationId": "animation-1788474981675-ti7h",
-            "idleAnimationId": "part-1788546063144-84ws"
+            "idleAnimationId": "part-1788546063144-84ws",
+            "offsetX": 136,
+            "offsetY": -74,
+            "scale": 1.4,
+            "alwaysVisible": false,
+            "visibleOnBoard": false
           }
         ],
         "activations": {
@@ -161195,47 +161311,6 @@
               "muted": false,
               "clips": [
                 {
-                  "category": "stage",
-                  "op": "spawn-actor",
-                  "label": "SPAWN ACTOR",
-                  "icon": "♙",
-                  "desc": "Spawn a configured actor into a named anchor.",
-                  "parameters": {
-                    "actor": "char-1788474981675",
-                    "anchor": "Center",
-                    "animation": "part-1788485384857-ak1h"
-                  },
-                  "parameterSchema": [
-                    {
-                      "key": "actor",
-                      "label": "Actor",
-                      "type": "actor-picker"
-                    },
-                    {
-                      "key": "anchor",
-                      "label": "Anchor",
-                      "type": "text"
-                    },
-                    {
-                      "key": "animation",
-                      "label": "Animation",
-                      "type": "animation-picker"
-                    }
-                  ],
-                  "waitForInput": false,
-                  "id": "clip-1788552959769",
-                  "start": 0,
-                  "duration": 1.8,
-                  "kind": "action",
-                  "isDecision": false,
-                  "stageEffect": "smoke-poof",
-                  "particleDump": {
-                    "effectId": "",
-                    "count": 24,
-                    "controllers": []
-                  }
-                },
-                {
                   "category": "camera",
                   "op": "zoom",
                   "label": "ZOOM CAMERA",
@@ -161265,10 +161340,51 @@
                   ],
                   "waitForInput": false,
                   "id": "clip-1788550440711",
-                  "start": 0.25,
+                  "start": 0,
                   "duration": 1.8,
                   "kind": "action",
                   "isDecision": false
+                },
+                {
+                  "category": "stage",
+                  "op": "spawn-actor",
+                  "label": "SPAWN ACTOR",
+                  "icon": "♙",
+                  "desc": "Spawn a configured actor into a named anchor.",
+                  "parameters": {
+                    "actor": "char-1788474981675",
+                    "anchor": "Center",
+                    "animation": "part-1788485384857-ak1h"
+                  },
+                  "parameterSchema": [
+                    {
+                      "key": "actor",
+                      "label": "Actor",
+                      "type": "actor-picker"
+                    },
+                    {
+                      "key": "anchor",
+                      "label": "Anchor",
+                      "type": "text"
+                    },
+                    {
+                      "key": "animation",
+                      "label": "Animation",
+                      "type": "animation-picker"
+                    }
+                  ],
+                  "waitForInput": false,
+                  "id": "clip-1788552959769",
+                  "start": 1,
+                  "duration": 1.8,
+                  "kind": "action",
+                  "isDecision": false,
+                  "stageEffect": "smoke-poof",
+                  "particleDump": {
+                    "effectId": "",
+                    "count": 24,
+                    "controllers": []
+                  }
                 },
                 {
                   "category": "ui",
@@ -161290,7 +161406,7 @@
                   ],
                   "waitForInput": true,
                   "id": "clip-1788390139426",
-                  "start": 2,
+                  "start": 3.5,
                   "duration": 1,
                   "kind": "condition",
                   "isDecision": true,
@@ -161305,7 +161421,22 @@
                   "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                   "parameters": {
                     "choosingPlayer": "Triggering Player",
-                    "eligiblePlayers": "All Players",
+                    "eligiblePlayers": {
+                      "kind": "player-selector",
+                      "mode": "dynamic",
+                      "seats": [],
+                      "base": "all",
+                      "multiple": true,
+                      "filters": [],
+                      "sort": {
+                        "by": "turn-order",
+                        "direction": "ascending",
+                        "asset": "Coins"
+                      },
+                      "limit": 4,
+                      "excludeTriggering": true,
+                      "fallback": "triggering"
+                    },
                     "prompt": "Choose a player",
                     "allowSelf": false,
                     "allowCancel": false,
@@ -161363,7 +161494,7 @@
                   ],
                   "waitForInput": true,
                   "id": "clip-1788388536247",
-                  "start": 3,
+                  "start": 4.5,
                   "duration": 1,
                   "kind": "action",
                   "isDecision": false
@@ -161375,7 +161506,7 @@
                   "icon": "✦",
                   "desc": "Run a particle preset at a target or screen anchor.",
                   "parameters": {
-                    "preset": "Coin Burst",
+                    "preset": "sfx-smoke",
                     "target": "Triggering Player",
                     "duration": 1.6,
                     "follow": true,
@@ -161410,15 +161541,15 @@
                   ],
                   "waitForInput": false,
                   "id": "clip-1788389844948",
-                  "start": 3.5,
-                  "duration": 1.8,
+                  "start": 5,
+                  "duration": 1,
                   "kind": "action",
                   "isDecision": false
                 },
                 {
                   "category": "assets",
                   "op": "transfer-asset",
-                  "label": "TRANSFER ASSET",
+                  "label": "TRANSFER: 10 Coins",
                   "icon": "⇄",
                   "desc": "Move an asset atomically between players, pots, or board holders.",
                   "parameters": {
@@ -161451,10 +161582,90 @@
                   ],
                   "waitForInput": false,
                   "id": "clip-1788388574172",
-                  "start": 4,
-                  "duration": 1.8,
+                  "start": 5.5,
+                  "duration": 1,
                   "kind": "player",
                   "isDecision": false
+                },
+                {
+                  "category": "dialogue",
+                  "op": "dialogue",
+                  "label": "Crabby: \"What a jerk stealing from others...\"",
+                  "icon": "💬",
+                  "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                  "parameters": {
+                    "speaker": "Crabby",
+                    "text": "What a jerk stealing from others...",
+                    "style": "thought",
+                    "waitForInput": true
+                  },
+                  "parameterSchema": [
+                    {
+                      "key": "speaker",
+                      "label": "Speaker",
+                      "type": "text"
+                    },
+                    {
+                      "key": "text",
+                      "label": "Text",
+                      "type": "text"
+                    },
+                    {
+                      "key": "style",
+                      "label": "Style",
+                      "type": "text"
+                    },
+                    {
+                      "key": "waitForInput",
+                      "label": "Wait For Input",
+                      "type": "boolean"
+                    }
+                  ],
+                  "waitForInput": false,
+                  "id": "clip-1788576689494",
+                  "start": 6.5,
+                  "duration": 2,
+                  "kind": "action",
+                  "isDecision": false,
+                  "speaker": "Crabby",
+                  "text": "What a jerk stealing from others...",
+                  "style": "thought"
+                },
+                {
+                  "category": "stage",
+                  "op": "despawn-actor",
+                  "label": "DESPAWN ACTOR",
+                  "icon": "♙",
+                  "desc": "Remove a temporary actor with an exit animation.",
+                  "parameters": {
+                    "actor": "char-1788474981675",
+                    "animation": "part-1788485384857-ak1h"
+                  },
+                  "parameterSchema": [
+                    {
+                      "key": "actor",
+                      "label": "Actor",
+                      "type": "actor-picker"
+                    },
+                    {
+                      "key": "animation",
+                      "label": "Animation",
+                      "type": "animation-picker"
+                    }
+                  ],
+                  "waitForInput": false,
+                  "id": "clip-1788576067024",
+                  "start": 7,
+                  "duration": 1,
+                  "kind": "action",
+                  "isDecision": false,
+                  "stageEffect": "fade-from-white",
+                  "particleDump": {
+                    "count": 24,
+                    "controllers": [],
+                    "effectId": "sfx-smoke",
+                    "shape": "circle"
+                  }
                 }
               ]
             },
@@ -161470,11 +161681,11 @@
                 {
                   "category": "dialogue",
                   "op": "dialogue",
-                  "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
+                  "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
                   "icon": "💬",
                   "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                   "parameters": {
-                    "speaker": "147.g_3.c_",
+                    "speaker": "Crabby",
                     "text": "OK, your loss! ::Scuttle::",
                     "style": "speech",
                     "waitForInput": true
@@ -161501,13 +161712,13 @@
                       "type": "boolean"
                     }
                   ],
-                  "waitForInput": true,
+                  "waitForInput": false,
                   "id": "clip-1788467577880",
-                  "start": 3,
-                  "duration": 1,
+                  "start": 4.5,
+                  "duration": 2,
                   "kind": "action",
                   "isDecision": false,
-                  "speaker": "147.g_3.c_",
+                  "speaker": "Crabby",
                   "text": "OK, your loss! ::Scuttle::",
                   "style": "speech"
                 },
@@ -161535,7 +161746,7 @@
                   ],
                   "waitForInput": false,
                   "id": "clip-1788555004742",
-                  "start": 4,
+                  "start": 5.5,
                   "duration": 1,
                   "kind": "action",
                   "isDecision": false,
@@ -161566,47 +161777,6 @@
                   "muted": false,
                   "clips": [
                     {
-                      "category": "stage",
-                      "op": "spawn-actor",
-                      "label": "SPAWN ACTOR",
-                      "icon": "♙",
-                      "desc": "Spawn a configured actor into a named anchor.",
-                      "parameters": {
-                        "actor": "char-1788474981675",
-                        "anchor": "Center",
-                        "animation": "part-1788485384857-ak1h"
-                      },
-                      "parameterSchema": [
-                        {
-                          "key": "actor",
-                          "label": "Actor",
-                          "type": "actor-picker"
-                        },
-                        {
-                          "key": "anchor",
-                          "label": "Anchor",
-                          "type": "text"
-                        },
-                        {
-                          "key": "animation",
-                          "label": "Animation",
-                          "type": "animation-picker"
-                        }
-                      ],
-                      "waitForInput": false,
-                      "id": "clip-1788552959769",
-                      "start": 0,
-                      "duration": 1.8,
-                      "kind": "action",
-                      "isDecision": false,
-                      "stageEffect": "smoke-poof",
-                      "particleDump": {
-                        "effectId": "",
-                        "count": 24,
-                        "controllers": []
-                      }
-                    },
-                    {
                       "category": "camera",
                       "op": "zoom",
                       "label": "ZOOM CAMERA",
@@ -161636,10 +161806,51 @@
                       ],
                       "waitForInput": false,
                       "id": "clip-1788550440711",
-                      "start": 0.25,
+                      "start": 0,
                       "duration": 1.8,
                       "kind": "action",
                       "isDecision": false
+                    },
+                    {
+                      "category": "stage",
+                      "op": "spawn-actor",
+                      "label": "SPAWN ACTOR",
+                      "icon": "♙",
+                      "desc": "Spawn a configured actor into a named anchor.",
+                      "parameters": {
+                        "actor": "char-1788474981675",
+                        "anchor": "Center",
+                        "animation": "part-1788485384857-ak1h"
+                      },
+                      "parameterSchema": [
+                        {
+                          "key": "actor",
+                          "label": "Actor",
+                          "type": "actor-picker"
+                        },
+                        {
+                          "key": "anchor",
+                          "label": "Anchor",
+                          "type": "text"
+                        },
+                        {
+                          "key": "animation",
+                          "label": "Animation",
+                          "type": "animation-picker"
+                        }
+                      ],
+                      "waitForInput": false,
+                      "id": "clip-1788552959769",
+                      "start": 1,
+                      "duration": 1.8,
+                      "kind": "action",
+                      "isDecision": false,
+                      "stageEffect": "smoke-poof",
+                      "particleDump": {
+                        "effectId": "",
+                        "count": 24,
+                        "controllers": []
+                      }
                     },
                     {
                       "category": "ui",
@@ -161661,7 +161872,7 @@
                       ],
                       "waitForInput": true,
                       "id": "clip-1788390139426",
-                      "start": 2,
+                      "start": 3.5,
                       "duration": 1,
                       "kind": "condition",
                       "isDecision": true,
@@ -161676,7 +161887,22 @@
                       "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                       "parameters": {
                         "choosingPlayer": "Triggering Player",
-                        "eligiblePlayers": "All Players",
+                        "eligiblePlayers": {
+                          "kind": "player-selector",
+                          "mode": "dynamic",
+                          "seats": [],
+                          "base": "all",
+                          "multiple": true,
+                          "filters": [],
+                          "sort": {
+                            "by": "turn-order",
+                            "direction": "ascending",
+                            "asset": "Coins"
+                          },
+                          "limit": 4,
+                          "excludeTriggering": true,
+                          "fallback": "triggering"
+                        },
                         "prompt": "Choose a player",
                         "allowSelf": false,
                         "allowCancel": false,
@@ -161734,7 +161960,7 @@
                       ],
                       "waitForInput": true,
                       "id": "clip-1788388536247",
-                      "start": 3,
+                      "start": 4.5,
                       "duration": 1,
                       "kind": "action",
                       "isDecision": false
@@ -161746,7 +161972,7 @@
                       "icon": "✦",
                       "desc": "Run a particle preset at a target or screen anchor.",
                       "parameters": {
-                        "preset": "Coin Burst",
+                        "preset": "sfx-smoke",
                         "target": "Triggering Player",
                         "duration": 1.6,
                         "follow": true,
@@ -161781,15 +162007,15 @@
                       ],
                       "waitForInput": false,
                       "id": "clip-1788389844948",
-                      "start": 3.5,
-                      "duration": 1.8,
+                      "start": 5,
+                      "duration": 1,
                       "kind": "action",
                       "isDecision": false
                     },
                     {
                       "category": "assets",
                       "op": "transfer-asset",
-                      "label": "TRANSFER ASSET",
+                      "label": "TRANSFER: 10 Coins",
                       "icon": "⇄",
                       "desc": "Move an asset atomically between players, pots, or board holders.",
                       "parameters": {
@@ -161822,10 +162048,90 @@
                       ],
                       "waitForInput": false,
                       "id": "clip-1788388574172",
-                      "start": 4,
-                      "duration": 1.8,
+                      "start": 5.5,
+                      "duration": 1,
                       "kind": "player",
                       "isDecision": false
+                    },
+                    {
+                      "category": "dialogue",
+                      "op": "dialogue",
+                      "label": "Crabby: \"What a jerk stealing from others...\"",
+                      "icon": "💬",
+                      "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                      "parameters": {
+                        "speaker": "Crabby",
+                        "text": "What a jerk stealing from others...",
+                        "style": "thought",
+                        "waitForInput": true
+                      },
+                      "parameterSchema": [
+                        {
+                          "key": "speaker",
+                          "label": "Speaker",
+                          "type": "text"
+                        },
+                        {
+                          "key": "text",
+                          "label": "Text",
+                          "type": "text"
+                        },
+                        {
+                          "key": "style",
+                          "label": "Style",
+                          "type": "text"
+                        },
+                        {
+                          "key": "waitForInput",
+                          "label": "Wait For Input",
+                          "type": "boolean"
+                        }
+                      ],
+                      "waitForInput": false,
+                      "id": "clip-1788576689494",
+                      "start": 6.5,
+                      "duration": 2,
+                      "kind": "action",
+                      "isDecision": false,
+                      "speaker": "Crabby",
+                      "text": "What a jerk stealing from others...",
+                      "style": "thought"
+                    },
+                    {
+                      "category": "stage",
+                      "op": "despawn-actor",
+                      "label": "DESPAWN ACTOR",
+                      "icon": "♙",
+                      "desc": "Remove a temporary actor with an exit animation.",
+                      "parameters": {
+                        "actor": "char-1788474981675",
+                        "animation": "part-1788485384857-ak1h"
+                      },
+                      "parameterSchema": [
+                        {
+                          "key": "actor",
+                          "label": "Actor",
+                          "type": "actor-picker"
+                        },
+                        {
+                          "key": "animation",
+                          "label": "Animation",
+                          "type": "animation-picker"
+                        }
+                      ],
+                      "waitForInput": false,
+                      "id": "clip-1788576067024",
+                      "start": 7,
+                      "duration": 1,
+                      "kind": "action",
+                      "isDecision": false,
+                      "stageEffect": "fade-from-white",
+                      "particleDump": {
+                        "count": 24,
+                        "controllers": [],
+                        "effectId": "sfx-smoke",
+                        "shape": "circle"
+                      }
                     }
                   ]
                 },
@@ -161841,11 +162147,11 @@
                     {
                       "category": "dialogue",
                       "op": "dialogue",
-                      "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
+                      "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
                       "icon": "💬",
                       "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                       "parameters": {
-                        "speaker": "147.g_3.c_",
+                        "speaker": "Crabby",
                         "text": "OK, your loss! ::Scuttle::",
                         "style": "speech",
                         "waitForInput": true
@@ -161872,13 +162178,13 @@
                           "type": "boolean"
                         }
                       ],
-                      "waitForInput": true,
+                      "waitForInput": false,
                       "id": "clip-1788467577880",
-                      "start": 3,
-                      "duration": 1,
+                      "start": 4.5,
+                      "duration": 2,
                       "kind": "action",
                       "isDecision": false,
-                      "speaker": "147.g_3.c_",
+                      "speaker": "Crabby",
                       "text": "OK, your loss! ::Scuttle::",
                       "style": "speech"
                     },
@@ -161906,7 +162212,7 @@
                       ],
                       "waitForInput": false,
                       "id": "clip-1788555004742",
-                      "start": 4,
+                      "start": 5.5,
                       "duration": 1,
                       "kind": "action",
                       "isDecision": false,
@@ -161921,42 +162227,6 @@
               ]
             },
             "commands": [
-              {
-                "id": "clip-1788552959769",
-                "op": "spawn-actor",
-                "icon": "♙",
-                "desc": "Spawn a configured actor into a named anchor.",
-                "parameters": {
-                  "actor": "char-1788474981675",
-                  "anchor": "Center",
-                  "animation": "part-1788485384857-ak1h"
-                },
-                "parameterSchema": [
-                  {
-                    "key": "actor",
-                    "label": "Actor",
-                    "type": "actor-picker"
-                  },
-                  {
-                    "key": "anchor",
-                    "label": "Anchor",
-                    "type": "text"
-                  },
-                  {
-                    "key": "animation",
-                    "label": "Animation",
-                    "type": "animation-picker"
-                  }
-                ],
-                "category": "stage",
-                "kind": "action",
-                "label": "SPAWN ACTOR",
-                "waitForInput": false,
-                "start": 0,
-                "duration": 1.8,
-                "open": true,
-                "depth": 0
-              },
               {
                 "id": "clip-1788550440711",
                 "op": "zoom",
@@ -161988,7 +162258,49 @@
                 "kind": "action",
                 "label": "ZOOM CAMERA",
                 "waitForInput": false,
-                "start": 0.25,
+                "start": 0,
+                "duration": 1.8,
+                "open": true,
+                "depth": 0
+              },
+              {
+                "id": "clip-1788552959769",
+                "op": "spawn-actor",
+                "icon": "♙",
+                "desc": "Spawn a configured actor into a named anchor.",
+                "parameters": {
+                  "actor": "char-1788474981675",
+                  "anchor": "Center",
+                  "animation": "part-1788485384857-ak1h"
+                },
+                "parameterSchema": [
+                  {
+                    "key": "actor",
+                    "label": "Actor",
+                    "type": "actor-picker"
+                  },
+                  {
+                    "key": "anchor",
+                    "label": "Anchor",
+                    "type": "text"
+                  },
+                  {
+                    "key": "animation",
+                    "label": "Animation",
+                    "type": "animation-picker"
+                  }
+                ],
+                "category": "stage",
+                "kind": "action",
+                "label": "SPAWN ACTOR",
+                "stageEffect": "smoke-poof",
+                "particleDump": {
+                  "effectId": "",
+                  "count": 24,
+                  "controllers": []
+                },
+                "waitForInput": false,
+                "start": 1,
                 "duration": 1.8,
                 "open": true,
                 "depth": 0
@@ -162014,7 +162326,7 @@
                 "kind": "condition",
                 "label": "CONFIRM: \"Hey buddy, do you want me to steal some Gems from another player? It costs 10 Coins.\" [YES / NO]",
                 "waitForInput": true,
-                "start": 2,
+                "start": 3.5,
                 "duration": 1,
                 "open": true,
                 "depth": 0
@@ -162026,7 +162338,22 @@
                 "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                 "parameters": {
                   "choosingPlayer": "Triggering Player",
-                  "eligiblePlayers": "All Players",
+                  "eligiblePlayers": {
+                    "kind": "player-selector",
+                    "mode": "dynamic",
+                    "seats": [],
+                    "base": "all",
+                    "multiple": true,
+                    "filters": [],
+                    "sort": {
+                      "by": "turn-order",
+                      "direction": "ascending",
+                      "asset": "Coins"
+                    },
+                    "limit": 4,
+                    "excludeTriggering": true,
+                    "fallback": "triggering"
+                  },
                   "prompt": "Choose a player",
                   "allowSelf": false,
                   "allowCancel": false,
@@ -162086,7 +162413,7 @@
                 "kind": "action",
                 "label": "CHOOSE ANOTHER PLAYER",
                 "waitForInput": true,
-                "start": 3,
+                "start": 4.5,
                 "duration": 1,
                 "open": true,
                 "depth": 0
@@ -162097,7 +162424,7 @@
                 "icon": "💬",
                 "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                 "parameters": {
-                  "speaker": "147.g_3.c_",
+                  "speaker": "Crabby",
                   "text": "OK, your loss! ::Scuttle::",
                   "style": "speech",
                   "waitForInput": true
@@ -162126,13 +162453,13 @@
                 ],
                 "category": "dialogue",
                 "kind": "action",
-                "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
-                "speaker": "147.g_3.c_",
+                "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
+                "speaker": "Crabby",
                 "text": "OK, your loss! ::Scuttle::",
                 "style": "speech",
-                "waitForInput": true,
-                "start": 3,
-                "duration": 1,
+                "waitForInput": false,
+                "start": 4.5,
+                "duration": 2,
                 "open": true,
                 "depth": 0
               },
@@ -162142,7 +162469,7 @@
                 "icon": "✦",
                 "desc": "Run a particle preset at a target or screen anchor.",
                 "parameters": {
-                  "preset": "Coin Burst",
+                  "preset": "sfx-smoke",
                   "target": "Triggering Player",
                   "duration": 1.6,
                   "follow": true,
@@ -162179,8 +162506,8 @@
                 "kind": "action",
                 "label": "SPAWN PARTICLES",
                 "waitForInput": false,
-                "start": 3.5,
-                "duration": 1.8,
+                "start": 5,
+                "duration": 1,
                 "open": true,
                 "depth": 0
               },
@@ -162219,10 +162546,10 @@
                 ],
                 "category": "assets",
                 "kind": "player",
-                "label": "TRANSFER ASSET",
+                "label": "TRANSFER: 10 Coins",
                 "waitForInput": false,
-                "start": 4,
-                "duration": 1.8,
+                "start": 5.5,
+                "duration": 1,
                 "open": true,
                 "depth": 0
               },
@@ -162250,8 +162577,95 @@
                 "category": "stage",
                 "kind": "action",
                 "label": "DESPAWN ACTOR",
+                "stageEffect": "smoke-poof",
+                "particleDump": {
+                  "count": 24,
+                  "controllers": []
+                },
                 "waitForInput": false,
-                "start": 4,
+                "start": 5.5,
+                "duration": 1,
+                "open": true,
+                "depth": 0
+              },
+              {
+                "id": "clip-1788576689494",
+                "op": "dialogue",
+                "icon": "💬",
+                "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                "parameters": {
+                  "speaker": "Crabby",
+                  "text": "What a jerk stealing from others...",
+                  "style": "thought",
+                  "waitForInput": true
+                },
+                "parameterSchema": [
+                  {
+                    "key": "speaker",
+                    "label": "Speaker",
+                    "type": "text"
+                  },
+                  {
+                    "key": "text",
+                    "label": "Text",
+                    "type": "text"
+                  },
+                  {
+                    "key": "style",
+                    "label": "Style",
+                    "type": "text"
+                  },
+                  {
+                    "key": "waitForInput",
+                    "label": "Wait For Input",
+                    "type": "boolean"
+                  }
+                ],
+                "category": "dialogue",
+                "kind": "action",
+                "label": "Crabby: \"What a jerk stealing from others...\"",
+                "speaker": "Crabby",
+                "text": "What a jerk stealing from others...",
+                "style": "thought",
+                "waitForInput": false,
+                "start": 6.5,
+                "duration": 2,
+                "open": true,
+                "depth": 0
+              },
+              {
+                "id": "clip-1788576067024",
+                "op": "despawn-actor",
+                "icon": "♙",
+                "desc": "Remove a temporary actor with an exit animation.",
+                "parameters": {
+                  "actor": "char-1788474981675",
+                  "animation": "part-1788485384857-ak1h"
+                },
+                "parameterSchema": [
+                  {
+                    "key": "actor",
+                    "label": "Actor",
+                    "type": "actor-picker"
+                  },
+                  {
+                    "key": "animation",
+                    "label": "Animation",
+                    "type": "animation-picker"
+                  }
+                ],
+                "category": "stage",
+                "kind": "action",
+                "label": "DESPAWN ACTOR",
+                "stageEffect": "fade-from-white",
+                "particleDump": {
+                  "count": 24,
+                  "controllers": [],
+                  "effectId": "sfx-smoke",
+                  "shape": "circle"
+                },
+                "waitForInput": false,
+                "start": 7,
                 "duration": 1,
                 "open": true,
                 "depth": 0
@@ -162589,7 +163003,12 @@
                 ]
               }
             ],
-            "animationId": "animation-1788469390155-1iaw"
+            "animationId": "animation-1788469390155-1iaw",
+            "offsetX": 0,
+            "offsetY": -34,
+            "scale": 1,
+            "alwaysVisible": true,
+            "visibleOnBoard": true
           }
         ],
         "activations": {
@@ -163431,7 +163850,12 @@
                 ]
               }
             ],
-            "animationId": "animation-1788469390155-6101"
+            "animationId": "animation-1788469390155-6101",
+            "offsetX": 0,
+            "offsetY": -34,
+            "scale": 1,
+            "alwaysVisible": true,
+            "visibleOnBoard": true
           }
         ],
         "activations": {
@@ -163988,7 +164412,12 @@
                 ]
               }
             ],
-            "animationId": "animation-1788469390155-5z2v"
+            "animationId": "animation-1788469390155-5z2v",
+            "offsetX": 0,
+            "offsetY": -34,
+            "scale": 1,
+            "alwaysVisible": true,
+            "visibleOnBoard": true
           }
         ],
         "activations": {
@@ -164281,7 +164710,12 @@
                 ]
               }
             ],
-            "animationId": "animation-1788469390155-rzbp"
+            "animationId": "animation-1788469390155-rzbp",
+            "offsetX": 0,
+            "offsetY": -34,
+            "scale": 1,
+            "alwaysVisible": true,
+            "visibleOnBoard": true
           }
         ],
         "activations": {
@@ -165713,6 +166147,7 @@
               "x": 46.75124045670972,
               "y": 77.55467672531742,
               "depth": 2,
+              "shape": "oval",
               "action": "ghost-space",
               "activity": {
                 "id": "ghost-space",
@@ -165727,6 +166162,7 @@
               "x": 22.20751500171453,
               "y": 69.78169723484018,
               "depth": 2,
+              "shape": "oval",
               "action": "ghost-space",
               "activity": {
                 "id": "ghost-space",
@@ -165741,6 +166177,7 @@
               "x": 34.560523449685654,
               "y": 95.96983499343257,
               "depth": 2,
+              "shape": "oval",
               "action": "ghost-space",
               "activity": {
                 "id": "ghost-space",
@@ -260099,42 +260536,6 @@
               },
               "commands": [
                 {
-                  "id": "clip-1788552959769",
-                  "op": "spawn-actor",
-                  "icon": "♙",
-                  "desc": "Spawn a configured actor into a named anchor.",
-                  "parameters": {
-                    "actor": "char-1788474981675",
-                    "anchor": "Center",
-                    "animation": "part-1788485384857-ak1h"
-                  },
-                  "parameterSchema": [
-                    {
-                      "key": "actor",
-                      "label": "Actor",
-                      "type": "actor-picker"
-                    },
-                    {
-                      "key": "anchor",
-                      "label": "Anchor",
-                      "type": "text"
-                    },
-                    {
-                      "key": "animation",
-                      "label": "Animation",
-                      "type": "animation-picker"
-                    }
-                  ],
-                  "category": "stage",
-                  "kind": "action",
-                  "label": "SPAWN ACTOR",
-                  "waitForInput": false,
-                  "start": 0,
-                  "duration": 1.8,
-                  "open": true,
-                  "depth": 0
-                },
-                {
                   "id": "clip-1788550440711",
                   "op": "zoom",
                   "icon": "⌕",
@@ -260165,7 +260566,49 @@
                   "kind": "action",
                   "label": "ZOOM CAMERA",
                   "waitForInput": false,
-                  "start": 0.25,
+                  "start": 0,
+                  "duration": 1.8,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1788552959769",
+                  "op": "spawn-actor",
+                  "icon": "♙",
+                  "desc": "Spawn a configured actor into a named anchor.",
+                  "parameters": {
+                    "actor": "char-1788474981675",
+                    "anchor": "Center",
+                    "animation": "part-1788485384857-ak1h"
+                  },
+                  "parameterSchema": [
+                    {
+                      "key": "actor",
+                      "label": "Actor",
+                      "type": "actor-picker"
+                    },
+                    {
+                      "key": "anchor",
+                      "label": "Anchor",
+                      "type": "text"
+                    },
+                    {
+                      "key": "animation",
+                      "label": "Animation",
+                      "type": "animation-picker"
+                    }
+                  ],
+                  "category": "stage",
+                  "kind": "action",
+                  "label": "SPAWN ACTOR",
+                  "stageEffect": "smoke-poof",
+                  "particleDump": {
+                    "effectId": "",
+                    "count": 24,
+                    "controllers": []
+                  },
+                  "waitForInput": false,
+                  "start": 1,
                   "duration": 1.8,
                   "open": true,
                   "depth": 0
@@ -260191,7 +260634,7 @@
                   "kind": "condition",
                   "label": "CONFIRM: \"Hey buddy, do you want me to steal some Gems from another player? It costs 10 Coins.\" [YES / NO]",
                   "waitForInput": true,
-                  "start": 2,
+                  "start": 3.5,
                   "duration": 1,
                   "open": true,
                   "depth": 0
@@ -260203,7 +260646,22 @@
                   "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                   "parameters": {
                     "choosingPlayer": "Triggering Player",
-                    "eligiblePlayers": "All Players",
+                    "eligiblePlayers": {
+                      "kind": "player-selector",
+                      "mode": "dynamic",
+                      "seats": [],
+                      "base": "all",
+                      "multiple": true,
+                      "filters": [],
+                      "sort": {
+                        "by": "turn-order",
+                        "direction": "ascending",
+                        "asset": "Coins"
+                      },
+                      "limit": 4,
+                      "excludeTriggering": true,
+                      "fallback": "triggering"
+                    },
                     "prompt": "Choose a player",
                     "allowSelf": false,
                     "allowCancel": false,
@@ -260263,7 +260721,7 @@
                   "kind": "action",
                   "label": "CHOOSE ANOTHER PLAYER",
                   "waitForInput": true,
-                  "start": 3,
+                  "start": 4.5,
                   "duration": 1,
                   "open": true,
                   "depth": 0
@@ -260274,7 +260732,7 @@
                   "icon": "💬",
                   "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                   "parameters": {
-                    "speaker": "147.g_3.c_",
+                    "speaker": "Crabby",
                     "text": "OK, your loss! ::Scuttle::",
                     "style": "speech",
                     "waitForInput": true
@@ -260303,13 +260761,13 @@
                   ],
                   "category": "dialogue",
                   "kind": "action",
-                  "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
-                  "speaker": "147.g_3.c_",
+                  "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
+                  "speaker": "Crabby",
                   "text": "OK, your loss! ::Scuttle::",
                   "style": "speech",
-                  "waitForInput": true,
-                  "start": 3,
-                  "duration": 1,
+                  "waitForInput": false,
+                  "start": 4.5,
+                  "duration": 2,
                   "open": true,
                   "depth": 0
                 },
@@ -260319,7 +260777,7 @@
                   "icon": "✦",
                   "desc": "Run a particle preset at a target or screen anchor.",
                   "parameters": {
-                    "preset": "Coin Burst",
+                    "preset": "sfx-smoke",
                     "target": "Triggering Player",
                     "duration": 1.6,
                     "follow": true,
@@ -260356,8 +260814,8 @@
                   "kind": "action",
                   "label": "SPAWN PARTICLES",
                   "waitForInput": false,
-                  "start": 3.5,
-                  "duration": 1.8,
+                  "start": 5,
+                  "duration": 1,
                   "open": true,
                   "depth": 0
                 },
@@ -260396,10 +260854,10 @@
                   ],
                   "category": "assets",
                   "kind": "player",
-                  "label": "TRANSFER ASSET",
+                  "label": "TRANSFER: 10 Coins",
                   "waitForInput": false,
-                  "start": 4,
-                  "duration": 1.8,
+                  "start": 5.5,
+                  "duration": 1,
                   "open": true,
                   "depth": 0
                 },
@@ -260427,8 +260885,95 @@
                   "category": "stage",
                   "kind": "action",
                   "label": "DESPAWN ACTOR",
+                  "stageEffect": "smoke-poof",
+                  "particleDump": {
+                    "count": 24,
+                    "controllers": []
+                  },
                   "waitForInput": false,
-                  "start": 4,
+                  "start": 5.5,
+                  "duration": 1,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1788576689494",
+                  "op": "dialogue",
+                  "icon": "💬",
+                  "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                  "parameters": {
+                    "speaker": "Crabby",
+                    "text": "What a jerk stealing from others...",
+                    "style": "thought",
+                    "waitForInput": true
+                  },
+                  "parameterSchema": [
+                    {
+                      "key": "speaker",
+                      "label": "Speaker",
+                      "type": "text"
+                    },
+                    {
+                      "key": "text",
+                      "label": "Text",
+                      "type": "text"
+                    },
+                    {
+                      "key": "style",
+                      "label": "Style",
+                      "type": "text"
+                    },
+                    {
+                      "key": "waitForInput",
+                      "label": "Wait For Input",
+                      "type": "boolean"
+                    }
+                  ],
+                  "category": "dialogue",
+                  "kind": "action",
+                  "label": "Crabby: \"What a jerk stealing from others...\"",
+                  "speaker": "Crabby",
+                  "text": "What a jerk stealing from others...",
+                  "style": "thought",
+                  "waitForInput": false,
+                  "start": 6.5,
+                  "duration": 2,
+                  "open": true,
+                  "depth": 0
+                },
+                {
+                  "id": "clip-1788576067024",
+                  "op": "despawn-actor",
+                  "icon": "♙",
+                  "desc": "Remove a temporary actor with an exit animation.",
+                  "parameters": {
+                    "actor": "char-1788474981675",
+                    "animation": "part-1788485384857-ak1h"
+                  },
+                  "parameterSchema": [
+                    {
+                      "key": "actor",
+                      "label": "Actor",
+                      "type": "actor-picker"
+                    },
+                    {
+                      "key": "animation",
+                      "label": "Animation",
+                      "type": "animation-picker"
+                    }
+                  ],
+                  "category": "stage",
+                  "kind": "action",
+                  "label": "DESPAWN ACTOR",
+                  "stageEffect": "fade-from-white",
+                  "particleDump": {
+                    "count": 24,
+                    "controllers": [],
+                    "effectId": "sfx-smoke",
+                    "shape": "circle"
+                  },
+                  "waitForInput": false,
+                  "start": 7,
                   "duration": 1,
                   "open": true,
                   "depth": 0
@@ -326594,7 +327139,12 @@
                     "idleAnimationId": "part-1788546063144-84ws"
                   },
                   "animationId": "animation-1788474981675-ti7h",
-                  "idleAnimationId": "part-1788546063144-84ws"
+                  "idleAnimationId": "part-1788546063144-84ws",
+                  "offsetX": 136,
+                  "offsetY": -74,
+                  "scale": 1.4,
+                  "alwaysVisible": false,
+                  "visibleOnBoard": false
                 }
               ],
               "activations": {
@@ -326641,47 +327191,6 @@
                     "muted": false,
                     "clips": [
                       {
-                        "category": "stage",
-                        "op": "spawn-actor",
-                        "label": "SPAWN ACTOR",
-                        "icon": "♙",
-                        "desc": "Spawn a configured actor into a named anchor.",
-                        "parameters": {
-                          "actor": "char-1788474981675",
-                          "anchor": "Center",
-                          "animation": "part-1788485384857-ak1h"
-                        },
-                        "parameterSchema": [
-                          {
-                            "key": "actor",
-                            "label": "Actor",
-                            "type": "actor-picker"
-                          },
-                          {
-                            "key": "anchor",
-                            "label": "Anchor",
-                            "type": "text"
-                          },
-                          {
-                            "key": "animation",
-                            "label": "Animation",
-                            "type": "animation-picker"
-                          }
-                        ],
-                        "waitForInput": false,
-                        "id": "clip-1788552959769",
-                        "start": 0,
-                        "duration": 1.8,
-                        "kind": "action",
-                        "isDecision": false,
-                        "stageEffect": "smoke-poof",
-                        "particleDump": {
-                          "effectId": "",
-                          "count": 24,
-                          "controllers": []
-                        }
-                      },
-                      {
                         "category": "camera",
                         "op": "zoom",
                         "label": "ZOOM CAMERA",
@@ -326711,10 +327220,51 @@
                         ],
                         "waitForInput": false,
                         "id": "clip-1788550440711",
-                        "start": 0.25,
+                        "start": 0,
                         "duration": 1.8,
                         "kind": "action",
                         "isDecision": false
+                      },
+                      {
+                        "category": "stage",
+                        "op": "spawn-actor",
+                        "label": "SPAWN ACTOR",
+                        "icon": "♙",
+                        "desc": "Spawn a configured actor into a named anchor.",
+                        "parameters": {
+                          "actor": "char-1788474981675",
+                          "anchor": "Center",
+                          "animation": "part-1788485384857-ak1h"
+                        },
+                        "parameterSchema": [
+                          {
+                            "key": "actor",
+                            "label": "Actor",
+                            "type": "actor-picker"
+                          },
+                          {
+                            "key": "anchor",
+                            "label": "Anchor",
+                            "type": "text"
+                          },
+                          {
+                            "key": "animation",
+                            "label": "Animation",
+                            "type": "animation-picker"
+                          }
+                        ],
+                        "waitForInput": false,
+                        "id": "clip-1788552959769",
+                        "start": 1,
+                        "duration": 1.8,
+                        "kind": "action",
+                        "isDecision": false,
+                        "stageEffect": "smoke-poof",
+                        "particleDump": {
+                          "effectId": "",
+                          "count": 24,
+                          "controllers": []
+                        }
                       },
                       {
                         "category": "ui",
@@ -326736,7 +327286,7 @@
                         ],
                         "waitForInput": true,
                         "id": "clip-1788390139426",
-                        "start": 2,
+                        "start": 3.5,
                         "duration": 1,
                         "kind": "condition",
                         "isDecision": true,
@@ -326751,7 +327301,22 @@
                         "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                         "parameters": {
                           "choosingPlayer": "Triggering Player",
-                          "eligiblePlayers": "All Players",
+                          "eligiblePlayers": {
+                            "kind": "player-selector",
+                            "mode": "dynamic",
+                            "seats": [],
+                            "base": "all",
+                            "multiple": true,
+                            "filters": [],
+                            "sort": {
+                              "by": "turn-order",
+                              "direction": "ascending",
+                              "asset": "Coins"
+                            },
+                            "limit": 4,
+                            "excludeTriggering": true,
+                            "fallback": "triggering"
+                          },
                           "prompt": "Choose a player",
                           "allowSelf": false,
                           "allowCancel": false,
@@ -326809,7 +327374,7 @@
                         ],
                         "waitForInput": true,
                         "id": "clip-1788388536247",
-                        "start": 3,
+                        "start": 4.5,
                         "duration": 1,
                         "kind": "action",
                         "isDecision": false
@@ -326821,7 +327386,7 @@
                         "icon": "✦",
                         "desc": "Run a particle preset at a target or screen anchor.",
                         "parameters": {
-                          "preset": "Coin Burst",
+                          "preset": "sfx-smoke",
                           "target": "Triggering Player",
                           "duration": 1.6,
                           "follow": true,
@@ -326856,15 +327421,15 @@
                         ],
                         "waitForInput": false,
                         "id": "clip-1788389844948",
-                        "start": 3.5,
-                        "duration": 1.8,
+                        "start": 5,
+                        "duration": 1,
                         "kind": "action",
                         "isDecision": false
                       },
                       {
                         "category": "assets",
                         "op": "transfer-asset",
-                        "label": "TRANSFER ASSET",
+                        "label": "TRANSFER: 10 Coins",
                         "icon": "⇄",
                         "desc": "Move an asset atomically between players, pots, or board holders.",
                         "parameters": {
@@ -326897,10 +327462,90 @@
                         ],
                         "waitForInput": false,
                         "id": "clip-1788388574172",
-                        "start": 4,
-                        "duration": 1.8,
+                        "start": 5.5,
+                        "duration": 1,
                         "kind": "player",
                         "isDecision": false
+                      },
+                      {
+                        "category": "dialogue",
+                        "op": "dialogue",
+                        "label": "Crabby: \"What a jerk stealing from others...\"",
+                        "icon": "💬",
+                        "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                        "parameters": {
+                          "speaker": "Crabby",
+                          "text": "What a jerk stealing from others...",
+                          "style": "thought",
+                          "waitForInput": true
+                        },
+                        "parameterSchema": [
+                          {
+                            "key": "speaker",
+                            "label": "Speaker",
+                            "type": "text"
+                          },
+                          {
+                            "key": "text",
+                            "label": "Text",
+                            "type": "text"
+                          },
+                          {
+                            "key": "style",
+                            "label": "Style",
+                            "type": "text"
+                          },
+                          {
+                            "key": "waitForInput",
+                            "label": "Wait For Input",
+                            "type": "boolean"
+                          }
+                        ],
+                        "waitForInput": false,
+                        "id": "clip-1788576689494",
+                        "start": 6.5,
+                        "duration": 2,
+                        "kind": "action",
+                        "isDecision": false,
+                        "speaker": "Crabby",
+                        "text": "What a jerk stealing from others...",
+                        "style": "thought"
+                      },
+                      {
+                        "category": "stage",
+                        "op": "despawn-actor",
+                        "label": "DESPAWN ACTOR",
+                        "icon": "♙",
+                        "desc": "Remove a temporary actor with an exit animation.",
+                        "parameters": {
+                          "actor": "char-1788474981675",
+                          "animation": "part-1788485384857-ak1h"
+                        },
+                        "parameterSchema": [
+                          {
+                            "key": "actor",
+                            "label": "Actor",
+                            "type": "actor-picker"
+                          },
+                          {
+                            "key": "animation",
+                            "label": "Animation",
+                            "type": "animation-picker"
+                          }
+                        ],
+                        "waitForInput": false,
+                        "id": "clip-1788576067024",
+                        "start": 7,
+                        "duration": 1,
+                        "kind": "action",
+                        "isDecision": false,
+                        "stageEffect": "fade-from-white",
+                        "particleDump": {
+                          "count": 24,
+                          "controllers": [],
+                          "effectId": "sfx-smoke",
+                          "shape": "circle"
+                        }
                       }
                     ]
                   },
@@ -326916,11 +327561,11 @@
                       {
                         "category": "dialogue",
                         "op": "dialogue",
-                        "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
+                        "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
                         "icon": "💬",
                         "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                         "parameters": {
-                          "speaker": "147.g_3.c_",
+                          "speaker": "Crabby",
                           "text": "OK, your loss! ::Scuttle::",
                           "style": "speech",
                           "waitForInput": true
@@ -326947,13 +327592,13 @@
                             "type": "boolean"
                           }
                         ],
-                        "waitForInput": true,
+                        "waitForInput": false,
                         "id": "clip-1788467577880",
-                        "start": 3,
-                        "duration": 1,
+                        "start": 4.5,
+                        "duration": 2,
                         "kind": "action",
                         "isDecision": false,
-                        "speaker": "147.g_3.c_",
+                        "speaker": "Crabby",
                         "text": "OK, your loss! ::Scuttle::",
                         "style": "speech"
                       },
@@ -326981,7 +327626,7 @@
                         ],
                         "waitForInput": false,
                         "id": "clip-1788555004742",
-                        "start": 4,
+                        "start": 5.5,
                         "duration": 1,
                         "kind": "action",
                         "isDecision": false,
@@ -327012,47 +327657,6 @@
                         "muted": false,
                         "clips": [
                           {
-                            "category": "stage",
-                            "op": "spawn-actor",
-                            "label": "SPAWN ACTOR",
-                            "icon": "♙",
-                            "desc": "Spawn a configured actor into a named anchor.",
-                            "parameters": {
-                              "actor": "char-1788474981675",
-                              "anchor": "Center",
-                              "animation": "part-1788485384857-ak1h"
-                            },
-                            "parameterSchema": [
-                              {
-                                "key": "actor",
-                                "label": "Actor",
-                                "type": "actor-picker"
-                              },
-                              {
-                                "key": "anchor",
-                                "label": "Anchor",
-                                "type": "text"
-                              },
-                              {
-                                "key": "animation",
-                                "label": "Animation",
-                                "type": "animation-picker"
-                              }
-                            ],
-                            "waitForInput": false,
-                            "id": "clip-1788552959769",
-                            "start": 0,
-                            "duration": 1.8,
-                            "kind": "action",
-                            "isDecision": false,
-                            "stageEffect": "smoke-poof",
-                            "particleDump": {
-                              "effectId": "",
-                              "count": 24,
-                              "controllers": []
-                            }
-                          },
-                          {
                             "category": "camera",
                             "op": "zoom",
                             "label": "ZOOM CAMERA",
@@ -327082,10 +327686,51 @@
                             ],
                             "waitForInput": false,
                             "id": "clip-1788550440711",
-                            "start": 0.25,
+                            "start": 0,
                             "duration": 1.8,
                             "kind": "action",
                             "isDecision": false
+                          },
+                          {
+                            "category": "stage",
+                            "op": "spawn-actor",
+                            "label": "SPAWN ACTOR",
+                            "icon": "♙",
+                            "desc": "Spawn a configured actor into a named anchor.",
+                            "parameters": {
+                              "actor": "char-1788474981675",
+                              "anchor": "Center",
+                              "animation": "part-1788485384857-ak1h"
+                            },
+                            "parameterSchema": [
+                              {
+                                "key": "actor",
+                                "label": "Actor",
+                                "type": "actor-picker"
+                              },
+                              {
+                                "key": "anchor",
+                                "label": "Anchor",
+                                "type": "text"
+                              },
+                              {
+                                "key": "animation",
+                                "label": "Animation",
+                                "type": "animation-picker"
+                              }
+                            ],
+                            "waitForInput": false,
+                            "id": "clip-1788552959769",
+                            "start": 1,
+                            "duration": 1.8,
+                            "kind": "action",
+                            "isDecision": false,
+                            "stageEffect": "smoke-poof",
+                            "particleDump": {
+                              "effectId": "",
+                              "count": 24,
+                              "controllers": []
+                            }
                           },
                           {
                             "category": "ui",
@@ -327107,7 +327752,7 @@
                             ],
                             "waitForInput": true,
                             "id": "clip-1788390139426",
-                            "start": 2,
+                            "start": 3.5,
                             "duration": 1,
                             "kind": "condition",
                             "isDecision": true,
@@ -327122,7 +327767,22 @@
                             "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                             "parameters": {
                               "choosingPlayer": "Triggering Player",
-                              "eligiblePlayers": "All Players",
+                              "eligiblePlayers": {
+                                "kind": "player-selector",
+                                "mode": "dynamic",
+                                "seats": [],
+                                "base": "all",
+                                "multiple": true,
+                                "filters": [],
+                                "sort": {
+                                  "by": "turn-order",
+                                  "direction": "ascending",
+                                  "asset": "Coins"
+                                },
+                                "limit": 4,
+                                "excludeTriggering": true,
+                                "fallback": "triggering"
+                              },
                               "prompt": "Choose a player",
                               "allowSelf": false,
                               "allowCancel": false,
@@ -327180,7 +327840,7 @@
                             ],
                             "waitForInput": true,
                             "id": "clip-1788388536247",
-                            "start": 3,
+                            "start": 4.5,
                             "duration": 1,
                             "kind": "action",
                             "isDecision": false
@@ -327192,7 +327852,7 @@
                             "icon": "✦",
                             "desc": "Run a particle preset at a target or screen anchor.",
                             "parameters": {
-                              "preset": "Coin Burst",
+                              "preset": "sfx-smoke",
                               "target": "Triggering Player",
                               "duration": 1.6,
                               "follow": true,
@@ -327227,15 +327887,15 @@
                             ],
                             "waitForInput": false,
                             "id": "clip-1788389844948",
-                            "start": 3.5,
-                            "duration": 1.8,
+                            "start": 5,
+                            "duration": 1,
                             "kind": "action",
                             "isDecision": false
                           },
                           {
                             "category": "assets",
                             "op": "transfer-asset",
-                            "label": "TRANSFER ASSET",
+                            "label": "TRANSFER: 10 Coins",
                             "icon": "⇄",
                             "desc": "Move an asset atomically between players, pots, or board holders.",
                             "parameters": {
@@ -327268,10 +327928,90 @@
                             ],
                             "waitForInput": false,
                             "id": "clip-1788388574172",
-                            "start": 4,
-                            "duration": 1.8,
+                            "start": 5.5,
+                            "duration": 1,
                             "kind": "player",
                             "isDecision": false
+                          },
+                          {
+                            "category": "dialogue",
+                            "op": "dialogue",
+                            "label": "Crabby: \"What a jerk stealing from others...\"",
+                            "icon": "💬",
+                            "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                            "parameters": {
+                              "speaker": "Crabby",
+                              "text": "What a jerk stealing from others...",
+                              "style": "thought",
+                              "waitForInput": true
+                            },
+                            "parameterSchema": [
+                              {
+                                "key": "speaker",
+                                "label": "Speaker",
+                                "type": "text"
+                              },
+                              {
+                                "key": "text",
+                                "label": "Text",
+                                "type": "text"
+                              },
+                              {
+                                "key": "style",
+                                "label": "Style",
+                                "type": "text"
+                              },
+                              {
+                                "key": "waitForInput",
+                                "label": "Wait For Input",
+                                "type": "boolean"
+                              }
+                            ],
+                            "waitForInput": false,
+                            "id": "clip-1788576689494",
+                            "start": 6.5,
+                            "duration": 2,
+                            "kind": "action",
+                            "isDecision": false,
+                            "speaker": "Crabby",
+                            "text": "What a jerk stealing from others...",
+                            "style": "thought"
+                          },
+                          {
+                            "category": "stage",
+                            "op": "despawn-actor",
+                            "label": "DESPAWN ACTOR",
+                            "icon": "♙",
+                            "desc": "Remove a temporary actor with an exit animation.",
+                            "parameters": {
+                              "actor": "char-1788474981675",
+                              "animation": "part-1788485384857-ak1h"
+                            },
+                            "parameterSchema": [
+                              {
+                                "key": "actor",
+                                "label": "Actor",
+                                "type": "actor-picker"
+                              },
+                              {
+                                "key": "animation",
+                                "label": "Animation",
+                                "type": "animation-picker"
+                              }
+                            ],
+                            "waitForInput": false,
+                            "id": "clip-1788576067024",
+                            "start": 7,
+                            "duration": 1,
+                            "kind": "action",
+                            "isDecision": false,
+                            "stageEffect": "fade-from-white",
+                            "particleDump": {
+                              "count": 24,
+                              "controllers": [],
+                              "effectId": "sfx-smoke",
+                              "shape": "circle"
+                            }
                           }
                         ]
                       },
@@ -327287,11 +328027,11 @@
                           {
                             "category": "dialogue",
                             "op": "dialogue",
-                            "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
+                            "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
                             "icon": "💬",
                             "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                             "parameters": {
-                              "speaker": "147.g_3.c_",
+                              "speaker": "Crabby",
                               "text": "OK, your loss! ::Scuttle::",
                               "style": "speech",
                               "waitForInput": true
@@ -327318,13 +328058,13 @@
                                 "type": "boolean"
                               }
                             ],
-                            "waitForInput": true,
+                            "waitForInput": false,
                             "id": "clip-1788467577880",
-                            "start": 3,
-                            "duration": 1,
+                            "start": 4.5,
+                            "duration": 2,
                             "kind": "action",
                             "isDecision": false,
-                            "speaker": "147.g_3.c_",
+                            "speaker": "Crabby",
                             "text": "OK, your loss! ::Scuttle::",
                             "style": "speech"
                           },
@@ -327352,7 +328092,7 @@
                             ],
                             "waitForInput": false,
                             "id": "clip-1788555004742",
-                            "start": 4,
+                            "start": 5.5,
                             "duration": 1,
                             "kind": "action",
                             "isDecision": false,
@@ -327367,42 +328107,6 @@
                     ]
                   },
                   "commands": [
-                    {
-                      "id": "clip-1788552959769",
-                      "op": "spawn-actor",
-                      "icon": "♙",
-                      "desc": "Spawn a configured actor into a named anchor.",
-                      "parameters": {
-                        "actor": "char-1788474981675",
-                        "anchor": "Center",
-                        "animation": "part-1788485384857-ak1h"
-                      },
-                      "parameterSchema": [
-                        {
-                          "key": "actor",
-                          "label": "Actor",
-                          "type": "actor-picker"
-                        },
-                        {
-                          "key": "anchor",
-                          "label": "Anchor",
-                          "type": "text"
-                        },
-                        {
-                          "key": "animation",
-                          "label": "Animation",
-                          "type": "animation-picker"
-                        }
-                      ],
-                      "category": "stage",
-                      "kind": "action",
-                      "label": "SPAWN ACTOR",
-                      "waitForInput": false,
-                      "start": 0,
-                      "duration": 1.8,
-                      "open": true,
-                      "depth": 0
-                    },
                     {
                       "id": "clip-1788550440711",
                       "op": "zoom",
@@ -327434,7 +328138,49 @@
                       "kind": "action",
                       "label": "ZOOM CAMERA",
                       "waitForInput": false,
-                      "start": 0.25,
+                      "start": 0,
+                      "duration": 1.8,
+                      "open": true,
+                      "depth": 0
+                    },
+                    {
+                      "id": "clip-1788552959769",
+                      "op": "spawn-actor",
+                      "icon": "♙",
+                      "desc": "Spawn a configured actor into a named anchor.",
+                      "parameters": {
+                        "actor": "char-1788474981675",
+                        "anchor": "Center",
+                        "animation": "part-1788485384857-ak1h"
+                      },
+                      "parameterSchema": [
+                        {
+                          "key": "actor",
+                          "label": "Actor",
+                          "type": "actor-picker"
+                        },
+                        {
+                          "key": "anchor",
+                          "label": "Anchor",
+                          "type": "text"
+                        },
+                        {
+                          "key": "animation",
+                          "label": "Animation",
+                          "type": "animation-picker"
+                        }
+                      ],
+                      "category": "stage",
+                      "kind": "action",
+                      "label": "SPAWN ACTOR",
+                      "stageEffect": "smoke-poof",
+                      "particleDump": {
+                        "effectId": "",
+                        "count": 24,
+                        "controllers": []
+                      },
+                      "waitForInput": false,
+                      "start": 1,
                       "duration": 1.8,
                       "open": true,
                       "depth": 0
@@ -327460,7 +328206,7 @@
                       "kind": "condition",
                       "label": "CONFIRM: \"Hey buddy, do you want me to steal some Gems from another player? It costs 10 Coins.\" [YES / NO]",
                       "waitForInput": true,
-                      "start": 2,
+                      "start": 3.5,
                       "duration": 1,
                       "open": true,
                       "depth": 0
@@ -327472,7 +328218,22 @@
                       "desc": "Ask one player to choose from an eligibility-filtered list of players and save the result as selectedPlayer.",
                       "parameters": {
                         "choosingPlayer": "Triggering Player",
-                        "eligiblePlayers": "All Players",
+                        "eligiblePlayers": {
+                          "kind": "player-selector",
+                          "mode": "dynamic",
+                          "seats": [],
+                          "base": "all",
+                          "multiple": true,
+                          "filters": [],
+                          "sort": {
+                            "by": "turn-order",
+                            "direction": "ascending",
+                            "asset": "Coins"
+                          },
+                          "limit": 4,
+                          "excludeTriggering": true,
+                          "fallback": "triggering"
+                        },
                         "prompt": "Choose a player",
                         "allowSelf": false,
                         "allowCancel": false,
@@ -327532,7 +328293,7 @@
                       "kind": "action",
                       "label": "CHOOSE ANOTHER PLAYER",
                       "waitForInput": true,
-                      "start": 3,
+                      "start": 4.5,
                       "duration": 1,
                       "open": true,
                       "depth": 0
@@ -327543,7 +328304,7 @@
                       "icon": "💬",
                       "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
                       "parameters": {
-                        "speaker": "147.g_3.c_",
+                        "speaker": "Crabby",
                         "text": "OK, your loss! ::Scuttle::",
                         "style": "speech",
                         "waitForInput": true
@@ -327572,13 +328333,13 @@
                       ],
                       "category": "dialogue",
                       "kind": "action",
-                      "label": "147.g_3.c_: \"OK, your loss! ::Scuttle::\"",
-                      "speaker": "147.g_3.c_",
+                      "label": "Crabby: \"OK, your loss! ::Scuttle::\"",
+                      "speaker": "Crabby",
                       "text": "OK, your loss! ::Scuttle::",
                       "style": "speech",
-                      "waitForInput": true,
-                      "start": 3,
-                      "duration": 1,
+                      "waitForInput": false,
+                      "start": 4.5,
+                      "duration": 2,
                       "open": true,
                       "depth": 0
                     },
@@ -327588,7 +328349,7 @@
                       "icon": "✦",
                       "desc": "Run a particle preset at a target or screen anchor.",
                       "parameters": {
-                        "preset": "Coin Burst",
+                        "preset": "sfx-smoke",
                         "target": "Triggering Player",
                         "duration": 1.6,
                         "follow": true,
@@ -327625,8 +328386,8 @@
                       "kind": "action",
                       "label": "SPAWN PARTICLES",
                       "waitForInput": false,
-                      "start": 3.5,
-                      "duration": 1.8,
+                      "start": 5,
+                      "duration": 1,
                       "open": true,
                       "depth": 0
                     },
@@ -327665,10 +328426,10 @@
                       ],
                       "category": "assets",
                       "kind": "player",
-                      "label": "TRANSFER ASSET",
+                      "label": "TRANSFER: 10 Coins",
                       "waitForInput": false,
-                      "start": 4,
-                      "duration": 1.8,
+                      "start": 5.5,
+                      "duration": 1,
                       "open": true,
                       "depth": 0
                     },
@@ -327696,8 +328457,95 @@
                       "category": "stage",
                       "kind": "action",
                       "label": "DESPAWN ACTOR",
+                      "stageEffect": "smoke-poof",
+                      "particleDump": {
+                        "count": 24,
+                        "controllers": []
+                      },
                       "waitForInput": false,
-                      "start": 4,
+                      "start": 5.5,
+                      "duration": 1,
+                      "open": true,
+                      "depth": 0
+                    },
+                    {
+                      "id": "clip-1788576689494",
+                      "op": "dialogue",
+                      "icon": "💬",
+                      "desc": "Portrait dialogue with speaker, style, text speed, and input barrier.",
+                      "parameters": {
+                        "speaker": "Crabby",
+                        "text": "What a jerk stealing from others...",
+                        "style": "thought",
+                        "waitForInput": true
+                      },
+                      "parameterSchema": [
+                        {
+                          "key": "speaker",
+                          "label": "Speaker",
+                          "type": "text"
+                        },
+                        {
+                          "key": "text",
+                          "label": "Text",
+                          "type": "text"
+                        },
+                        {
+                          "key": "style",
+                          "label": "Style",
+                          "type": "text"
+                        },
+                        {
+                          "key": "waitForInput",
+                          "label": "Wait For Input",
+                          "type": "boolean"
+                        }
+                      ],
+                      "category": "dialogue",
+                      "kind": "action",
+                      "label": "Crabby: \"What a jerk stealing from others...\"",
+                      "speaker": "Crabby",
+                      "text": "What a jerk stealing from others...",
+                      "style": "thought",
+                      "waitForInput": false,
+                      "start": 6.5,
+                      "duration": 2,
+                      "open": true,
+                      "depth": 0
+                    },
+                    {
+                      "id": "clip-1788576067024",
+                      "op": "despawn-actor",
+                      "icon": "♙",
+                      "desc": "Remove a temporary actor with an exit animation.",
+                      "parameters": {
+                        "actor": "char-1788474981675",
+                        "animation": "part-1788485384857-ak1h"
+                      },
+                      "parameterSchema": [
+                        {
+                          "key": "actor",
+                          "label": "Actor",
+                          "type": "actor-picker"
+                        },
+                        {
+                          "key": "animation",
+                          "label": "Animation",
+                          "type": "animation-picker"
+                        }
+                      ],
+                      "category": "stage",
+                      "kind": "action",
+                      "label": "DESPAWN ACTOR",
+                      "stageEffect": "fade-from-white",
+                      "particleDump": {
+                        "count": 24,
+                        "controllers": [],
+                        "effectId": "sfx-smoke",
+                        "shape": "circle"
+                      },
+                      "waitForInput": false,
+                      "start": 7,
                       "duration": 1,
                       "open": true,
                       "depth": 0
@@ -328035,7 +328883,12 @@
                       ]
                     }
                   ],
-                  "animationId": "animation-1788469390155-1iaw"
+                  "animationId": "animation-1788469390155-1iaw",
+                  "offsetX": 0,
+                  "offsetY": -34,
+                  "scale": 1,
+                  "alwaysVisible": true,
+                  "visibleOnBoard": true
                 }
               ],
               "activations": {
@@ -328877,7 +329730,12 @@
                       ]
                     }
                   ],
-                  "animationId": "animation-1788469390155-6101"
+                  "animationId": "animation-1788469390155-6101",
+                  "offsetX": 0,
+                  "offsetY": -34,
+                  "scale": 1,
+                  "alwaysVisible": true,
+                  "visibleOnBoard": true
                 }
               ],
               "activations": {
@@ -329434,7 +330292,12 @@
                       ]
                     }
                   ],
-                  "animationId": "animation-1788469390155-5z2v"
+                  "animationId": "animation-1788469390155-5z2v",
+                  "offsetX": 0,
+                  "offsetY": -34,
+                  "scale": 1,
+                  "alwaysVisible": true,
+                  "visibleOnBoard": true
                 }
               ],
               "activations": {
@@ -329727,7 +330590,12 @@
                       ]
                     }
                   ],
-                  "animationId": "animation-1788469390155-rzbp"
+                  "animationId": "animation-1788469390155-rzbp",
+                  "offsetX": 0,
+                  "offsetY": -34,
+                  "scale": 1,
+                  "alwaysVisible": true,
+                  "visibleOnBoard": true
                 }
               ],
               "activations": {
