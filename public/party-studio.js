@@ -75,6 +75,7 @@ const app = {
   // Video Editor Multi-Track Timeline State
   timelinePlaying: false, timelinePlayhead: 0, timelineZoom: 100, timelineScrollLeft: 0, timelineTriggeringPlayer: 1,
   timelineSelectedClipId: null, timelineActiveTrackId: "track-main",
+  timelineSideTab: "inspector", timelineBlockCategory: "all", timelineBlockSearch: "", sequenceFoldedMap: new Set(),
   timelineDraggingPlayhead: false, timelineDraggingClip: null, timelineTimer: null,
   timelinePreviewWaiting: null, timelinePreviewHandled: new Set(), timelinePreviewBranches: {}, editingActivationId: null,
   toyCategory: "all", editingToy: null,
@@ -1151,6 +1152,644 @@ function timelinePreviewMarkup(entry) {const state=timelinePreviewState(entry);r
 function mountTimelinePixiStage(entry,state=timelinePreviewState(entry)){const host=root.querySelector("[data-timeline-pixi-preview]");if(!host)return;mountTimelinePreviewRenderer(host,app.project.map,timelinePixiState(entry,state)).catch(error=>console.error("Timeline PIXI preview failed",error));}
 function updateTimelinePreviewLive(entry){const scene=root.querySelector("[data-preview-scene]");if(!scene)return;const state=timelinePreviewState(entry);const set=(selector,content,visible,className="")=>{const node=scene.querySelector(selector);if(!node)return;node.hidden=!visible;if(className)node.className=className;const next=content||"";if(node.innerHTML!==next)node.innerHTML=next;};set("[data-preview-dialogue]",previewDialogueMarkup(state),Boolean(state.dialogue),`preview-dialogue style-${state.dialogue?.style||state.dialogue?.parameters?.style||"speech"}`);set("[data-preview-prompt]",previewPromptMarkup(state),Boolean(state.decision||state.playerChoice||state.waiting),`preview-decision ${state.playerChoice?"preview-player-choice":""}`);set("[data-preview-events]",previewEventChips(state),Boolean(previewEventChips(state)));const idle=scene.querySelector("[data-preview-idle]");if(idle)idle.hidden=state.active.length>0||state.leadIn;mountTimelinePixiStage(entry,state);}
 
+function activeInspectorClipOrCommand() {
+  if (app.editingCommand?.cmd) return app.editingCommand.cmd;
+  if (app.timelineSelectedClipId) {
+    const act = currentAction();
+    const found = findClipInTimeline(act?.timeline, app.timelineSelectedClipId);
+    if (found) return found.clip;
+  }
+  return null;
+}
+
+function insertTimelineClip(act, presetData) {
+  ensureSpaceActionDefaults(act);
+
+  const insertTime = Math.max(0, app.timelinePlayhead || 0);
+  const isLogic = presetData.category === "logic";
+  const isBranch = isLogic || ["compare", "weighted-random", "switch", "check-assets", "check-status", "choice", "confirm"].includes(presetData.op) || presetData.isDecision === true;
+  const dur = presetData.category === "dialogue" ? 2.5 : 1.8;
+
+  const newClip = {
+    ...presetData,
+    id: `clip-${Date.now()}`,
+    start: insertTime,
+    duration: dur,
+    category: presetData.category,
+    kind: isBranch ? "condition" : ["assets", "status", "player"].includes(presetData.category) ? "player" : "action",
+    label: presetData.label,
+    isDecision: isBranch,
+  };
+  const firstActor = (act.characters || [])[0];
+  if (newClip.category === "actors" && firstActor) {
+    newClip.actorId = firstActor.id;
+    newClip.target = firstActor.name;
+    newClip.animationId = ragdollAnimations(firstActor)[0]?.id || "";
+  }
+  if (newClip.parameters && Object.hasOwn(newClip.parameters, "actor")) {
+    newClip.parameters.actor = firstActor?.id || "";
+    if (Object.hasOwn(newClip.parameters, "animation")) newClip.parameters.animation = ragdollAnimations(firstActor)[0]?.id || "";
+  }
+  if (newClip.op === "select-actor" && newClip.parameters) newClip.parameters.selector = firstActor?.id || "";
+
+  // Target track (active track or first unlocked track)
+  let targetTrack = act.timeline.tracks.find((t) => t.id === app.timelineActiveTrackId && !t.locked) ||
+                    act.timeline.tracks.find((t) => !t.locked) ||
+                    act.timeline.tracks[0];
+
+  targetTrack.clips ||= [];
+  targetTrack.clips.push(newClip);
+  targetTrack.clips.sort((a, b) => (a.start || 0) - (b.start || 0));
+
+  if (isBranch) {
+    if (newClip.op === "choice") {
+      ensureChoiceOptions(newClip);
+      syncDecisionOutcomeTracks(act.timeline, targetTrack, newClip);
+    } else {
+      const targetIndex = act.timeline.tracks.indexOf(targetTrack);
+      const laneBelow = act.timeline.tracks[targetIndex + 1];
+      const falseLabel = newClip.parameters?.falseLabel || newClip.choice2 || "NO";
+      if (!laneBelow || laneBelow.kind !== "branch-false") {
+        const branchTrack = {
+          id: `track-branch-${Date.now()}`,
+          name: `Branch 2 · ${falseLabel} / False`,
+          kind: "branch-false",
+          boundDecisionId: newClip.id,
+          color: "amber",
+          locked: false,
+          muted: false,
+          clips: []
+        };
+        act.timeline.tracks.splice(targetIndex + 1, 0, branchTrack);
+      } else {
+        laneBelow.boundDecisionId = newClip.id;
+        laneBelow.name = `Branch 2 · ${falseLabel} / False`;
+      }
+    }
+  }
+
+  // Expand duration if needed
+  const maxEnd = Math.max(...act.timeline.tracks.flatMap((t) => (t.clips || []).map((c) => (c.start || 0) + (c.duration || 2))), 14);
+  act.timeline.duration = Math.max(16, Math.ceil(maxEnd + 4));
+
+  // Advance playhead past the newly inserted clip
+  app.timelinePlayhead = insertTime + newClip.duration;
+  app.timelineSelectedClipId = newClip.id;
+  app.timelineSelectedClipIds = new Set([newClip.id]);
+  app.timelineSideTab = "inspector";
+
+  syncTimelineToCommands(act);
+  app.actionPickerOpen = false;
+  save("event");
+  render();
+  playSfx(presetData.category === "rewards" ? "coin" : presetData.category === "audio" ? "fanfare" : "chest");
+  toast("EVENT INSERTED ON TIMELINE! ★");
+}
+
+function timelineBlockInspector(entry) {
+  const selectedId = app.timelineSelectedClipId;
+  const found = selectedId ? findClipInTimeline(entry.timeline, selectedId) : null;
+  const clip = found?.clip;
+
+  if (!clip) {
+    return `
+      <div class="timeline-inspector-empty">
+        <div class="inspector-empty-icon">🔍</div>
+        <b>NO BLOCK SELECTED</b>
+        <p>Click any block on the left timeline to inspect and edit its settings, or browse and add new primitives below.</p>
+        <button type="button" data-nav data-timeline-side-tab="blocks" class="card-btn primary" style="max-width:240px;margin-top:8px;">
+          ＋ BROWSE NEW BLOCKS
+        </button>
+      </div>
+    `;
+  }
+
+  const cast = entry.characters || [];
+  const cat = clip.category || "dialogue";
+  const catIcons = {
+    dialogue: "💬", camera: "📷", actors: "👤", vfx: "✨",
+    inventory: "🎒", rewards: "🎒", logic: "🔀", world: "🌍", audio: "🎵", input: "🎮",
+    flow:"⏵",assets:"◆",variables:"▣",selectors:"⌕",player:"♟",status:"⬆",board:"◎",stage:"▣",screen:"✨",minigame:"🎮",ui:"💬",sound:"♪"
+  };
+
+  let fields = "";
+
+  // Dialogue
+  if (clip.op === "dialogue" || cat === "dialogue") {
+    const spkVal = clip.speaker || clip.parameters?.speaker || "Active Player";
+    const styVal = (clip.style || clip.parameters?.style || "speech").toLowerCase();
+    fields = `
+      <div class="cmd-editor-field">
+        <label>SPEAKER (PORTRAIT &amp; ACTOR)</label>
+        <select data-inline-clip-field="speaker">
+          <option value="Active Player" ${spkVal === "Active Player" ? "selected" : ""}>👤 Active Player</option>
+          ${cast.map((c) => {
+            const actor = canonicalSpaceActor(c) || c;
+            return `
+            <option value="${html(actor.name)}" ${spkVal === actor.name ? "selected" : ""}>
+              ${actor.isHost ? "👑 " : "🎭 "}${html(actor.name)} (${html(actor.role || "Actor")})
+            </option>
+          `;
+          }).join("")}
+          <option value="Narrator" ${spkVal === "Narrator" ? "selected" : ""}>📢 Narrator (Voiceover)</option>
+        </select>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>DIALOGUE TEXT / MESSAGE</label>
+        <textarea data-inline-clip-field="text" rows="3" placeholder="Enter message text...">${html(clip.text || clip.parameters?.text || clip.label || "")}</textarea>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>SPEECH BUBBLE STYLE</label>
+        <select data-inline-clip-field="style">
+          <option value="speech" ${styVal === "speech" ? "selected" : ""}>💬 Speech Bubble (Standard)</option>
+          <option value="thought" ${styVal === "thought" ? "selected" : ""}>💭 Thought Bubble</option>
+          <option value="shout" ${styVal === "shout" ? "selected" : ""}>💥 Shout / Warning (Bold)</option>
+          <option value="banner" ${styVal === "banner" ? "selected" : ""}>📢 Celebratory Banner Overlay</option>
+          <option value="toast" ${styVal === "toast" ? "selected" : ""}>🔔 Mini Toast Notification</option>
+        </select>
+      </div>
+    `;
+  } else if (clip.op === "confirm") {
+    const p = clip.parameters || {};
+    fields = `
+      <div class="cmd-editor-field">
+        <label>CONFIRMATION PROMPT TEXT</label>
+        <textarea data-inline-clip-field="prompt" rows="2" placeholder="e.g. Would you like to buy a Star for 20 Coins?">${html(p.prompt || clip.prompt || "Are you sure?")}</textarea>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="cmd-editor-field">
+          <label style="color:#54d682;">PRIMARY TRACK / TRUE LABEL</label>
+          <input type="text" data-inline-clip-field="trueLabel" value="${html(p.trueLabel || clip.choice1 || "YES")}" placeholder="e.g. YES">
+        </div>
+        <div class="cmd-editor-field">
+          <label style="color:#ff8877;">BRANCH TRACK / FALSE LABEL</label>
+          <input type="text" data-inline-clip-field="falseLabel" value="${html(p.falseLabel || clip.choice2 || "NO")}" placeholder="e.g. NO">
+        </div>
+      </div>
+    `;
+  } else if (clip.op === "choice") {
+    fields = presentChoiceEditorFields(clip);
+  } else if (Array.isArray(clip.parameterSchema) && clip.parameterSchema.length > 0) {
+    fields = `<div class="primitive-parameter-grid">${clip.parameterSchema.map((parameter) => {
+      const value = clip.parameters?.[parameter.key];
+      if (parameter.type === "actor-picker" || actorParameterKeys.has(parameter.key) || (clip.op === "select-actor" && parameter.key === "selector")) return `<div class="cmd-editor-field"><label>${html(parameter.label)}</label><select data-generic-param="${html(parameter.key)}" data-space-actor-picker>${actorPickerOptions(cast,value)}</select><small>Only actors assigned in this Space Action’s Cast tab are available.</small></div>`;
+      if (parameter.type === "animation-picker" || animationParameterKeys.has(parameter.key)) { const actor=selectedSpaceActor(cast,clip.parameters?.actor); return `<div class="cmd-editor-field"><label>${html(parameter.label)}</label><select data-generic-param="${html(parameter.key)}" data-ragdoll-animation-picker>${ragdollAnimationPickerOptions(actor,value)}</select><small>Ragdoll animation for ${html(actor?.name||"the selected actor")}.</small></div>`; }
+      if (parameter.type === "player-selector" || playerParameterKeys.has(parameter.key) || (clip.op === "select-player" && parameter.key === "selector")) return `<div class="cmd-editor-field selector-parameter"><label>${html(parameter.label)}</label><button type="button" data-nav data-open-player-selector="${html(parameter.key)}"><span>👥</span><div><b>${html(playerSelectorSummary(value))}</b><small>Open universal player selector</small></div><em>EDIT ▸</em></button></div>`;
+      if (parameter.type === "particle-picker" || particleParameterKeys.has(parameter.key)) {
+        const particles = ensureEffects().filter(e => (e.kind || "particle") === "particle");
+        const selectedParticle = particles.find(p => String(p.id) === String(value) || p.name === value) || particles[0];
+        const currentId = selectedParticle?.id || value || "";
+        return `<div class="cmd-editor-field selector-parameter"><label>${html(parameter.label)}</label><div style="display:flex;gap:8px;align-items:center;"><select data-generic-param="${html(parameter.key)}" style="flex:1;">${particlePickerOptions(currentId)}</select><button type="button" data-nav data-open-particle-param-picker="${html(parameter.key)}" style="white-space:nowrap;padding:7px 12px;font-size:12px;display:flex;align-items:center;gap:6px;" title="Open Visual Particle Browser"><span class="particle-picker-mini-preview shape-${html(selectedParticle?.shape || "circle")}" style="--particle-color:${html(selectedParticle?.color || "#8deaaa")};--particle-color-2:${html(selectedParticle?.colorEnd || selectedParticle?.color || "#ffffff")};width:16px;height:16px;display:inline-block;vertical-align:middle;"></span>BROWSE ▸</button></div><small>Authored board particles from Special Effects.</small></div>`;
+      }
+      const inferredPicker = parameter.type === "toy-picker" || toyParameterKeys.has(parameter.key) ? "toy-picker" : parameter.type === "space-picker" || spaceParameterKeys.has(parameter.key) ? "space-picker" : parameter.type === "color-picker" || parameter.key.toLowerCase().includes("color") ? "color-picker" : "";
+      if (inferredPicker) return `<div class="cmd-editor-field selector-parameter"><label>${html(parameter.label)}</label><button type="button" data-nav data-open-value-picker="${html(parameter.key)}" data-picker-type="${inferredPicker}"><span>${inferredPicker === "toy-picker" ? "◆" : inferredPicker === "space-picker" ? "◎" : "🎨"}</span><div><b>${html(typedValueSummary(inferredPicker,value))}</b><small>Open ${inferredPicker.replace("-", " ")}</small></div><em>EDIT ▸</em></button></div>`;
+      if (parameter.type === "boolean") return `<label class="primitive-check"><input type="checkbox" data-generic-param="${html(parameter.key)}" ${value ? "checked" : ""}><span>${html(parameter.label)}</span></label>`;
+      const options = parameterOptions(parameter.key);
+      if (options) return `<div class="cmd-editor-field"><label>${html(parameter.label)}</label><select data-generic-param="${html(parameter.key)}">${options.map((option) => `<option value="${html(option)}" ${String(value).toLowerCase() === option.toLowerCase() ? "selected" : ""}>${html(option)}</option>`).join("")}</select></div>`;
+      const range = parameterRange(parameter.key, value);
+      if (range) return `<div class="cmd-editor-field parameter-range"><label>${html(parameter.label)} <output>${html(value)}</output></label><input data-generic-param="${html(parameter.key)}" type="range" min="${range[0]}" max="${range[1]}" step="${range[2]}" value="${html(value)}"></div>`;
+      if (["prompt","text","note","outcomes","offers","cases","faces"].includes(parameter.key)) return `<div class="cmd-editor-field parameter-wide"><label>${html(parameter.label)}</label><textarea data-generic-param="${html(parameter.key)}" rows="3">${html(value ?? "")}</textarea></div>`;
+      return `<div class="cmd-editor-field"><label>${html(parameter.label)}</label><input data-generic-param="${html(parameter.key)}" type="${parameter.type === "number" ? "number" : "text"}" value="${html(value ?? "")}"></div>`;
+    }).join("")}</div>` + (["spawn-actor","despawn-actor","spawn","despawn"].includes(clip.op) ? actorStageEffectsMarkup(clip) : "");
+  } else if (cat === "camera") {
+    fields = `
+      <div class="cmd-editor-field">
+        <label>CAMERA ACTION</label>
+        <select data-inline-clip-field="camAction">
+          <option value="zoom" ${clip.camAction === "zoom" ? "selected" : ""}>🔍 Zoom in on Space</option>
+          <option value="pan-player" ${clip.camAction === "pan-player" ? "selected" : ""}>🎥 Pan to Active Player</option>
+          <option value="shake" ${clip.camAction === "shake" ? "selected" : ""}>⚡ Screen Shake (Earthquake)</option>
+          <option value="flash" ${clip.camAction === "flash" ? "selected" : ""}>✨ Screen Flash (Color Burst)</option>
+          <option value="reset" ${clip.camAction === "reset" ? "selected" : ""}>🌐 Reset Camera to Wide Board</option>
+        </select>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>ZOOM LEVEL MULTIPLIER</label>
+        <select data-inline-clip-field="zoom">
+          <option value="1.2" ${clip.zoom === "1.2" ? "selected" : ""}>1.2x Subtle Focus</option>
+          <option value="1.5" ${clip.zoom === "1.5" ? "selected" : ""}>1.5x Medium Focus</option>
+          <option value="1.8" ${(!clip.zoom || clip.zoom === "1.8") ? "selected" : ""}>1.8x Dramatic Focus</option>
+          <option value="2.5" ${clip.zoom === "2.5" ? "selected" : ""}>2.5x Close Up</option>
+        </select>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>SHAKE INTENSITY / FLASH TINT</label>
+        <select data-inline-clip-field="intensity">
+          <option value="light" ${clip.intensity === "light" ? "selected" : ""}>Light Rumble / Golden Radiance</option>
+          <option value="heavy" ${(!clip.intensity || clip.intensity === "heavy") ? "selected" : ""}>Heavy Earthquake / White Burst</option>
+          <option value="danger" ${clip.intensity === "danger" ? "selected" : ""}>Violent Shock / Red Danger</option>
+        </select>
+      </div>
+    `;
+  } else if (cat === "actors" || clip.actorAction === "spawn" || clip.actorAction === "despawn" || ["spawn-actor","despawn-actor","spawn","despawn"].includes(clip.op)) {
+    const selectedActor = selectedSpaceActor(cast, clip.actorId || clip.target);
+    fields = `
+      <div class="cmd-editor-field">
+        <label>TARGET ACTOR</label>
+        <select data-inline-clip-field="actorTarget" data-space-actor-picker>
+          ${actorPickerOptions(cast,selectedActor?.id)}
+        </select>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>ACTION / BEHAVIOR</label>
+        <select data-inline-clip-field="actorAction">
+          <option value="pose" ${clip.actorAction === "pose" ? "selected" : ""}>🤸 Play Pose Animation</option>
+          <option value="emote" ${clip.actorAction === "emote" ? "selected" : ""}>💭 Pop Emote Balloon</option>
+          <option value="move" ${clip.actorAction === "move" ? "selected" : ""}>🏃 Hop / Move to Position</option>
+          <option value="spawn" ${clip.actorAction === "spawn" || ["spawn-actor","spawn"].includes(clip.op) ? "selected" : ""}>✨ Spawn on Stage</option>
+          <option value="despawn" ${clip.actorAction === "despawn" || ["despawn-actor","despawn"].includes(clip.op) ? "selected" : ""}>💨 Despawn (Poof Disappear)</option>
+        </select>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>POSE OR EMOTE BALLOON</label>
+        <select data-inline-clip-field="pose">
+          <option value="cheer" ${clip.pose === "cheer" ? "selected" : ""}>Jump &amp; Cheer (❤️ Heart Balloon)</option>
+          <option value="shocked" ${clip.pose === "shocked" ? "selected" : ""}>Shocked Tremble (❗ Alert Balloon)</option>
+          <option value="spin" ${clip.pose === "spin" ? "selected" : ""}>Victory Spin (💡 Idea Balloon)</option>
+          <option value="curse" ${clip.pose === "curse" ? "selected" : ""}>Cursed Shake (💀 Skull Balloon)</option>
+          <option value="spark" ${clip.pose === "spark" ? "selected" : ""}>Electric Spark (⚡ Spark Balloon)</option>
+        </select>
+      </div>
+      <div class="cmd-editor-field">
+        <label>RAGDOLL ANIMATION</label>
+        <select data-inline-clip-field="animation" data-ragdoll-animation-picker>
+          ${ragdollAnimationPickerOptions(selectedActor,clip.animationId)}
+        </select>
+      </div>
+      <div class="cmd-editor-field">
+        <label>SMOOTH TRANSITION</label>
+        <select data-inline-clip-field="transition"><option value="crossfade" ${clip.transition!=="none"?"selected":""}>Crossfade / blend</option><option value="none" ${clip.transition==="none"?"selected":""}>Immediate</option></select>
+      </div>
+      ${actorStageEffectsMarkup(clip)}
+    `;
+  } else if (cat === "inventory" || cat === "rewards") {
+    fields = `
+      <div class="cmd-editor-field">
+        <label>INVENTORY OPERATION</label>
+        <select data-inline-clip-field="invOp">
+          <option value="give-coins" ${clip.rewardType === "give-coins" || clip.invOp === "give-coins" ? "selected" : ""}>🪙 Give Coins to Player (+)</option>
+          <option value="take-coins" ${clip.rewardType === "take-coins" || clip.invOp === "take-coins" ? "selected" : ""}>💸 Deduct Coins from Player (Penalty -)</option>
+          <option value="give-star" ${clip.rewardType === "give-star" || clip.invOp === "give-star" ? "selected" : ""}>⭐ Award Star to Player (+1)</option>
+          <option value="take-star" ${clip.rewardType === "take-star" || clip.invOp === "take-star" ? "selected" : ""}>💔 Steal / Deduct Star (-1)</option>
+          <option value="grant-item" ${clip.rewardType === "grant-item" || clip.invOp === "grant-item" ? "selected" : ""}>🗝️ Grant Special Item to Pouch</option>
+          <option value="remove-item" ${clip.invOp === "remove-item" ? "selected" : ""}>🗑️ Remove / Consume Item from Pouch</option>
+          <option value="swap-spaces" ${clip.rewardType === "swap-spaces" || clip.invOp === "swap-spaces" ? "selected" : ""}>🔄 Swap Board Positions with Opponent</option>
+          <option value="clear-inventory" ${clip.invOp === "clear-inventory" ? "selected" : ""}>⚠️ Clear Player Pouch (Reset Items)</option>
+        </select>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>ITEM NAME</label>
+        <input type="text" data-inline-clip-field="itemName" list="toy-catalogue-options" value="${html(clip.itemName || clip.condValue || "Skeleton Key")}" placeholder="Choose a Toy Catalogue item or enter a custom name">
+        <datalist id="toy-catalogue-options">${ensureToyCatalogue(app.project.data).map((toy) => `<option value="${html(toy.name)}">${html(toyCategories[toy.category]?.label || "OTHER TOYS")}</option>`).join("")}</datalist>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>COIN OR STAR AMOUNT</label>
+        <input type="number" data-inline-clip-field="amount" value="${clip.amount || 10}" min="1" max="999">
+      </div>
+    `;
+  } else if (cat === "logic") {
+    fields = `
+      <div class="cmd-editor-field">
+        <label>LOGIC OPERATION TYPE</label>
+        <select data-inline-clip-field="logicOp">
+          <option value="coins-at-least" ${clip.condType === "coins-at-least" ? "selected" : ""}>💰 Conditional: Player Coins >= Value (Split Path)</option>
+          <option value="has-item" ${clip.condType === "has-item" ? "selected" : ""}>🗝️ Conditional: Player Holds Item (Split Path)</option>
+          <option value="variable-equals" ${clip.condType === "variable-equals" ? "selected" : ""}>🏷️ Conditional: Variable Equals Value (Split Path)</option>
+          <option value="random-percent" ${clip.condType === "random-percent" ? "selected" : ""}>🎲 Conditional: Random 50/50 Coin Flip (Split Path)</option>
+          <option value="set-variable" ${clip.logicOp === "set-variable" ? "selected" : ""}>📝 Set Game Variable (state = value)</option>
+          <option value="add-variable" ${clip.logicOp === "add-variable" ? "selected" : ""}>➕ Increment / Decrement Variable (+= / -=)</option>
+          <option value="timer-delay" ${clip.logicOp === "timer-delay" ? "selected" : ""}>⏳ Wait / Timer Delay (Pause seconds)</option>
+          <option value="exit-cutscene" ${clip.logicOp === "exit-cutscene" ? "selected" : ""}>⏹️ Exit Cutscene Immediately (Return to board)</option>
+        </select>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>VARIABLE NAME / TARGET</label>
+        <input type="text" data-inline-clip-field="varName" value="${html(clip.varName || "game_stage")}" placeholder="e.g. visited_space, has_boss_key">
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>VALUE / COMPARISON</label>
+        <input type="text" data-inline-clip-field="condValue" value="${html(clip.condValue || clip.varValue || "20")}" placeholder="e.g. 20, true, unlocked">
+      </div>
+    `;
+  } else if (cat === "input") {
+    fields = `
+      <div class="cmd-editor-field">
+        <label>INPUT / DECISION TYPE</label>
+        <select data-inline-clip-field="inputType">
+          <option value="question-custom" ${(!clip.inputType || clip.inputType === "question-custom") ? "selected" : ""}>❓ Ask Question Dialog with Custom Answers (Split)</option>
+          <option value="prompt-yes-no" ${clip.inputType === "prompt-yes-no" ? "selected" : ""}>⚖️ Decision Prompt: [YES] or [NO] (Split)</option>
+          <option value="qte-mash" ${clip.inputType === "qte-mash" ? "selected" : ""}>🎮 Button Mash QTE Challenge (Pass / Fail Split)</option>
+          <option value="reaction-stop" ${clip.inputType === "reaction-stop" ? "selected" : ""}>⏱️ Timed Reaction Roulette Stop (Win / Lose Split)</option>
+          <option value="dice-roll" ${clip.inputType === "dice-roll" ? "selected" : ""}>🎲 Bonus Dice Roll Threshold (Win / Lose Split)</option>
+          <option value="chest-pick" ${clip.inputType === "chest-pick" ? "selected" : ""}>🎁 Mystery Chest Pick (Choice Split)</option>
+        </select>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>QUESTION / PROMPT BANNER TEXT</label>
+        <textarea data-inline-clip-field="promptText" rows="2" placeholder="e.g. Would you like to buy a Star for 20 Coins?">${html(clip.questionText || clip.text || clip.label || "Choose your path:")}</textarea>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+        <div class="cmd-editor-field">
+          <label style="color:#54d682;">CHOICE 1 / TRUE (Primary Track)</label>
+          <input type="text" data-inline-clip-field="choice1" value="${html(clip.choice1 || "YES")}" placeholder="e.g. YES">
+        </div>
+        <div class="cmd-editor-field">
+          <label style="color:#ff8877;">CHOICE 2 / FALSE (Branch Track)</label>
+          <input type="text" data-inline-clip-field="choice2" value="${html(clip.choice2 || "NO")}" placeholder="e.g. NO">
+        </div>
+      </div>
+    `;
+  } else if (cat === "world" && (clip.worldAction === "weather" || commandWeatherType(clip))) {
+    const weatherType = commandWeatherType(clip) || "rain";
+    fields = `
+      <div class="cmd-editor-field">
+        <label>WEATHER EFFECT</label>
+        <select data-inline-clip-field="weatherType">
+          ${Object.entries(weatherEffects).map(([id, weather]) => `<option value="${id}" ${weatherType === id ? "selected" : ""}>${weather.icon} ${weather.label}</option>`).join("")}
+        </select>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>WEATHER INTENSITY</label>
+        <select data-inline-clip-field="weatherIntensity">
+          <option value="light" ${clip.weatherIntensity === "light" ? "selected" : ""}>Light · Sparse particles</option>
+          <option value="medium" ${(!clip.weatherIntensity || clip.weatherIntensity === "medium") ? "selected" : ""}>Medium · Standard coverage</option>
+          <option value="heavy" ${clip.weatherIntensity === "heavy" ? "selected" : ""}>Heavy · Dense storm</option>
+        </select>
+      </div>
+    `;
+  } else if (cat === "audio" || cat === "sound") {
+    const sfxList = ["coin", "star-fanfare", "thunder-strike", "warp-pipe", "dice-roll", "chest", "mystery", "lose", "laugh", "whistle"];
+    fields = `
+      <div class="cmd-editor-field">
+        <label>CHIPTUNE SOUND EFFECT</label>
+        <div style="display:flex;gap:8px;">
+          <select data-inline-clip-field="sfx" style="flex:1;">
+            ${sfxList.map((s) => `<option value="${s}" ${clip.sfx === s ? "selected" : ""}>${s.toUpperCase()}</option>`).join("")}
+          </select>
+          <button type="button" data-nav data-test-cmd-sfx class="picker-btn" style="background:#ffc83b;color:#18112e;">▶ TEST</button>
+        </div>
+      </div>
+
+      <div class="cmd-editor-field">
+        <label>BACKGROUND MUSIC</label>
+        <select data-inline-clip-field="bgm">
+          <option value="default" ${clip.bgm === "default" ? "selected" : ""}>Keep Board Theme</option>
+          <option value="suspense" ${clip.bgm === "suspense" ? "selected" : ""}>Suspense Theme</option>
+          <option value="haunted" ${clip.bgm === "haunted" ? "selected" : ""}>Haunted Mansion Theme</option>
+          <option value="bonus" ${clip.bgm === "bonus" ? "selected" : ""}>Bonus Round Fanfare</option>
+          <option value="silence" ${clip.bgm === "silence" ? "selected" : ""}>Silence (Dramatic Pause)</option>
+        </select>
+      </div>
+    `;
+  } else {
+    fields = `
+      <div class="cmd-editor-field">
+        <label>ACTION SUMMARY LABEL</label>
+        <input type="text" data-inline-clip-field="label" value="${html(clip.label || "")}">
+      </div>
+    `;
+  }
+
+  return `
+    <div class="timeline-inline-inspector" data-inspector-clip-id="${html(clip.id)}">
+      <header class="inspector-header-bar">
+        <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+          <span class="inspector-cat-badge cat-${cat}">${catIcons[cat] || "⚡"} ${html(cat.toUpperCase())}</span>
+          <b class="inspector-clip-title" title="${html(clip.label || "Timeline Block")}">${html(clip.label || "Timeline Block")}</b>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0;">
+          <button type="button" data-nav data-timeline-clip-clone="${html(clip.id)}" class="card-btn secondary" style="padding:5px 9px;font-size:.68rem;" title="Duplicate Block">📋 CLONE</button>
+          <button type="button" data-nav data-timeline-clip-delete="${html(clip.id)}" class="card-btn danger" style="padding:5px 9px;font-size:.68rem;" title="Delete Block">🗑</button>
+        </div>
+      </header>
+
+      <div class="inspector-fields-container">
+        <!-- Timing & Trigger Controls -->
+        <div class="inspector-timing-row">
+          <label>
+            <span>START TIME (s)</span>
+            <input type="number" data-inline-clip-field="start" min="0" max="120" step="0.1" value="${(clip.start || 0).toFixed(1)}">
+          </label>
+          <label>
+            <span>DURATION (s)</span>
+            <input type="number" data-inline-clip-field="duration" min="0.1" max="60" step="0.1" value="${Number(clip.duration || 2)}">
+          </label>
+        </div>
+
+        <!-- Specific Form Fields -->
+        ${fields}
+
+        <!-- Wait For Input Toggle -->
+        <div class="cmd-editor-field" style="margin-top:6px;padding-top:10px;border-top:1px solid rgba(255,255,255,.1);">
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;color:#ffe47a;font-size:.75rem;">
+            <input type="checkbox" data-inline-clip-field="waitForInput" ${clip.waitForInput !== false ? "checked" : ""}>
+            <span>⏸ WAIT FOR PLAYER INPUT / CONFIRMATION (Hold Until A Pressed)</span>
+          </label>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function timelineBlockPalette(entry) {
+  const library = completeTimelineBlockLibrary();
+  const selectedCat = app.timelineBlockCategory || "all";
+  const search = (app.timelineBlockSearch || "").toLowerCase().trim();
+
+  const categories = [
+    ["all", "🌟 ALL"],
+    ["flow", "⏵ FLOW"],
+    ["assets", "◆ ASSETS"],
+    ["variables", "▣ LOGIC"],
+    ["selectors", "⌕ SELECTORS"],
+    ["player", "♟ PLAYERS"],
+    ["status", "⬆ STATUS"],
+    ["board", "◎ BOARD"],
+    ["stage", "▣ STAGE"],
+    ["camera", "📷 CAMERA"],
+    ["screen", "✨ SCREEN"],
+    ["ui", "💬 UI & INPUT"],
+    ["sound", "🎵 AUDIO"],
+    ["minigame", "🎮 MINIGAME"]
+  ];
+
+  let primitives = [];
+  if (selectedCat === "all") {
+    for (const [catKey, list] of Object.entries(library)) {
+      primitives.push(...list);
+    }
+  } else if (library[selectedCat]) {
+    primitives = library[selectedCat];
+  }
+
+  if (search) {
+    primitives = primitives.filter((p) => {
+      const text = `${p.label} ${p.desc || ""} ${p.category} ${p.op}`.toLowerCase();
+      return text.includes(search);
+    });
+  }
+
+  return `
+    <div class="timeline-block-palette">
+      <!-- Category Filter Buttons Bar -->
+      <div class="palette-categories-scroll">
+        ${categories.map(([id, label]) => `
+          <button type="button" data-nav data-block-category-filter="${id}" class="palette-cat-chip ${selectedCat === id ? "active" : ""}">
+            ${label}
+          </button>
+        `).join("")}
+      </div>
+
+      <!-- Search Input -->
+      <div class="palette-search-bar">
+        <span style="color:#ffe47a;">🔍</span>
+        <input type="text" id="timeline-block-palette-search" data-block-palette-search value="${html(app.timelineBlockSearch || "")}" placeholder="Search primitives (e.g. Dialogue, Coins, Minigame, Shake)...">
+        ${app.timelineBlockSearch ? `<button type="button" data-nav data-clear-block-search style="background:transparent;border:0;color:#c9bee6;cursor:pointer;font-size:1rem;">✕</button>` : ""}
+      </div>
+
+      <!-- Grid of Primitives -->
+      <div class="palette-primitives-grid">
+        ${primitives.map((p) => `
+          <div class="palette-primitive-card cat-${p.category}" data-insert-primitive="${html(encodeURIComponent(JSON.stringify(p)))}" title="Click to insert at cursor (${(app.timelinePlayhead || 0).toFixed(1)}s)">
+            <div class="palette-card-header">
+              <span class="palette-card-icon">${html(p.icon || "⚡")}</span>
+              <div class="palette-card-title-group">
+                <b class="palette-card-name">${html(p.label)}</b>
+                <span class="palette-card-cat">${html(p.category.toUpperCase())}</span>
+              </div>
+            </div>
+            <p class="palette-card-desc">${html(p.desc || "")}</p>
+            <div class="palette-card-footer">
+              <span class="palette-add-btn">＋ ADD AT ${(app.timelinePlayhead || 0).toFixed(1)}s</span>
+            </div>
+          </div>
+        `).join("") || `
+          <div class="palette-empty-search">
+            <p>No primitives found matching "${html(app.timelineBlockSearch)}".</p>
+          </div>
+        `}
+      </div>
+    </div>
+  `;
+}
+
+function timelineSequencesAccordion(entry) {
+  const sequences = entry.sequences || [];
+  const foldedSet = app.sequenceFoldedMap || new Set();
+
+  return `
+    <div class="timeline-sequences-accordion">
+      <header class="sequences-accordion-header">
+        <div>
+          <b style="color:#fff;font-size:.84rem;">SEQUENCES &amp; ACTIVATIONS</b>
+          <small style="color:#ad99ce;font-size:.68rem;display:block;">Configure sequence flow and activation conditions</small>
+        </div>
+        <button type="button" data-nav data-add-sequence class="card-btn primary" style="padding:6px 12px;font-size:.7rem;">
+          ＋ NEW SEQUENCE
+        </button>
+      </header>
+
+      <div class="sequences-accordion-list">
+        ${sequences.map((seq) => {
+          const isActive = seq.id === entry.activeSequenceId;
+          const isFolded = foldedSet.has(seq.id);
+          const rules = (entry.activationRules || []).filter((r) => r.sequenceId === seq.id);
+          const eventCount = (seq.timeline?.tracks || []).reduce((sum, t) => sum + (t.clips?.length || 0), 0);
+
+          return `
+            <div class="sequence-accordion-card ${isActive ? "is-active-seq" : ""}" data-sequence-card="${html(seq.id)}">
+              <div class="sequence-card-bar" data-toggle-sequence-fold="${html(seq.id)}">
+                <div style="display:flex;align-items:center;gap:8px;min-width:0;">
+                  <span class="sequence-fold-arrow ${isFolded ? "folded" : "expanded"}">▼</span>
+                  <b class="sequence-title-text">${html(seq.name)}</b>
+                  ${isActive ? `
+                    <span class="sequence-active-badge">● CURRENT</span>
+                  ` : `
+                    <button type="button" data-nav data-select-sequence="${html(seq.id)}" class="sequence-switch-btn" title="Switch active sequence">
+                      ▶ SWITCH
+                    </button>
+                  `}
+                </div>
+
+                <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+                  <span class="sequence-events-pill">${eventCount} event${eventCount === 1 ? "" : "s"}</span>
+                  <button type="button" data-nav data-rename-sequence="${html(seq.id)}" class="sequence-tool-btn" title="Rename Sequence">✎</button>
+                  ${sequences.length > 1 ? `
+                    <button type="button" data-nav data-delete-sequence="${html(seq.id)}" class="sequence-tool-btn danger" title="Delete Sequence">🗑</button>
+                  ` : ""}
+                </div>
+              </div>
+
+              <!-- Accordion Body: Activation Rules for this Sequence -->
+              <div class="sequence-card-body" style="display:${isFolded ? "none" : "block"};">
+                <div class="sequence-body-header">
+                  <span style="font-size:.68rem;font-weight:900;color:#54d682;letter-spacing:.08em;">ACTIVATION RULES FOR THIS SEQUENCE</span>
+                  <button type="button" data-nav data-add-sequence-activation="${html(seq.id)}" class="card-btn primary" style="padding:4px 9px;font-size:.65rem;">
+                    ＋ ADD ACTIVATION
+                  </button>
+                </div>
+
+                <div class="sequence-rules-list">
+                  ${rules.map((rule) => `
+                    <article class="activation-rule-card ${rule.enabled === false ? "disabled" : ""}" data-activation-rule="${html(rule.id)}">
+                      <div class="activation-rule-heading">
+                        <span>${rule.trigger === "land" ? "◎" : rule.trigger === "pass" ? "➜" : rule.trigger === "proximity" ? "◉" : "⚡"}</span>
+                        <input data-activation-field="name" value="${html(rule.name || "Activation")}" aria-label="Activation name">
+                        <button type="button" data-nav data-edit-activation="${html(rule.id)}" title="Edit conditions and appearance">⚙</button>
+                        <button type="button" data-nav data-delete-activation-rule="${html(rule.id)}" title="Delete activation">×</button>
+                      </div>
+
+                      <label>WHEN
+                        <select data-activation-field="trigger">
+                          ${[["land","Land on space"],["pass","Pass over space"],["proximity","Enter proximity"],["interact","Player interacts"],["round-start","Round starts"],["game-start","Game starts"],["path-attempt","Attempts path exit"],["signal","Signal received"]].map(([id,label]) => `<option value="${id}" ${rule.trigger === id ? "selected" : ""}>${label}</option>`).join("")}
+                        </select>
+                      </label>
+
+                      <div class="activation-two-col">
+                        <label>MODE
+                          <select data-activation-field="mode">
+                            ${[["blocking","Blocking"],["interrupt-movement","Interrupt movement"],["background","Background"]].map(([id,label]) => `<option value="${id}" ${rule.mode === id ? "selected" : ""}>${label}</option>`).join("")}
+                          </select>
+                        </label>
+                        <label>REPLAY
+                          <select data-activation-field="replay">
+                            ${[["every-time","Every time"],["once","Once"],["once-per-player","Once / player"],["once-per-turn","Once / turn"],["once-per-round","Once / round"]].map(([id,label]) => `<option value="${id}" ${rule.replay === id ? "selected" : ""}>${label}</option>`).join("")}
+                          </select>
+                        </label>
+                      </div>
+
+                      <div class="activation-rule-footer">
+                        <label><input type="checkbox" data-activation-field="enabled" ${rule.enabled !== false ? "checked" : ""}> ENABLED</label>
+                        <span>PRIORITY <input type="number" min="0" max="100" data-activation-field="priority" value="${Number(rule.priority) || 50}"></span>
+                      </div>
+                    </article>
+                  `).join("") || `
+                    <p class="sequence-empty-activations">No activations run this sequence yet. Click "+ ADD ACTIVATION" above to add one.</p>
+                  `}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    </div>
+  `;
+}
+
 function activationRulesPanel(entry) {
   const rules = (entry.activationRules || []).filter((rule) => rule.sequenceId === entry.activeSequenceId);
   return `<aside class="activation-rules-panel"><header><div><small>THIS SEQUENCE</small><b>ACTIVATIONS</b></div><button data-nav data-add-activation-rule title="Add activation">＋</button></header><div class="activation-rule-list">${rules.map((rule) => `<article class="activation-rule-card ${rule.enabled === false ? "disabled" : ""}" data-activation-rule="${html(rule.id)}"><div class="activation-rule-heading"><span>${rule.trigger === "land" ? "◎" : rule.trigger === "pass" ? "➜" : rule.trigger === "proximity" ? "◉" : "⚡"}</span><input data-activation-field="name" value="${html(rule.name || "Activation")}" aria-label="Activation name"><button data-nav data-edit-activation="${html(rule.id)}" title="Edit conditions and appearance">⚙</button><button data-nav data-delete-activation-rule="${html(rule.id)}" title="Delete activation">×</button></div><label>WHEN<select data-activation-field="trigger">${[["land","Land on space"],["pass","Pass over space"],["proximity","Enter proximity"],["interact","Player interacts"],["round-start","Round starts"],["game-start","Game starts"],["path-attempt","Attempts path exit"],["signal","Signal received"]].map(([id,label]) => `<option value="${id}" ${rule.trigger === id ? "selected" : ""}>${label}</option>`).join("")}</select></label><div class="activation-two-col"><label>MODE<select data-activation-field="mode">${[["blocking","Blocking"],["interrupt-movement","Interrupt movement"],["background","Background"]].map(([id,label]) => `<option value="${id}" ${rule.mode === id ? "selected" : ""}>${label}</option>`).join("")}</select></label><label>REPLAY<select data-activation-field="replay">${[["every-time","Every time"],["once","Once"],["once-per-player","Once / player"],["once-per-turn","Once / turn"],["once-per-round","Once / round"]].map(([id,label]) => `<option value="${id}" ${rule.replay === id ? "selected" : ""}>${label}</option>`).join("")}</select></label></div><div class="activation-rule-footer"><label><input type="checkbox" data-activation-field="enabled" ${rule.enabled !== false ? "checked" : ""}> ENABLED</label><span>PRIORITY <input type="number" min="0" max="100" data-activation-field="priority" value="${Number(rule.priority) || 50}"></span></div></article>`).join("") || `<p class="selector-empty">No activations run this sequence yet.</p>`}</div></aside>`;
@@ -2000,13 +2639,35 @@ function spaceActionEditor(entry) {
 
   // Tab 4: Cutscene Timeline (Video Editor Multi-Track System)
   else if (tab === "script") {
+    const sideTab = app.timelineSideTab || "inspector";
     tabContent = `
-      <div class="cutscene-edit-workspace">
-        ${sequenceBar(entry)}
-        <div class="timeline-authoring-grid">
-          ${activationRulesPanel(entry)}
-          <div class="timeline-center-column">${timelineLivePreview(entry)}</div>
-          <div class="timeline-full-width">${cutsceneTimelineView(entry)}${timelineValidation(entry)}</div>
+      <div class="cutscene-edit-workspace timeline-split-workspace">
+        <div class="timeline-left-workspace">
+          ${cutsceneTimelineView(entry)}
+          ${timelineValidation(entry)}
+        </div>
+
+        <div class="timeline-right-workspace">
+          <div class="timeline-right-preview-pane">
+            ${timelineLivePreview(entry)}
+          </div>
+
+          <div class="timeline-right-tabs-pane">
+            <nav class="timeline-side-tabs-nav">
+              <button type="button" data-nav data-timeline-side-tab="inspector" class="side-tab-btn ${sideTab === "inspector" ? "active" : ""}">
+                🔍 BLOCK INSPECTOR
+              </button>
+              <button type="button" data-nav data-timeline-side-tab="blocks" class="side-tab-btn ${sideTab === "blocks" ? "active" : ""}">
+                ＋ NEW BLOCKS
+              </button>
+              <button type="button" data-nav data-timeline-side-tab="sequences" class="side-tab-btn ${sideTab === "sequences" ? "active" : ""}">
+                🔀 SEQUENCES
+              </button>
+            </nav>
+            <div class="timeline-side-tab-content">
+              ${sideTab === "inspector" ? timelineBlockInspector(entry) : sideTab === "blocks" ? timelineBlockPalette(entry) : timelineSequencesAccordion(entry)}
+            </div>
+          </div>
         </div>
       </div>
     `;
@@ -3534,17 +4195,107 @@ root.addEventListener("click", async (event) => {
   const editKeyframeParticle=event.target.closest("[data-open-keyframe-particle-picker]");if(editKeyframeParticle){const {frame}=selectedActorAnimation(),index=Number(editKeyframeParticle.dataset.openKeyframeParticlePicker),spawn=frame?.particles?.[index];if(spawn){const particle=ensureEffects().find(effect=>effect.id===spawn.effectId);app.particlePickerEditor={kind:"keyframe",index,effectId:spawn.effectId||"",count:Number(spawn.count||12),shape:spawn.shape||particle?.shape||"circle"};render();}return;}
   const removeParticle=event.target.closest("[data-remove-keyframe-particle]");if(removeParticle){const {frame}=selectedActorAnimation();if(frame){frame.particles.splice(Number(removeParticle.dataset.removeKeyframeParticle),1);save("actors");save("event");render();}return;}
   if(event.target.closest("[data-preview-keyframe-sound]")){const {frame}=selectedActorAnimation();if(frame?.sound)playSfx(frame.sound);return;}
-  if (event.target.closest("[data-add-choice-option]") && app.editingCommand?.cmd?.op === "choice") {
-    const cmd = app.editingCommand.cmd, choices = ensureChoiceOptions(cmd), index = choices.length;
-    cmd.parameters.prompt = document.querySelector("#edit-choice-prompt")?.value || cmd.parameters.prompt;
-    choices.push({ id:`choice-${Date.now()}`, label:`Option ${index + 1}`, value:`option-${index + 1}`, color:["#54d682","#ff6655","#35c9ff","#ffc83b","#8b5ce6"][index % 5] }); render(); return;
+  // Side Tab Navigation in Timeline Workspace
+  const sideTabBtn = event.target.closest("[data-timeline-side-tab]");
+  if (sideTabBtn) {
+    app.timelineSideTab = sideTabBtn.dataset.timelineSideTab;
+    render();
+    return;
+  }
+
+  // Primitive Category Filter
+  const blockCatFilter = event.target.closest("[data-block-category-filter]");
+  if (blockCatFilter) {
+    app.timelineBlockCategory = blockCatFilter.dataset.blockCategoryFilter;
+    render();
+    return;
+  }
+
+  // Clear Block Search
+  if (event.target.closest("[data-clear-block-search]")) {
+    app.timelineBlockSearch = "";
+    render();
+    return;
+  }
+
+  // Insert Primitive Block from Palette onto Timeline
+  const insertPrimitiveBtn = event.target.closest("[data-insert-primitive]");
+  if (insertPrimitiveBtn) {
+    try {
+      const presetData = JSON.parse(decodeURIComponent(insertPrimitiveBtn.dataset.insertPrimitive));
+      insertTimelineClip(currentAction(), presetData);
+    } catch {}
+    return;
+  }
+
+  // Toggle Sequence Accordion Fold
+  const toggleFoldBtn = event.target.closest("[data-toggle-sequence-fold]");
+  if (toggleFoldBtn && !event.target.closest("button:not([data-toggle-sequence-fold]), input, select")) {
+    const seqId = toggleFoldBtn.dataset.toggleSequenceFold;
+    app.sequenceFoldedMap ||= new Set();
+    if (app.sequenceFoldedMap.has(seqId)) {
+      app.sequenceFoldedMap.delete(seqId);
+    } else {
+      app.sequenceFoldedMap.add(seqId);
+    }
+    render();
+    return;
+  }
+
+  // Add Sequence Activation from Accordion Card
+  const addSeqActBtn = event.target.closest("[data-add-sequence-activation]");
+  if (addSeqActBtn) {
+    const seqId = addSeqActBtn.dataset.addSequenceActivation;
+    const act = currentAction();
+    remember();
+    act.activationRules.push({
+      id: `activation-${Date.now()}`,
+      name: "New activation",
+      trigger: "land",
+      sequenceId: seqId,
+      mode: "blocking",
+      scope: "triggering-player",
+      replay: "every-time",
+      priority: 50,
+      cooldown: 0,
+      enabled: true
+    });
+    app.sequenceFoldedMap?.delete(seqId);
+    save("event");
+    render();
+    return;
+  }
+
+  const targetInspectorCmd = activeInspectorClipOrCommand();
+
+  if (event.target.closest("[data-add-choice-option]") && targetInspectorCmd?.op === "choice") {
+    const choices = ensureChoiceOptions(targetInspectorCmd), index = choices.length;
+    targetInspectorCmd.parameters.prompt = document.querySelector("#edit-choice-prompt")?.value || targetInspectorCmd.parameters.prompt;
+    choices.push({ id:`choice-${Date.now()}`, label:`Option ${index + 1}`, value:`option-${index + 1}`, color:["#54d682","#ff6655","#35c9ff","#ffc83b","#8b5ce6"][index % 5] });
+    const act = currentAction();
+    const found = findClipInTimeline(act.timeline, targetInspectorCmd.id);
+    if (found) syncDecisionOutcomeTracks(act.timeline, found.track, targetInspectorCmd);
+    save("event");
+    render();
+    return;
   }
   const deleteChoiceOption = event.target.closest("[data-delete-choice-option]");
-  if (deleteChoiceOption && app.editingCommand?.cmd?.op === "choice") { const choices = ensureChoiceOptions(app.editingCommand.cmd); if (choices.length > 2) choices.splice(Number(deleteChoiceOption.dataset.deleteChoiceOption),1); render(); return; }
+  if (deleteChoiceOption && targetInspectorCmd?.op === "choice") {
+    const choices = ensureChoiceOptions(targetInspectorCmd);
+    if (choices.length > 2) {
+      choices.splice(Number(deleteChoiceOption.dataset.deleteChoiceOption), 1);
+      const act = currentAction();
+      const found = findClipInTimeline(act.timeline, targetInspectorCmd.id);
+      if (found) syncDecisionOutcomeTracks(act.timeline, found.track, targetInspectorCmd);
+      save("event");
+    }
+    render();
+    return;
+  }
   const openPlayerSelector = event.target.closest("[data-open-player-selector]");
-  if (openPlayerSelector && app.editingCommand?.cmd) {
+  if (openPlayerSelector && targetInspectorCmd) {
     const key = openPlayerSelector.dataset.openPlayerSelector;
-    const value = app.editingCommand.cmd.parameters?.[key];
+    const value = targetInspectorCmd.parameters?.[key];
     app.playerSelectorEditor = { key, selector: normalizePlayerSelector(value, ["players","participants","eligiblePlayers"].includes(key)) };
     render(); return;
   }
@@ -3560,26 +4311,64 @@ root.addEventListener("click", async (event) => {
   if (event.target.closest("[data-add-player-filter]") && app.playerSelectorEditor) { app.playerSelectorEditor.selector.filters.push({ field:"asset", operator:"at-least", subject:"coins", value:1 }); render(); return; }
   const deletePlayerFilter = event.target.closest("[data-delete-player-filter]");
   if (deletePlayerFilter && app.playerSelectorEditor) { app.playerSelectorEditor.selector.filters.splice(Number(deletePlayerFilter.dataset.deletePlayerFilter), 1); render(); return; }
-  if (event.target.closest("[data-save-player-selector]") && app.playerSelectorEditor && app.editingCommand?.cmd) {
-    app.editingCommand.cmd.parameters ||= {};
-    app.editingCommand.cmd.parameters[app.playerSelectorEditor.key] = structuredClone(app.playerSelectorEditor.selector);
-    app.playerSelectorEditor = null; render(); return;
+  if (event.target.closest("[data-save-player-selector]") && app.playerSelectorEditor && targetInspectorCmd) {
+    targetInspectorCmd.parameters ||= {};
+    targetInspectorCmd.parameters[app.playerSelectorEditor.key] = structuredClone(app.playerSelectorEditor.selector);
+    app.playerSelectorEditor = null;
+    const act = currentAction();
+    syncTimelineToCommands(act);
+    save("event");
+    render();
+    return;
   }
   const openValuePicker = event.target.closest("[data-open-value-picker]");
-  if (openValuePicker && app.editingCommand?.cmd) { const key = openValuePicker.dataset.openValuePicker; app.valuePickerEditor = { key, type:openValuePicker.dataset.pickerType, value:structuredClone(app.editingCommand.cmd.parameters?.[key] ?? "") }; render(); return; }
+  if (openValuePicker && targetInspectorCmd) { const key = openValuePicker.dataset.openValuePicker; app.valuePickerEditor = { key, type:openValuePicker.dataset.pickerType, value:structuredClone(targetInspectorCmd.parameters?.[key] ?? "") }; render(); return; }
   if (event.target.closest("[data-close-value-picker]") || event.target.classList.contains("typed-picker-backdrop")) { app.valuePickerEditor = null; render(); return; }
   const pickToy = event.target.closest("[data-pick-toy]"); if (pickToy && app.valuePickerEditor) { app.valuePickerEditor.value = pickToy.dataset.pickToy; render(); return; }
   const pickColor = event.target.closest("[data-pick-color]"); if (pickColor && app.valuePickerEditor) { app.valuePickerEditor.value = pickColor.dataset.pickColor; render(); return; }
   const spaceMode = event.target.closest("[data-space-picker-mode]"); if (spaceMode && app.valuePickerEditor) { app.valuePickerEditor.value.mode = spaceMode.dataset.spacePickerMode; render(); return; }
   const pickSpace = event.target.closest("[data-pick-space]"); if (pickSpace && app.valuePickerEditor) { app.valuePickerEditor.value.spaceId = pickSpace.dataset.pickSpace; render(); return; }
-  if (event.target.closest("[data-save-value-picker]") && app.valuePickerEditor && app.editingCommand?.cmd) { app.editingCommand.cmd.parameters ||= {}; app.editingCommand.cmd.parameters[app.valuePickerEditor.key] = structuredClone(app.valuePickerEditor.value); app.valuePickerEditor = null; render(); return; }
-  if(event.target.closest("[data-open-particle-picker]")&&app.editingCommand?.cmd){const dump=app.editingCommand.cmd.particleDump||{},particle=ensureEffects().find(effect=>effect.id===dump.effectId);app.particlePickerEditor={kind:"transition",effectId:dump.effectId||"",count:Number(dump.count||24),shape:dump.shape||particle?.shape||"circle"};render();return;}
+  if (event.target.closest("[data-save-value-picker]") && app.valuePickerEditor && targetInspectorCmd) {
+    targetInspectorCmd.parameters ||= {};
+    targetInspectorCmd.parameters[app.valuePickerEditor.key] = structuredClone(app.valuePickerEditor.value);
+    app.valuePickerEditor = null;
+    const act = currentAction();
+    syncTimelineToCommands(act);
+    save("event");
+    render();
+    return;
+  }
+  if(event.target.closest("[data-open-particle-picker]")&&targetInspectorCmd){const dump=targetInspectorCmd.particleDump||{},particle=ensureEffects().find(effect=>effect.id===dump.effectId);app.particlePickerEditor={kind:"transition",effectId:dump.effectId||"",count:Number(dump.count||24),shape:dump.shape||particle?.shape||"circle"};render();return;}
   const openParticleParam=event.target.closest("[data-open-particle-param-picker]");
-  if(openParticleParam&&app.editingCommand?.cmd){const key=openParticleParam.dataset.openParticleParamPicker,currentVal=app.editingCommand.cmd.parameters?.[key],particles=ensureEffects().filter(effect=>(effect.kind||"particle")==="particle"),particle=particles.find(effect=>effect.id===currentVal||effect.name===currentVal)||particles[0];app.particlePickerEditor={kind:"timeline-param",key,effectId:particle?.id||"",count:24,shape:particle?.shape||"circle"};render();return;}
+  if(openParticleParam&&targetInspectorCmd){const key=openParticleParam.dataset.openParticleParamPicker,currentVal=targetInspectorCmd.parameters?.[key],particles=ensureEffects().filter(effect=>(effect.kind||"particle")==="particle"),particle=particles.find(effect=>effect.id===currentVal||effect.name===currentVal)||particles[0];app.particlePickerEditor={kind:"timeline-param",key,effectId:particle?.id||"",count:24,shape:particle?.shape||"circle"};render();return;}
   if(event.target.closest("[data-open-placement-particle-picker]")){const placement=app.project.map.effectPlacements.find(item=>item.id===app.placementInspectorId),particle=ensureEffects().find(effect=>effect.id===placement?.boundEffectId);if(placement){app.particlePickerEditor={kind:"placement",placementId:placement.id,effectId:placement.boundEffectId||"",count:Number(placement.rate||18),shape:particle?.shape||"circle"};render();}return;}
   if(event.target.closest("[data-close-particle-picker]")){app.particlePickerEditor=null;render();return;}
   const pickTransitionParticle=event.target.closest("[data-pick-transition-particle]");if(pickTransitionParticle&&app.particlePickerEditor){const effectId=pickTransitionParticle.dataset.pickTransitionParticle,particle=ensureEffects().find(effect=>effect.id===effectId);app.particlePickerEditor.effectId=effectId;app.particlePickerEditor.shape=particle?.shape||app.particlePickerEditor.shape||"circle";render();return;}
-  if(event.target.closest("[data-save-particle-picker]")&&app.particlePickerEditor){const picker=app.particlePickerEditor,choice={effectId:picker.effectId||"",count:Math.max(1,Math.min(300,Number(picker.count)||24)),shape:picker.shape||"circle"};if(picker.kind==="transition"&&app.editingCommand?.cmd)app.editingCommand.cmd.particleDump={...app.editingCommand.cmd.particleDump,...choice};else if(picker.kind==="timeline-param"&&app.editingCommand?.cmd){app.editingCommand.cmd.parameters ||= {};const selectedParticle=ensureEffects().find(effect=>effect.id===picker.effectId);app.editingCommand.cmd.parameters[picker.key]=selectedParticle?selectedParticle.id:(picker.effectId||"");}else if(picker.kind==="keyframe"){const {frame}=selectedActorAnimation();if(frame){frame.particles ||= [];const spawn={id:`spawn-${Date.now()}`,...choice,x:0,y:-80};if(picker.index==null)frame.particles.push(spawn);else Object.assign(frame.particles[picker.index]||spawn,choice);save("actors");save("event");}}else if(picker.kind==="placement"){const placement=app.project.map.effectPlacements.find(item=>item.id===picker.placementId),particle=ensureEffects().find(effect=>effect.id===choice.effectId);if(placement){bindParticleToPlacement(placement,particle);placement.rate=choice.count;placement.shape=choice.shape;save("map");}}app.particlePickerEditor=null;render();return;}
+  if(event.target.closest("[data-save-particle-picker]")&&app.particlePickerEditor){
+    const picker=app.particlePickerEditor,choice={effectId:picker.effectId||"",count:Math.max(1,Math.min(300,Number(picker.count)||24)),shape:picker.shape||"circle"};
+    if(picker.kind==="transition"&&targetInspectorCmd){
+      targetInspectorCmd.particleDump={...targetInspectorCmd.particleDump,...choice};
+      const act = currentAction();
+      syncTimelineToCommands(act);
+      save("event");
+    } else if(picker.kind==="timeline-param"&&targetInspectorCmd){
+      targetInspectorCmd.parameters ||= {};
+      const selectedParticle=ensureEffects().find(effect=>effect.id===picker.effectId);
+      targetInspectorCmd.parameters[picker.key]=selectedParticle?selectedParticle.id:(picker.effectId||"");
+      const act = currentAction();
+      syncTimelineToCommands(act);
+      save("event");
+    } else if(picker.kind==="keyframe"){
+      const {frame}=selectedActorAnimation();
+      if(frame){frame.particles ||= [];const spawn={id:`spawn-${Date.now()}`,...choice,x:0,y:-80};if(picker.index==null)frame.particles.push(spawn);else Object.assign(frame.particles[picker.index]||spawn,choice);save("actors");save("event");}
+    } else if(picker.kind==="placement"){
+      const placement=app.project.map.effectPlacements.find(item=>item.id===picker.placementId),particle=ensureEffects().find(effect=>effect.id===choice.effectId);
+      if(placement){bindParticleToPlacement(placement,particle);placement.rate=choice.count;placement.shape=choice.shape;save("map");}
+    }
+    app.particlePickerEditor=null;
+    render();
+    return;
+  }
   if(event.target.closest("[data-open-map-settings]")){app.mapSettingsOpen=true;render();return;}
   if(event.target.closest("[data-remove-map-foreground]")){remember();app.project.map.foreground="";save("map");render();toast("FOREGROUND REMOVED");return;}
   if(event.target.closest("[data-add-effect]")){app.newEffectMenu=true;render();return;}
@@ -4975,6 +5764,185 @@ root.addEventListener("input", (event) => {
   if(event.target.matches("[data-actor-preview-scrub]")){app.actorPreviewTime=Number(event.target.value);app.actorPreviewPlaying=false;app.actorKeyframeSelected=false;root.querySelectorAll("[data-actor-keyframe]").forEach(dot=>dot.classList.remove("selected"));if(app.actorPreviewRenderer){app.actorPreviewRenderer.playing=false;app.actorPreviewRenderer.seek(app.actorPreviewTime);}updateActorPreviewDecorations(root.querySelector("[data-actor-preview]"),selectedActorAnimation().animation,app.actorPreviewTime,true);const label=root.querySelector("[data-actor-preview-time]");if(label)label.textContent=`${app.actorPreviewTime.toFixed(2)}s`;return;}
   if (event.target.matches(".parameter-range input[type=range]")) { const output = event.target.closest(".parameter-range")?.querySelector("output"); if (output) output.textContent = event.target.value; }
   if (event.target.id === "typed-picker-search") { const query = event.target.value.trim().toLowerCase(); for (const card of root.querySelectorAll("[data-picker-search]")) card.hidden = Boolean(query) && !card.dataset.pickerSearch.includes(query); return; }
+  if (event.target.matches("[data-block-palette-search]")) {
+    app.timelineBlockSearch = event.target.value;
+    const query = event.target.value.trim().toLowerCase();
+    for (const card of root.querySelectorAll(".palette-primitive-card")) {
+      const name = card.querySelector(".palette-card-name")?.textContent.toLowerCase() || "";
+      const desc = card.querySelector(".palette-card-desc")?.textContent.toLowerCase() || "";
+      const cat = card.querySelector(".palette-card-cat")?.textContent.toLowerCase() || "";
+      card.style.display = (!query || name.includes(query) || desc.includes(query) || cat.includes(query)) ? "" : "none";
+    }
+    return;
+  }
+
+  const inlineField = event.target.closest("[data-inline-clip-field]");
+  if (inlineField) {
+    const act = currentAction();
+    const clipContainer = inlineField.closest("[data-inspector-clip-id]");
+    const clipId = clipContainer?.dataset.inspectorClipId || app.timelineSelectedClipId;
+    const found = findClipInTimeline(act.timeline, clipId);
+    if (found) {
+      const clip = found.clip;
+      const field = inlineField.dataset.inlineClipField;
+      const value = inlineField.type === "checkbox" ? inlineField.checked : inlineField.type === "number" ? Number(inlineField.value) : inlineField.value;
+
+      if (field === "start") {
+        clip.start = Math.max(0, Number(value) || 0);
+        found.track.clips.sort((a, b) => (a.start || 0) - (b.start || 0));
+      } else if (field === "duration") {
+        clip.duration = Math.max(0.1, Number(value) || 0.1);
+      } else if (field === "waitForInput") {
+        clip.waitForInput = value;
+      } else if (field === "speaker") {
+        clip.speaker = value;
+        clip.parameters ||= {};
+        clip.parameters.speaker = value;
+        clip.label = `${value}: "${clip.text || clip.parameters.text || ""}"`;
+      } else if (field === "text") {
+        clip.text = value;
+        clip.parameters ||= {};
+        clip.parameters.text = value;
+        clip.label = `${clip.speaker || clip.parameters.speaker || "Active Player"}: "${value}"`;
+      } else if (field === "style") {
+        clip.style = value;
+        clip.parameters ||= {};
+        clip.parameters.style = value;
+      } else if (field === "prompt") {
+        clip.prompt = value;
+        clip.parameters ||= {};
+        clip.parameters.prompt = value;
+        clip.label = `CONFIRM: "${value}" [${clip.parameters.trueLabel || clip.choice1 || "YES"} / ${clip.parameters.falseLabel || clip.choice2 || "NO"}]`;
+      } else if (field === "trueLabel") {
+        clip.choice1 = value;
+        clip.parameters ||= {};
+        clip.parameters.trueLabel = value;
+        clip.label = `CONFIRM: "${clip.parameters.prompt || clip.prompt || ""}" [${value} / ${clip.parameters.falseLabel || clip.choice2 || "NO"}]`;
+      } else if (field === "falseLabel") {
+        clip.choice2 = value;
+        clip.parameters ||= {};
+        clip.parameters.falseLabel = value;
+        clip.label = `CONFIRM: "${clip.parameters.prompt || clip.prompt || ""}" [${clip.parameters.trueLabel || clip.choice1 || "YES"} / ${value}]`;
+        const laneBelow = act.timeline.tracks[found.trackIndex + 1];
+        if (laneBelow && (laneBelow.kind === "branch-false" || laneBelow.boundDecisionId === clip.id)) {
+          laneBelow.name = `Branch 2 · ${value} / False`;
+        }
+      } else if (field === "camAction") {
+        clip.camAction = value;
+        clip.label = value === "zoom" ? `ZOOM IN ON SPACE (${clip.zoom || 1.8}x Focus)` : value === "shake" ? `SCREEN SHAKE (${(clip.intensity || "heavy").toUpperCase()})` : `CAMERA: ${value.toUpperCase()}`;
+      } else if (field === "zoom") {
+        clip.zoom = value;
+        clip.label = `ZOOM IN ON SPACE (${value}x Focus)`;
+      } else if (field === "intensity") {
+        clip.intensity = value;
+        clip.label = `SCREEN SHAKE (${value.toUpperCase()})`;
+      } else if (field === "actorTarget") {
+        const selectedActor = (act.characters || []).find(a => String(a.id) === String(value));
+        clip.actorId = value;
+        clip.target = selectedActor?.name || "Unassigned Actor";
+        clip.label = `${clip.target.toUpperCase()}: ${(clip.actorAction || "pose").toUpperCase()}`;
+      } else if (field === "actorAction") {
+        clip.actorAction = value;
+        clip.label = `${(clip.target || "ACTOR").toUpperCase()}: ${value.toUpperCase()}`;
+      } else if (field === "pose") {
+        clip.pose = value;
+      } else if (field === "animation") {
+        clip.animationId = value;
+      } else if (field === "transition") {
+        clip.transition = value;
+      } else if (field === "invOp") {
+        clip.invOp = value;
+        clip.rewardType = value;
+        clip.label = (value === "grant-item" || value === "remove-item") ? `${value.toUpperCase().replace(/-/g, " ")}: ${clip.itemName || "Skeleton Key"}` : `${value.toUpperCase().replace(/-/g, " ")}: ${clip.amount || 10}`;
+      } else if (field === "itemName") {
+        clip.itemName = value;
+        clip.label = `${(clip.invOp || "grant-item").toUpperCase().replace(/-/g, " ")}: ${value}`;
+      } else if (field === "amount") {
+        clip.amount = Number(value) || 10;
+        clip.label = `${(clip.invOp || "give-coins").toUpperCase().replace(/-/g, " ")}: ${value}`;
+      } else if (field === "logicOp") {
+        clip.logicOp = value;
+        clip.condType = value;
+        if (value === "set-variable") clip.label = `SET ${(clip.varName || "game_stage").toUpperCase()} = ${clip.condValue || "true"}`;
+        else if (value === "add-variable") clip.label = `VAR ${(clip.varName || "game_stage").toUpperCase()} += ${clip.condValue || "1"}`;
+        else if (value === "timer-delay") clip.label = `WAIT / DELAY ${clip.condValue || "1"}s`;
+        else if (value === "exit-cutscene") clip.label = `EXIT CUTSCENE`;
+        else clip.label = `IF ${value.replace(/-/g, " ").toUpperCase()} [${clip.condValue || "20"}]`;
+      } else if (field === "varName") {
+        clip.varName = value;
+      } else if (field === "condValue") {
+        clip.condValue = value;
+      } else if (field === "inputType") {
+        clip.inputType = value;
+      } else if (field === "promptText") {
+        clip.questionText = value;
+        clip.text = value;
+        clip.label = `ASK: "${value}" [${clip.choice1 || "YES"} / ${clip.choice2 || "NO"}]`;
+      } else if (field === "choice1") {
+        clip.choice1 = value;
+        clip.label = `ASK: "${clip.questionText || ""}" [${value} / ${clip.choice2 || "NO"}]`;
+      } else if (field === "choice2") {
+        clip.choice2 = value;
+        clip.label = `ASK: "${clip.questionText || ""}" [${clip.choice1 || "YES"} / ${value}]`;
+      } else if (field === "sfx") {
+        clip.sfx = value;
+      } else if (field === "bgm") {
+        clip.bgm = value;
+      } else if (field === "label") {
+        clip.label = value;
+      } else if (field === "stageEffect") {
+        clip.stageEffect = value;
+      }
+
+      syncTimelineToCommands(act);
+      save("event");
+      updateTimelinePreviewLive(act);
+    }
+    return;
+  }
+
+  const genericParamField = event.target.closest("[data-generic-param]");
+  if (genericParamField) {
+    const act = currentAction();
+    const clipContainer = genericParamField.closest("[data-inspector-clip-id]");
+    const clipId = clipContainer?.dataset.inspectorClipId || app.timelineSelectedClipId;
+    const found = findClipInTimeline(act.timeline, clipId);
+    if (found) {
+      const clip = found.clip;
+      clip.parameters ||= {};
+      const key = genericParamField.dataset.genericParam;
+      const val = genericParamField.type === "checkbox" ? genericParamField.checked : ["number","range"].includes(genericParamField.type) ? Number(genericParamField.value) : genericParamField.value;
+      clip.parameters[key] = val;
+      if (genericParamField.type === "range") {
+        const output = genericParamField.parentElement?.querySelector("output");
+        if (output) output.textContent = val;
+      }
+      syncTimelineToCommands(act);
+      save("event");
+      updateTimelinePreviewLive(act);
+    }
+    return;
+  }
+
+  const choiceOptionField = event.target.closest("[data-choice-field]");
+  if (choiceOptionField) {
+    const row = choiceOptionField.closest("[data-choice-option]");
+    const targetCmd = activeInspectorClipOrCommand();
+    if (row && targetCmd?.parameters?.choices) {
+      const choice = targetCmd.parameters.choices[Number(row.dataset.choiceOption)];
+      if (choice) {
+        choice[choiceOptionField.dataset.choiceField] = choiceOptionField.value;
+        const act = currentAction();
+        const found = findClipInTimeline(act.timeline, targetCmd.id);
+        if (found) syncDecisionOutcomeTracks(act.timeline, found.track, targetCmd);
+        syncTimelineToCommands(act);
+        save("event");
+        updateTimelinePreviewLive(act);
+      }
+    }
+    return;
+  }
+
   if (event.target.id === "action-block-search") {
     const query = event.target.value.trim().toLowerCase();
     for (const card of root.querySelectorAll("[data-preset-search]")) card.hidden = Boolean(query) && !card.dataset.presetSearch.includes(query);
@@ -5144,7 +6112,7 @@ function pushDependentBranchEvents(timeline, logicClip) {
   }
 }
 
-// Double-Click on Timeline Clip opens Action Inspector Modal
+// Double-Click on Timeline Clip opens in Block Inspector
 root.addEventListener("dblclick", (event) => {
   const timelineClip = event.target.closest(".timeline-clip-block");
   if (timelineClip) {
@@ -5152,7 +6120,9 @@ root.addEventListener("dblclick", (event) => {
     const act = app.project.events.entries.find((e) => e.id === app.activeSpaceActionId) || app.project.events.entries[0];
     const found = findClipInTimeline(act?.timeline, clipId);
     if (found) {
-      app.editingCommand = { id: clipId, cmd: structuredClone(found.clip) };
+      app.timelineSelectedClipId = clipId;
+      app.timelineSelectedClipIds = new Set([clipId]);
+      app.timelineSideTab = "inspector";
       render();
       playSfx("dialogue-blip");
     }
@@ -5165,11 +6135,23 @@ root.addEventListener("change",event=>{
   const effectField=event.target.closest("[data-effect-edit]");if(effectField){const effect=ensureEffects().find(item=>item.id===app.activeEffectId);if(effect){const key=effectField.dataset.effectEdit;effect[key]=effectField.type==="range"?Number(effectField.value):effectField.value;if(key==="kind"){effect.type=effect.kind==="controller"?"emitter":effect.kind==="lightsource"?"point-light":"particle";app.effectPropertyTab="identity";}save("data");render();}return;}
   const mapSetting=event.target.closest("[data-map-setting]");if(mapSetting){remember();app.project.map[mapSetting.dataset.mapSetting]=mapSetting.value;save("map");render();return;}
   const mapDefault=event.target.closest("[data-map-default]");if(mapDefault){remember();app.project.map.defaults||={};app.project.map.defaults[mapDefault.dataset.mapDefault]=mapDefault.type==="checkbox"?mapDefault.checked:["range","number"].includes(mapDefault.type)?Number(mapDefault.value):mapDefault.value;save("map");render();return;}
-  const multiSpace=event.target.closest("[data-multi-space-edit]");if(multiSpace&&multiSpace.value!==""){remember();const key=multiSpace.dataset.multiSpaceEdit,value=["size","rotation"].includes(key)?Number(multiSpace.value):multiSpace.value;for(const space of app.project.map.spaces.filter(item=>app.selectedSpaces.has(item.id)))space[key]=value;save("map");render();return;}
+  const multiSpace=event.target.closest("[data-multi-space-edit]");if(multiSpace&&multiSpace.value!==""){remember();const key=multiSpace.dataset.multiSpaceEdit,value=["size","rotation"].includes(key)?Number(multiSpace.value):space.value;for(const space of app.project.map.spaces.filter(item=>app.selectedSpaces.has(item.id)))space[key]=value;save("map");render();return;}
   const spaceField=event.target.closest("[data-space-edit]");if(spaceField){const space=app.project.map.spaces.find(item=>item.id===app.mapInspector);if(!space)return;remember();const key=spaceField.dataset.spaceEdit,value=spaceField.type==="checkbox"?spaceField.checked:spaceField.type==="number"||spaceField.type==="range"?Number(spaceField.value):spaceField.value;if(key==="name"){space.activity||={id:space.action||`space-${space.id}`,icon:"✦"};space.activity.title=value;}else space[key]=value;save("map");render();return;}
   const pathDirection=event.target.closest("[data-path-edit=direction]");if(pathDirection){const path=app.project.map.paths.find(item=>item.id===app.editingPath);if(path){remember();path.oneWay=pathDirection.value!=="both";path.direction=pathDirection.value==="reverse"?"reverse":"forward";save("map");render();}return;}
   const pathRender=event.target.closest("[data-path-render]");if(pathRender){const path=app.project.map.paths.find(item=>item.id===app.editingPath);if(path){remember();path.render||={};const key=pathRender.dataset.pathRender;path.render[key]=pathRender.type==="checkbox"?pathRender.checked:pathRender.type==="range"?Number(pathRender.value):pathRender.value;save("map");render();}return;}
   const pointField=event.target.closest("[data-point-edit]");if(pointField){const menu=app.pathPointMenu,path=menu&&app.project.map.paths.find(item=>item.id===menu.pathId),point=path?.points?.[menu.index];if(point){remember();const key=pointField.dataset.pointEdit;point[key]=pointField.type==="checkbox"?pointField.checked:pointField.type==="range"?Number(pointField.value):pointField.value;save("map");render();}return;}
+  const inlineField = event.target.closest("[data-inline-clip-field]");
+  if (inlineField) {
+    const act = currentAction();
+    const clipContainer = inlineField.closest("[data-inspector-clip-id]");
+    const clipId = clipContainer?.dataset.inspectorClipId || app.timelineSelectedClipId;
+    const found = findClipInTimeline(act.timeline, clipId);
+    if (found) {
+      syncTimelineToCommands(act);
+      save("event");
+      render();
+    }
+  }
 });
 root.addEventListener("dragstart", (event) => {
   const actorCard = event.target.closest("[data-draggable-actor]");
